@@ -12,8 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from .common import *
 
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-r7cd&whpag8*0q3020iuzsr#rbj=ghv3kvaq82#khp4-icl19o'
 
 
