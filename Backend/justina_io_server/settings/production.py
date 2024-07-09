@@ -10,15 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-
+import os
+from dotenv import load_dotenv
 from .common import *
+
+load_dotenv()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 # SECURITY WARNING: keep the secret key used in production secret!
-from justina_io_server.settings import get_secret
-SECRET_KEY = get_secret('SECRET_KEY')
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 ALLOWED_HOSTS = ['*']
@@ -34,20 +37,13 @@ STATICFILES_DIRS = [
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DB_NAME = get_secret('DB_NAME')
-DB_USER = get_secret('DB_USER')
-DB_PASSWORD = get_secret('DB_PASSWORD')
-DB_HOST = get_secret('DB_HOST')
-DB_PORT = get_secret('DB_PORT')
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': DB_NAME,
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST,
-        'PORT': DB_PORT
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.environ.get('DB_NAME'),
+#         'USER': os.environ.get('DB_USER'),
+#         'PASSWORD': os.environ.get('DB_PASSWORD'),
+#         'HOST': os.environ.get('DB_HOST'),
+#         'PORT': os.environ.get('DB_PORT')
+#     }
+# }

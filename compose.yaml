@@ -1,21 +1,63 @@
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Docker Compose reference guide at
+# https://docs.docker.com/go/compose-spec-reference/
+
+# Here the instructions define your application as a service called "server".
+# This service is built from the Dockerfile in the current directory.
+# You can add other services your application may depend on here, such as a
+# database or a cache. For examples, see the Awesome Compose repository:
+# https://github.com/docker/awesome-compose
 services:
-  frontend:
-    build: Frontend
+  # Backend
+  server:
+    build:
+      context: Backend
     ports:
-      - "4174:4173"
-    volumes:
-      - .:/app/Frontend
+      - 8000:8000
+    depends_on:
+      - db
 
+  # Frontend
+  web:
+    build:
+        context: Frontend
+    environment:
+      NODE_ENV: production
+    ports:
+      - 4173:4173
+
+  # Database
   db:
-    image: mysql:8.0.27
-    ports:
-      - "5432:5432"
+    image: mysql:latest
+    restart: always
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    expose:
+      - 3306
     volumes:
-      - .:/app/Database
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-  backend:
-    build: Backend
+  # PhpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
     ports:
-      - "8001:8000"
-    volumes:
-      - .:/app/Backend
+      - 8080:80
+    env_file:
+      - .env
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=${PMA_HOST}
+    depends_on:
+      - db 
+volumes:
+  db-data:
+  
