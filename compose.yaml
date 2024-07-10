@@ -1,51 +1,23 @@
-# Comments are provided throughout this file to help you get started.
-# If you need more help, visit the Docker Compose reference guide at
-# https://docs.docker.com/go/compose-spec-reference/
-
-# Here the instructions define your application as a service called "server".
-# This service is built from the Dockerfile in the current directory.
-# You can add other services your application may depend on here, such as a
-# database or a cache. For examples, see the Awesome Compose repository:
-# https://github.com/docker/awesome-compose
 services:
-  # Backend
-  server:
-    build:
-      context: Backend
-    ports:
-      - 8000:8000
-    depends_on:
-      - db
-
-  # Frontend
-  web:
-    build:
-        context: Frontend
-    environment:
-      NODE_ENV: production
-    ports:
-      - 4173:4173
-
-  # Database
   db:
-    image: mysql:latest
+    image: mysql
     restart: always
     env_file:
       - .env
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     expose:
       - 3306
     volumes:
-      - db-data:/var/lib/mysql
+      - .db-data/mysql/data:/var/lib/mysql:rw
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping" ]
-      interval: 10s
-      timeout: 5s
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 1m30s
+      timeout: 30s
       retries: 5
-
-  # PhpMyAdmin
+      start_period: 30s
+  
   phpmyadmin:
     image: phpmyadmin
     restart: always
@@ -57,7 +29,59 @@ services:
       - PMA_ARBITRARY=1
       - PMA_HOST=${PMA_HOST}
     depends_on:
-      - db 
+      - db
+
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE}
+      DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+    ports:
+      - 8000:8000
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - static:/static
+    
+
+  frontend:
+    build:
+        context: ./frontend
+    env_file:
+      - .env
+    environment:
+      VITE_SECRET_KEY: ${VITE_SECRET_KEY}
+    ports:
+      - 4173:4173    
+    volumes:
+      - react-build:/usr/src/app/dist
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:latest
+    build: 
+      context: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - static:/static
+      - react-build:/var/www/frontend
+    depends_on:     
+      - frontend
+
 volumes:
-  db-data:
-  
+  .db-data:
+  static:
+  react-build:
