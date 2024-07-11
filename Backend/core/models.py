@@ -1,108 +1,126 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser, Group, Permission
+
+# User model
+class User(AbstractUser):
+    email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    last_login = models.DateTimeField(null=True, blank=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
 
 
+# TipoUsuario model
+class TipoUsuario(models.Model):
+    tipo = models.IntegerField()
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_group = models.ForeignKey(Group, on_delete=models.CASCADE)
 
-class Entidad(models.Model):
-    idEntidades = models.AutoField(primary_key=True)
-    descripcion = models.CharField(max_length=255)  # Cambiado a texto, en la documentacion es integer
-    status = models.BooleanField(default=True)
+# Paciente model
+class Paciente(models.Model):
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_entidad = models.ForeignKey('Entidad', on_delete=models.CASCADE)
+    id_financiador = models.ForeignKey('Financiador', on_delete=models.CASCADE)
+    id_tratamiento = models.ForeignKey('Tratamiento', on_delete=models.CASCADE)
+    id_personal_medico = models.ForeignKey('PersonalMedico', on_delete=models.CASCADE)
+    id_patologia = models.ForeignKey('Patologia', on_delete=models.CASCADE)
+    id_tipo_documento = models.ForeignKey('TipoDocumento', on_delete=models.CASCADE)
+    id_historia_clinica = models.ForeignKey('HistoriaClinica', on_delete=models.CASCADE)
 
-class Especialidad(models.Model):
-    idEspecialidad = models.AutoField(primary_key=True)
-    tipo = models.CharField(max_length=255)  # Cambiado a texto, en la documentacion es integer
-    status = models.BooleanField(default=True)
+# HistoriaClinica model
+class HistoriaClinica(models.Model):
+    id_antecedente_medico = models.ForeignKey('AntecedenteMedico', on_delete=models.CASCADE)
 
-class Patologia(models.Model):
-    idPatologias = models.AutoField(primary_key=True)
-    especialidad = models.ForeignKey(Especialidad, on_delete=models.PROTECT)
-    descripcion = models.CharField(max_length=255)  # Cambiado a texto, en la documentacion es integer
-    status = models.BooleanField(default=True)
+# AntecedenteMedico model
+class AntecedenteMedico(models.Model):
+    fecha_atencion = models.DateTimeField()
+    informacion = models.TextField()
+    identificador_examen = models.CharField(max_length=255)
+    id_patologia = models.ForeignKey('Patologia', on_delete=models.CASCADE)
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['fecha_atencion'], name='fecha_atencion')
+        ]
+
+# InformacionPersonal model
+class InformacionPersonal(models.Model):
+    nombres = models.CharField(max_length=255)
+    apellidos = models.CharField(max_length=255)
+    nro_documento = models.CharField(max_length=20)
+    fecha_nacimiento = models.DateTimeField()
+    sexo = models.CharField(max_length=10)
+    direccion = models.ForeignKey('Direccion', on_delete=models.CASCADE)
+    numero_telefono = models.CharField(max_length=20)
+    numero_telefono_2 = models.CharField(max_length=20, null=True, blank=True)
+    correo_contacto = models.EmailField()
+    factor_sanguineo = models.CharField(max_length=3)
+    id_informacion_personal = models.ForeignKey(User, on_delete=models.CASCADE)
+
+# Direccion model
+class Direccion(models.Model):
+    calle = models.CharField(max_length=255)
+    localidad = models.IntegerField()
+    provincia = models.IntegerField()
+    departamento = models.IntegerField()
+    municipio = models.IntegerField()
+    numero = models.CharField(max_length=10)
+    observaciones = models.TextField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+
+# PersonalMedico model
 class PersonalMedico(models.Model):
-    idPersonalMedico = models.AutoField(primary_key=True)
-    especialidad = models.ManyToManyField(Especialidad, through='PersonalMedicoEspecialidad')
-    descripcion = models.CharField(max_length=255)  # Cambiado a texto, en la documentacion es integer
-    status = models.BooleanField(default=True)
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_especialidad = models.ForeignKey('Especialidad', on_delete=models.CASCADE)
+    descripcion = models.CharField(max_length=255)
+    is_active = models.BooleanField(default=True)
 
+# Especialidad model
+class Especialidad(models.Model):
+    tipo = models.IntegerField()
+    is_active = models.BooleanField(default=True)
+
+# TipoDocumento model
 class TipoDocumento(models.Model):
-    idTipoDocumento = models.AutoField(primary_key=True)
+    id_personal_medico = models.ForeignKey('PersonalMedico', on_delete=models.CASCADE)
+    descripcion = models.CharField(max_length=255)
+    is_active = models.BooleanField(default=True)
+
+# Financiador model
+class Financiador(models.Model):
+    id_personal_medico = models.ForeignKey('PersonalMedico', on_delete=models.CASCADE)
+    descripcion = models.CharField(max_length=255)
+    is_active = models.BooleanField(default=True)
+
+# Patologia model
+class Patologia(models.Model):
+    id_especialidad = models.ForeignKey('Especialidad', on_delete=models.CASCADE)
+    descripcion = models.CharField(max_length=255)
+    is_active = models.BooleanField(default=True)
+
+# Tratamiento model
+class Tratamiento(models.Model):
+    id_patologia = models.ForeignKey('Patologia', on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
+
+# Farmacia model
+class Farmacia(models.Model):
+    id_laboratorio = models.IntegerField()
+    id_medicamento = models.IntegerField()
+    is_active = models.BooleanField(default=True)
+
+# Medicamento model
+class Medicamento(models.Model):
+    id_patologia = models.ForeignKey('Patologia', on_delete=models.CASCADE)
+    id_tratamiento = models.ForeignKey('Tratamiento', on_delete=models.CASCADE)
+    id_farmacia = models.ForeignKey('Farmacia', on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=255)
     status = models.BooleanField(default=True)
 
-class Financiero(models.Model):
-    idPrepagas = models.IntegerField()
-    personal_medico = models.ForeignKey(PersonalMedico, on_delete=models.PROTECT)
-    descripcion = models.CharField(max_length=255)  # Cambiado a texto, en la documentacion es integer
+# Entidad model
+class Entidad(models.Model):
+    descripcion = models.CharField(max_length=255)
     status = models.BooleanField(default=True)
-
-class Tratamiento(models.Model):
-    idTratamiento = models.AutoField(primary_key=True)
-    patologia = models.ForeignKey(Patologia, on_delete=models.PROTECT)
-    status = models.BooleanField(default=True)
-
-class FactorSanguineo(models.Model):
-    idFactor = models.AutoField(primary_key=True)
-    factor_sanguineo = models.CharField(max_length=3)
-    status = models.BooleanField(default=True)
-
-class Paciente(models.Model):
-    idPaciente = models.AutoField(primary_key=True)
-    # relaciones
-    entidad = models.ForeignKey(Entidad, on_delete=models.PROTECT)
-    prepaga = models.ForeignKey(Financiero, on_delete=models.PROTECT)
-    tratamientos = models.ManyToManyField(Tratamiento, through='TratamientoPaciente') #muchos a muchos
-    personal_medico = models.ManyToManyField(PersonalMedico, through='PersonalMedicoPaciente') #muchos a muchos
-    patologias = models.ManyToManyField(Patologia, through='PacientePatologia') #muchos a muchos
-    tipo_documento = models.ForeignKey(TipoDocumento, on_delete=models.PROTECT)
-    factor_sanguineo = models.ForeignKey(FactorSanguineo, on_delete=models.PROTECT)
-    # datos propios
-    nombre = models.CharField(max_length=255)
-    apellido = models.CharField(max_length=255)
-    nro_documento = models.IntegerField()
-    fecha_nacimiento = models.DateField()
-    sexo = models.IntegerField()
-    status = models.BooleanField(default=True)
-
-#### tODO ESTO ES UN BLOQUE QUE QUIERO REVISAR CON LOS CHICOS
-class Laboratorio(models.Model):
-    idLaboratorio = models.AutoField(primary_key=True)
-    descripcion = models.CharField(max_length=255)  # Cambiado a texto, en la documentacion es integer
-    status = models.BooleanField(default=True)
-
-class Farmacia(models.Model):
-    idFarmacia = models.AutoField(primary_key=True)
-    laboratorio = models.ForeignKey(Laboratorio, on_delete=models.PROTECT) 
-    medicamento = models.IntegerField()
-    status = models.BooleanField(default=True)
-
-class Medicamento(models.Model):
-    idMedicamento = models.AutoField(primary_key=True)
-    farmacia = models.ForeignKey(Farmacia, related_name='medicamentos', on_delete=models.PROTECT) #esto lo quiero revisar, tengo dudas
-    descripcion = models.CharField(max_length=255)  # Cambiado a texto, en la documentacion es integer
-    status = models.BooleanField(default=True)
-
-# Relaciones intermedias (Many-to-Many)
-
-class PacientePatologia(models.Model):
-    paciente = models.ForeignKey(Paciente, on_delete=models.PROTECT)
-    patologia = models.ForeignKey(Patologia, on_delete=models.PROTECT)
-
-class PersonalMedicoEspecialidad(models.Model):
-    personal_medico = models.ForeignKey(PersonalMedico, on_delete=models.PROTECT)
-    especialidad = models.ForeignKey(Especialidad, on_delete=models.PROTECT, related_name='personal_medico_especialidad')
-
-class PersonalMedicoPaciente(models.Model):
-    personal_medico = models.ForeignKey(PersonalMedico, on_delete=models.PROTECT)
-    paciente = models.ForeignKey(Paciente, on_delete=models.PROTECT)
-
-class PatologiaTratamiento(models.Model):
-    patologia = models.ForeignKey(Patologia, on_delete=models.PROTECT)
-    tratamiento = models.ForeignKey(Tratamiento, on_delete=models.PROTECT)
-
-class TratamientoPaciente(models.Model):
-    tratamiento = models.ForeignKey(Tratamiento, on_delete=models.PROTECT)
-    paciente = models.ForeignKey(Paciente, on_delete=models.PROTECT)
-
-class PatologiaMedicamento(models.Model):
-    patologia = models.ForeignKey(Patologia, on_delete=models.PROTECT)
-    medicamento = models.ForeignKey(Medicamento, on_delete=models.PROTECT)
