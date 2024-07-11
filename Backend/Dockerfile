@@ -1,19 +1,28 @@
-FROM python:3.12-slim
+# syntax=docker/dockerfile:1
 
-ENV PYTHONBUFFERED 1
+ARG PYTHON_VERSION=3.12.2
+FROM python:${PYTHON_VERSION} as base
 
-ENV PORT 8080
+ENV PYTHONDONTWRITEBYTECODE=1
+
+ENV PYTHONUNBUFFERED=1
+
+ARG UID=10001
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/nonexistent" \
+    --shell "/sbin/nologin" \
+    --no-create-home \
+    --uid "${UID}" \
+    appuser
+
+RUN --mount=type=cache,target=/root/.cache/pip \
+    --mount=type=bind,source=requirements.txt,target=requirements.txt \
+    python -m pip install -r requirements.txt
 
 WORKDIR /app
+COPY . .
+COPY entrypoint.sh .
 
-COPY . /app/
-
-RUN pip install --upgrade pip
-
-RUN pip install -r requirements.txt
-
-RUN python manage.py collectstatic --no-input
-
-CMD gunicorn --bind 0.0.0.0:"${PORT}" justina_io_server.wsgi:application
-
-EXPOSE ${PORT}
+ENTRYPOINT ["sh", "./entrypoint.sh"]
