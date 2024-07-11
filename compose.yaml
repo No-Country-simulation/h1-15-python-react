@@ -1,21 +1,87 @@
 services:
-  frontend:
-    build: Frontend
-    ports:
-      - "4174:4173"
-    volumes:
-      - .:/app/Frontend
-
   db:
-    image: mysql:8.0.27
-    ports:
-      - "5432:5432"
+    image: mysql
+    restart: always
+    env_file:
+      - .env
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    expose:
+      - 3306
     volumes:
-      - .:/app/Database
+      - .db-data/mysql/data:/var/lib/mysql:rw
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+  
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    env_file:
+      - .env
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=${PMA_HOST}
+    depends_on:
+      - db
 
   backend:
-    build: Backend
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE}
+      DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
     ports:
-      - "8001:8000"
+      - 8000:8000
+    depends_on:
+      db:
+        condition: service_healthy
     volumes:
-      - .:/app/Backend
+      - static:/static
+    
+
+  frontend:
+    build:
+        context: ./frontend
+    env_file:
+      - .env
+    environment:
+      VITE_SECRET_KEY: ${VITE_SECRET_KEY}
+    ports:
+      - 4173:4173    
+    volumes:
+      - react-build:/usr/src/app/dist
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:latest
+    build: 
+      context: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - static:/static
+      - react-build:/var/www/frontend
+    depends_on:     
+      - frontend
+
+volumes:
+  .db-data:
+  static:
+  react-build:
