@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "classnames": "^2.5.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-phone-input-2": "^2.15.1",
     "react-router-dom": "^6.24.1",
     "zustand": "^4.5.4"
   },
