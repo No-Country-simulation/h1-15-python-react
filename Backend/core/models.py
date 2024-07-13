@@ -40,6 +40,7 @@ class AntecedenteMedico(models.Model):
     informacion = models.TextField()
     identificador_examen = models.CharField(max_length=255)
     id_patologia = models.ForeignKey('Patologia', on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         indexes = [
@@ -59,6 +60,7 @@ class InformacionPersonal(models.Model):
     correo_contacto = models.EmailField()
     factor_sanguineo = models.CharField(max_length=3)
     id_informacion_personal = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
 
 # Direccion model
 class Direccion(models.Model):
@@ -118,9 +120,9 @@ class Medicamento(models.Model):
     id_tratamiento = models.ForeignKey('Tratamiento', on_delete=models.CASCADE)
     id_farmacia = models.ForeignKey('Farmacia', on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=255)
-    status = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
 
 # Entidad model
 class Entidad(models.Model):
     descripcion = models.CharField(max_length=255)
-    status = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
