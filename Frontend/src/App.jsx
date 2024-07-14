@@ -1,6 +1,7 @@
 import CardAppKey from "./components/Cards/CardAppKeys";
 import CardFunction from "./components/Cards/CardFunction";
 import CardPeople from "./components/Cards/CardPeople";
+import Footer from "./components/Footer";
 import Carousel from "./components/Slider/Slider";
 
 function App() {
@@ -233,6 +234,8 @@ function App() {
             <Carousel />
           </div>
         </section>
+        <section className="flex justify-center"></section>
+        <Footer />
       </main>
     </>
   );
