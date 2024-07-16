@@ -230,7 +230,7 @@ function App() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
             nunc ante velit vitae.
           </p>
-          <div className="">
+          <div className="mx-auto">
             <Carousel />
           </div>
         </section>

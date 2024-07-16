@@ -1,68 +1,70 @@
-import { useState } from "react";
+// import Swiper styles
+import "swiper/css";
 import "./Slider.css";
+import "swiper/css/pagination";
+import "swiper/css/effect-cards";
+import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCards } from "swiper/modules";
 
-const Carousel = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const images = [
-    // URLs o rutas de las imágenes aquí
-    "/Profile.png",
-    "/Profile1.png",
-    "/Profile2.png",
+export default function Carousel() {
+  const swipers = [
+    {
+      name: "ANA GARCIA",
+      condition: "PACIENTE TRANSPLANTADO",
+      comment:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae, nullam lobortis enim.",
+    },
+    {
+      name: "ANA GARCIA",
+      condition: "PACIENTE TRANSPLANTADO",
+      comment:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae, nullam lobortis enim.",
+    },
+    {
+      name: "ANA GARCIA",
+      condition: "PACIENTE TRANSPLANTADO",
+      comment:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae, nullam lobortis enim.",
+    },
+    {
+      name: "ANA GARCIA",
+      condition: "PACIENTE TRANSPLANTADO",
+      comment:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae, nullam lobortis enim.",
+    },
   ];
-
-  const handlePrev = () => {
-    if (activeIndex === 0) {
-      setActiveIndex(images.length - 1);
-    } else {
-      setActiveIndex(activeIndex - 1);
-    }
+  const pagination = {
+    clickable: true,
+    renderBullet: function (index, className) {
+      return '<span class="swiper-bullet ' + className + '">'+  '</span>';
+    },
   };
-
-  const handleNext = () => {
-    if (activeIndex === images.length - 1) {
-      setActiveIndex(0);
-    } else {
-      setActiveIndex(activeIndex + 1);
-    }
-  };
-
   return (
-    <div className="carousel-container">
-      {/* Contenedor para las cards */}
-      <div className="carousel-inner">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`carousel-card ${
-              index === activeIndex ? "active" : "inactive"
-            }`}
-            style={{
-              width: index === activeIndex ? "343px" : "215px",
-              height: index === activeIndex ? "250px" : "215px",
-            }}
-          ></div>
+    <>
+      <Swiper
+        effect={"cards"}
+        spaceBetween={30}
+        grabCursor={true}
+        pagination={pagination}
+        modules={[Pagination, EffectCards]}
+        className="mySwiper"
+      >
+        {swipers.map((swiper, index) => (
+          <SwiperSlide className="flex flex-col items-center" key={index}>
+            <img className="w-12 h-12 rounded-full" src="./Profile1.png" />
+            <h2 className="text-[25px] font-semibold font-josefin text-[#232233]">
+              {swiper.name}
+            </h2>
+            <h3 className="text-base font-josefin text-[#232233] pb-4">
+              {swiper.condition}
+            </h3>
+            <p className="px-2 text-base text-center text-[#6C6C72]">
+              {swiper.comment}
+            </p>
+          </SwiperSlide>
         ))}
-      </div>
-
-      {/* Controles de navegación */}
-      <div className="carousel-controls">
-        <button onClick={handlePrev}>Anterior</button>
-        <button onClick={handleNext}>Siguiente</button>
-      </div>
-
-      {/* Paginador */}
-      <div className="carousel-pagination">
-        {images.map((_, index) => (
-          <span
-            key={index}
-            className={`pagination-bullet ${
-              index === activeIndex ? "active" : ""
-            }`}
-          ></span>
-        ))}
-      </div>
-    </div>
+      </Swiper>
+    </>
   );
-};
-
-export default Carousel;
+}
