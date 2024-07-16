@@ -1,9 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from django.contrib.auth.password_validation import validate_password
-from django.core import exceptions
-import uuid
 from mail.views import registration_mail
+from uuid import uuid4
 
 
 User = get_user_model()
@@ -18,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 
   def create(self, validated_data):
     user = User(**validated_data)
-    new_password = uuid.uuid4().hex
+    new_password = uuid4().hex
     user.set_password(new_password)
     registration_mail(user.email, new_password)
     user.is_active = False
