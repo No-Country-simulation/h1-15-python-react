@@ -1,4 +1,14 @@
+import { useState } from "react";
+import eye from "/icons/eye.svg";
+import eye_off from "/icons/eye_off.svg";
+
 const Login = () => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -36,13 +46,30 @@ const Login = () => {
               <label htmlFor="password" className="block text-sm font-medium">
                 Contraseña
               </label>
-              <input
-                id="password"
-                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
-                type="password"
-                placeholder="Ingrese una contraseña"
-                required
-              />
+              <section className="relative">
+                <input
+                  id="password"
+                  className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
+                  type={passwordVisible ? "text" : "password"}
+                  placeholder="Ingrese una contraseña"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center"
+                >
+                  <img
+                    src={passwordVisible ? eye_off : eye}
+                    alt={
+                      passwordVisible
+                        ? "Ocultar contraseña"
+                        : "Mostrar contraseña"
+                    }
+                    className="h-4 w-auto"
+                  />
+                </button>
+              </section>
             </div>
             <section className="flex justify-between">
               <div className="flex items-center">
