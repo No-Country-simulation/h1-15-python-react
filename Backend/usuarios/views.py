@@ -1,12 +1,16 @@
 from django.contrib.auth import get_user_model
+from mail.views import activation_mail
 from usuarios.serializers import UserSerializer
-from drf_spectacular.utils import extend_schema
 from rest_framework import generics
+from drf_spectacular.utils import extend_schema
+
 
 
 User = get_user_model()
 
+
 # Create your views here.
+
 class UserList(generics.ListCreateAPIView):
   queryset = User.objects.all()
   serializer_class = UserSerializer
@@ -31,6 +35,7 @@ class UserList(generics.ListCreateAPIView):
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
   queryset = User.objects.all()
   serializer_class = UserSerializer
+    
 
   @extend_schema(
     tags=['users'], 
@@ -62,4 +67,9 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     description="Permite modificar algún dato del usuario especificado con su numero de ID"
   )
   def patch(self, request, *args, **kwargs):
+    user = User.objects.get(id=kwargs['pk'])
+    activation_mail(user.email, request.data['password'])
+    user.is_active = request.data['is_active']
+    user.set_password(request.data['password'])
+    user.save()
     return self.partial_update(request, *args, **kwargs)

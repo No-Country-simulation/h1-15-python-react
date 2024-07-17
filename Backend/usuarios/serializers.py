@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from mail.views import registration_mail
+from django.contrib.auth.password_validation import validate_password
 from uuid import uuid4
 
 
@@ -11,7 +12,7 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
-    fields = ['username', 'email']
+    fields = ['username', 'email', "is_active"]
     extra_kwargs = {'password': {'write_only': True}}
 
   def create(self, validated_data):
@@ -22,4 +23,3 @@ class UserSerializer(serializers.ModelSerializer):
     user.is_active = False
     user.save()
     return user
-  
