@@ -35,10 +35,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     # Local apps
     'api.apps.ApiConfig',
     'usuarios.apps.UsuariosConfig',
     'mail.apps.MailConfig',
+=======
+
+    # Django Rest Framework
+    'rest_framework',
+    # Local apps
+    'core',
+
+>>>>>>> back-dev-db-fernando
     # 3rd party apps
     'rest_framework',
     'corsheaders',
@@ -96,6 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'core.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
