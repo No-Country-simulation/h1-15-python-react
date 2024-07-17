@@ -4,9 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        roboto: ["Roboto", "sans-serif"],
-        merrywether: ["Merriweather", "serif"],
-        lato: ["Lato", "sans-serif"],
+        sans: ["Inter", "sans-serif"],
+        josefin: ["Josefin Sans", "sans-serif"],
       },
       colors: {
         primary: {
@@ -45,6 +44,7 @@ export default {
           800: "#62532c",
           900: "#312a16",
         },
+        magentaButton: "#D22B8B",
         Justina_1: "#5563C4",
         Justina_2: "#9AC9B9",
         Justina_3: "#EE6092",
