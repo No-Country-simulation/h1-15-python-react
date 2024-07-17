@@ -4,11 +4,14 @@ import "react-phone-input-2/lib/style.css";
 
 import eye from "/icons/eye.svg";
 import eye_off from "/icons/eye_off.svg";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [phone, setPhone] = useState("+54");
   const [secondaryPhone, setSecondaryPhone] = useState("+54");
   const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,11 +21,16 @@ const Register = () => {
     setPasswordVisible(!passwordVisible);
   };
 
+  const handleLoginClick = () => {
+    navigate('/login');
+  };
+
+
   return (
     <main className="flex p-4 flex-col items-center justify-center min-h-screen bg-gradient-background_1">
       <section className="flex lg:max-w-[788px] flex-col justify-center p-[24px] bg-white shadow-lg rounded-lg overflow-hidden w-full">
         <section className="max-w-[206px] mb-6 cursor-pointer">
-          <img src="/icons/arrowleft.svg" alt="logo" />
+          <img onClick={handleLoginClick} src="/icons/arrowleft.svg" alt="logo" />
         </section>
         <section>
           <h1 className="text-left text-[32px] font-bold">
@@ -30,7 +38,7 @@ const Register = () => {
           </h1>
           <p className="mt-6 text-left text-sm text-text_primary">
             ¿Ya tienes una cuenta?
-            <span className="ml-1 text-text_secondary font-semibold cursor-pointer">
+            <span   onClick={handleLoginClick} className="ml-1 text-text_secondary font-semibold cursor-pointer">
               Iniciar Sesión
             </span>
           </p>
