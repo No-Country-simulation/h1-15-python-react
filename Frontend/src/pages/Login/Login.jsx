@@ -1,9 +1,13 @@
 import { useState } from "react";
 import eye from "/icons/eye.svg";
 import eye_off from "/icons/eye_off.svg";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+
+  
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -13,17 +17,25 @@ const Login = () => {
     e.preventDefault();
   };
 
+  const handleRegisterClick = () => {
+    navigate('/register');
+  };
+
+  const handleHomeClick = () => {
+    navigate('/');
+  };
+
   return (
     <main className="flex p-4 flex-col items-center justify-center min-h-screen bg-gradient-background_1">
-      <section className="max-w-[206px]">
-        <img src="/justinaLogo.png" alt="logo" />
+      <section className="max-w-[206px] cursor-pointer">
+        <img onClick={handleHomeClick} src="/justinaLogo.png" alt="logo" />
       </section>
       <section className="flex lg:max-w-[548px] flex-col justify-center p-[24px] bg-white shadow-lg rounded-lg overflow-hidden w-full">
         <section>
           <h1 className="text-center text-[32px] font-bold">Iniciar Sesión</h1>
           <p className="mt-6 text-center text-sm text-text_primary">
             ¿No tienes cuenta?
-            <span className="ml-1 text-text_secondary font-semibold cursor-pointer">
+            <span onClick={handleRegisterClick} className="ml-1 text-text_secondary font-semibold cursor-pointer">
               Regístrate
             </span>
           </p>
