@@ -136,9 +136,11 @@ celerybeat.pid
 
 # Environments
 .env
+.env.production
 .venv
 env/
 venv/
+backend/h1-15-venv
 ENV/
 env.bak/
 venv.bak/

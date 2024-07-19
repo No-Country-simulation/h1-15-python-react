@@ -1,0 +1,102 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    env_file:
+      - .env.production
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    expose:
+      - 3306
+    volumes:
+      - ./.db-data/mysql/data:/var/lib/mysql:rw
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - .env.production
+    environment:
+      DJANGO_SETTINGS_MODULE: justina_io_server.settings.production
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DJANGO_EMAIL_HOST: ${DJANGO_EMAIL_HOST}
+      DJANGO_EMAIL_HOST_USER: ${DJANGO_EMAIL_HOST_USER}
+      DJANGO_EMAIL_HOST_PASSWORD: ${DJANGO_EMAIL_HOST_PASSWORD}
+      DJANGO_EMAIL_PORT: ${DJANGO_EMAIL_PORT}
+    ports:
+      - 8000:8000
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - static:/static
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  frontend:
+    build:
+        context: ./frontend
+    env_file:
+      - .env.production
+    environment:
+      VITE_SECRET_KEY: ${VITE_SECRET_KEY}
+    ports:
+      - 4173:4173 
+    volumes:
+      - frontend:/usr/src/app/dist
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  nginx:
+    build: 
+      context: ./nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - static:/static
+      - frontend:/var/www/frontend
+    depends_on:    
+      backend:
+        condition: service_healthy
+  
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    env_file:
+      - .env.production
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=${PMA_HOST}
+    depends_on:
+      db:
+          condition: service_healthy
+
+
+volumes:
+  static:
+  frontend:
+  .db-data:
+  nginx:
