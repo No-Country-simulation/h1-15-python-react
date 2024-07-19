@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'usuarios.apps.UsuariosConfig',
     'mail.apps.MailConfig',
     'core.apps.CoreConfig',
+    'tratamientos.apps.TratamientosConfig',
     # 3rd party apps
     'rest_framework',
     'corsheaders',
