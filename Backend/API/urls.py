@@ -1,9 +1,11 @@
 from django.urls import path
 from django.contrib import admin
 from usuarios.views import UserList, UserDetail
+from tratamientos.views import TratamientoList, TratamientoDetail
 from django.urls import include, path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+
 
 # Create your views here.
 urlpatterns = [
@@ -21,4 +23,6 @@ urlpatterns = [
     # API URLs
     path('users/', UserList.as_view()),
     path('users/<int:pk>/', UserDetail.as_view()),
+    path('treatment/', TratamientoList.as_view(),),
+    path('treatment/<int:pk>/', TratamientoDetail.as_view(),),
 ]
