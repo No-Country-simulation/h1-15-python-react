@@ -11,7 +11,7 @@ class TratamientoList(generics.ListCreateAPIView):
     serializer_class = TratamientoSerializer
 
     @extend_schema(
-        tags=['tratamiento'],
+        tags=['Tratamientos'],
         summary='Lista todos los tratamientos',
         description="Entrega un lista con de todos los tratamientos"
     )
@@ -19,7 +19,7 @@ class TratamientoList(generics.ListCreateAPIView):
         return self.list(request, *args, **kwargs)
 
     @extend_schema(
-        tags=['tratamiento'],
+        tags=['Tratamientos'],
         summary='Crea un tratamiento',
         description="Crea un nuevo tratamiento tratamiento"
     )
@@ -32,7 +32,7 @@ class TratamientoDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TratamientoSerializer
 
     @extend_schema(
-        tags=['tratamiento'],
+        tags=['Tratamientos'],
         summary='Lista un tratamiento especifico',
         description="Entrega un tratamiento especificado con su numero de ID"
     )
@@ -40,7 +40,7 @@ class TratamientoDetail(generics.RetrieveUpdateDestroyAPIView):
         return self.retrieve(request, *args, **kwargs)
 
     @extend_schema(
-        tags=['tratamiento'],
+        tags=['Tratamientos'],
         summary='Modifica un tratamiento',
         description="Permite actualizar todos los datos de un tratamiento especificado con su numero de ID"
     )
@@ -48,7 +48,15 @@ class TratamientoDetail(generics.RetrieveUpdateDestroyAPIView):
         return self.update(request, *args, **kwargs)
 
     @extend_schema(
-        tags=['tratamiento'],
+        tags=['Tratamientos'],
+        summary='Modifica parcialmente un tratamiento',
+        description="Permite actualizar parcialmente un tratamiento especificado con su numero de ID"
+    )
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+    @extend_schema(
+        tags=['Tratamientos'],
         summary='Elimina un tratamiento',
         description="Elimina de la base de datos el tratamiento especificado con su numero de ID"
     )
