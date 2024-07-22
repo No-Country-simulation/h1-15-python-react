@@ -154,8 +154,8 @@ EMAIL_PORT = os.environ.get('DJANGO_EMAIL_PORT')
 
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Your Project API',
-    'DESCRIPTION': 'Your project description',
+    'TITLE': 'Justina-IO Backend API',
+    'DESCRIPTION': 'API para el manejo de la base de datos correspondiente al núcleo básico del proyecto Justina IO. Incluye: usuarios, turnos, tratamientos, financiadores.',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS

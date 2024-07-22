@@ -17,7 +17,7 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # DRF Spectacular URLs
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('schema/swagger-ui/',
+    path('schema/doc/',
          SpectacularSwaggerView.as_view(url_name='schema'), name='doc'),
     path('schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     # API URLs
