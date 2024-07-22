@@ -126,3 +126,11 @@ class Medicamento(models.Model):
 class Entidad(models.Model):
     descripcion = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
+    
+# Turnos model
+class Turno(models.Model):
+    inicio_turno = models.DateTimeField()
+    fin_turno = models.DateTimeField()
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    medico = models.ForeignKey(PersonalMedico, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
