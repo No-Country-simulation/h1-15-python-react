@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'tratamientos.apps.TratamientosConfig',
     'informacion_personal.apps.InformacionPersonalConfig',
+    'pacientes.apps.PacientesConfig',
+    'patologias.apps.PatologiasConfig',
+    'tipo_usuario.apps.TipoUsuarioConfig',
     # 3rd party apps
     'rest_framework',
     'corsheaders',
@@ -98,8 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-AUTH_USER_MODEL = 'core.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
