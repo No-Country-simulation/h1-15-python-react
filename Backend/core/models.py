@@ -131,6 +131,7 @@ class Entidad(models.Model):
 class Turno(models.Model):
     inicio_turno = models.DateTimeField()
     fin_turno = models.DateTimeField()
-    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, blank=True, null=True)
     medico = models.ForeignKey(PersonalMedico, on_delete=models.CASCADE)
+    entidad = models.ForeignKey(Entidad, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
