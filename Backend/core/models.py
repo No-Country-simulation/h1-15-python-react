@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.contrib.auth.models import Group
 
 
 User = get_user_model()
@@ -59,26 +59,42 @@ class InformacionPersonal(models.Model):
     nro_documento = models.CharField(max_length=20)
     fecha_nacimiento = models.DateTimeField()
     sexo = models.CharField(max_length=10)
-    direccion = models.ForeignKey('Direccion', on_delete=models.CASCADE)
+    direccion = models.ForeignKey(
+        'Direccion', related_name='direcciones', on_delete=models.CASCADE)
     numero_telefono = models.CharField(max_length=20)
     numero_telefono_2 = models.CharField(max_length=20, null=True, blank=True)
     correo_contacto = models.EmailField()
     factor_sanguineo = models.CharField(max_length=3)
-    id_informacion_personal = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_informacion_personal = models.ForeignKey(
+        User, related_name='usuario', on_delete=models.CASCADE, null=True, blank=True)
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return '%s, %s, %s' % (self.nombres, self.apellidos, self.nro_documento)
+
+    class Meta:
+        unique_together = ('nombres', 'apellidos', 'nro_documento')
+        ordering = ['apellidos', 'nombres']
+        filtering = ['apellidos', 'nombres', 'nro_documento',
+                     'fecha_nacimiento', 'direccion']
 
 # Direccion model
 
 
 class Direccion(models.Model):
-    calle = models.CharField(max_length=255)
-    localidad = models.IntegerField()
-    provincia = models.IntegerField()
-    departamento = models.IntegerField()
-    municipio = models.IntegerField()
-    numero = models.CharField(max_length=10)
+    ciudad = models.CharField(max_length=255, null=True, blank=True)
+    calle = models.CharField(max_length=255, null=True, blank=True)
+    numero = models.CharField(max_length=10, null=True, blank=True)
     observaciones = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return '%s, %s, %s'(self.calle, self.numero, self.ciudad)
+
+    class Meta:
+        unique_together = ('calle', 'numero', 'ciudad')
+        ordering = ['ciudad']
+
 
 # PersonalMedico model
 

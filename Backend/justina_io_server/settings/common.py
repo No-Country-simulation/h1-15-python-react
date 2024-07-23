@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'pacientes.apps.PacientesConfig',
     'patologias.apps.PatologiasConfig',
     'tipo_usuario.apps.TipoUsuarioConfig',
+    'direcciones.apps.DireccionesConfig',
     # 3rd party apps
     'rest_framework',
     'corsheaders',
@@ -156,9 +157,8 @@ EMAIL_PORT = os.environ.get('DJANGO_EMAIL_PORT')
 
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Your Project API',
-    'DESCRIPTION': 'Your project description',
+    'TITLE': 'Justina.io API',
+    'DESCRIPTION': 'Aplicación para la API del sistema de justina.io',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
-    # OTHER SETTINGS
 }

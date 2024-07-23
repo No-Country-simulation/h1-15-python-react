@@ -6,7 +6,8 @@ from core.models import InformacionPersonal
 
 
 class InformacionPersonalSerializer(serializers.ModelSerializer):
-    user_reference = UserSerializer(read_only=True)
+    usuario = UserSerializer(read_only=True)
+    direcciones = serializers.StringRelatedField(read_only=True, many=True)
 
     class Meta:
         model = InformacionPersonal

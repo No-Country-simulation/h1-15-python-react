@@ -16,7 +16,7 @@ from .common import *
 DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-r7cd&whpag8*0q3020iuzsr#rbj=ghv3kvaq82#khp4-icl19o'
+SECRET_KEY = 'Django-Secret-Key'
 
 
 # Database

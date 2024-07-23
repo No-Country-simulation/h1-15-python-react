@@ -19,6 +19,7 @@ services:
       start_period: 30s
 
   backend:
+    image: h1-15-backend
     build:
       context: ./backend
     restart: *restartpolicy
@@ -52,6 +53,7 @@ services:
       start_period: 30s
 
   frontend:
+    image: h1-15-frontend
     build:
         context: ./frontend
     env_file:
@@ -67,6 +69,7 @@ services:
         condition: service_healthy
 
   nginx:
+    image: nginx
     build: 
       context: ./nginx
     restart: *restartpolicy

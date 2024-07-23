@@ -10,6 +10,7 @@ from tratamientos.views import TratamientoList, TratamientoDetail
 from informacion_personal.views import InformacionPersonalList, InformacionPersonalDetail
 from pacientes.views import PacienteList, PacienteDetail
 from tipo_usuario.views import TipoUsuarioList, TipoUsuarioDetail
+from direcciones.views import DireccionList, DireccionDetail
 
 # Create your views here.
 urlpatterns = [
@@ -35,4 +36,6 @@ urlpatterns = [
     path('patient/<int:pk>/', PacienteDetail.as_view(),),
     path('type/', TipoUsuarioList.as_view(),),
     path('type/<int:pk>/', TipoUsuarioDetail.as_view(),),
+    path('address/', DireccionList.as_view(),),
+    path('address/<int:pk>/', DireccionDetail.as_view(),),
 ]
