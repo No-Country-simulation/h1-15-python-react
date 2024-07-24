@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib import admin
 from usuarios.views import UserList, UserDetail
 from tratamientos.views import TratamientoList, TratamientoDetail
-from financiadores.views import FinanciadoresList, FileUploadView
+from financiadores.views import FinanciadoresList, FileUploadView , FinanciadoresDetail
 from django.urls import include, path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
@@ -27,5 +27,6 @@ urlpatterns = [
     path('treatment/', TratamientoList.as_view(),),
     path('treatment/<int:pk>/', TratamientoDetail.as_view(),),
     path('financiadores/', FinanciadoresList.as_view(),),
-    path('financiadores/upload/', FileUploadView.as_view(),)
+    path('financiadores/<int:pk>/',FinanciadoresDetail.as_view(),),
+    path('financiadores/upload/', FileUploadView.as_view(),),
 ]

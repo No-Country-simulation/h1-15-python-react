@@ -98,9 +98,11 @@ class Financiador(models.Model):
     is_active = models.BooleanField(default=True)
 
 ############-ESTO ES UNA PRUEBA PARA SUBIR FINANCIADORES-############################
+"""
 class FileUpload(models.Model):
     file= models.FileField(upload_to='uploads/')
     uploaded_at = models.DateTimeField(auto_now=True)
+"""
 ############FIN DE LA PRUEBA############################
 
 # Patologia model
