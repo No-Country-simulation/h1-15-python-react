@@ -97,12 +97,17 @@ class Financiador(models.Model):
     descripcion = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
 
-############-ESTO ES UNA PRUEBA PARA SUBIR FINANCIADORES-############################
-"""
+class Nomenclador(models.Model):
+    codigos = models.CharField(max_length=100, null=True, blank=True)
+    descripcion = models.CharField(max_length=100)
+    arancel = models.IntegerField(null=True, blank=True)
+
+############-ESTO ES UNA PRUEBA PARA SUBIR NOMENCLADORES-############################
+
 class FileUpload(models.Model):
     file= models.FileField(upload_to='uploads/')
     uploaded_at = models.DateTimeField(auto_now=True)
-"""
+
 ############FIN DE LA PRUEBA############################
 
 # Patologia model
