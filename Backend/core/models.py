@@ -97,6 +97,14 @@ class Financiador(models.Model):
     descripcion = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
 
+############-ESTO ES UNA PRUEBA PARA SUBIR FINANCIADORES-############################
+"""
+class FileUpload(models.Model):
+    file= models.FileField(upload_to='uploads/')
+    uploaded_at = models.DateTimeField(auto_now=True)
+"""
+############FIN DE LA PRUEBA############################
+
 # Patologia model
 class Patologia(models.Model):
     id_especialidad = models.ForeignKey('Especialidad', on_delete=models.CASCADE)
