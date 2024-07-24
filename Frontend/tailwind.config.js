@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
         josefin: ["Josefin Sans", "sans-serif"],
+        spartan: ["League Spartan", "sans-serif"],
       },
       colors: {
         primary: {
