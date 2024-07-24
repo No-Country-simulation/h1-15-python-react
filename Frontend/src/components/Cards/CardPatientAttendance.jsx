@@ -1,11 +1,39 @@
+/* eslint-disable react/prop-types */
+import dayjs from "dayjs";
 import Avatar from "./../Avatar";
-const CardPatientAttendance = () => {
+import { useEffect, useState } from "react";
+const CardPatientAttendance = ({ paciente }) => {
+  const [estado, setStado] = useState(false);
+  const diagnostico = paciente.diagnostic ? paciente.diagnostic : "Arritmia";
+  const imagen = paciente.picture ? paciente.picture : undefined;
+  const riesgo = paciente.risk ? paciente.risk : "Alto";
+  const nombre = paciente.name ? paciente.name : "Jonah Makarov";
+  const edad = paciente.age ? paciente.age : "15";
+  const doctor = paciente.headDoctor ? paciente.headDoctor : "";
+  const especialidad = paciente.especialist
+    ? paciente.especialist
+    : "Cardiología";
+  const visitas = paciente.visits ? paciente.visits : "10";
+
+  function controlState(paciente) {
+    const cita = dayjs(paciente.appointmentDate);
+    const actual = dayjs();
+    if (actual.isAfter(cita)) {
+      setStado(true);
+    } else {
+      setStado(false);
+    }
+  }
+  useEffect(() => {
+    controlState(paciente);
+  }, [paciente]);
+
   return (
     <div className="my-10 flex flex-col">
-      <div className="bg-yellow-300 text-black rounded-3xl w-full py-4 text-sm text-center">
-        Este paciente está diagnosticado con <i>Arritmia</i>.
+      <div className="bg-yellow-300 text-black rounded-3xl w-full py-4 text-sm px-2 text-center">
+        Este paciente está diagnosticado con <i>{diagnostico}</i>.
         <br />
-        Su nivel de riesgo es <b>Alto</b>
+        Su nivel de riesgo es <b>{riesgo}</b>
       </div>
       {/* CONECTOR */}
       <div className="bg-yellow-300 w-full flex gap-10 h-5">
@@ -16,18 +44,25 @@ const CardPatientAttendance = () => {
       <div className="bg-yellow-300 rounded-3xl p-3 flex justify-center items-stretch flex-col">
         <div className="flex justify-around">
           <Avatar
-            className={"w-20 h-20 mt-0 self-center"}
-            imagen={"Profile1.png"}
+            className={"w-20 h-20 rounded-full mt-0 self-center"}
+            imagen={imagen}
           />
           <div className="flex flex-col">
-            <p className="font-bold ">🟠 En consulta</p>
-            <p className="text-xl">Jonah Makarov</p>
+            <div className={`flex gap-3 items-center font-bold `}>
+              <div
+                className={`${
+                  estado ? "bg-green-500" : "bg-orange-500"
+                } rounded-full w-5 h-5`}
+              ></div>
+              {estado ? "En consulta" : "Agendado"}
+            </div>
+            <p className="text-xl">{nombre}</p>
             <p className="font-light text-sm">
-              Edad: <span>15</span> años
+              Edad: <span>{edad}</span> años
             </p>
             <div className="w-full h-[1px] bg-slate-400 my-3"></div>
-            <p>Dr Cardiologo</p>
-            <p className="font-semibold text-sm">Cardiología</p>
+            <p>{doctor}</p>
+            <p className="font-semibold text-sm">{especialidad}</p>
           </div>
         </div>
 
@@ -36,7 +71,7 @@ const CardPatientAttendance = () => {
             Ultimo diagnóstico: <i>Arritmia</i>
           </p>
           <p>
-            Visitas: <strong>10</strong>
+            Visitas: <strong>{visitas}</strong>
           </p>
           <p className="w-36">
             Ultimo Reporte: <a href="">Aqui</a>
