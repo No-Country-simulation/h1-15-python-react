@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const EventCard = ({ color, eventAction, eventName, eventTime, eventTimeUnit }) => {
+const CardEvent = ({ color, eventAction, eventName, eventTime, eventTimeUnit }) => {
   return (
     <div
       className="flex items-center p-4 bg-[#E4E4E4] shadow-inner-custom font-josefin"
@@ -21,4 +21,4 @@ const EventCard = ({ color, eventAction, eventName, eventTime, eventTimeUnit }) 
   );
 };
 
-export default EventCard;
+export default CardEvent;

@@ -1,5 +1,5 @@
-import CardEvent from "../../components/CardTitle/CardEvent";
-import CardTitle from "../../components/CardTitle/CardTitle";
+import CardEvent from "../../components/Cards/CardEvent";
+import CardTitle from "../../components/Cards/CardTitle";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import Profile from "../../components/Profile/Profile";
 
