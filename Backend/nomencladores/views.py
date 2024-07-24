@@ -76,6 +76,8 @@ class FileUploadView(APIView):
             # Obtener el archivo subido
             file = request.FILES['file']
             
+            file_instance = FileUpload(file=file)
+            file_instance.save()
             # Leer el archivo con pandas
             try:
                 df = pd.read_excel(file)
@@ -85,25 +87,24 @@ class FileUploadView(APIView):
             # Eliminar todos los registros existentes en la tabla Nomenclador
             Nomenclador.objects.all().delete()
             
-            # Iterar sobre las filas del DataFrame y guardar cada financiador en la base de datos
+            # Iterar sobre las filas del DataFrame y guardar cada fila en la base de datos
             for _, row in df.iterrows():
                 try:
                     arancel = row.get('ARANCEL', None)
-                    print(arancel)
                     if pd.isna(arancel) or arancel == '':
                         arancel = None
                     else:
                         arancel = int(arancel)
 
-                    financiador = Nomenclador(
+                    nomenclador = Nomenclador(
                         codigos= row.get('CODIGOS', ''),
                         descripcion= row.get('DESCRIPCION', ''),
                         arancel= arancel
                     )
-                    financiador.save()
+                    nomenclador.save()
                 except Exception as e:
                     return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
+                    
             return Response({"message": "Archivo procesado y datos guardados correctamente"}, status=status.HTTP_201_CREATED)
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
