@@ -62,6 +62,9 @@ export default {
         "gradient-button":
           "linear-gradient(0deg, #D22B8B, #D22B8B), linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%)",
       },
+      boxShadow: {
+        'inner-custom': '0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset',
+      },
     },
   },
   plugins: [],
