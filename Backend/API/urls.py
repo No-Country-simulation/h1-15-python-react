@@ -34,3 +34,4 @@ urlpatterns = [
 
     path('nomenclador/upload/', FileUploadView.as_view(),),
 ]
+#f1g2s3
