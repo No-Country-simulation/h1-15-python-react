@@ -10,6 +10,7 @@ const Schedule = () => {
         <Profile
           icon_name="calendarOrange"
           greeting="Estos son tus turnos, Laura"
+          photo="/Bung1.png"
         />
       </section>
       <section className="flex-1 flex-col space-y-[18px] px-4 py-4">

@@ -322,7 +322,10 @@ const DoctorAppointments = () => {
         <article>
           {turnos
             .filter((turno) =>
-              dayjs(new Date(turno.appointmentDate)).isSame(dayjs(fecha), "day")
+              dayjs(new Date(turno.appointmentDate)).isSame(
+                dayjs(fecha),
+                "day",
+              ),
             )
             .map((paciente) => {
               return (
