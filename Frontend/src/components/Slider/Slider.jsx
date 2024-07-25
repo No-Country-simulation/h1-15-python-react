@@ -37,7 +37,7 @@ export default function Carousel() {
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
-      return '<span class="swiper-bullet ' + className + '">'+  '</span>';
+      return '<span class="swiper-bullet ' + className + '">' + "</span>";
     },
   };
   return (

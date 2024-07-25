@@ -29,8 +29,7 @@ const SearchBar = ({ onFocus, onBlur }) => {
   useEffect(() => {
     if (onFocus && isInputVisible) {
       onFocus();
-    }
-    else if (onBlur && !isInputVisible) {
+    } else if (onBlur && !isInputVisible) {
       onBlur();
     }
   }, [isInputVisible, onFocus, onBlur]);

@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -18,11 +17,11 @@ const Login = () => {
   };
 
   const handleRegisterClick = () => {
-    navigate('/register');
+    navigate("/register");
   };
 
   const handleHomeClick = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -35,7 +34,10 @@ const Login = () => {
           <h1 className="text-center text-[32px] font-bold">Iniciar Sesión</h1>
           <p className="mt-6 text-center text-sm text-text_primary">
             ¿No tienes cuenta?
-            <span onClick={handleRegisterClick} className="ml-1 text-text_secondary font-semibold cursor-pointer">
+            <span
+              onClick={handleRegisterClick}
+              className="ml-1 text-text_secondary font-semibold cursor-pointer"
+            >
               Regístrate
             </span>
           </p>

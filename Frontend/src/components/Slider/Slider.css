@@ -27,7 +27,6 @@
   width: 353px;
 }
 
-
 .swiper-pagination-bullet {
   height: 15px !important;
   width: 15px !important;
@@ -37,7 +36,6 @@
   color: #fff;
   opacity: 1 !important;
   background-color: #fff !important;
-
 }
 
 .swiper-pagination-bullet-active {

@@ -14,20 +14,17 @@ const Treatment = () => {
   }, []);
 
   const filteredEvents = selectedColor
-    ? events.filter(event => event.color === selectedColor)
+    ? events.filter((event) => event.color === selectedColor)
     : events;
 
   const pendingMedicationsCount = events.filter(
-    event => event.color === "#D22B8B"
+    (event) => event.color === "#D22B8B",
   ).length;
 
   return (
     <div className="max-w-lg mx-auto pb-14">
       <section className="p-4">
-        <Profile
-          icon_name="medicine"
-          greeting="Buen día, Laura!"
-        />
+        <Profile icon_name="medicine" greeting="Buen día, Laura!" />
       </section>
       <section className="flex flex-wrap shadow-inner-custom">
         <div className="w-1/2">
