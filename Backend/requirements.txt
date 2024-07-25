@@ -10,12 +10,17 @@ inflection==0.5.1
 jsonschema==4.23.0
 jsonschema-specifications==2023.12.1
 mysqlclient==2.2.4
+numpy==2.0.1
 packaging==24.1
+pandas==2.2.2
 PyJWT==2.8.0
+python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
+pytz==2024.1
 PyYAML==6.0.1
 referencing==0.35.1
 rpds-py==0.19.0
+six==1.16.0
 sqlparse==0.5.1
 tzdata==2024.1
 uritemplate==4.1.1
