@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'mail.apps.MailConfig',
     'core.apps.CoreConfig',
     'tratamientos.apps.TratamientosConfig',
-    'turnos.apps.TurnosConfig',
-    'financiadores.apps.FinanciadoresConfig',
+    'informacion_personal.apps.InformacionPersonalConfig',
+    'pacientes.apps.PacientesConfig',
+    'patologias.apps.PatologiasConfig',
+    'tipo_usuario.apps.TipoUsuarioConfig',
+    'direcciones.apps.DireccionesConfig',
     # 3rd party apps
     'rest_framework',
     'corsheaders',
@@ -99,8 +102,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-AUTH_USER_MODEL = 'core.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -163,9 +164,8 @@ EMAIL_PORT = os.environ.get('DJANGO_EMAIL_PORT')
 
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Justina-IO Backend API',
-    'DESCRIPTION': 'API para el manejo de la base de datos correspondiente al núcleo básico del proyecto Justina IO. Incluye: usuarios, turnos, tratamientos, financiadores.',
+    'TITLE': 'Justina.io API',
+    'DESCRIPTION': 'Aplicación para la API del sistema de justina.io',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
-    # OTHER SETTINGS
 }
