@@ -21,3 +21,12 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('health/', health_check, name='health_check'),
 ]
+
+
+# project/urls.py (añade esto al final del archivo)
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

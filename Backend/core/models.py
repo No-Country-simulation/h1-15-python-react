@@ -131,6 +131,15 @@ class Financiador(models.Model):
     descripcion = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
 
+
+############ -ESTO ES UNA PRUEBA PARA SUBIR FINANCIADORES-############################
+"""
+class FileUpload(models.Model):
+    file= models.FileField(upload_to='uploads/')
+    uploaded_at = models.DateTimeField(auto_now=True)
+"""
+############ FIN DE LA PRUEBA############################
+
 # Patologia model
 
 
@@ -170,4 +179,16 @@ class Medicamento(models.Model):
 
 class Entidad(models.Model):
     descripcion = models.CharField(max_length=255)
+    is_active = models.BooleanField(default=True)
+
+# Turnos model
+
+
+class Turno(models.Model):
+    inicio_turno = models.DateTimeField()
+    fin_turno = models.DateTimeField()
+    paciente = models.ForeignKey(
+        Paciente, on_delete=models.CASCADE, blank=True, null=True)
+    medico = models.ForeignKey(PersonalMedico, on_delete=models.CASCADE)
+    entidad = models.ForeignKey(Entidad, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
