@@ -1,10 +1,10 @@
-from turnos.serializers import TurnoSerializer
+from turnos.serializers import TurnoSerializer, DisponibilidadSerializer
 from rest_framework import generics
 from drf_spectacular.utils import extend_schema
 from core.models import Turno
 
 
-class TurnoList(generics.ListCreateAPIView):
+class TurnoListCreate(generics.ListCreateAPIView):
     queryset = Turno.objects.all()
     serializer_class = TurnoSerializer
 
