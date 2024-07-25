@@ -13,7 +13,7 @@ const DoctorMain = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        "https://newsapi.org/v2/everything?q=medicina&pageSize=10&language=es&apiKey=f7dd73b34df54a918588a3acdc64e91a"
+        "https://newsapi.org/v2/everything?q=medicina&pageSize=10&language=es&apiKey=f7dd73b34df54a918588a3acdc64e91a",
       );
       const content = await response.json();
       const articulos = content.articles;

@@ -8,20 +8,22 @@ import DoctorAppointments from "./pages/Doctor-main/Doctor-appointments";
 import Treatment from "./pages/Treatment/Treatment";
 import Schedule from "./pages/Schedule/Schedule";
 
-
 function App() {
   return (
     <Routes>
+      {/* Public Routes */}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/patient" element={<PatientMain />} />
 
+      {/* Doctor Routes */}
       <Route path="/doctor" element={<DoctorMain />} />
       <Route path="/doctor/appointments" element={<DoctorAppointments />} />
 
-      <Route path="/treatment" element={<Treatment />} />
-      <Route path="/schedule" element={<Schedule />} />
+      {/* Patient Routes */}
+      <Route path="/patient" element={<PatientMain />} />
+      <Route path="/patient/treatment" element={<Treatment />} />
+      <Route path="/patient/schedule" element={<Schedule />} />
     </Routes>
   );
 }

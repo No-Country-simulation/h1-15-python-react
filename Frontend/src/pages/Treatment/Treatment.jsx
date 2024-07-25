@@ -24,7 +24,11 @@ const Treatment = () => {
   return (
     <div className="max-w-lg mx-auto pb-14">
       <section className="p-4">
-        <Profile icon_name="medicine" greeting="Buen día, Laura!" />
+        <Profile
+          icon_name="medicine"
+          greeting="Buen día, Laura!"
+          photo="/Bung1.png"
+        />
       </section>
       <section className="flex flex-wrap shadow-inner-custom">
         <div className="w-1/2">
