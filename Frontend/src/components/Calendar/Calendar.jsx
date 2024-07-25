@@ -2,18 +2,20 @@ import { useState } from "react";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(null); 
-  const today = new Date(); 
+  const [selectedDate, setSelectedDate] = useState(null);
+  const today = new Date();
 
   const handlePrevMonth = () => {
     setCurrentDate(
-      (prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1, 1)
+      (prevDate) =>
+        new Date(prevDate.getFullYear(), prevDate.getMonth() - 1, 1),
     );
   };
 
   const handleNextMonth = () => {
     setCurrentDate(
-      (prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() + 1, 1)
+      (prevDate) =>
+        new Date(prevDate.getFullYear(), prevDate.getMonth() + 1, 1),
     );
   };
 
@@ -22,7 +24,7 @@ const Calendar = () => {
       const clickedDate = new Date(
         currentDate.getFullYear(),
         currentDate.getMonth(),
-        date
+        date,
       );
       if (clickedDate >= today) {
         setSelectedDate(clickedDate);
@@ -34,12 +36,12 @@ const Calendar = () => {
   const daysInMonth = new Date(
     currentDate.getFullYear(),
     currentDate.getMonth() + 1,
-    0
+    0,
   ).getDate();
   const startDay = new Date(
     currentDate.getFullYear(),
     currentDate.getMonth(),
-    1
+    1,
   ).getDay();
 
   const adjustedStartDay = (startDay + 6) % 7;
@@ -107,10 +109,10 @@ const Calendar = () => {
                 isPastDate
                   ? "bg-white text-gray-300 cursor-not-allowed rounded-full"
                   : isSelectedDate
-                  ? "bg-[#00ADDE] text-white rounded-full cursor-pointer"
-                  : isToday
-                  ? "bg-[#00ADDE] text-white rounded-full cursor-pointer"
-                  : "bg-white text-gray-900 cursor-pointer rounded-full"
+                    ? "bg-[#00ADDE] text-white rounded-full cursor-pointer"
+                    : isToday
+                      ? "bg-[#00ADDE] text-white rounded-full cursor-pointer"
+                      : "bg-white text-gray-900 cursor-pointer rounded-full"
               } text-center`}
             >
               {date}

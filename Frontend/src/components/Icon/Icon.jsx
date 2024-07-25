@@ -1,5 +1,5 @@
-import React from 'react';
-import { Icons } from '../../utils/Icons';
+import React from "react";
+import { Icons } from "../../utils/Icons";
 
 // eslint-disable-next-line react/prop-types
 const Icon = ({ name }) => {

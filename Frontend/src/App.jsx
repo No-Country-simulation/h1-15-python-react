@@ -15,8 +15,6 @@ function App() {
       <Route path="/patient" element={<PatientMain />} />
       <Route path="/treatment" element={<Treatment />} />
       <Route path="/schedule" element={<Schedule />} />
-
-
     </Routes>
   );
 }
