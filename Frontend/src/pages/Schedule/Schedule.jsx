@@ -2,13 +2,11 @@ import Calendar from "../../components/Calendar/Calendar";
 import CardSchedule from "../../components/Cards/CardSchedule";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import Profile from "../../components/Profile/Profile";
-import SearchBar from "../../components/SearchBar/SearchBar";
 
 const Schedule = () => {
   return (
     <div className="max-w-lg mx-auto">
       <section className="p-4">
-        <SearchBar />
         <Profile
           icon_name="calendarOrange"
           greeting="Estos son tus turnos, Laura"
@@ -45,7 +43,7 @@ const Schedule = () => {
         />
       </section>
       <section className="pb-24 bg-[#CAD6FF]">
-      <Calendar/>
+        <Calendar />
       </section>
       <section>
         <FooterNav />

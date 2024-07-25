@@ -1,14 +1,29 @@
+import { useState, useEffect } from "react";
 import CardEvent from "../../components/Cards/CardEvent";
 import CardTitle from "../../components/Cards/CardTitle";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import Profile from "../../components/Profile/Profile";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import data from "../../data/cardEvent.json";
 
 const Treatment = () => {
+  const [selectedColor, setSelectedColor] = useState("");
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    setEvents(data);
+  }, []);
+
+  const filteredEvents = selectedColor
+    ? events.filter(event => event.color === selectedColor)
+    : events;
+
+  const pendingMedicationsCount = events.filter(
+    event => event.color === "#D22B8B"
+  ).length;
+
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-lg mx-auto pb-14">
       <section className="p-4">
-        <SearchBar />
         <Profile
           icon_name="medicine"
           greeting="Buen día, Laura!"
@@ -20,73 +35,29 @@ const Treatment = () => {
             titles={["Tratamientos"]}
             backgroundColor="#6ED1AF"
             textColor="#FFF"
+            onClick={() => setSelectedColor("#6ED1AF")}
           />
         </div>
         <div className="w-1/2">
           <CardTitle
-            titles={["Medicamentos Pendientes:", "3"]}
+            titles={["Medicamentos Pendientes:", pendingMedicationsCount]}
             backgroundColor="#D22B8B"
             textColor="#FFF"
+            onClick={() => setSelectedColor("#D22B8B")}
           />
         </div>
       </section>
       <section className="grid">
-        <CardEvent
-          color="#D22B8B"
-          eventAction="Nueva toma de"
-          eventName="Ciclosporina 10mg"
-          eventTime="8:30"
-          eventTimeUnit="AM"
-        />
-        <CardEvent
-          color="#6ED1AF"
-          eventAction="Turno médico con"
-          eventName="Doctor Chang"
-          eventTime="8:30"
-          eventTimeUnit="PM"
-        />
-        <CardEvent
-          color="#D22B8B"
-          eventAction="Nueva toma de"
-          eventName="Ciclosporina 10mg"
-          eventTime="8:30"
-          eventTimeUnit="AM"
-        />
-        <CardEvent
-          color="#6ED1AF"
-          eventAction="Turno médico con"
-          eventName="Doctor Chang"
-          eventTime="8:30"
-          eventTimeUnit="PM"
-        />
-        <CardEvent
-          color="#6ED1AF"
-          eventAction="Turno médico con"
-          eventName="Doctor Chang"
-          eventTime="8:30"
-          eventTimeUnit="PM"
-        />
-        <CardEvent
-          color="#6ED1AF"
-          eventAction="Turno médico con"
-          eventName="Doctor Chang"
-          eventTime="8:30"
-          eventTimeUnit="PM"
-        />
-        <CardEvent
-          color="#6ED1AF"
-          eventAction="Turno médico con"
-          eventName="Doctor Chang"
-          eventTime="8:30"
-          eventTimeUnit="PM"
-        />
-        <CardEvent
-          color="#6ED1AF"
-          eventAction="Turno médico con"
-          eventName="Doctor Chang"
-          eventTime="8:30"
-          eventTimeUnit="PM"
-        />
+        {filteredEvents.map((event, index) => (
+          <CardEvent
+            key={index}
+            color={event.color}
+            eventAction={event.action}
+            eventName={event.name}
+            eventTime={event.time}
+            eventTimeUnit={event.unit}
+          />
+        ))}
       </section>
       <section>
         <FooterNav />
