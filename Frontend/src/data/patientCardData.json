@@ -1,0 +1,43 @@
+[
+    {
+        "imagen": "/icons/medicina.png",
+        "titulo": "Medicación",
+        "color": "bg-[#6ED1AF]",
+        "link":"/patient/treatment"
+    },
+    {
+        "imagen": "/icons/citas.png",
+        "titulo": "Citas Médicas",
+        "color": "bg-[#E58426]",
+        "link":"/patient/schedule"
+
+    },
+    {
+        "imagen": "/icons/stethoscope.png",
+        "titulo": "Seguimiento Pre-Operatorio",
+        "color": "bg-[#5563C4]",
+        "link":"/patient/treatment"
+
+    },
+    {
+        "imagen": "/icons/hands.png",
+        "titulo": "Soporte y Comunidad",
+        "color": "bg-[#FBC046]",
+        "link":"/patient/treatment"
+
+    },
+    {
+        "imagen": "/icons/notas.png",
+        "titulo": "Historial médico",
+        "color": "bg-[#00ADDE]",
+        "link":"/patient/treatment"
+
+    },
+    {
+        "imagen": "/icons/telefono.png",
+        "titulo": "Contacto De Emergencia",
+        "color": "bg-[#D22B8B]",
+        "link":"/patient/treatment"
+
+    }
+]
