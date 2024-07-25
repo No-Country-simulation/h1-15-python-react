@@ -5,6 +5,9 @@ import Register from "./pages/Register/Register";
 import PatientMain from "./pages/Patient-main/Patient-main";
 import DoctorMain from "./pages/Doctor-main/Doctor-main";
 import DoctorAppointments from "./pages/Doctor-main/Doctor-appointments";
+import Treatment from "./pages/Treatment/Treatment";
+import Schedule from "./pages/Schedule/Schedule";
+
 
 function App() {
   return (
@@ -13,8 +16,12 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/patient" element={<PatientMain />} />
+
       <Route path="/doctor" element={<DoctorMain />} />
       <Route path="/doctor/appointments" element={<DoctorAppointments />} />
+
+      <Route path="/treatment" element={<Treatment />} />
+      <Route path="/schedule" element={<Schedule />} />
     </Routes>
   );
 }

@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
         josefin: ["Josefin Sans", "sans-serif"],
+        spartan: ["League Spartan", "sans-serif"],
       },
       colors: {
         primary: {
@@ -61,6 +62,9 @@ export default {
           "linear-gradient(0deg, #FFC791 0%, #FF78A8 100%)",
         "gradient-button":
           "linear-gradient(0deg, #D22B8B, #D22B8B), linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%)",
+      },
+      boxShadow: {
+        "inner-custom": "0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset",
       },
     },
   },

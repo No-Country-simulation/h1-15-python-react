@@ -22,23 +22,27 @@ const Register = () => {
   };
 
   const handleLoginClick = () => {
-    navigate('/login');
+    navigate("/login");
   };
-
 
   return (
     <main className="flex p-4 flex-col items-center justify-center min-h-screen bg-gradient-background_1">
       <section className="flex lg:max-w-[788px] flex-col justify-center p-[24px] bg-white shadow-lg rounded-lg overflow-hidden w-full">
         <section className="max-w-[206px] mb-6 cursor-pointer">
-          <img onClick={handleLoginClick} src="/icons/arrowleft.svg" alt="logo" />
+          <img
+            onClick={handleLoginClick}
+            src="/icons/arrowleft.svg"
+            alt="logo"
+          />
         </section>
         <section>
-          <h1 className="text-left text-[32px] font-bold">
-            Registrarse
-          </h1>
+          <h1 className="text-left text-[32px] font-bold">Registrarse</h1>
           <p className="mt-6 text-left text-sm text-text_primary">
             ¿Ya tienes una cuenta?
-            <span   onClick={handleLoginClick} className="ml-1 text-text_secondary font-semibold cursor-pointer">
+            <span
+              onClick={handleLoginClick}
+              className="ml-1 text-text_secondary font-semibold cursor-pointer"
+            >
               Iniciar Sesión
             </span>
           </p>

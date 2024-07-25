@@ -6,11 +6,10 @@ import Footer from "../../components/Footer";
 import Carousel from "../../components/Slider/Slider";
 
 function Home() {
-
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -20,7 +19,10 @@ function Home() {
           <div className="w-[100px] h-[60px] bg-white rounded-md ml-2">
             <img src="/justinaLogo.png" alt="logo" />
           </div>
-          <button  onClick={handleLoginClick} className="bg-magentaButton w-[104px] h-[34px] font-josefin mr-2 font-bold text-sm text-white rounded-[10px]">
+          <button
+            onClick={handleLoginClick}
+            className="bg-magentaButton w-[104px] h-[34px] font-josefin mr-2 font-bold text-sm text-white rounded-[10px]"
+          >
             Iniciar sesión
           </button>
         </nav>
