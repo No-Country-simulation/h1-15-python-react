@@ -9,8 +9,10 @@ User = get_user_model()
 # TipoUsuario model
 class TipoUsuario(models.Model):
     tipo = models.IntegerField()
-    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    id_group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(
+        User, related_name='user', on_delete=models.CASCADE)
+    id_group = models.ForeignKey(
+        Group, related_name='group', on_delete=models.CASCADE)
 
 # Paciente model
 
@@ -75,8 +77,6 @@ class InformacionPersonal(models.Model):
     class Meta:
         unique_together = ('nombres', 'apellidos', 'nro_documento')
         ordering = ['apellidos', 'nombres']
-        filtering = ['apellidos', 'nombres', 'nro_documento',
-                     'fecha_nacimiento', 'direccion']
 
 # Direccion model
 
@@ -89,7 +89,7 @@ class Direccion(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return '%s, %s, %s'(self.calle, self.numero, self.ciudad)
+        return f'{self.calle}, {self.numero}, {self.ciudad}'
 
     class Meta:
         unique_together = ('calle', 'numero', 'ciudad')
