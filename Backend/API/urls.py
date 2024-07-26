@@ -1,5 +1,9 @@
 from django.urls import path
 from django.contrib import admin
+from usuarios.views import UserList, UserDetail
+from tratamientos.views import TratamientoList, TratamientoDetail
+from financiadores.views import FinanciadoresList, FinanciadoresDetail
+from nomencladores.views import NomencladorList, NomencladorDetail, FileUploadView
 from django.urls import include, path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
@@ -38,4 +42,11 @@ urlpatterns = [
     path('type/<int:pk>/', TipoUsuarioDetail.as_view(),),
     path('address/', DireccionList.as_view(),),
     path('address/<int:pk>/', DireccionDetail.as_view(),),
+    path('financiadores/', FinanciadoresList.as_view(),),
+    path('financiadores/<int:pk>/',FinanciadoresDetail.as_view(),),
+    path('nomenclador/', NomencladorList.as_view(),),
+    path('nomenclador/<int:pk>/',NomencladorDetail.as_view(),),
+
+    path('nomenclador/upload/', FileUploadView.as_view(),),
 ]
+#f1g2s3
