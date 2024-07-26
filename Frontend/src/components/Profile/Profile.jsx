@@ -3,7 +3,7 @@ import Icon from "../Icon/Icon";
 import SearchBar from "../SearchBar/SearchBar";
 
 // eslint-disable-next-line react/prop-types
-const Profile = ({ icon_name, greeting, photo }) => {
+const Profile = ({ icon_name, greeting, photo, patientName }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const handleSearchFocus = () => setIsSearchOpen(true);
@@ -22,8 +22,8 @@ const Profile = ({ icon_name, greeting, photo }) => {
           </>
         )}
       </div>
-      <h1 className="font-sans text-3xl font-light m-8 text-center">
-        {greeting}
+      <h1 className="font-josefin font-semibold text-3xl m-8 text-center text-[#A0A4A8]">
+        {greeting}<span className="ml-4 font-medium text-3xl text-black ">{patientName}</span>
       </h1>
     </div>
   );
