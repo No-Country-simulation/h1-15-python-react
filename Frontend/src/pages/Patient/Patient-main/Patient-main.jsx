@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import CardOptions from "../../components/Cards/CardOptions";
-import Icon from "../../components/Icon/Icon";
-import cardData from '../../data/patientCardData.json'; 
+import CardOptions from "../../../components/Cards/CardOptions";
+import Icon from "../../../components/Icon/Icon";
+import cardData from '../../../data/patientCardData.json'; 
 
 const PatientMain = () => {
   const [cards, setCards] = useState([]);
@@ -20,7 +20,7 @@ const PatientMain = () => {
       </navbar>
       <h2 className="font-medium text-3xl text-[#25282B] mt-7 self-start">
         Localiza{" "}
-        <span className="font-medium text-3xl text-[#A0A4A8]">tu medico</span>
+        <span className="font-medium text-3xl text-[#A0A4A8]">tu médico</span>
       </h2>
       <div className="w-full relative h-[56px] rounded-[18px] bg-[#F6F6F6] my-auto">
         <input
@@ -33,9 +33,9 @@ const PatientMain = () => {
         />
       </div>
       <section className="grid grid-cols-2 gap-4 w-full mt-5">
-        {cards.map((card, index) => (
+        {cards.map((card, id) => (
           <CardOptions
-            key={index}
+            key={id}
             imagen={card.imagen}
             titulo={card.titulo}
             color={card.color}

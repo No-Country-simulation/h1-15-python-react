@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "profileImage": "/doc1.png",
+        "name": "Dr. Olivia Turner, M.D.",
+        "specialty": "Endocrinologa",
+        "date": "Mie, 26 Julio",
+        "timeRange": "9:30 AM - 10:00 AM"
+    },
+    {
+        "id": 2,
+        "profileImage": "/doc2.png",
+        "name": "Dr. Alexander Bennett, Ph.D.",
+        "specialty": "Cirujano",
+        "date": "Jue, 27 Julio",
+        "timeRange": "10:00 AM - 12:00 PM"
+    },
+    {
+        "id": 3,
+        "profileImage": "/doc1.png",
+        "name": "Dr. Olivia Turner, M.D.",
+        "specialty": "Endocrinologa",
+        "date": "Jue, 27 Julio",
+        "timeRange": "9:30 AM - 10:00 AM"
+    },
+    {
+        "id": 4,
+        "profileImage": "/doc2.png",
+        "name": "Dr. Alexander Bennett, Ph.D.",
+        "specialty": "Cirujano",
+        "date": "Vie, 28 Julio",
+        "timeRange": "10:00 AM - 12:00 PM"
+    },
+    {
+        "id": 5,
+        "profileImage": "/doc2.png",
+        "name": "Dr. Alexander Bennett, Ph.D.",
+        "specialty": "Cirujano",
+        "date": "Vie, 28 Julio",
+        "timeRange": "10:00 AM - 12:00 PM"
+    },
+    {
+        "id": 6,
+        "profileImage": "/doc2.png",
+        "name": "Dr. Alexander Bennett, Ph.D.",
+        "specialty": "Cirujano",
+        "date": "Vie, 28 Julio",
+        "timeRange": "10:00 AM - 12:00 PM"
+    }
+]
