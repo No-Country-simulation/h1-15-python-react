@@ -52,7 +52,7 @@ class FinanciadoresDetail(generics.RetrieveUpdateDestroyAPIView):
         return self.update(request, *args, **kwargs)
 
     @extend_schema(
-        tags=['financiador'],
+        tags=['financiadores'],
         summary='Elimina un financiador',
         description="Elimina de la base de datos el financiador especificado con su numero de ID"
     )
