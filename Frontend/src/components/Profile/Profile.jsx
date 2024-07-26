@@ -10,8 +10,8 @@ const Profile = ({ icon_name, greeting, photo, patientName }) => {
   const handleSearchBlur = () => setIsSearchOpen(false);
 
   return (
-    <div className="mt-4">
-      <div className="flex items-center justify-between mt-4">
+    <div className="m-2">
+      <div className="flex items-center mt-1 justify-between">
         <SearchBar onFocus={handleSearchFocus} onBlur={handleSearchBlur} />
         <div className="flex-grow" />
         {!isSearchOpen && (
@@ -22,8 +22,11 @@ const Profile = ({ icon_name, greeting, photo, patientName }) => {
           </>
         )}
       </div>
-      <h1 className="font-josefin font-semibold text-3xl m-8 text-center text-[#A0A4A8]">
-        {greeting}<span className="ml-4 font-medium text-3xl text-black ">{patientName}</span>
+      <h1 className="font-josefin font-semibold text-2xl mt-2 text-center text-[#A0A4A8]">
+        {greeting}
+        <span className="ml-4 font-medium text-2xl text-black ">
+          {patientName}
+        </span>
       </h1>
     </div>
   );

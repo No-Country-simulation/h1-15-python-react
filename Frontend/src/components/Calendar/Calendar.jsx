@@ -60,8 +60,8 @@ const Calendar = () => {
   const dates = getDates();
 
   return (
-    <div className="max-w-md mx-auto bg-white overflow-hidden font-spartan">
-      <header className="flex items-center justify-center p-4 bg-[#CAD6FF] text-[#00ADDE] py-5 gap-5">
+    <div className="max-w-lg mx-auto fixed bottom-0 left-0 right-0 shadow-lg z-40 font-spartan bg-[#CAD6FF] p-4 mb-14">
+      <header className="flex items-center justify-center bg-[#CAD6FF] text-[#00ADDE] py-4 gap-2">
         <button onClick={handlePrevMonth} className="text-lg font-semibold">
           &lt;
         </button>
@@ -75,7 +75,7 @@ const Calendar = () => {
           &gt;
         </button>
       </header>
-      <div className="grid grid-cols-7 text-center p-2 bg-[#CAD6FF] font-light">
+      <div className="grid grid-cols-7 text-center bg-[#CAD6FF] font-light pb-3">
         {daysOfWeek.map((day) => (
           <div
             key={day}
@@ -85,7 +85,7 @@ const Calendar = () => {
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-7 gap-1 p-2 rounded-[20px] font-light text-xs">
+      <div className="grid grid-cols-7 gap-1 p-2 rounded-[20px] font-light text-xs bg-white">
         {dates.map((date, index) => {
           const isPastDate =
             date &&

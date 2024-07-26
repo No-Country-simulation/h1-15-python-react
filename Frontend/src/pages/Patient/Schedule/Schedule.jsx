@@ -1,18 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import Calendar from "../../../components/Calendar/Calendar";
 import CardSchedule from "../../../components/Cards/CardSchedule";
 import FooterNav from "../../../components/FooterNav/FooterNav";
 import Profile from "../../../components/Profile/Profile";
-import data from '../../../data/patientDataSchedule.json';
+import data from "../../../data/patientDataSchedule.json";
 
 const Schedule = () => {
   const [schedules, setSchedules] = useState([]);
 
   useEffect(() => {
-    const fetchData = () => {
-      setSchedules(data);
-    };
-    fetchData();
+    setSchedules(data);
   }, []);
 
   if (schedules.length === 0) {
@@ -20,16 +17,14 @@ const Schedule = () => {
   }
 
   return (
-    <div className="max-w-lg mx-auto">
-      <section className="p-4">
-        <Profile
-          icon_name="calendarOrange"
-          greeting="Estos son tus turnos,"
-          patientName="Laura!"
-          photo="/Bung1.png"
-        />
-      </section>
-      <section className="flex-1 flex-col space-y-[18px] px-4 py-4">
+    <div className="max-w-lg mx-auto flex flex-col min-h-screen pb-16">
+      <Profile
+        icon_name="calendarOrange"
+        greeting="Estos son tus turnos,"
+        patientName="Laura!"
+        photo="/Bung1.png"
+      />
+      <section className="flex flex-col space-y-[18px] px-2 pb-[420px]">
         {schedules.map((schedule) => (
           <CardSchedule
             key={schedule.id}
@@ -41,12 +36,10 @@ const Schedule = () => {
           />
         ))}
       </section>
-      <section className="pb-24 bg-[#CAD6FF]">
+      <section className="bg-[#CAD6FF] pb-4">
         <Calendar />
       </section>
-      <section>
-        <FooterNav />
-      </section>
+      <FooterNav />
     </div>
   );
 };

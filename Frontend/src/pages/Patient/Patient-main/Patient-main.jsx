@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import CardOptions from "../../../components/Cards/CardOptions";
 import Icon from "../../../components/Icon/Icon";
-import cardData from '../../../data/patientCardData.json'; 
+import cardData from "../../../data/patientCardData.json";
 
 const PatientMain = () => {
   const [cards, setCards] = useState([]);

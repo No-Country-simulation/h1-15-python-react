@@ -1,44 +1,44 @@
 [
-    {
-        "id": 1,
-        "imagen": "/icons/medicina.png",
-        "titulo": "Medicación",
-        "color": "#6ED1AF",
-        "link": "/patient/treatment"
-    },
-    {
-        "id": 2,
-        "imagen": "/icons/citas.png",
-        "titulo": "Citas Médicas",
-        "color": "#E58426",
-        "link": "/patient/schedule"
-    },
-    {
-        "id": 3,
-        "imagen": "/icons/stethoscope.png",
-        "titulo": "Seguimiento Pre-Operatorio",
-        "color": "#5563C4",
-        "link": "/patient/postoperative"
-    },
-    {
-        "id": 4,
-        "imagen": "/icons/hands.png",
-        "titulo": "Soporte y Comunidad",
-        "color": "#FBC046",
-        "link": "/patient/support"
-    },
-    {
-        "id": 5,
-        "imagen": "/icons/notas.png",
-        "titulo": "Historial médico",
-        "color": "#00ADDE",
-        "link": "/patient/medical-history"
-    },
-    {
-        "id": 6,
-        "imagen": "/icons/telefono.png",
-        "titulo": "Contacto De Emergencia",
-        "color": "#D22B8B",
-        "link": "/patient/emergency-contacts"
-    }
+  {
+    "id": 1,
+    "imagen": "/icons/medicina.png",
+    "titulo": "Medicación",
+    "color": "#6ED1AF",
+    "link": "/patient/treatment"
+  },
+  {
+    "id": 2,
+    "imagen": "/icons/citas.png",
+    "titulo": "Citas Médicas",
+    "color": "#E58426",
+    "link": "/patient/schedule"
+  },
+  {
+    "id": 3,
+    "imagen": "/icons/stethoscope.png",
+    "titulo": "Seguimiento Pre-Operatorio",
+    "color": "#5563C4",
+    "link": "/patient/postoperative"
+  },
+  {
+    "id": 4,
+    "imagen": "/icons/hands.png",
+    "titulo": "Soporte y Comunidad",
+    "color": "#FBC046",
+    "link": "/patient/support"
+  },
+  {
+    "id": 5,
+    "imagen": "/icons/notas.png",
+    "titulo": "Historial médico",
+    "color": "#00ADDE",
+    "link": "/patient/medical-history"
+  },
+  {
+    "id": 6,
+    "imagen": "/icons/telefono.png",
+    "titulo": "Contacto De Emergencia",
+    "color": "#D22B8B",
+    "link": "/patient/emergency-contacts"
+  }
 ]
