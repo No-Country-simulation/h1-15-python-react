@@ -19,6 +19,7 @@ from personal_medico.views import PersonalMedicoList, PersonalMedicoDetail
 from especialidad.views import EspecialidadList, EspecialidadDetail
 from medicamentos.views import MedicamentoDetail, MedicamentoList
 from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
+from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
 
 # Create your views here.
 urlpatterns = [
@@ -62,4 +63,7 @@ urlpatterns = [
 
     path('tipo_documento/', TipoDocumentoList.as_view(),),
     path('tipo_documento/<int:pk>',TipoDocumentoDetail.as_view(),),
+    
+    path('antecedente_medico/', AntecedenteMedicoList.as_view(),),
+    path('antecedente_medico/<int:pk>',AntecedenteMedicoDetail.as_view(),),
 ]
