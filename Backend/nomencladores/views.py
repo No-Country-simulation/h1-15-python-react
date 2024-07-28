@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from nomencladores.serializers import NomencladorSerializer, FileUploadSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 from drf_spectacular.utils import extend_schema
-import os
+
 import pandas as pd
 # Create your views here.
 
@@ -61,6 +61,7 @@ class NomencladorDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class FileUploadView(APIView):
     parser_classes = (MultiPartParser, FormParser)
+    serializer_class = FileUploadSerializer
 
     @extend_schema(
         tags=['Nomenclador'],
