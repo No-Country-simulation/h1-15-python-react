@@ -16,6 +16,7 @@ from pacientes.views import PacienteList, PacienteDetail
 from tipo_usuario.views import TipoUsuarioList, TipoUsuarioDetail
 from direcciones.views import DireccionList, DireccionDetail
 from personal_medico.views import PersonalMedicoList, PersonalMedicoDetail
+from especialidad.views import EspecialidadList, EspecialidadDetail
 
 # Create your views here.
 urlpatterns = [
@@ -50,5 +51,8 @@ urlpatterns = [
     path('nomenclador/upload/', FileUploadView.as_view(),),
     path('doctor/', PersonalMedicoList.as_view(),),
     path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
+
+    path('especialidad/', EspecialidadList.as_view(),),
+    path('especialidad/<int:pk>',EspecialidadDetail.as_view(),),
 ]
 #f1g2s3
