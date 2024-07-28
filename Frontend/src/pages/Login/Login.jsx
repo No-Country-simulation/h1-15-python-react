@@ -7,7 +7,7 @@ import { showToast } from "../../utils/toast";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [email, setEmail] = useState("example@example.com");
+  const [email, setEmail] = useState("laura.garcia@example.com");
   const [password, setPassword] = useState("Password123");
   const navigate = useNavigate();
 
@@ -18,12 +18,12 @@ const Login = () => {
     }
   }, [navigate]);
 
-  const togglePasswordVisibility = () => setPasswordVisible(prev => !prev);
+  const togglePasswordVisibility = () => setPasswordVisible((prev) => !prev);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === "example@example.com" && password === "Password123") {
-      localStorage.setItem("authToken", "example123"); 
+    if (email === "laura.garcia@example.com" && password === "Password123") {
+      localStorage.setItem("authToken", "example123");
       navigate("/patient");
     } else {
       showToast("Credenciales inválidas.", "error");
@@ -83,7 +83,11 @@ const Login = () => {
               >
                 <img
                   src={passwordVisible ? eye_off : eye}
-                  alt={passwordVisible ? "Ocultar contraseña" : "Mostrar contraseña"}
+                  alt={
+                    passwordVisible
+                      ? "Ocultar contraseña"
+                      : "Mostrar contraseña"
+                  }
                   className="w-4 h-4"
                 />
               </button>
@@ -123,14 +127,22 @@ const Login = () => {
             type="button"
             className="flex items-center justify-center w-full py-2 px-4 text-sm font-semibold border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
           >
-            <img src="./icons/google.svg" alt="Google" className="mr-2 w-5 h-5" />
+            <img
+              src="./icons/google.svg"
+              alt="Google"
+              className="mr-2 w-5 h-5"
+            />
             <span>Continuar con Google</span>
           </button>
           <button
             type="button"
             className="flex items-center justify-center w-full py-2 px-4 text-sm font-semibold border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            <img src="./icons/facebook.svg" alt="Facebook" className="mr-2 w-5 h-5" />
+            <img
+              src="./icons/facebook.svg"
+              alt="Facebook"
+              className="mr-2 w-5 h-5"
+            />
             <span>Continuar con Facebook</span>
           </button>
         </div>

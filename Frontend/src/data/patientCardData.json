@@ -16,9 +16,9 @@
   {
     "id": 3,
     "imagen": "/icons/stethoscope.png",
-    "titulo": "Seguimiento Pre-Operatorio",
+    "titulo": "Personal Médico",
     "color": "#5563C4",
-    "link": "/patient/postoperative"
+    "link": "/patient/doctor-information"
   },
   {
     "id": 4,
@@ -30,7 +30,7 @@
   {
     "id": 5,
     "imagen": "/icons/notas.png",
-    "titulo": "Historial médico",
+    "titulo": "Historial Médico",
     "color": "#00ADDE",
     "link": "/patient/medical-history"
   },
