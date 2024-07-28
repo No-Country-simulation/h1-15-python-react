@@ -49,6 +49,16 @@ class NomencladorDetail(generics.RetrieveUpdateDestroyAPIView):
     )
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
+    
+
+    
+    @extend_schema(
+        tags=['Nomenclador'],
+        summary='Modifica un Nomenclador',
+        description="Permite actualizar todos los datos de un Nomenclador especificado con su numero de ID"
+    )
+    def patch(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
     @extend_schema(
         tags=['Nomenclador'],

@@ -51,6 +51,15 @@ class PersonalMedicoDetail(generics.RetrieveUpdateDestroyAPIView):
 
     @extend_schema(
         tags=['Personal Medico'],
+        summary='Modifica un medico por su id',
+        description="Permite actualizar todos los datos de un medico por su numero de ID"
+    )
+    def patch(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+
+    @extend_schema(
+        tags=['Personal Medico'],
         summary='Elimina un medico',
         description="Elimina de la base de datos el medico especificado con su numero de ID"
     )

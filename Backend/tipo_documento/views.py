@@ -46,6 +46,14 @@ class  TipoDocumentoDetail(generics.RetrieveUpdateDestroyAPIView):
     )
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
+    
+    @extend_schema(
+        tags=[REFERENCIA_TAGS],
+        summary='Modifica una tipo de documento',
+        description="Permite actualizar todos los datos de un tipo de documento con su numero de ID"
+    )
+    def patch(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
     @extend_schema(
         tags=[REFERENCIA_TAGS],

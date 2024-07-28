@@ -46,6 +46,14 @@ class EspecialidadDetail(generics.RetrieveUpdateDestroyAPIView):
     )
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
+    
+    @extend_schema(
+        tags=[REFERENCIA_TAGS],
+        summary='Modifica una especialidad',
+        description="Permite actualizar todos los datos de una especialidad por su numero de ID"
+    )
+    def patch(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
     @extend_schema(
         tags=[REFERENCIA_TAGS],
