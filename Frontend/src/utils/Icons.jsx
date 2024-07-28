@@ -278,4 +278,55 @@ export const Icons = {
       </defs>
     </svg>
   ),
+  home: (
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3 11L12 2L21 11V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V11Z"
+        stroke="#E4E4E4"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 21V13H15V21"
+        stroke="#E4E4E4"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+  stethoscope: (
+    <svg
+      version="1.0"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24.000000 24.000000"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <g
+        transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
+        fill="#fff"
+        stroke="none"
+      >
+        <path
+          d="M68 229 c-34 -19 -11 -109 28 -109 8 0 14 -10 14 -24 0 -19 -6 -25
+-27 -28 -22 -2 -28 -8 -28 -27 0 -32 28 -49 49 -32 9 8 16 22 16 33 0 16 5 18
+35 12 28 -5 35 -3 35 9 0 21 -19 32 -33 18 -19 -19 -37 -12 -37 14 0 14 6 25
+13 25 43 0 65 90 27 110 -16 9 -20 8 -20 -6 0 -10 5 -14 15 -10 18 7 21 -34 5
+-65 -13 -24 -62 -26 -85 -3 -18 19 -17 70 3 67 6 -2 12 4 12 12 0 17 0 17 -22
+4z m112 -159 c0 -5 -4 -10 -10 -10 -5 0 -10 5 -10 10 0 6 5 10 10 10 6 0 10
+-4 10 -10z m-70 -30 c0 -24 -26 -38 -42 -22 -16 16 -2 42 22 42 13 0 20 -7 20
+-20z"
+        />
+      </g>
+    </svg>
+  ),
 };

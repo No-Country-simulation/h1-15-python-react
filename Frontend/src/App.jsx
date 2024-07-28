@@ -14,6 +14,9 @@ import SupportComunity from "./pages/Patient/SupportComunity/SupportComunity";
 import HistoryMedical from "./pages/Patient/HistoryMedical/HistoryMedical";
 import Emergency from "./pages/Patient/Emergency/Emergency";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import DoctorList from "./pages/Patient/DoctorInfoPage/DoctorList";
+import DoctorDetail from "./pages/Patient/DoctorInfoPage/DoctorDetail";
+import PatientProfile from "./pages/Patient/Profile/PatientProfile";
 
 function App() {
   const publicRoutes = [
@@ -29,12 +32,15 @@ function App() {
 
   const patientRoutes = [
     { path: "/patient", element: <PatientMain /> },
+    { path: "/patient/profile", element: <PatientProfile /> },
     { path: "/patient/treatment", element: <Treatment /> },
     { path: "/patient/schedule", element: <Schedule /> },
     { path: "/patient/postoperative", element: <Postoperative /> },
     { path: "/patient/support", element: <SupportComunity /> },
     { path: "/patient/medical-history", element: <HistoryMedical /> },
     { path: "/patient/emergency-contacts", element: <Emergency /> },
+    { path: "/patient/doctor-information", element: <DoctorList /> },
+    { path: "/patient/doctor-information/:id", element: <DoctorDetail /> },
   ];
 
   return (
