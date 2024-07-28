@@ -13,27 +13,54 @@ import Postoperative from "./pages/Patient/Postoperative/Postoperative";
 import SupportComunity from "./pages/Patient/SupportComunity/SupportComunity";
 import HistoryMedical from "./pages/Patient/HistoryMedical/HistoryMedical";
 import Emergency from "./pages/Patient/Emergency/Emergency";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
+  const publicRoutes = [
+    { path: "/", element: <Home /> },
+    { path: "/login", element: <Login /> },
+    { path: "/register", element: <Register /> },
+  ];
+
+  const doctorRoutes = [
+    { path: "/doctor", element: <DoctorMain /> },
+    { path: "/doctor/appointments", element: <DoctorAppointments /> },
+  ];
+
+  const patientRoutes = [
+    { path: "/patient", element: <PatientMain /> },
+    { path: "/patient/treatment", element: <Treatment /> },
+    { path: "/patient/schedule", element: <Schedule /> },
+    { path: "/patient/postoperative", element: <Postoperative /> },
+    { path: "/patient/support", element: <SupportComunity /> },
+    { path: "/patient/medical-history", element: <HistoryMedical /> },
+    { path: "/patient/emergency-contacts", element: <Emergency /> },
+  ];
+
   return (
     <Routes>
       {/* Public Routes */}
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      {publicRoutes.map(({ path, element }) => (
+        <Route key={path} path={path} element={element} />
+      ))}
 
       {/* Doctor Routes */}
-      <Route path="/doctor" element={<DoctorMain />} />
-      <Route path="/doctor/appointments" element={<DoctorAppointments />} />
+      {doctorRoutes.map(({ path, element }) => (
+        <Route
+          key={path}
+          path={path}
+          element={<ProtectedRoute element={element} />}
+        />
+      ))}
 
       {/* Patient Routes */}
-      <Route path="/patient" element={<PatientMain />} />
-      <Route path="/patient/treatment" element={<Treatment />} />
-      <Route path="/patient/schedule" element={<Schedule />} />
-      <Route path="/patient/postoperative" element={<Postoperative />} />
-      <Route path="/patient/support" element={<SupportComunity />} />
-      <Route path="/patient/medical-history" element={<HistoryMedical />} />
-      <Route path="/patient/emergency-contacts" element={<Emergency />} />
+      {patientRoutes.map(({ path, element }) => (
+        <Route
+          key={path}
+          path={path}
+          element={<ProtectedRoute element={element} />}
+        />
+      ))}
     </Routes>
   );
 }
