@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import eye from "/icons/eye.svg";
 import eye_off from "/icons/eye_off.svg";
 import { useNavigate } from "react-router-dom";
@@ -11,11 +11,19 @@ const Login = () => {
   const [password, setPassword] = useState("Password123");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      navigate("/patient");
+    }
+  }, [navigate]);
+
   const togglePasswordVisibility = () => setPasswordVisible(prev => !prev);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email === "example@example.com" && password === "Password123") {
+      localStorage.setItem("authToken", "example123"); 
       navigate("/patient");
     } else {
       showToast("Credenciales inválidas.", "error");
