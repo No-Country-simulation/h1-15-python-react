@@ -21,6 +21,7 @@ from medicamentos.views import MedicamentoDetail, MedicamentoList
 from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
 from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
 from historia_clinica.views import HistoriaClinicaDetail, HistoriaClinicaList
+from entidad.views import EntidadDetail, EntidadList
 # Create your views here.
 urlpatterns = [
     # Admin route
@@ -69,4 +70,7 @@ urlpatterns = [
 
     path('historia_clinica/', HistoriaClinicaList.as_view(),),
     path('historia_clinica/<int:pk>',HistoriaClinicaDetail.as_view(),),
+
+    path('entidad/', EntidadList.as_view(),),
+    path('entidad/<int:pk>',EntidadDetail.as_view(),),
 ]
