@@ -14,42 +14,45 @@ function Home() {
 
   return (
     <>
-      <main className="flex flex-col items-center justify-start w-screen h-[8579px] px-[14px] bg-gradient-background_1">
+      <main className="max-w-lg  mx-auto flex flex-col items-center justify-start w-screen h-[8579px] bg-gradient-background_1">
         <nav className="flex pt-8 pb-16 px-[14px] items-center justify-between w-full">
-          <div className="w-[100px] h-[60px] bg-white rounded-md ml-2">
+          <div className="w-[120px] h-[60px] rounded-md ml-2">
             <img src="/justinaLogo.png" alt="logo" />
           </div>
           <button
             onClick={handleLoginClick}
-            className="bg-magentaButton w-[104px] h-[34px] font-josefin mr-2 font-bold text-sm text-white rounded-[10px]"
+            className="bg-magentaButton w-[104px] h-[34px] font-josefin font-bold text-sm text-white rounded-[10px]"
           >
             Iniciar sesión
           </button>
         </nav>
         {/**CTA */}
-        <section className="w-full flex relative h-[482px] justify-center items-end">
-          <div className="absolute top-0 right-0 w-[315px] h-[358px] border-[10px] border-Justina_7"></div>
-          <div className="absolute top-5 left-0 w-[325px] h-[318px] bg-white">
-            <h2 className="font-josefin text-magentaButton font-semibold text-[25px] pt-[30px] pl-[18px]">
-              UNA APP QUE SALVA VIDAS
-            </h2>
-            <p className="font-josefin font-normal text-[#6C6C72] pt-[43px] w-[295px] absolute right-2">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enim velit mollit.
-            </p>
-          </div>
-          <button className="bg-magentaButton w-[195px] h-[63px] font-josefin mr-2 font-bold text-2xl text-white rounded-[10px]">
-            Empezá aca
+        <section className="relative w-full flex flex-col gap-6 items-center">
+          <section className="flex p-6">
+            <div className="absolute top-2 right-3 md:top-3 md:right-3 w-[300px] h-[74%] md:w-[350px] border-8 border-Justina_7 md:mr-10"></div>
+            <div className="relative flex flex-col items-center gap-6 w-[300px] md:w-[350px] bg-white text-center px-5 py-6 shadow-lg">
+              <h2 className="font-josefin text-magentaButton font-semibold text-xl md:text-3xl pt-4">
+                UNA APP QUE SALVA VIDAS
+              </h2>
+              <p className="font-josefin text-gray-600 text-sm md:text-lg">
+                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
+                amet sint. Velit officia consequat duis enim velit mollit.
+              </p>
+            </div>
+          </section>
+          <button className="bg-magentaButton w-[150px] md:w-[195px] h-[50px] md:h-[63px] font-josefin font-bold text-lg md:text-xl text-white rounded-lg hover:bg-magentaButtonDark focus:outline-none focus:ring-2 focus:ring-magentaButtonDark">
+            Empezá acá
           </button>
         </section>
+
         {/**MOCKUP */}
         <section className="w-full flex my-16 justify-center">
           <div>
-            <img src="/landing1.png" alt="logo" />
+            <img src="/landing1.webp" alt="logo" />
           </div>
         </section>
         {/**ABOUT*/}
-        <section className="w-full flex flex-col items-center h-[935px] mb-24">
+        <section className="w-full flex flex-col items-center h-[935px] px-4 mb-24">
           <h2 className="text-[#232233] font-josefin font-semibold text-2xl mb-4">
             SOBRE NUESTRA APP
           </h2>
@@ -76,7 +79,7 @@ function Home() {
           </div>
         </section>
         {/**FUNCTIONS */}
-        <section className="bg-[url('/fondoLanding.png')] w-[375px] h-[2000px] flex flex-col items-center">
+        <section className="bg-[url('/fondoLanding.png')] w-full h-[2000px] flex flex-col items-center">
           <h2 className="font-josefin text-2xl text-white font-semibold pt-16">
             FUNCIONES DE LA APP
           </h2>
@@ -182,8 +185,8 @@ function Home() {
           />
         </section>
         {/**HOW TO WORKS */}
-        <section className="h-[431px]">
-          <div className="bg-[#D22B8B] w-[375px] h-[357px] flex flex-col items-center relative">
+        <section className="w-full h-[431px]">
+          <div className="bg-[#D22B8B] w-full h-[357px] flex flex-col items-center relative">
             <h2 className="font-josefin font-semibold text-[25px] text-center pt-[60px] w-[281px] text-white">
               COMO FUNCIONA NUESTRA APP
             </h2>
@@ -202,7 +205,7 @@ function Home() {
           </div>
         </section>
         {/**WHO WE ARE */}
-        <section className="w-[343px] h-[1966px] font-josefin mt-[60px] flex flex-col items-center">
+        <section className="w-full h-[1966px] font-josefin mt-[60px] flex flex-col items-center">
           <h2 className="font-semibold text-[25px] text-center pb-5">
             QUIENES SOMOS
           </h2>
@@ -210,7 +213,7 @@ function Home() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
             nunc ante velit vitae.
           </p>
-          <div className="flex flex-col gap-7">
+          <div className="w-full p-4 flex flex-col gap-7">
             <CardPeople
               imagen={"Profile.png"}
               nombre="EZEQUIEL LOCANE"
@@ -232,7 +235,7 @@ function Home() {
           </div>
         </section>
         {/**TESTIMONIOS */}
-        <section className="w-[375px] h-[588px] bg-[url('/fondoLanding.png')] bg-cover bg-bottom flex flex-col items-center text-white mt-16">
+        <section className="w-full h-[588px] bg-[url('/fondoLanding.png')] bg-cover bg-bottom flex flex-col items-center text-white mt-16">
           <h2 className="font-josefin font-semibold text-[25px] pt-[60px]">
             TESTIMONIOS
           </h2>
@@ -244,8 +247,9 @@ function Home() {
             <Carousel />
           </div>
         </section>
-        <section className="flex justify-center"></section>
-        <Footer />
+        <section className="flex justify-center">
+          <Footer />
+        </section>
       </main>
     </>
   );
