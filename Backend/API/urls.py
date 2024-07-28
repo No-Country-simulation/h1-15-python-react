@@ -20,7 +20,7 @@ from especialidad.views import EspecialidadList, EspecialidadDetail
 from medicamentos.views import MedicamentoDetail, MedicamentoList
 from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
 from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
-
+from historia_clinica.views import HistoriaClinicaDetail, HistoriaClinicaList
 # Create your views here.
 urlpatterns = [
     # Admin route
@@ -52,7 +52,7 @@ urlpatterns = [
     path('nomenclador/', NomencladorList.as_view(),),
     path('nomenclador/<int:pk>/',NomencladorDetail.as_view(),),
     path('nomenclador/upload/', FileUploadView.as_view(),),
-    path('doctor/', PersonalMedicoList.as_view(),),
+    path('doctor/',  PersonalMedicoList.as_view(),),
     path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
 
     path('especialidad/', EspecialidadList.as_view(),),
@@ -66,4 +66,7 @@ urlpatterns = [
     
     path('antecedente_medico/', AntecedenteMedicoList.as_view(),),
     path('antecedente_medico/<int:pk>',AntecedenteMedicoDetail.as_view(),),
+
+    path('historia_clinica/', HistoriaClinicaList.as_view(),),
+    path('historia_clinica/<int:pk>',HistoriaClinicaDetail.as_view(),),
 ]

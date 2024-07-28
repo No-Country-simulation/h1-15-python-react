@@ -5,17 +5,17 @@ from core.models import AntecedenteMedico as ModeloCore
 from antecedente_medico.serializers import AntecedenteMedicoSerializer as Serializador
 from drf_spectacular.utils import extend_schema
 
-REFERENCIA_TAGS = "Historial Clinico"
+REFERENCIA_TAGS = "Historia Clinica"
 
 
-class AntecedenteMedicoList(generics.ListCreateAPIView):
+class HistoriaClinicaList(generics.ListCreateAPIView):
     queryset = ModeloCore.objects.all()
     serializer_class = Serializador
 
     @extend_schema(
         tags=[REFERENCIA_TAGS],
-        summary=f'Lista todos los historiales clinicos',
-        description="Trae a todos los historiales clinicos"
+        summary=f'Lista todos las historias clinicas',
+        description="Trae a todos las historias clinicas"
     )
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -29,7 +29,7 @@ class AntecedenteMedicoList(generics.ListCreateAPIView):
         return self.create(request, *args, **kwargs)
 
 
-class  AntecedenteMedicoDetail(generics.RetrieveUpdateDestroyAPIView):
+class  HistoriaClinicaDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = ModeloCore.objects.all()
     serializer_class = Serializador
 
