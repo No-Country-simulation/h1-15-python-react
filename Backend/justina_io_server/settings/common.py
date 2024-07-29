@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'patologias.apps.PatologiasConfig',
     'tipo_usuario.apps.TipoUsuarioConfig',
     'direcciones.apps.DireccionesConfig',
+    'turnos.apps.TurnosConfig',
+    'trasplantes_cruzados.apps.TrasplantesCruzadosConfig',
     # 3rd party apps
     'rest_framework',
     'corsheaders',

@@ -1,9 +1,5 @@
 from django.urls import path
 from django.contrib import admin
-from usuarios.views import UserList, UserDetail
-from tratamientos.views import TratamientoList, TratamientoDetail
-from financiadores.views import FinanciadoresList, FinanciadoresDetail
-from nomencladores.views import NomencladorList, NomencladorDetail, FileUploadView
 from django.urls import include, path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
@@ -12,9 +8,13 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 from usuarios.views import UserList, UserDetail
 from tratamientos.views import TratamientoList, TratamientoDetail
 from informacion_personal.views import InformacionPersonalList, InformacionPersonalDetail
+from financiadores.views import FinanciadoresList, FinanciadoresDetail
+from nomencladores.views import NomencladorList, NomencladorDetail, FileUploadView
 from pacientes.views import PacienteList, PacienteDetail
 from tipo_usuario.views import TipoUsuarioList, TipoUsuarioDetail
 from direcciones.views import DireccionList, DireccionDetail
+from trasplantes_cruzados.views import TrasplanteCruzadoList, TrasplanteCruzadoDetail
+
 
 # Create your views here.
 urlpatterns = [
@@ -46,7 +46,8 @@ urlpatterns = [
     path('financiadores/<int:pk>/',FinanciadoresDetail.as_view(),),
     path('nomenclador/', NomencladorList.as_view(),),
     path('nomenclador/<int:pk>/',NomencladorDetail.as_view(),),
-
     path('nomenclador/upload/', FileUploadView.as_view(),),
+    path('crosstransplant/', TrasplanteCruzadoList.as_view(),),
+    path('crosstransplant/<int:pk>/', TrasplanteCruzadoDetail.as_view(),),
 ]
 #f1g2s3
