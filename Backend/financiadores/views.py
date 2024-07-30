@@ -51,6 +51,16 @@ class FinanciadoresDetail(generics.RetrieveUpdateDestroyAPIView):
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
+
+    @extend_schema(
+        tags=['financiadores'],
+        summary='Modifica un financiador',
+        description="Permite actualizar todos los datos de un financiador especificado con su numero de ID"
+    )
+    def patch(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+    
+
     @extend_schema(
         tags=['financiadores'],
         summary='Elimina un financiador',
