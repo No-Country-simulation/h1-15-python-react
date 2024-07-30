@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from nomencladores.serializers import NomencladorSerializer, FileUploadSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 from drf_spectacular.utils import extend_schema
-import os
+
 import pandas as pd
 # Create your views here.
 
@@ -49,6 +49,16 @@ class NomencladorDetail(generics.RetrieveUpdateDestroyAPIView):
     )
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
+    
+
+    
+    @extend_schema(
+        tags=['Nomenclador'],
+        summary='Modifica un Nomenclador',
+        description="Permite actualizar todos los datos de un Nomenclador especificado con su numero de ID"
+    )
+    def patch(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
     @extend_schema(
         tags=['Nomenclador'],
@@ -61,6 +71,7 @@ class NomencladorDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class FileUploadView(APIView):
     parser_classes = (MultiPartParser, FormParser)
+    serializer_class = FileUploadSerializer
 
     @extend_schema(
         tags=['Nomenclador'],
