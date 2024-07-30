@@ -17,6 +17,32 @@ dias_a_numeros = {
     "domingo": 6
 }
 
+
+
+def analizar_dia_laboral(fecha):
+    #aca analizo que dias tiene registrado el doctor
+    for dia in basedatos:
+        diasemana = dia[0]
+        inicio = dia[1]
+        fin = dia[2]
+
+        if fecha.weekday() == dias_a_numeros[diasemana]:
+            #logica que aplica los turnos desde el inicio hasta el fin
+            print(diasemana, "con fecha", fecha)
+
+def validar_fechas(fecha_inicio, fecha_fin):
+    # Convertir las cadenas de entrada a objetos datetime
+    fecha_inicio_obj = datetime.strptime(fecha_inicio, "%Y-%m-%d")
+    fecha_fin_obj = datetime.strptime(fecha_fin, "%Y-%m-%d")
+
+    fecha_revisar = fecha_inicio_obj
+    while fecha_revisar <= fecha_fin_obj: 
+        analizar_dia_laboral(fecha_revisar)
+        fecha_revisar += timedelta(days=1)
+
+
+#validar_fechas("2024-07-28","2024-08-30")
+
 """
 data = request.get_json()
         fecha_j = data.get('fecha')
@@ -55,28 +81,3 @@ data = request.get_json()
                 db.session.commit()
                 return jsonify({'message': 'Turnos habilitados exitosamente'})
 """
-
-
-def analizar_dia_laboral(fecha):
-    #aca analizo que dias tiene registrado el doctor
-    for dia in basedatos:
-        diasemana = dia[0]
-        inicio = dia[1]
-        fin = dia[2]
-
-        if fecha.weekday() == dias_a_numeros[diasemana]:
-            #logica que aplica los turnos desde el inicio hasta el fin
-            print(diasemana, "con fecha", fecha)
-
-def alta_de_turnos(fecha_inicio, fecha_fin):
-    # Convertir las cadenas de entrada a objetos datetime, esto puede ser que lo pida desde front o que sea x dias en adelante
-    fecha_inicio_obj = datetime.strptime(fecha_inicio, "%Y-%m-%d")
-    fecha_fin_obj = datetime.strptime(fecha_fin, "%Y-%m-%d")
-
-    fecha_revisar = fecha_inicio_obj
-    while fecha_revisar <= fecha_fin_obj: 
-        analizar_dia_laboral(fecha_revisar) #aca llamo a anlizar el dia para que registre el alta de turnos en la base de datos, lo hice asi porque me parece mas eficaz que pase 7 veces como maximo por la base de datos en l for de la funcion, a que haga este trabajo por cada fecha.
-        fecha_revisar += timedelta(days=1)
-
-
-alta_de_turnos("2024-07-28","2024-08-30")
