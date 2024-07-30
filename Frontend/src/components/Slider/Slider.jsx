@@ -7,39 +7,14 @@ import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCards } from "swiper/modules";
 
-export default function Carousel() {
-  const swipers = [
-    {
-      name: "ANA GARCIA",
-      condition: "PACIENTE TRANSPLANTADO",
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae, nullam lobortis enim.",
-    },
-    {
-      name: "ANA GARCIA",
-      condition: "PACIENTE TRANSPLANTADO",
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae, nullam lobortis enim.",
-    },
-    {
-      name: "ANA GARCIA",
-      condition: "PACIENTE TRANSPLANTADO",
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae, nullam lobortis enim.",
-    },
-    {
-      name: "ANA GARCIA",
-      condition: "PACIENTE TRANSPLANTADO",
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae, nullam lobortis enim.",
-    },
-  ];
+export default function Carousel({ testimonials }) {
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
       return '<span class="swiper-bullet ' + className + '">' + "</span>";
     },
   };
+
   return (
     <>
       <Swiper
@@ -50,9 +25,9 @@ export default function Carousel() {
         modules={[Pagination, EffectCards]}
         className="mySwiper"
       >
-        {swipers.map((swiper, index) => (
+        {testimonials.cards.map((swiper, index) => (
           <SwiperSlide className="flex flex-col items-center" key={index}>
-            <img className="w-12 h-12 rounded-full" src="./Profile1.png" />
+            <img className="w-12 h-12 rounded-full" src={swiper.image} alt={swiper.name} />
             <h2 className="text-[25px] font-semibold font-josefin text-[#232233]">
               {swiper.name}
             </h2>

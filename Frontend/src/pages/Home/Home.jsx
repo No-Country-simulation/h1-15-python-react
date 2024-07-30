@@ -4,6 +4,7 @@ import CardFunction from "../../components/Cards/CardFunction";
 import CardPeople from "../../components/Cards/CardPeople";
 import Footer from "../../components/Footer";
 import Carousel from "../../components/Slider/Slider";
+import content from "../../data/dataHome.json";
 
 function Home() {
   const navigate = useNavigate();
@@ -13,96 +14,88 @@ function Home() {
   };
 
   return (
-    <>
-      <main className="max-w-lg  mx-auto flex flex-col items-center justify-start w-screen h-[8579px] bg-gradient-background_1">
-        <nav className="flex pt-8 pb-16 px-[14px] items-center justify-between w-full">
-          <div className="w-[120px] h-[60px] rounded-md ml-2">
-            <img src="/justinaLogo.png" alt="logo" />
-          </div>
-          <button
-            onClick={handleLoginClick}
-            className="bg-magentaButton w-[104px] h-[34px] font-josefin font-bold text-sm text-white rounded-[10px]"
-          >
-            Iniciar sesión
-          </button>
-        </nav>
-        {/**CTA */}
-        <section className="relative w-full flex flex-col gap-6 items-center">
-          <section className="flex p-6">
-            <div className="absolute top-2 right-3 md:top-3 md:right-3 w-[300px] h-[74%] md:w-[350px] border-8 border-Justina_7 md:mr-10"></div>
-            <div className="relative flex flex-col items-center gap-6 w-[300px] md:w-[350px] bg-white text-center px-5 py-6 shadow-lg">
+    <main className="flex flex-col items-center w-full max-w-screen-2xl mx-auto bg-gradient-background_1">
+      <nav className="flex pt-8 pb-16 px-6 md:px-[.875rem] items-center justify-between w-full">
+        <div className="w-[7.5rem] h-[3.75rem] rounded-md ml-2">
+          <img src="/justinaLogo.png" alt="logo" />
+        </div>
+        <button
+          onClick={handleLoginClick}
+          className="bg-magentaButton w-[6.5rem] h-[2.125rem] font-josefin font-bold text-sm text-white rounded-[.625rem] hover:bg-magentaButtonDark transition duration-300"
+        >
+          Iniciar sesión
+        </button>
+      </nav>
+
+      <section className="w-full flex flex-col md:flex-row flex-grow">
+        {/* CTA */}
+
+        <section className="flex flex-col justify-start items-center md:w-1/2 p-4">
+          <div className="relative flex flex-col justify-center items-center w-full p-6">
+            <div className="absolute inset-0 transform translate-x-[80px] md:translate-x-[8rem] md:translate-y-[-0.125rem] w-[15.625rem] md:w-[28.125rem] h-full border-8 border-Justina_7"></div>
+            <div className="relative flex flex-col items-center gap-6 w-[15.625rem] md:w-[28.125rem] bg-white text-center p-6 shadow-lg">
               <h2 className="font-josefin text-magentaButton font-semibold text-xl md:text-3xl pt-4">
-                UNA APP QUE SALVA VIDAS
+                {content.cta.title}
               </h2>
               <p className="font-josefin text-gray-600 text-sm md:text-lg">
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequat duis enim velit mollit.
+                {content.cta.description}
               </p>
             </div>
-          </section>
-          <button className="bg-magentaButton w-[150px] md:w-[195px] h-[50px] md:h-[63px] font-josefin font-bold text-lg md:text-xl text-white rounded-lg hover:bg-magentaButtonDark focus:outline-none focus:ring-2 focus:ring-magentaButtonDark">
-            Empezá acá
-          </button>
+          </div>
+          <div className="flex justify-center items-center p-6">
+            <button className="bg-magentaButton w-[9.375rem] md:w-[12.1875rem] h-[3.125rem] md:h-[3.9375rem] font-josefin font-bold text-lg md:text-xl text-white rounded-lg hover:bg-magentaButtonDark transition duration-300 focus:outline-none focus:ring-2 focus:ring-magentaButtonDark">
+              {content.cta.button}
+            </button>
+          </div>
         </section>
 
-        {/**MOCKUP */}
-        <section className="w-full flex my-16 justify-center">
-          <div>
-            <img src="/landing1.webp" alt="logo" />
-          </div>
-        </section>
-        {/**ABOUT*/}
-        <section className="w-full flex flex-col items-center h-[935px] px-4 mb-24">
-          <h2 className="text-[#232233] font-josefin font-semibold text-2xl mb-4">
-            SOBRE NUESTRA APP
-          </h2>
-          <p className="font-josefin font-normal text-base text-center text-[#6C6C72] pb-10">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Consequuntur, veniam architecto.
-          </p>
-          <div>
-            <img src="/landing2.png" alt="logo" />
-          </div>
-          <div className="flex flex-col items-center justify-center gap-5 mt-10">
-            <CardAppKey
-              title="DISEÑO ACCESIBLE"
-              message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            />
-            <CardAppKey
-              title="FACIL DE USAR"
-              message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            />
-            <CardAppKey
-              title="LA MEJOR EXPERIENCIA"
-              message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        {/* Mockup */}
+        <section className="w-full flex justify-center items-center my-8 md:my-0 md:w-1/2 p-4">
+          <div className="flex justify-center items-center w-full">
+            <img
+              src="/landing1.webp"
+              alt="logo"
+              className="w-full md:w-[70%] h-auto"
             />
           </div>
         </section>
-        {/**FUNCTIONS */}
-        <section className="bg-[url('/fondoLanding.png')] w-full h-[2000px] flex flex-col items-center">
-          <h2 className="font-josefin text-2xl text-white font-semibold pt-16">
-            FUNCIONES DE LA APP
-          </h2>
-          <p className="text-center font-josefin text-white text-base px-9 pt-4 pb-8">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
-            nunc ante velit vitae.
-          </p>
-          <CardFunction
-            imgSrc="comment.svg"
-            title="ATENCION PERSONALIZADA"
-            message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          />
-          <CardFunction
-            imgSrc="browser.svg"
-            title="RECORDATORIOS DIARIOS"
-            message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          />
-          <CardFunction
-            imgSrc="vector.svg"
-            title="REGISTRO MEDICO EN LINEA"
-            message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          />
-          <div>
+      </section>
+
+      {/* About */}
+      <section className="flex flex-col items-center h-auto px-4 my-20">
+        <h2 className="text-[#232233] font-josefin font-semibold text-2xl mb-4 md:text-4xl">
+          {content.about.title}
+        </h2>
+        <p className="font-josefin font-normal text-base text-center text-[#6C6C72] pb-10 md:text-lg md:max-w-2xl">
+          {content.about.description}
+        </p>
+        <div className="flex flex-col items-center justify-center gap-5 mt-10 w-full h-full md:flex-row md:gap-10">
+          {content.about.cards.map((card, index) => (
+            <CardAppKey key={index} title={card.title} message={card.message} />
+          ))}
+        </div>
+      </section>
+
+      {/* Functions */}
+      <section className="bg-[url('/fondoLanding.png')] w-full h-auto flex flex-col items-center py-16">
+        <h2 className="font-josefin text-2xl text-white font-semibold pt-16 md:text-4xl">
+          {content.functions.title}
+        </h2>
+        <p className="text-center font-josefin text-white text-base px-9 pt-4 pb-8 md:text-lg md:max-w-2xl">
+          {content.functions.description}
+        </p>
+        <div className="grid md:grid-cols-3 gap-6 justify-items-center items-center">
+          {content.functions.cards.map((card, index) => (
+            <CardFunction
+              key={index}
+              imgSrc={card.imgSrc}
+              title={card.title}
+              message={card.message}
+            />
+          ))}
+        </div>
+      </section>
+      <div  className="bg-[url('/fondoLanding.png')] flex w-full justify-center items-center">
             <svg
               width="354"
               height="668"
@@ -173,85 +166,62 @@ function Home() {
               </defs>
             </svg>
           </div>
-          <CardFunction
-            imgSrc="cell-phone.svg"
-            title="VERSION DE IOS & ANDROID"
-            message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+
+
+      {/* How It Works */}
+      <section className="w-full h-auto flex flex-col items-center py-16 bg-[#D22B8B]">
+        <h2 className="font-josefin font-semibold text-[1.5625rem] text-center text-white pt-[3.75rem] md:text-4xl">
+          {content.howItWorks.title}
+        </h2>
+        <p className="text-white font-josefin text-center mt-10 md:text-lg md:max-w-2xl">
+          {content.howItWorks.description}
+        </p>
+        <div className="w-full mt-10 p-4 md:w-[37.5rem] md:h-[18.75rem]">
+          <img
+            className="w-full h-full"
+            src={content.howItWorks.video}
+            alt="video"
           />
-          <CardFunction
-            imgSrc="telemarketer.svg"
-            title="24/7 SOPORTE POR PERSONAL MEDICO REAL"
-            message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          />
-        </section>
-        {/**HOW TO WORKS */}
-        <section className="w-full h-[431px]">
-          <div className="bg-[#D22B8B] w-full h-[357px] flex flex-col items-center relative">
-            <h2 className="font-josefin font-semibold text-[25px] text-center pt-[60px] w-[281px] text-white">
-              COMO FUNCIONA NUESTRA APP
-            </h2>
-            <p className="text-white font-josefin w-[300px] text-center mt-10">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
-              nunc ante velit vitae.
-            </p>
-            {/**REEMPLAZAR CON UN VIDEO */}
-            <div className="w-[343px] h-[150px] mt-10">
-              <img
-                className="w-full h-full"
-                src="/icons/Video-crop.png"
-                alt="video"
-              />
-            </div>
-          </div>
-        </section>
-        {/**WHO WE ARE */}
-        <section className="w-full h-[1966px] font-josefin mt-[60px] flex flex-col items-center">
-          <h2 className="font-semibold text-[25px] text-center pb-5">
-            QUIENES SOMOS
-          </h2>
-          <p className="text-[#6C6C72] text-center w-[300px] pb-10">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
-            nunc ante velit vitae.
-          </p>
-          <div className="w-full p-4 flex flex-col gap-7">
+        </div>
+      </section>
+
+      {/* Who We Are */}
+      <section className="w-full h-auto font-josefin mt-[3.75rem] flex flex-col items-center max-w-7xl px-4">
+        <h2 className="font-semibold text-[1.5625rem] text-[#232233] text-center md:text-4xl">
+          {content.whoWeAre.title}
+        </h2>
+        <p className="text-center text-[#6C6C72] w-[20.9375rem] mt-[1.125rem] mx-4 md:text-lg md:max-w-2xl">
+          {content.whoWeAre.description}
+        </p>
+        <div className="flex w-full flex-col md:flex-row items-center mt-[1.875rem] mb-[3.75rem] gap-10 text-center">
+          {content.whoWeAre.cards.map((person, index) => (
             <CardPeople
-              imagen={"Profile.png"}
-              nombre="EZEQUIEL LOCANE"
-              bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae."
-              posicion="FUNDADOR"
+              key={index}
+              imagen={person.imagen}
+              nombre={person.nombre}
+              bio={person.bio}
+              posicion={person.posicion}
             />
-            <CardPeople
-              imagen={"Profile1.png"}
-              nombre="CARLOS MARTIN"
-              bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae."
-              posicion="CIRUJANO"
-            />
-            <CardPeople
-              imagen={"Profile2.png"}
-              nombre="MARIA PERE"
-              bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae."
-              posicion="MEDICA"
-            />
-          </div>
-        </section>
-        {/**TESTIMONIOS */}
-        <section className="w-full h-[588px] bg-[url('/fondoLanding.png')] bg-cover bg-bottom flex flex-col items-center text-white mt-16">
-          <h2 className="font-josefin font-semibold text-[25px] pt-[60px]">
-            TESTIMONIOS
-          </h2>
-          <p className="font-josefin text-center w-[300px] pt-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra
-            nunc ante velit vitae.
-          </p>
-          <div className="mx-auto">
-            <Carousel />
-          </div>
-        </section>
-        <section className="flex justify-center">
-          <Footer />
-        </section>
-      </main>
-    </>
+          ))}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="flex flex-col items-center justify-center w-full max-w-7xl px-4 md:px-8 py-10">
+        <h2 className="font-josefin font-semibold text-2xl text-[#232233] mt-10 mb-6 md:text-4xl text-center">
+          {content.testimonials.title}
+        </h2>
+        <p className="font-josefin text-base text-[#6C6C72] text-center w-full max-w-2xl mb-8 md:text-lg">
+          {content.testimonials.description}
+        </p>
+        <div>
+          <Carousel testimonials={content.testimonials} />
+        </div>
+      </section>
+
+      {/* Footer */}
+      <Footer />
+    </main>
   );
 }
 

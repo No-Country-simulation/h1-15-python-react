@@ -58,9 +58,9 @@ export default {
         text_secondary: "#5563C4",
       },
       backgroundImage: {
-        // "gradient-background_1":
-        //   "linear-gradient(0deg, #FFC791 0%, #FF78A8 100%)",
-        "gradient-background_1": "linear-gradient(0deg, #0006 0%, #ccc6 100%)",
+        "gradient-background_1":
+          // "linear-gradient(0deg, #FFC791 0%, #FF78A8 100%)",
+          "linear-gradient(0deg, #0002 0%, #f4f4f4 100%)",
         "gradient-button":
           "linear-gradient(0deg, #D22B8B, #D22B8B), linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%)",
       },
