@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import Navegacion from "./Navigation";
-import Calendar from "../../components/Calendar";
+import Navegacion from "../Navigation";
+import Calendar from "../../../components/Calendar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
-import LateralView from "../../components/LateralView";
+import LateralView from "../../../components/LateralView";
 
 const DoctorMain = () => {
   const [articulos, setArticulos] = useState();
@@ -25,10 +25,12 @@ const DoctorMain = () => {
   }, []);
 
   return (
-    <main className="flex w-full min-h-[1024px] p-5 gap-5">
-      {/**MENU DE NAVEGACION */}
-      <Navegacion />
-      {/**CONTENIDO PRINCIPAL */}
+    // <main className="flex w-full min-h-[1024px] p-5 gap-5">
+    //   {/**MENU DE NAVEGACION */}
+    //   <Navegacion />
+    //   {/**CONTENIDO PRINCIPAL */}
+    //   {loc.pathname === "/doctor" ? (
+    <div className="flex">
       <section className="min-w-[689px] grid grid-cols-2 gap-2 h-fit">
         <article className="border border-blue-500 rounded-2xl shadow-blue-500 shadow-md">
           {/**calendario */}
@@ -85,9 +87,13 @@ const DoctorMain = () => {
           </h4>
         </article>
       </section>
-      {/**CONTENIDO LATERAL */}
       <LateralView />
-    </main>
+    </div>
+    //   ) : (
+    //     <Outlet />
+    //   )}
+    //   {/**CONTENIDO LATERAL */}
+    // </main>
   );
 };
 

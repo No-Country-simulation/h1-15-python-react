@@ -4,8 +4,6 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
-import DoctorMain from "./pages/Doctor-main/Doctor-main";
-import DoctorAppointments from "./pages/Doctor-main/Doctor-appointments";
 import PatientMain from "./pages/Patient/Patient-main/Patient-main";
 import Treatment from "./pages/Patient/Treatment/Treatment";
 import Schedule from "./pages/Patient/Schedule/Schedule";
@@ -20,6 +18,9 @@ import PatientProfile from "./pages/Patient/Profile/PatientProfile";
 import ScheduleAppointment from "./pages/Patient/ScheduleAppointment/ScheduleAppointment";
 import ConfirmAppointment from "./pages/Patient/ScheduleAppointment/ConfirmAppointment";
 import ConfirmationSuccess from "./pages/Patient/ScheduleAppointment/ConfirmationSuccess";
+import DoctorLayout from "./pages/Doctor/Doctor-layout";
+import DoctorMain from "./pages/Doctor/Doctor-main/Doctor-main";
+import DoctorAppointments from "./pages/Doctor/Appointments/Doctor-appointments";
 
 function App() {
   const publicRoutes = [
@@ -28,10 +29,15 @@ function App() {
     { path: "/register", element: <Register /> },
   ];
 
-  const doctorRoutes = [
-    { path: "/doctor", element: <DoctorMain /> },
-    { path: "/doctor/appointments", element: <DoctorAppointments /> },
-  ];
+  const doctorRoutes = (
+    <Route
+      path="/doctor"
+      element={<ProtectedRoute element={<DoctorLayout />} />}
+    >
+      <Route index element={<DoctorMain />} />
+      <Route path="appointments" element={<DoctorAppointments />} />
+    </Route>
+  );
 
   const patientRoutes = [
     { path: "/patient", element: <PatientMain /> },
@@ -60,13 +66,7 @@ function App() {
       ))}
 
       {/* Doctor Routes */}
-      {doctorRoutes.map(({ path, element }) => (
-        <Route
-          key={path}
-          path={path}
-          element={<ProtectedRoute element={element} />}
-        />
-      ))}
+      {doctorRoutes}
 
       {/* Patient Routes */}
       {patientRoutes.map(({ path, element }) => (
