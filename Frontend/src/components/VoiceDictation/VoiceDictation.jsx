@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Modal from "./Modal";
+import Icon from "../Icon/Icon";
 
 // eslint-disable-next-line react/prop-types
 const VoiceDictation = ({ onDictate }) => {
@@ -64,7 +65,7 @@ const VoiceDictation = ({ onDictate }) => {
   };
 
   return (
-    <div className="relative flex items-center space-x-2">
+    <div className="absolute flex items-center bottom-2 right-1">
       <button
         onClick={() => {
           if (isListening) {
@@ -73,14 +74,12 @@ const VoiceDictation = ({ onDictate }) => {
             startListening();
           }
         }}
-        className={`p-3 rounded-full flex items-center justify-center transition-colors duration-300 ${
+        className={`flex items-center justify-center transition-colors duration-300 rounded-r-xl${
           isListening
-            ? "bg-red-500 hover:bg-red-700 text-white"
-            : "bg-blue-500 hover:bg-blue-700 text-white"
-        }`}
-        style={{ width: "60px", height: "60px" }}
+            & "bg-red-500 hover:bg-red-700 text-white"}`}
+        style={{ width: "40px", height: "40px" }}
       >
-        <p>Dictar</p>
+        <Icon name="voice" />
       </button>
       <Modal
         isOpen={isModalOpen}
