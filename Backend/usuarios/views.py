@@ -1,18 +1,19 @@
 from django.contrib.auth import get_user_model
 from mail.views import activation_mail
 from usuarios.serializers import UserSerializer
-from rest_framework import generics
+from rest_framework import generics, permissions
 from drf_spectacular.utils import extend_schema
-
+from rest_framework.permissions import AllowAny
 
 User = get_user_model()
 
-
+0
 # Create your views here.
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
 
     @extend_schema(
         tags=['Usuarios'],

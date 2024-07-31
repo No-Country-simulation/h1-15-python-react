@@ -195,21 +195,30 @@ class Turno(models.Model):
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, blank=True, null=True)
     medico = models.ForeignKey(PersonalMedico, on_delete=models.CASCADE)
     entidad = models.ForeignKey(Entidad, on_delete=models.CASCADE)
-    status = models.CharField(default="Disponible")
+    status = models.CharField(max_length=20, default="Disponible")
     is_active = models.BooleanField(default=True)
 
 # Disponibilidad model
 class Disponibilidad(models.Model):
+    DAY_CHOICES = [
+        ("lunes", "lunes"),
+        ("martes", "martes"),
+        ("miercoles", "miercoles"),
+        ("jueves", "jueves"),
+        ("viernes", "viernes"),
+        ("sabado", "sabado"),
+        ("domingo", "domingo"),
+    ]
     medico = models.ForeignKey(PersonalMedico, on_delete=models.CASCADE)
     institucion = models.ForeignKey(Entidad, on_delete=models.CASCADE)
-    dia = models.IntegerField(max_length=1)
+    dia = models.CharField(max_length=10, choices=DAY_CHOICES)
     hora_inicio_turnos = models.TimeField()
     hora_fin_turnos = models.TimeField()
     is_active = models.BooleanField(default=True)
 
 # TrasplanteCruzado model
 class TrasplanteCruzado(models.Model):
-    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
-    donante_cruzado = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    paciente_cruzado = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    donante_cruzado = models.ForeignKey(Paciente, related_name='PacienteCruzado', on_delete=models.CASCADE)
     descripcion = models.TextField(max_length=500)
     is_active = models.BooleanField(default=True)
