@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 
-basedatos = [
+datos_dias = [
     ["lunes","08:00","17:00"],
     ["jueves","08:00","17:00"],
 ]
@@ -21,10 +21,10 @@ def fecha_obj_a_str(fecha):
     fecha_trunc = datetime.date(fecha)
     return datetime.strftime(fecha_trunc, "%Y-%m-%d")
 
-def analizar_dia_laboral(fecha, duracion):
+def analizar_dia_laboral(datos_dias, fecha, duracion):
     turnos_del_dia = []
     #aca analizo que dias tiene registrado el doctor
-    for dia in basedatos:
+    for dia in datos_dias:
         diasemana = dia[0]
         inicio = dia[1]
         fin = dia[2]
@@ -41,7 +41,7 @@ def analizar_dia_laboral(fecha, duracion):
                 inicio_turno += timedelta(minutes=duracion)
     print(turnos_del_dia)
 
-def validar_fechas(fecha_inicio, fecha_fin, duracion):
+def validar_fechas(datos_dias, fecha_inicio, fecha_fin, duracion):
     # Convertir las cadenas de entrada a objetos datetime
     fecha_inicio_obj = datetime.strptime(fecha_inicio, "%Y-%m-%d")
     fecha_fin_obj = datetime.strptime(fecha_fin, "%Y-%m-%d")
@@ -49,11 +49,11 @@ def validar_fechas(fecha_inicio, fecha_fin, duracion):
     
     # Recorrer el rango de fechas, y agregar turnos por día
     while fecha_revisar <= fecha_fin_obj: 
-        analizar_dia_laboral(fecha_revisar, duracion)
+        analizar_dia_laboral(datos_dias, fecha_revisar, duracion)
         fecha_revisar += timedelta(days=1)
 
 
-validar_fechas("2024-07-28","2024-08-10", 15)
+validar_fechas(datos_dias, "2024-07-28","2024-08-10", 15)
 
 """
 data = request.get_json()
