@@ -24,7 +24,7 @@ function DoctorDetail() {
   };
 
   return (
-    <main className="max-w-md mx-auto p-4">
+    <main className="max-w-md mx-auto p-4 font-josefin">
       <BackButton />
       <section className="pb-20">
         <img

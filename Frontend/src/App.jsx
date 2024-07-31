@@ -18,6 +18,8 @@ import DoctorList from "./pages/Patient/DoctorInfoPage/DoctorList";
 import DoctorDetail from "./pages/Patient/DoctorInfoPage/DoctorDetail";
 import PatientProfile from "./pages/Patient/Profile/PatientProfile";
 import ScheduleAppointment from "./pages/Patient/ScheduleAppointment/ScheduleAppointment";
+import ConfirmAppointment from "./pages/Patient/ScheduleAppointment/ConfirmAppointment";
+import ConfirmationSuccess from "./pages/Patient/ScheduleAppointment/ConfirmationSuccess";
 
 function App() {
   const publicRoutes = [
@@ -43,6 +45,9 @@ function App() {
     { path: "/patient/doctor-information", element: <DoctorList /> },
     { path: "/patient/doctor-information/:id", element: <DoctorDetail /> },
     { path: "/schedule-appointment/:id", element: <ScheduleAppointment /> },
+    {path:"/patient/confirmation-appointment", element:<ConfirmAppointment />} ,
+    {path:"/patient/success-appointment", element:<ConfirmationSuccess />} ,
+
   ];
 
   return (
