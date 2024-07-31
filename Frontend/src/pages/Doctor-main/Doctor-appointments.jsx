@@ -297,7 +297,7 @@ const DoctorAppointments = () => {
 
   return (
     <main className="flex w-full min-h-[1024px] p-5 gap-5">
-      <Navegacion />
+      <div className="min-w-[264px] h-screen"><Navegacion /></div>
       {/**TURNERO */}
       <section className="min-w-[689px] grid mx-auto gap-2 h-fit relative">
         <h1 className="font-josefin text-3xl text-center">TURNOS</h1>

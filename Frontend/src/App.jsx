@@ -7,6 +7,7 @@ import DoctorMain from "./pages/Doctor-main/Doctor-main";
 import DoctorAppointments from "./pages/Doctor-main/Doctor-appointments";
 import Treatment from "./pages/Treatment/Treatment";
 import Schedule from "./pages/Schedule/Schedule";
+import DoctorTransplants from "./pages/Doctor-main/Doctor-transplant";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 
       <Route path="/doctor" element={<DoctorMain />} />
       <Route path="/doctor/appointments" element={<DoctorAppointments />} />
+      <Route path="/doctor/cross-transplant" element={<DoctorTransplants />} />
 
       <Route path="/treatment" element={<Treatment />} />
       <Route path="/schedule" element={<Schedule />} />
