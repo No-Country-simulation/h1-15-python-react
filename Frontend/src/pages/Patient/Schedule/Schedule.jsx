@@ -7,10 +7,33 @@ import data from "../../../data/patientDataSchedule.json";
 
 const Schedule = () => {
   const [schedules, setSchedules] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const today = new Date();
 
   useEffect(() => {
     setSchedules(data);
+    console.log("Data cargada:", data);
   }, []);
+
+  const handleDateClick = (date) => {
+    setSelectedDate(date);
+    console.log("Fecha seleccionada:", date);
+  };
+
+  const formatDate = (date) => {
+    const options = { weekday: "short", day: "numeric", month: "long" };
+    return date.toLocaleDateString("es-ES", options);
+  };
+
+  const filteredSchedules = selectedDate
+    ? schedules.filter((schedule) => schedule.date === formatDate(selectedDate))
+    : schedules.filter((schedule) => schedule.date === formatDate(today));
+
+  console.log(
+    "Fecha seleccionada formateada:",
+    selectedDate ? formatDate(selectedDate) : formatDate(today),
+  );
+  console.log("Citas filtradas:", filteredSchedules);
 
   if (schedules.length === 0) {
     return <div>Cargando...</div>;
@@ -25,7 +48,7 @@ const Schedule = () => {
         photo="/Bung1.png"
       />
       <section className="flex flex-col space-y-[18px] px-2 pb-[420px]">
-        {schedules.map((schedule) => (
+        {filteredSchedules.map((schedule) => (
           <CardSchedule
             key={schedule.id}
             profileImage={schedule.profileImage}
@@ -37,7 +60,7 @@ const Schedule = () => {
         ))}
       </section>
       <section className="bg-[#CAD6FF] pb-4">
-        <Calendar />
+        <Calendar onDateClick={handleDateClick} />
       </section>
       <FooterNav />
     </div>

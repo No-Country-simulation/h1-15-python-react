@@ -8,7 +8,7 @@ import ContactItem from "./ContactItem";
 function DoctorDetail() {
   const { id } = useParams();
   const [doctor, setDoctor] = useState(null);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const selectedDoctor = doctorsData.find((doc) => doc.id === parseInt(id));
@@ -46,7 +46,9 @@ function DoctorDetail() {
           {Object.entries(doctor.schedule).map(([day, hours]) => (
             <p key={day}>
               <span className="font-semibold">{day}: </span>
-              <span>{hours[0]} - {hours[1]}</span>
+              <span>
+                {hours[0]} - {hours[1]}
+              </span>
             </p>
           ))}
         </div>

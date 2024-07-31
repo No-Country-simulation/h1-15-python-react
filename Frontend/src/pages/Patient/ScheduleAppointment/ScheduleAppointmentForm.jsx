@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { format, addDays, isBefore, setMinutes, setHours, eachMinuteOfInterval } from "date-fns";
+import {
+  format,
+  addDays,
+  isBefore,
+  setMinutes,
+  setHours,
+  eachMinuteOfInterval,
+} from "date-fns";
 import BackButton from "../../../components/BackButton/BackButton";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -109,13 +116,13 @@ function ScheduleAppointmentForm({ doctor }) {
       <BackButton />
       <section>
         <h2 className="text-xl font-bold mb-4 text-center">Nueva Cita</h2>
-        
+
         {/* Información del médico */}
         {doctor && (
           <div className="mb-4 text-center">
-            <img 
-              src={doctor.photo} 
-              alt={doctor.name} 
+            <img
+              src={doctor.photo}
+              alt={doctor.name}
               className="w-24 h-24 rounded-full mx-auto mb-2"
             />
             <h3 className="text-lg font-semibold">{doctor.name}</h3>

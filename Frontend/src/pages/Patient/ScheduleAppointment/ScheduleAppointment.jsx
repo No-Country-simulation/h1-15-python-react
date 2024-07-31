@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import doctorsData from "../../../data/patientDataDoctors.json";
-import ScheduleAppointmentForm from "./ScheduleAppointmentForm"; 
+import ScheduleAppointmentForm from "./ScheduleAppointmentForm";
 
 function ScheduleAppointment() {
   const { id } = useParams();
