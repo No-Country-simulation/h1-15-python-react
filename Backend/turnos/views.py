@@ -2,6 +2,7 @@ from turnos.serializers import TurnoSerializer, DisponibilidadSerializer
 from rest_framework import generics
 from drf_spectacular.utils import extend_schema
 from core.models import Turno, Disponibilidad
+from custom_functions.date_list import validar_fechas
 
 
 class DisponibilidadListCreate(generics.ListCreateAPIView):
@@ -11,15 +12,15 @@ class DisponibilidadListCreate(generics.ListCreateAPIView):
     @extend_schema(
         tags=['Disponibilidad'],
         summary='Lista la disponibilidad de todos los médicos',
-        description="Entrega un lista con la disponibilidad de todos los médicos"
+        description="Entrega una lista con la disponibilidad de todos los médicos"
     )
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
     @extend_schema(
         tags=['Disponibilidad'],
-        summary='Carga una nueva disponibilidad',
-        description="Carga una nueva disponibilidad"
+        summary='Carga la disponibilidad del médico',
+        description="Carga una nueva disponibilidad para el médico a partir de la cual se generan los turnos"
     )
     def post(self, request, *args, **kwargs):
         
