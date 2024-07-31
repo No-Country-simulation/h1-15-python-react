@@ -7,7 +7,14 @@
     "photo": "/doc1.png",
     "rating": 4.5,
     "description": "La Dra. Olivia Turner es una destacada endocrinóloga en el Hospital London Bridge en Londres. Ha recibido varios premios y reconocimientos por su contribución y servicio en su campo. Está disponible para consultas.",
-    "schedule": "Lunes - Sábado (08:30 AM - 20:00 PM)",
+    "schedule": {
+      "Monday": ["08:30 AM", "08:00 PM"],
+      "Tuesday": ["08:30 AM", "08:00 PM"],
+      "Wednesday": ["08:30 AM", "08:00 PM"],
+      "Thursday": ["08:30 AM", "08:00 PM"],
+      "Friday": ["08:30 AM", "08:00 PM"],
+      "Saturday": ["08:30 AM", "08:00 PM"]
+    },
     "whatsapp": "123456789"
   },
   {
@@ -18,7 +25,13 @@
     "photo": "/doc3.png",
     "rating": 4.5,
     "description": "El Dr. Mensah T es un oncólogo experimentado en el Hospital General de Accra, especializado en tratamientos innovadores para el cáncer.",
-    "schedule": "Lunes - Viernes (09:00 AM - 18:00 PM)",
+    "schedule": {
+      "Monday": ["09:00 AM", "06:00 PM"],
+      "Tuesday": ["09:00 AM", "06:00 PM"],
+      "Wednesday": ["09:00 AM", "06:00 PM"],
+      "Thursday": ["09:00 AM", "06:00 PM"],
+      "Friday": ["09:00 AM", "06:00 PM"]
+    },
     "whatsapp": "987654321"
   },
   {
@@ -29,7 +42,13 @@
     "photo": "/doc4.png",
     "rating": 4.5,
     "description": "El Dr. Klimisch J es neurólogo en el Hospital Universitario de Berlín, conocido por su enfoque en la investigación de enfermedades neurodegenerativas.",
-    "schedule": "Martes - Sábado (10:00 AM - 17:00 PM)",
+    "schedule": {
+      "Tuesday": ["10:00 AM", "05:00 PM"],
+      "Wednesday": ["10:00 AM", "05:00 PM"],
+      "Thursday": ["10:00 AM", "05:00 PM"],
+      "Friday": ["10:00 AM", "05:00 PM"],
+      "Saturday": ["10:00 AM", "05:00 PM"]
+    },
     "whatsapp": "456789123"
   },
   {
@@ -40,7 +59,13 @@
     "photo": "/doc5.png",
     "rating": 4.6,
     "description": "El Dr. Martinez K es pediatra en el Hospital Infantil de Madrid, especializada en cuidados intensivos neonatales.",
-    "schedule": "Lunes - Viernes (08:00 AM - 16:00 PM)",
+    "schedule": {
+      "Monday": ["08:00 AM", "04:00 PM"],
+      "Tuesday": ["08:00 AM", "04:00 PM"],
+      "Wednesday": ["08:00 AM", "04:00 PM"],
+      "Thursday": ["08:00 AM", "04:00 PM"],
+      "Friday": ["08:00 AM", "04:00 PM"]
+    },
     "whatsapp": "789123456"
   },
   {
@@ -51,7 +76,12 @@
     "photo": "/doc6.png",
     "rating": 4.6,
     "description": "La Dra. María M es ginecóloga en el Hospital Central de Buenos Aires, enfocada en la salud reproductiva de la mujer.",
-    "schedule": "Miércoles - Sábado (09:00 AM - 17:00 PM)",
+    "schedule": {
+      "Wednesday": ["09:00 AM", "05:00 PM"],
+      "Thursday": ["09:00 AM", "05:00 PM"],
+      "Friday": ["09:00 AM", "05:00 PM"],
+      "Saturday": ["09:00 AM", "05:00 PM"]
+    },
     "whatsapp": "321654987"
   },
   {
@@ -62,7 +92,12 @@
     "photo": "/doc7.png",
     "rating": 4.2,
     "description": "El Dr. O’Boyle J es oftalmólogo en el Hospital EyeCare de Dublín, experto en cirugías de cataratas y tratamientos de retina.",
-    "schedule": "Lunes - Jueves (10:00 AM - 18:00 PM)",
+    "schedule": {
+      "Monday": ["10:00 AM", "06:00 PM"],
+      "Tuesday": ["10:00 AM", "06:00 PM"],
+      "Wednesday": ["10:00 AM", "06:00 PM"],
+      "Thursday": ["10:00 AM", "06:00 PM"]
+    },
     "whatsapp": "654321987"
   }
 ]

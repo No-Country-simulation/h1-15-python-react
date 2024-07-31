@@ -17,6 +17,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import DoctorList from "./pages/Patient/DoctorInfoPage/DoctorList";
 import DoctorDetail from "./pages/Patient/DoctorInfoPage/DoctorDetail";
 import PatientProfile from "./pages/Patient/Profile/PatientProfile";
+import ScheduleAppointment from "./pages/Patient/ScheduleAppointment/ScheduleAppointment";
 
 function App() {
   const publicRoutes = [
@@ -41,6 +42,7 @@ function App() {
     { path: "/patient/emergency-contacts", element: <Emergency /> },
     { path: "/patient/doctor-information", element: <DoctorList /> },
     { path: "/patient/doctor-information/:id", element: <DoctorDetail /> },
+    { path: "/schedule-appointment/:id", element: <ScheduleAppointment /> },
   ];
 
   return (
