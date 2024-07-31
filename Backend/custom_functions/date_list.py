@@ -17,9 +17,12 @@ dias_a_numeros = {
     "domingo": 6
 }
 
+def fecha_obj_a_str(fecha):
+    fecha_trunc = datetime.date(fecha)
+    return datetime.strftime(fecha_trunc, "%Y-%m-%d")
 
-
-def analizar_dia_laboral(fecha):
+def analizar_dia_laboral(fecha, duracion):
+    turnos_del_dia = []
     #aca analizo que dias tiene registrado el doctor
     for dia in basedatos:
         diasemana = dia[0]
@@ -28,20 +31,29 @@ def analizar_dia_laboral(fecha):
 
         if fecha.weekday() == dias_a_numeros[diasemana]:
             #logica que aplica los turnos desde el inicio hasta el fin
-            print(diasemana, "con fecha", fecha)
+            fecha_str = fecha_obj_a_str(fecha)
+            inicio_obj = datetime.strptime(inicio, "%H:%M")
+            fin_obj = datetime.strptime(fin, "%H:%M")
+            inicio_turno = inicio_obj
+            while inicio_turno < fin_obj:
+                turno_str = str(datetime.time(inicio_turno))
+                turnos_del_dia.append([fecha_str, turno_str])
+                inicio_turno += timedelta(minutes=duracion)
+    print(turnos_del_dia)
 
-def validar_fechas(fecha_inicio, fecha_fin):
+def validar_fechas(fecha_inicio, fecha_fin, duracion):
     # Convertir las cadenas de entrada a objetos datetime
     fecha_inicio_obj = datetime.strptime(fecha_inicio, "%Y-%m-%d")
     fecha_fin_obj = datetime.strptime(fecha_fin, "%Y-%m-%d")
-
     fecha_revisar = fecha_inicio_obj
+    
+    # Recorrer el rango de fechas, y agregar turnos por día
     while fecha_revisar <= fecha_fin_obj: 
-        analizar_dia_laboral(fecha_revisar)
+        analizar_dia_laboral(fecha_revisar, duracion)
         fecha_revisar += timedelta(days=1)
 
 
-#validar_fechas("2024-07-28","2024-08-30")
+validar_fechas("2024-07-28","2024-08-10", 15)
 
 """
 data = request.get_json()
