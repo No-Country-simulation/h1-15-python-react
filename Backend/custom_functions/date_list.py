@@ -22,7 +22,7 @@ def fecha_obj_a_str(fecha):
     return datetime.strftime(fecha_trunc, "%Y-%m-%d")
 
 def analizar_dia_laboral(datos_dias, fecha, duracion):
-    turnos_del_dia = []
+    
     #aca analizo que dias tiene registrado el doctor
     for dia in datos_dias:
         diasemana = dia[0]
@@ -30,6 +30,7 @@ def analizar_dia_laboral(datos_dias, fecha, duracion):
         fin = dia[2]
 
         if fecha.weekday() == dias_a_numeros[diasemana]:
+            turnos_del_dia = []
             #logica que aplica los turnos desde el inicio hasta el fin
             fecha_str = fecha_obj_a_str(fecha)
             inicio_obj = datetime.strptime(inicio, "%H:%M")
@@ -39,57 +40,26 @@ def analizar_dia_laboral(datos_dias, fecha, duracion):
                 turno_str = str(datetime.time(inicio_turno))
                 turnos_del_dia.append([fecha_str, turno_str])
                 inicio_turno += timedelta(minutes=duracion)
-    print(turnos_del_dia)
+                
+            return turnos_del_dia
+    return "vacio"
 
 def validar_fechas(datos_dias, fecha_inicio, fecha_fin, duracion):
+    
     # Convertir las cadenas de entrada a objetos datetime
     fecha_inicio_obj = datetime.strptime(fecha_inicio, "%Y-%m-%d")
     fecha_fin_obj = datetime.strptime(fecha_fin, "%Y-%m-%d")
     fecha_revisar = fecha_inicio_obj
     
+    lista_turnos = []
+    
     # Recorrer el rango de fechas, y agregar turnos por día
     while fecha_revisar <= fecha_fin_obj: 
-        analizar_dia_laboral(datos_dias, fecha_revisar, duracion)
+        turnos_dia = analizar_dia_laboral(datos_dias, fecha_revisar, duracion)
+        if turnos_dia != "vacio":
+            lista_turnos.append(turnos_dia)
         fecha_revisar += timedelta(days=1)
+    
+    return lista_turnos
 
-
-validar_fechas(datos_dias, "2024-07-28","2024-08-10", 15)
-
-"""
-data = request.get_json()
-        fecha_j = data.get('fecha')
-        fecha = datetime.strptime(fecha_j, '%Y-%m-%d').date()
-        inicio_j = data.get('inicio')
-        inicio = datetime.strptime(inicio_j, '%H:%M').time()
-        fin_j = data.get('fin')
-        fin = datetime.strptime(fin_j, '%H:%M').time()
-        duracion = int(data.get('duracion'))
-
-        try:
-            hoy = datetime.now().date()
-
-            consulta = Turn.query.filter_by(turn_date_date_assignment=fecha).first()
-
-            if consulta:
-                return jsonify({'message': 'Ya hay datos en la tabla para esta fecha'})
-            else:
-                hora_inicio_turnos = inicio
-                while hora_inicio_turnos < fin:
-                    hora_fin_turno = datetime.combine(datetime.min, hora_inicio_turnos) + timedelta(minutes=duracion)
-                    hora_fin_turno = hora_fin_turno.time()
-
-                    new_turn = Turn(
-                        turn_int_user_id=id,
-                        turn_date_creation_date=hoy,
-                        turn_date_date_assignment=fecha,
-                        turn_time_start_turn=hora_inicio_turnos,
-                        turn_time_finish_turn=hora_fin_turno,
-                        turn_bol_assigned=False
-                    )
-
-                    hora_inicio_turnos = hora_fin_turno
-                    db.session.add(new_turn)
-
-                db.session.commit()
-                return jsonify({'message': 'Turnos habilitados exitosamente'})
-"""
+#print(validar_fechas(datos_dias, "2024-07-28","2024-08-10", 15))
