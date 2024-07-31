@@ -211,14 +211,14 @@ class Disponibilidad(models.Model):
     ]
     medico = models.ForeignKey(PersonalMedico, on_delete=models.CASCADE)
     institucion = models.ForeignKey(Entidad, on_delete=models.CASCADE)
-    dia = models.CharField(choices=DAY_CHOICES)
+    dia = models.CharField(max_length=10, choices=DAY_CHOICES)
     hora_inicio_turnos = models.TimeField()
     hora_fin_turnos = models.TimeField()
     is_active = models.BooleanField(default=True)
 
 # TrasplanteCruzado model
 class TrasplanteCruzado(models.Model):
-    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
-    donante_cruzado = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    paciente_cruzado = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    donante_cruzado = models.ForeignKey(Paciente, related_name='PacienteCruzado', on_delete=models.CASCADE)
     descripcion = models.TextField(max_length=500)
     is_active = models.BooleanField(default=True)
