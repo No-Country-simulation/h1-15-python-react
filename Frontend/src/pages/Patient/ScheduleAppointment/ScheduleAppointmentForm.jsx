@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import {
   format,
@@ -108,7 +109,7 @@ function ScheduleAppointmentForm({ doctor }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Formulario enviado:", formData);
-    navigate("/patient/confirmation-appointment", { state: { formData } });
+    navigate("/patient/appointment/confirmation", { state: { formData } });
   };
 
   return (

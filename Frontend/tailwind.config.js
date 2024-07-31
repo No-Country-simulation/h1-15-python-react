@@ -54,6 +54,7 @@ export default {
         Justina_6: "#DF8936",
         Justina_7: "#E9CD53",
         Justina_8: "#00ADDE",
+        Justina_9: "#CAD6FF",
 
         text_primary: "#6C7278",
         text_secondary: "#5563C4",

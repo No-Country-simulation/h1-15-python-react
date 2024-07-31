@@ -20,7 +20,7 @@ function DoctorDetail() {
   }
 
   const handleScheduleClick = () => {
-    navigate(`/schedule-appointment/${id}`);
+    navigate(`/patient/schedule/appointment/${id}`);
   };
 
   return (
