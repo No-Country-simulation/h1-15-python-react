@@ -48,18 +48,24 @@ const Schedule = () => {
         photo="/Bung1.png"
       />
       <section className="flex flex-col space-y-[18px] px-2 pb-[420px]">
-        {filteredSchedules.map((schedule) => (
-          <CardSchedule
-            key={schedule.id}
-            profileImage={schedule.profileImage}
-            name={schedule.name}
-            specialty={schedule.specialty}
-            date={schedule.date}
-            timeRange={schedule.timeRange}
-          />
-        ))}
+        {filteredSchedules && filteredSchedules.length > 0 ? (
+          filteredSchedules.map((schedule) => (
+            <CardSchedule
+              key={schedule.id} 
+              id={schedule.id}
+              profileImage={schedule.profileImage}
+              name={schedule.name}
+              specialty={schedule.specialty}
+              date={schedule.date}
+              timeRange={schedule.timeRange}
+            />
+          ))
+        ) : (
+          <p className="text-center mt-5 font-josefin">No tienes citas pendientes para esta fecha</p> 
+        )}
       </section>
-      <section className="bg-[#CAD6FF] pb-4">
+
+      <section className="bg-Justina_9 pb-4">
         <Calendar onDateClick={handleDateClick} />
       </section>
       <FooterNav />
