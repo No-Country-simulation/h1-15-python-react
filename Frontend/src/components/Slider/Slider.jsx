@@ -27,7 +27,11 @@ export default function Carousel({ testimonials }) {
       >
         {testimonials.cards.map((swiper, index) => (
           <SwiperSlide className="flex flex-col items-center" key={index}>
-            <img className="w-12 h-12 rounded-full" src={swiper.image} alt={swiper.name} />
+            <img
+              className="w-12 h-12 rounded-full"
+              src={swiper.image}
+              alt={swiper.name}
+            />
             <h2 className="text-[25px] font-semibold font-josefin text-[#232233]">
               {swiper.name}
             </h2>

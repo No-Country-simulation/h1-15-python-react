@@ -75,8 +75,8 @@ const VoiceDictation = ({ onDictate }) => {
           }
         }}
         className={`flex items-center justify-center transition-colors duration-300 rounded-r-xl${
-          isListening
-            & "bg-red-500 hover:bg-red-700 text-white"}`}
+          isListening & "bg-red-500 hover:bg-red-700 text-white"
+        }`}
         style={{ width: "40px", height: "40px" }}
       >
         <Icon name="voice" />

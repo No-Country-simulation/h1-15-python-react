@@ -46,7 +46,7 @@ const SearchBar = ({ onFocus, onBlur }) => {
           value={searchValue}
           onChange={handleInputChange}
           onKeyDown={(e) => e.key === "Enter" && handleSearchSubmit()}
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500"
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none"
           placeholder="Empezar a buscar..."
         />
       )}

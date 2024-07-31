@@ -22,7 +22,7 @@ function DoctorList() {
 
   return (
     <div className="max-w-lg mx-auto p-4 grid gap-4 font-josefin">
-      <BackButton/>
+      <BackButton />
       <section className="flex mb-4">
         <input
           type="text"

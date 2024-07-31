@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 
 // eslint-disable-next-line react/prop-types
 const Modal = ({ isOpen, onClose, onConfirm, transcript }) => {
@@ -25,7 +25,7 @@ const Modal = ({ isOpen, onClose, onConfirm, transcript }) => {
         </div>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 };
 

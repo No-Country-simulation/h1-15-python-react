@@ -17,11 +17,11 @@ function ConfirmAppointment() {
 
   return (
     <main className="max-w-md mx-auto p-4 font-josefin">
-      <BackButton/>
+      <BackButton />
       <section className="pb-20">
         <h2 className="text-xl font-bold mb-4 text-center">Tu cita</h2>
         <div className="space-y-4">
-        <div className="grid place-content-center">
+          <div className="grid place-content-center">
             <div className="flex items-center">
               <img
                 src={formData.doctorPhoto}
@@ -58,7 +58,7 @@ function ConfirmAppointment() {
             <h3 className="font-semibold text-lg">Observaciones</h3>
             <p>{formData.reason}</p>
           </div>
-         
+
           <div className="flex justify-center">
             <button
               onClick={handleConfirm}
@@ -69,7 +69,7 @@ function ConfirmAppointment() {
           </div>
         </div>
       </section>
-      <FooterNav/>
+      <FooterNav />
     </main>
   );
 }

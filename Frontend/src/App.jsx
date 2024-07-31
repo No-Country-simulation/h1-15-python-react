@@ -45,9 +45,11 @@ function App() {
     { path: "/patient/doctor-information", element: <DoctorList /> },
     { path: "/patient/doctor-information/:id", element: <DoctorDetail /> },
     { path: "/schedule-appointment/:id", element: <ScheduleAppointment /> },
-    {path:"/patient/confirmation-appointment", element:<ConfirmAppointment />} ,
-    {path:"/patient/success-appointment", element:<ConfirmationSuccess />} ,
-
+    {
+      path: "/patient/confirmation-appointment",
+      element: <ConfirmAppointment />,
+    },
+    { path: "/patient/success-appointment", element: <ConfirmationSuccess /> },
   ];
 
   return (
