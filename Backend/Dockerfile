@@ -6,11 +6,12 @@ FROM python:${PYTHON_VERSION} AS base
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-RUN --mount=type=cache,id=base,target=/root/.cache/pip \
-    --mount=type=bind,source=requirements.txt,target=requirements.txt \
-    python -m pip install -r requirements.txt
-
 WORKDIR /app
+
+COPY requirements.txt requirements.txt
+
+RUN python -m pip install -r requirements.txt
+
 
 COPY . .
 COPY entrypoint.sh .
