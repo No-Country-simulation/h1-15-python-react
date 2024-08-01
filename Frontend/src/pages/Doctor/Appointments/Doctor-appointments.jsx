@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import Calendar from "../../components/Calendar";
-import LateralView from "../../components/LateralView";
-import Navegacion from "./Navigation";
+import Calendar from "../../../components/Calendar";
+import LateralView from "../../../components/LateralView";
 import dayjs from "dayjs";
 import weekday from "dayjs/plugin/weekday";
 import "dayjs/locale/es";
-import { capitalizar } from "../../utils/Capitalize";
-import CardPatientAppointment from "../../components/Cards/CardPatientAppointment";
+import { capitalizar } from "../../../utils/Capitalize";
+import CardPatientAppointment from "../../../components/Cards/CardPatientAppointment";
 
 const DoctorAppointments = () => {
   const [turnos, setTurnos] = useState([
@@ -296,9 +295,7 @@ const DoctorAppointments = () => {
   }, [fecha]);
 
   return (
-    <main className="flex w-full min-h-[1024px] p-5 gap-5">
-      <Navegacion />
-      {/**TURNERO */}
+    <>
       <section className="min-w-[689px] grid mx-auto gap-2 h-fit relative">
         <h1 className="font-josefin text-3xl text-center">TURNOS</h1>
         <h4
@@ -340,7 +337,7 @@ const DoctorAppointments = () => {
         </article>
       </section>
       <LateralView paciente={selectedPatient} />
-    </main>
+    </>
   );
 };
 
