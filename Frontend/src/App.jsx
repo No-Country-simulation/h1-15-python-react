@@ -1,5 +1,6 @@
 import { Routes } from "react-router-dom";
-import { doctorRoutes, patientRoutes, publicRoutes } from "./routes";
+import { doctorRoutes, publicRoutes } from "./routes";
+import { patientRoutes } from "./routes/PatientRoutes";
 
 function App() {
   return (
