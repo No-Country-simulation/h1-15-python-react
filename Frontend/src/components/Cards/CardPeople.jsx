@@ -3,7 +3,7 @@ import Avatar from "../Avatar";
 
 const CardPeople = ({ imagen, nombre, posicion, bio }) => {
   return (
-    <div className="bg-white w-[343px] h-[580px] flex flex-col items-center rounded-[10px]">
+    <div className="bg-white w-full h-[580px] flex flex-col items-center rounded-[10px]">
       <Avatar imagen={imagen} />
       <div className="flex flex-col justify-center items-center mt-[66px]">
         <h2 className="text-[31.25px] font-bold font-josefin text-[#232233]">

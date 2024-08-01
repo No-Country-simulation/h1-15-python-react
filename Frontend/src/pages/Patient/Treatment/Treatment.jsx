@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import CardEvent from "../../components/Cards/CardEvent";
-import CardTitle from "../../components/Cards/CardTitle";
-import FooterNav from "../../components/FooterNav/FooterNav";
-import Profile from "../../components/Profile/Profile";
-import data from "../../data/cardEvent.json";
+import CardEvent from "../../../components/Cards/CardEvent";
+import CardTitle from "../../../components/Cards/CardTitle";
+import FooterNav from "../../../components/FooterNav/FooterNav";
+import Profile from "../../../components/Profile/Profile";
+import data from "../../../data/cardEvent.json";
 
 const Treatment = () => {
   const [selectedColor, setSelectedColor] = useState("");
@@ -24,7 +24,12 @@ const Treatment = () => {
   return (
     <div className="max-w-lg mx-auto pb-14">
       <section className="p-4">
-        <Profile icon_name="medicine" greeting="Buen día, Laura!" />
+        <Profile
+          icon_name="medicine"
+          greeting="Buen día,"
+          patientName="Laura!"
+          photo="/Bung1.png"
+        />
       </section>
       <section className="flex flex-wrap shadow-inner-custom">
         <div className="w-1/2">

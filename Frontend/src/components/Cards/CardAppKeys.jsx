@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 const CardAppKey = ({ title, message }) => {
   return (
-    <div className="flex bg-white w-[343px] h-[110px] shadow-[0px_1px_10px_0px_#00000010] rounded-[10px] px-[19px] p-5 gap-4">
+    <div className="flex bg-white w-full shadow-[0px_1px_10px_0px_#00000010] rounded-[10px] px-[19px] p-5 gap-4">
       <div className="w-6">
         <svg
           width="24"

@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import Navegacion from "./Navigation";
-import Calendar from "../../components/Calendar";
+import Calendar from "../../../components/Calendar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
-import LateralView from "../../components/LateralView";
+import LateralView from "../../../components/LateralView";
 
 const DoctorMain = () => {
   const [articulos, setArticulos] = useState();
@@ -22,8 +21,6 @@ const DoctorMain = () => {
 
   return (
     <main className="flex w-full min-h-[1024px] p-5 gap-5">
-      {/**MENU DE NAVEGACION */}
-      <div className="min-w-[264px] h-screen"><Navegacion /></div>
       {/**CONTENIDO PRINCIPAL */}
       <section className="max-w-[689px] grid grid-cols-2 gap-2 h-fit">
         <article className="border border-blue-500 rounded-2xl shadow-blue-500 shadow-md">
@@ -83,7 +80,6 @@ const DoctorMain = () => {
           </h4>
         </article>
       </section>
-      {/**CONTENIDO LATERAL */}
       <LateralView />
     </main>
   );

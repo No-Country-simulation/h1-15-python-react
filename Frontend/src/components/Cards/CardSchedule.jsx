@@ -1,36 +1,42 @@
-/* eslint-disable react/prop-types */
+import { useNavigate } from 'react-router-dom';
+import Icon from '../Icon/Icon';
 
-import Icon from "../Icon/Icon";
+// eslint-disable-next-line react/prop-types
+const CardSchedule = ({ profileImage, name, specialty, date, timeRange, id }) => {
+  const navigate = useNavigate();
 
-const CardSchedule = ({ profileImage, name, specialty, date, timeRange }) => {
+  const handleDetailsClick = () => {
+    navigate(`/patient/schedule/details/${id}`);
+  };
+
   return (
-    <div className="bg-[#CAD6FF] p-4 rounded-lg shadow-lg max-w-md mx-auto px-[26px]">
-      <div className="flex items-start space-x-4">
+    <div className="grid bg-Justina_9 rounded-lg shadow-lg p-3 gap-4 h-max-[150px]">
+      <div className="flex items-start space-x-2">
         <img
           src={profileImage}
           alt={`${name}'s profile`}
-          className="w-16 h-16 rounded-full object-cover"
+          className="w-10 h-10 rounded-full object-cover"
         />
         <div className="flex flex-col justify-center">
-          <span className="text-lg font-semibold">{name}</span>
-          <span className="text-gray-700">{specialty}</span>
+          <span className="text-sm font-semibold">{name}</span>
+          <span className="text-sm text-gray-700">{specialty}</span>
         </div>
       </div>
-      <div className="flex justify-between mt-4 gap-3">
-        <div className="flex-1 flex items-center bg-white text-[#00ADDE] px-4 rounded-xl gap-2 text-sm">
+      <div className="flex justify-between gap-2">
+        <div className="flex-1 flex items-center bg-white text-Justina_8 px-4 rounded-xl gap-2 text-xs">
           <Icon name="calendarSkyblue" />
           <p>{date}</p>
         </div>
-        <div className="flex-1 flex items-center bg-white text-[#00ADDE] px-4 rounded-xl gap-2 text-sm">
+        <div className="flex-1 flex items-center bg-white text-Justina_8 px-4 rounded-xl gap-2 text-xs">
           <Icon name="clock" />
           <p>{timeRange}</p>
         </div>
       </div>
       <button
-        className="mt-4 w-full h-10 bg-[#00ADDE] text-white py-2 rounded-[18px] focus:outline-none hover:bg-[#0097C8]"
-        onClick={() => console.log("Details clicked")}
+        className="w-full bg-Justina_8 text-white rounded-[18px] max-h-[27px] focus:outline-none"
+        onClick={handleDetailsClick}
       >
-        Detalles
+        <p>Detalles</p>
       </button>
     </div>
   );

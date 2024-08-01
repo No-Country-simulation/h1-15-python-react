@@ -2,7 +2,7 @@ import CardContacto from "./Cards/CardContacto";
 
 const Footer = () => {
   return (
-    <div className="bg-[#232233] w-[375px] h-[1010px] flex flex-col items-center gap-3 px-4 justify-self-end mt-[140px]">
+    <div className="bg-[#232233] w-full h-[1010px] flex flex-col items-center gap-3 px-4 justify-self-end mt-[140px]">
       <CardContacto />
       <img src="logo.svg" alt="logo" />
       <p className="w-[313px] text-center text-white">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Calendar = () => {
+const Calendar = ({ onDateClick }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const today = new Date();
@@ -19,15 +19,28 @@ const Calendar = () => {
     );
   };
 
+  const formatDate = (date) => {
+    const options = { weekday: "short", day: "numeric", month: "long" };
+    return date.toLocaleDateString("es-ES", options);
+  };
+
   const handleDateClick = (date) => {
-    if (date) {
+    if (date !== null) {
       const clickedDate = new Date(
         currentDate.getFullYear(),
         currentDate.getMonth(),
         date,
       );
-      if (clickedDate >= today) {
+      if (
+        clickedDate >= today ||
+        clickedDate.toDateString() === today.toDateString()
+      ) {
         setSelectedDate(clickedDate);
+        console.log(
+          "Fecha del calendario seleccionada:",
+          formatDate(clickedDate),
+        );
+        onDateClick(clickedDate); // Llama a la función onDateClick
       }
     }
   };
@@ -47,7 +60,7 @@ const Calendar = () => {
   const adjustedStartDay = (startDay + 6) % 7;
 
   const getDates = () => {
-    let dates = [];
+    const dates = [];
     for (let i = 0; i < adjustedStartDay; i++) {
       dates.push(null);
     }
@@ -60,8 +73,8 @@ const Calendar = () => {
   const dates = getDates();
 
   return (
-    <div className="max-w-md mx-auto bg-white overflow-hidden font-spartan">
-      <header className="flex items-center justify-center p-4 bg-[#CAD6FF] text-[#00ADDE] py-5 gap-5">
+    <div className="max-w-lg mx-auto fixed bottom-0 left-0 right-0 shadow-lg z-40 font-spartan bg-[#CAD6FF] p-4 mb-14">
+      <header className="flex items-center justify-center bg-[#CAD6FF] text-[#00ADDE] py-4 gap-2">
         <button onClick={handlePrevMonth} className="text-lg font-semibold">
           &lt;
         </button>
@@ -75,7 +88,7 @@ const Calendar = () => {
           &gt;
         </button>
       </header>
-      <div className="grid grid-cols-7 text-center p-2 bg-[#CAD6FF] font-light">
+      <div className="grid grid-cols-7 text-center bg-[#CAD6FF] text-[#00ADDE] font-light pb-3">
         {daysOfWeek.map((day) => (
           <div
             key={day}
@@ -85,12 +98,17 @@ const Calendar = () => {
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-7 gap-1 p-2 rounded-[20px] font-light text-xs">
+      <div className="grid grid-cols-7 gap-1 p-2 rounded-[20px] font-light text-xs bg-white">
         {dates.map((date, index) => {
+          const clickedDate = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            date,
+          );
           const isPastDate =
-            date &&
-            new Date(currentDate.getFullYear(), currentDate.getMonth(), date) <
-              today;
+            date !== null &&
+            clickedDate < today &&
+            clickedDate.toDateString() !== today.toDateString();
           const isSelectedDate =
             selectedDate &&
             selectedDate.getDate() === date &&
@@ -101,19 +119,21 @@ const Calendar = () => {
             today.getMonth() === currentDate.getMonth() &&
             today.getFullYear() === currentDate.getFullYear();
 
+          const getClassNames = () => {
+            if (isPastDate) {
+              return "bg-white text-gray-300 cursor-not-allowed rounded-full";
+            }
+            if (isSelectedDate || isToday) {
+              return "bg-[#00ADDE] text-white rounded-full cursor-pointer";
+            }
+            return "bg-white text-gray-900 cursor-pointer rounded-full";
+          };
+
           return (
             <div
               key={index}
               onClick={() => !isPastDate && handleDateClick(date)}
-              className={`flex items-center justify-center h-10 w-10 ${
-                isPastDate
-                  ? "bg-white text-gray-300 cursor-not-allowed rounded-full"
-                  : isSelectedDate
-                    ? "bg-[#00ADDE] text-white rounded-full cursor-pointer"
-                    : isToday
-                      ? "bg-[#00ADDE] text-white rounded-full cursor-pointer"
-                      : "bg-white text-gray-900 cursor-pointer rounded-full"
-              } text-center`}
+              className={`flex items-center justify-center h-10 w-10 ${getClassNames()} text-center`}
             >
               {date}
             </div>
