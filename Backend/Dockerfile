@@ -6,12 +6,11 @@ FROM python:${PYTHON_VERSION} AS base
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /app
-
 COPY requirements.txt requirements.txt
 
 RUN python -m pip install -r requirements.txt
 
+WORKDIR /app
 
 COPY . .
 COPY entrypoint.sh .
@@ -19,3 +18,5 @@ COPY entrypoint.sh .
 EXPOSE 8000
 
 ENTRYPOINT ["sh", "./entrypoint.sh"]
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
