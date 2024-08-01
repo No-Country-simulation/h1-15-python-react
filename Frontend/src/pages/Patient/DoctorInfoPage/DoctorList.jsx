@@ -21,15 +21,15 @@ function DoctorList() {
   );
 
   return (
-    <div className="max-w-lg mx-auto p-4 grid gap-4 font-josefin">
+    <div className="max-w-screen-lg mx-auto p-4 grid gap-4 font-josefin">
       <BackButton />
       <section className="flex mb-4">
         <input
           type="text"
-          placeholder="Busca por nombre del médico o especialista"
+          placeholder="Buscar por nombre del médico o especialista"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-grow p-2 border border-gray-300 rounded-l outline-none h-10"
+          className="flex-grow p-2 border border-gray-300 rounded-lg outline-none h-10"
         />
         <button className="p-2 rounded-r">
           <Icon name="search" />
