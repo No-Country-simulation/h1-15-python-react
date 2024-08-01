@@ -35,7 +35,7 @@ const PatientProfile = () => {
             </div>
             <div className="mt-4">
               <span className="text-gray-700 font-bold">Sexo:</span>{" "}
-              {patientData.sex}
+              {patientData.gender}
             </div>
             <div className="mt-2">
               <span className="text-gray-700 font-bold">

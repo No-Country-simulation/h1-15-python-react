@@ -24,27 +24,40 @@ function DoctorDetail() {
   };
 
   return (
-    <main className="max-w-md mx-auto p-4 font-josefin">
+    <main className="max-w-screen-lg mx-auto p-4 font-josefin">
       <BackButton />
       <section className="pb-20">
         <img
           src={doctor.photo}
           alt={doctor.name}
-          className="w-32 h-32 rounded-full mx-auto mb-4"
+          className="w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full mx-auto mb-4"
         />
-        <h1 className="text-2xl font-bold text-center">{doctor.name}</h1>
-        <p className="text-center text-gray-600">{doctor.specialty}</p>
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center">
+          {doctor.name}
+        </h1>
+        <p className="text-center text-gray-600 text-base md:text-lg">
+          {doctor.specialty}
+        </p>
         <div className="text-center mt-2">
-          <span className="font-semibold">{doctor.rating}</span> ★
+          <span className="font-semibold text-lg md:text-xl">
+            {doctor.rating}
+          </span>{" "}
+          ★
         </div>
-        <p className="text-center mt-2">Reseñas: {doctor.reviews}</p>
+        <p className="text-center mt-2 text-base md:text-lg">
+          Reseñas: {doctor.reviews}
+        </p>
 
         <div className="mt-4">
-          <h2 className="text-lg font-semibold">Sobre el especialista</h2>
-          <p className="mt-2">{doctor.description}</p>
-          <p className="mt-2 font-semibold mb-4">Horario de atención:</p>
+          <h2 className="text-lg md:text-xl lg:text-2xl font-semibold">
+            Sobre el especialista
+          </h2>
+          <p className="mt-2 text-base md:text-lg">{doctor.description}</p>
+          <p className="mt-2 font-semibold mb-4 text-base md:text-lg">
+            Horario de atención:
+          </p>
           {Object.entries(doctor.schedule).map(([day, hours]) => (
-            <p key={day}>
+            <p key={day} className="text-base md:text-lg">
               <span className="font-semibold">{day}: </span>
               <span>
                 {hours[0]} - {hours[1]}
@@ -54,7 +67,9 @@ function DoctorDetail() {
         </div>
 
         <div className="mt-4">
-          <h2 className="text-lg font-semibold pb-4">Contacto</h2>
+          <h2 className="text-lg md:text-xl lg:text-2xl font-semibold pb-4">
+            Contacto
+          </h2>
           <div className="grid gap-4">
             <ContactItem
               href={`https://wa.me/${doctor.whatsapp}`}
@@ -73,7 +88,7 @@ function DoctorDetail() {
         <div className="flex justify-center">
           <button
             onClick={handleScheduleClick}
-            className="mt-4 bg-Justina_8 text-white py-2 px-4 rounded"
+            className="mt-4 bg-Justina_8 text-white py-2 px-4 rounded text-base md:text-lg"
           >
             Agendar una cita
           </button>

@@ -1,42 +1,42 @@
 [
   {
     "id": 1,
-    "imagen": "/icons/medicina.png",
+    "icon": "medicineSkyblue",
     "titulo": "Medicación",
     "color": "#6ED1AF",
     "link": "/patient/treatment"
   },
   {
     "id": 2,
-    "imagen": "/icons/citas.png",
+    "icon": "calendarOrange",
     "titulo": "Citas Médicas",
     "color": "#E58426",
     "link": "/patient/schedule"
   },
   {
     "id": 3,
-    "imagen": "/icons/stethoscope.png",
+    "icon": "stethoscopeBlue",
     "titulo": "Personal Médico",
     "color": "#5563C4",
     "link": "/patient/doctor-information"
   },
   {
     "id": 4,
-    "imagen": "/icons/hands.png",
+    "icon": "handsOrange",
     "titulo": "Soporte y Comunidad",
     "color": "#FBC046",
     "link": "/patient/support"
   },
   {
     "id": 5,
-    "imagen": "/icons/notas.png",
+    "icon": "clipboardSkyblue",
     "titulo": "Historial Médico",
     "color": "#00ADDE",
     "link": "/patient/medical-history"
   },
   {
     "id": 6,
-    "imagen": "/icons/telefono.png",
+    "icon": "phoneViolet",
     "titulo": "Contacto De Emergencia",
     "color": "#D22B8B",
     "link": "/patient/emergency-contacts"
