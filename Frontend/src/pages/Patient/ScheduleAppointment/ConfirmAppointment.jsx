@@ -10,7 +10,7 @@ function ConfirmAppointment() {
 
   const handleConfirm = () => {
     console.log("Cita confirmada:", formData);
-    navigate("/patient/success-appointment");
+    navigate("/patient/appointment/success");
   };
 
   if (!formData) return <p>No se encontraron datos del formulario.</p>;

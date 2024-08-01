@@ -1,106 +1,132 @@
 [
   {
-    "id": 1,
+    "id": "64fbc35b1c1b640a9d2c8b09",
     "profileImage": "/doc1.png",
     "name": "Dr. Olivia Turner, M.D.",
-    "specialty": "Endocrinologa",
+    "specialty": "Endocrinóloga",
     "date": "jue, 1 de agosto",
-    "timeRange": "9:30 AM - 10:00 AM"
+    "timeRange": "9:30 AM - 10:00 AM",
+    "reason": "Consulta de seguimiento",
+    "reasonDescription": "Revisión periódica para evaluar el progreso del tratamiento de diabetes."
   },
   {
-    "id": 2,
+    "id": "64fbc35b1c1b640a9d2c8b0a",
     "profileImage": "/doc2.png",
     "name": "Dr. Alexander Bennett, Ph.D.",
     "specialty": "Cirujano",
     "date": "vie, 2 de agosto",
-    "timeRange": "10:00 AM - 12:00 PM"
+    "timeRange": "10:00 AM - 12:00 PM",
+    "reason": "Evaluación preoperatoria",
+    "reasonDescription": "Consulta para discutir los detalles y riesgos de la cirugía programada."
   },
   {
-    "id": 3,
+    "id": "64fbc35b1c1b640a9d2c8b0b",
     "profileImage": "/doc1.png",
     "name": "Dr. Olivia Turner, M.D.",
-    "specialty": "Endocrinologa",
+    "specialty": "Endocrinóloga",
     "date": "sáb, 3 de agosto",
-    "timeRange": "9:30 AM - 10:00 AM"
+    "timeRange": "9:30 AM - 10:00 AM",
+    "reason": "Consulta de seguimiento",
+    "reasonDescription": "Revisión periódica para evaluar el progreso del tratamiento de diabetes."
   },
   {
-    "id": 4,
+    "id": "64fbc35b1c1b640a9d2c8b0c",
     "profileImage": "/doc2.png",
     "name": "Dr. Alexander Bennett, Ph.D.",
     "specialty": "Cirujano",
     "date": "lun, 5 de agosto",
-    "timeRange": "10:00 AM - 12:00 PM"
+    "timeRange": "10:00 AM - 12:00 PM",
+    "reason": "Evaluación postoperatoria",
+    "reasonDescription": "Consulta para evaluar la recuperación después de la cirugía."
   },
   {
-    "id": 5,
+    "id": "64fbc35b1c1b640a9d2c8b0d",
     "profileImage": "/doc2.png",
     "name": "Dr. Alexander Bennett, Ph.D.",
     "specialty": "Cirujano",
     "date": "mar, 6 de agosto",
-    "timeRange": "10:00 AM - 12:00 PM"
+    "timeRange": "10:00 AM - 12:00 PM",
+    "reason": "Consulta inicial",
+    "reasonDescription": "Primera consulta para discutir el problema médico y posibles tratamientos."
   },
   {
-    "id": 6,
+    "id": "64fbc35b1c1b640a9d2c8b0e",
     "profileImage": "/doc2.png",
     "name": "Dr. Alexander Bennett, Ph.D.",
     "specialty": "Cirujano",
     "date": "mié, 7 de agosto",
-    "timeRange": "10:00 AM - 12:00 PM"
+    "timeRange": "10:00 AM - 12:00 PM",
+    "reason": "Evaluación postoperatoria",
+    "reasonDescription": "Consulta para evaluar la recuperación después de la cirugía."
   },
   {
-    "id": 7,
+    "id": "64fbc35b1c1b640a9d2c8b0f",
     "profileImage": "/doc1.png",
     "name": "Dr. Olivia Turner, M.D.",
-    "specialty": "Endocrinologa",
+    "specialty": "Endocrinóloga",
     "date": "jue, 8 de agosto",
-    "timeRange": "9:30 AM - 10:00 AM"
+    "timeRange": "9:30 AM - 10:00 AM",
+    "reason": "Consulta de seguimiento",
+    "reasonDescription": "Revisión periódica para evaluar el progreso del tratamiento de diabetes."
   },
   {
-    "id": 8,
+    "id": "64fbc35b1c1b640a9d2c8b10",
     "profileImage": "/doc2.png",
     "name": "Dr. Alexander Bennett, Ph.D.",
     "specialty": "Cirujano",
     "date": "vie, 9 de agosto",
-    "timeRange": "10:00 AM - 12:00 PM"
+    "timeRange": "10:00 AM - 12:00 PM",
+    "reason": "Evaluación preoperatoria",
+    "reasonDescription": "Consulta para discutir los detalles y riesgos de la cirugía programada."
   },
   {
-    "id": 9,
+    "id": "64fbc35b1c1b640a9d2c8b11",
     "profileImage": "/doc1.png",
     "name": "Dr. Olivia Turner, M.D.",
-    "specialty": "Endocrinologa",
+    "specialty": "Endocrinóloga",
     "date": "sáb, 10 de agosto",
-    "timeRange": "9:30 AM - 10:00 AM"
+    "timeRange": "9:30 AM - 10:00 AM",
+    "reason": "Consulta de seguimiento",
+    "reasonDescription": "Revisión periódica para evaluar el progreso del tratamiento de diabetes."
   },
   {
-    "id": 10,
+    "id": "64fbc35b1c1b640a9d2c8b12",
     "profileImage": "/doc2.png",
     "name": "Dr. Alexander Bennett, Ph.D.",
     "specialty": "Cirujano",
     "date": "lun, 12 de agosto",
-    "timeRange": "10:00 AM - 12:00 PM"
+    "timeRange": "10:00 AM - 12:00 PM",
+    "reason": "Evaluación postoperatoria",
+    "reasonDescription": "Consulta para evaluar la recuperación después de la cirugía."
   },
   {
-    "id": 11,
+    "id": "64fbc35b1c1b640a9d2c8b13",
     "profileImage": "/doc2.png",
     "name": "Dr. Alexander Bennett, Ph.D.",
     "specialty": "Cirujano",
     "date": "mar, 13 de agosto",
-    "timeRange": "10:00 AM - 12:00 PM"
+    "timeRange": "10:00 AM - 12:00 PM",
+    "reason": "Consulta inicial",
+    "reasonDescription": "Primera consulta para discutir el problema médico y posibles tratamientos."
   },
   {
-    "id": 12,
+    "id": "64fbc35b1c1b640a9d2c8b14",
     "profileImage": "/doc2.png",
     "name": "Dr. Alexander Bennett, Ph.D.",
     "specialty": "Cirujano",
     "date": "mié, 14 de agosto",
-    "timeRange": "10:00 AM - 12:00 PM"
+    "timeRange": "10:00 AM - 12:00 PM",
+    "reason": "Evaluación postoperatoria",
+    "reasonDescription": "Consulta para evaluar la recuperación después de la cirugía."
   },
   {
-    "id": 13,
+    "id": "64fbc35b1c1b640a9d2c8b15",
     "profileImage": "/doc1.png",
     "name": "Dr. Olivia Turner, M.D.",
-    "specialty": "Endocrinologa",
+    "specialty": "Endocrinóloga",
     "date": "jue, 15 de agosto",
-    "timeRange": "9:30 AM - 10:00 AM"
+    "timeRange": "9:30 AM - 10:00 AM",
+    "reason": "Consulta de seguimiento",
+    "reasonDescription": "Revisión periódica para evaluar el progreso del tratamiento de diabetes."
   }
 ]
