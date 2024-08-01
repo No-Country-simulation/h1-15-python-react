@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-import LateralView from "../../components/LateralView"
-import Navegacion from "./Navigation"
+import LateralView from "../../../components/LateralView"
 import { useEffect } from 'react';
-import Avatar from "../../components/Avatar";
+import Avatar from "../../../components/Avatar";
 
 
 const DoctorTransplants = () => {
@@ -11,12 +10,12 @@ const DoctorTransplants = () => {
   const [pacientes, setPacientes] = useState();
   const [pacienteSeleccionado, setPacienteSeleccionado] = useState();
   async function loadPacientes(){
-    const response = await fetch('/src/pages/Doctor-main/pacientes.json');
+    const response = await fetch('/src/data/pacientes.json');
     const names = await response.json();
     setPacientes(names.result);
   }
   async function loadDonantes() {
-    const response = await fetch('/src/pages/Doctor-main/donantes.json');
+    const response = await fetch('/src/data/donantes.json');
     const names = await response.json();
 
     setDonantes(names.donantes); 
@@ -27,8 +26,7 @@ const DoctorTransplants = () => {
   }, []);
     
   return (
-    <main className="flex w-full min-h-[1024px] p-5 gap-5">
-      <div className="min-w-[264px] h-screen"><Navegacion /></div>
+    <main className="flex w-full min-h-[1024px]  gap-5">
     <section className="min-w-[689px] grid mx-auto h-fit relative font-josefin">
         <h1 className="font-josefin text-3xl text-center">TRANSPLANTES CRUZADOS</h1>
         <div className="grid grid-cols-[1fr_4px_1fr] gap-x-4 mt-6">

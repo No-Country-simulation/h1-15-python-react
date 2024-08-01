@@ -19,6 +19,7 @@ import DoctorDetail from "../pages/Patient/DoctorInfoPage/DoctorDetail";
 import ScheduleAppointment from "../pages/Patient/ScheduleAppointment/ScheduleAppointment";
 import ConfirmAppointment from "../pages/Patient/ScheduleAppointment/ConfirmAppointment";
 import ConfirmationSuccess from "../pages/Patient/ScheduleAppointment/ConfirmationSuccess";
+import DoctorTransplants from "../pages/Doctor/Transplants/Doctor-transplant";
 
 export const publicRoutes = (
   <>
@@ -32,6 +33,7 @@ export const doctorRoutes = (
   <Route path="/doctor" element={<ProtectedRoute element={<DoctorLayout />} />}>
     <Route index element={<DoctorMain />} />
     <Route path="appointments" element={<DoctorAppointments />} />
+    <Route path="transplants" element={<DoctorTransplants />} />
   </Route>
 );
 export const patientRoutes = (

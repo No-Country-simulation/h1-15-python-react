@@ -5,12 +5,11 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
-import LateralView from "../../../components/LateralView";
 
 const DoctorMain = () => {
   const [articulos, setArticulos] = useState();
   async function loadNames() {
-    const response = await fetch('/src/pages/Doctor-main/News.json');
+    const response = await fetch('/src/data/News.json');
     const names = await response.json();
     console.log(names.articles);
     setArticulos(names.articles); 
@@ -20,9 +19,9 @@ const DoctorMain = () => {
   }, []);
 
   return (
-    <main className="flex w-full min-h-[1024px] p-5 gap-5">
+    <main className="flex w-full min-h-[1024px] gap-5">
       {/**CONTENIDO PRINCIPAL */}
-      <section className="max-w-[689px] grid grid-cols-2 gap-2 h-fit">
+      <section className="grid grid-cols-2 gap-2 h-fit">
         <article className="border border-blue-500 rounded-2xl shadow-blue-500 shadow-md">
           {/**calendario */}
           <Calendar />
@@ -80,7 +79,7 @@ const DoctorMain = () => {
           </h4>
         </article>
       </section>
-      <LateralView />
+
     </main>
   );
 };
