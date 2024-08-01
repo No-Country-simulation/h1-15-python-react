@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Navegacion from "../Navigation";
 import Calendar from "../../../components/Calendar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
@@ -25,11 +24,6 @@ const DoctorMain = () => {
   }, []);
 
   return (
-    // <main className="flex w-full min-h-[1024px] p-5 gap-5">
-    //   {/**MENU DE NAVEGACION */}
-    //   <Navegacion />
-    //   {/**CONTENIDO PRINCIPAL */}
-    //   {loc.pathname === "/doctor" ? (
     <div className="flex">
       <section className="min-w-[689px] grid grid-cols-2 gap-2 h-fit">
         <article className="border border-blue-500 rounded-2xl shadow-blue-500 shadow-md">
@@ -89,11 +83,6 @@ const DoctorMain = () => {
       </section>
       <LateralView />
     </div>
-    //   ) : (
-    //     <Outlet />
-    //   )}
-    //   {/**CONTENIDO LATERAL */}
-    // </main>
   );
 };
 
