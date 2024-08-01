@@ -189,13 +189,17 @@ class Entidad(models.Model):
 
 
 class Turno(models.Model):
-    dia_turno = models.DateField()
-    inicio_turno = models.TimeField()
-    fin_turno = models.TimeField()
+    STATUS_CHOICES = [
+        ("disponible", "Disponible"),
+        ("reservado", "Reservado"),
+        ("cancelado", "Cancelado"),
+    ]
+    fecha_turno = models.CharField(max_length=10)
+    hora_turno = models.CharField(max_length=10)
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, blank=True, null=True)
     medico = models.ForeignKey(PersonalMedico, on_delete=models.CASCADE)
     entidad = models.ForeignKey(Entidad, on_delete=models.CASCADE)
-    status = models.CharField(max_length=20, default="Disponible")
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="disponible")
     is_active = models.BooleanField(default=True)
 
 # Disponibilidad model
