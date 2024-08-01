@@ -14,8 +14,6 @@ from pacientes.views import PacienteList, PacienteDetail
 from tipo_usuario.views import TipoUsuarioList, TipoUsuarioDetail
 from direcciones.views import DireccionList, DireccionDetail
 from trasplantes_cruzados.views import TrasplanteCruzadoList, TrasplanteCruzadoDetail
-
-
 from personal_medico.views import PersonalMedicoList, PersonalMedicoDetail
 from especialidad.views import EspecialidadList, EspecialidadDetail
 from medicamentos.views import MedicamentoDetail, MedicamentoList
@@ -23,6 +21,7 @@ from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
 from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
 from historia_clinica.views import HistoriaClinicaDetail, HistoriaClinicaList
 from entidad.views import EntidadDetail, EntidadList
+from turnos.views import DisponibilidadList, DisponibilidadCreate, DisponibilidadDetail, TurnoListCreate, TurnoDetail
 # Create your views here.
 urlpatterns = [
     # Admin route
@@ -76,4 +75,10 @@ urlpatterns = [
 
     path('entidad/', EntidadList.as_view(),),
     path('entidad/<int:pk>',EntidadDetail.as_view(),),
+    
+    path('disponibilidad/', DisponibilidadList.as_view(),),
+    path('disponibilidad/create/', DisponibilidadCreate.as_view(),),
+    path('disponibilidad/<int:pk>/',DisponibilidadDetail.as_view(),),
+    path('turno/<int:pk>/', TurnoListCreate.as_view(),),
+    path('turno/detail/<int:pk>/',TurnoDetail.as_view(),),
 ]

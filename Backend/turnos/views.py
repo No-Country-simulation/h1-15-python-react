@@ -129,7 +129,7 @@ class TurnoListCreate(generics.ListCreateAPIView):
             instance.save()
             return instance
         else:
-            return("Trasplante Cruzado no encontrado")
+            return("Turno no encontrado")
 
 class TurnoDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Turno.objects.all()
