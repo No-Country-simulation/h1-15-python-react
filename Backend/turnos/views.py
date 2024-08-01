@@ -1,10 +1,8 @@
 from turnos.serializers import TurnoSerializer, DisponibilidadSerializer
 from rest_framework import generics, views
-from rest_framework import status
-from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema
 from core.models import Turno, Disponibilidad
-from custom_functions.date_list import validar_fechas
+from custom_functions.date_list import validar_fechas, obtener_fecha_actual_str, generar_fecha_fin_str
 
 
 class DisponibilidadList(generics.ListAPIView):
@@ -18,7 +16,6 @@ class DisponibilidadList(generics.ListAPIView):
     )
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
-
 
 class DisponibilidadCreate(views.APIView):
     @extend_schema(
@@ -34,20 +31,45 @@ class DisponibilidadCreate(views.APIView):
                             1: ['lunes', '08:00', '12:00'],
                             2: ['martes', '08:00', '16:00'],
                             3: ['jueves', '10:00', '17:00'],
+                            ...
                             },
                     }
                     """
     )
     def post(self, request):
-        datos_disponibilidad = request.data
-        disponibilidad_serializer = DisponibilidadSerializer(datos_disponibilidad)
+        datos_solicitud = request.data
+        medico = datos_solicitud['medico']
+        institucion = datos_solicitud['institucion']
+        horarios = datos_solicitud['horarios']
+        lista_horarios = list(horarios.values())
+        fecha_inicio = obtener_fecha_actual_str()
+        fecha_fin = generar_fecha_fin_str(60)
+        duracion_turnos = 15
+        lista_turnos = validar_fechas(lista_horarios, fecha_inicio, fecha_fin, duracion_turnos)
         
-        if disponibilidad_serializer.is_valid():
-            disponibilidad_serializer.save()
-            return Response(disponibilidad_serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(disponibilidad_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+        for horario in lista_horarios:
+            dia = horario[0]
+            hora_inicio = horario[1]
+            hora_fin = horario[2]
+            datos_disponibilidad = {
+                'medico': medico,
+                'institucion': institucion,
+                'dia': dia,
+                'hora_inicio_turnos': hora_inicio,
+                'hora_fin_turnos': hora_fin,
+            }
+            disponibilidad_serializer = DisponibilidadSerializer(datos_disponibilidad)
+            
+            if disponibilidad_serializer.is_valid():
+                disponibilidad_serializer.save()
+        
+        for dia in lista_horarios:
+            for turno in dia:
+                try:
+                    Turno.objects.create(fecha_turno=turno[0], hora_turno=turno[1], medico=medico, institucion=institucion)
+                except:
+                    pass
+                
 class DisponibilidadDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Disponibilidad.objects.all()
     serializer_class = DisponibilidadSerializer
@@ -82,7 +104,6 @@ class DisponibilidadDetail(generics.RetrieveUpdateDestroyAPIView):
         else:
             return("Trasplante Cruzado no encontrado")
     
-
 class TurnoListCreate(generics.ListCreateAPIView):
     queryset = Turno.objects.all()
     serializer_class = TurnoSerializer
