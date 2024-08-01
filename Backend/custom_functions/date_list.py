@@ -72,6 +72,6 @@ def generar_fecha_fin_str(cantidad_dias):
     fecha_fin = fin.date()
     return str(fecha_fin)
 
-print(validar_fechas(datos_dias, "2024-07-28","2024-08-10", 15))
+#print(validar_fechas(datos_dias, "2024-07-28","2024-08-10", 15))
 #print(obtener_fecha_actual_str())
 #print(generar_fecha_fin_str(60))

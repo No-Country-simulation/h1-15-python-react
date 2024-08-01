@@ -109,7 +109,7 @@ class TurnoListCreate(generics.ListCreateAPIView):
     serializer_class = TurnoSerializer
 
     @extend_schema(
-        tags=['turno'],
+        tags=['Turno'],
         summary='Lista todos los turnos',
         description="Entrega un lista con de todos los turnos"
     )
@@ -117,7 +117,7 @@ class TurnoListCreate(generics.ListCreateAPIView):
         return self.list(request, *args, **kwargs)
 
     @extend_schema(
-        tags=['turno'],
+        tags=['Turno'],
         summary='Asigna el turno seleccionado',
         description="Reserva el turno seleccionado al paciente"
     )
