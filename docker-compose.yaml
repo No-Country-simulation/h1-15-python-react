@@ -3,7 +3,7 @@ services:
     image: mysql
     restart: &restartpolicy unless-stopped
     env_file:
-      - .env.production
+      - ./.env
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -19,12 +19,11 @@ services:
       start_period: 30s
 
   backend:
-    image: h1-15-backend
     build:
       context: ./backend
     restart: *restartpolicy
     env_file:
-      - .env.production
+      - ./.env
     environment:
       DJANGO_SETTINGS_MODULE: justina_io_server.settings.production
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
@@ -53,15 +52,14 @@ services:
       start_period: 30s
 
   frontend:
-    image: h1-15-frontend
     build:
-        context: ./frontend
+      context: ./frontend
     env_file:
-      - .env.production
+      - ./.env
     environment:
       VITE_SECRET_KEY: ${VITE_SECRET_KEY}
     ports:
-      - 4173:4173 
+      - 4173:4173
     volumes:
       - frontend:/usr/src/app/dist
     depends_on:
@@ -70,7 +68,7 @@ services:
 
   nginx:
     image: nginx
-    build: 
+    build:
       context: ./nginx
     restart: *restartpolicy
     ports:
@@ -78,24 +76,23 @@ services:
     volumes:
       - backend:/app/justina_io_server/static
       - frontend:/var/www/frontend
-    depends_on:    
+    depends_on:
       backend:
         condition: service_healthy
-  
+
   phpmyadmin:
     image: phpmyadmin
     restart: *restartpolicy
     ports:
       - 8080:80
     env_file:
-      - .env.production
+      - ./.env
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=${PMA_HOST}
     depends_on:
       db:
-          condition: service_healthy
-
+        condition: service_healthy
 
 volumes:
   backend:
