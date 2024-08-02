@@ -4,7 +4,7 @@ import patientData from "../../../data/PatientProfile.json";
 
 const PatientProfile = () => {
   return (
-    <section className="grid max-w-lg w-full mx-auto p-2 font-josefin">
+    <section className="grid max-w-screen-lg w-full mx-auto p-2">
       <section>
         <BackButton />
       </section>
@@ -35,7 +35,7 @@ const PatientProfile = () => {
             </div>
             <div className="mt-4">
               <span className="text-gray-700 font-bold">Sexo:</span>{" "}
-              {patientData.sex}
+              {patientData.gender}
             </div>
             <div className="mt-2">
               <span className="text-gray-700 font-bold">

@@ -1,29 +1,45 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
-import {
-  format,
-  addDays,
-  isBefore,
-  setMinutes,
-  setHours,
-  eachMinuteOfInterval,
-} from "date-fns";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { format, addDays, isBefore, setMinutes, setHours, eachMinuteOfInterval } from "date-fns";
+import { useNavigate } from "react-router-dom";
 import BackButton from "../../../components/BackButton/BackButton";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import VoiceDictation from "../../../components/VoiceDictation/VoiceDictation";
 import FooterNav from "../../../components/FooterNav/FooterNav";
-import { useNavigate } from "react-router-dom";
+import patientProfileData from "../../../data/PatientProfile.json";
+
+const getNextDays = () => {
+  return Array.from({ length: 4 }, (_, i) => addDays(new Date(), i));
+};
+
+const generateAvailableTimes = (schedule, date) => {
+  const dayOfWeek = format(date, "EEEE");
+  const range = schedule[dayOfWeek];
+  if (!range) return [];
+
+  const [start, end] = range.map((timeString) => {
+    const [hour, minute] = timeString.match(/\d+/g).map(Number);
+    const isPM = timeString.includes("PM");
+    return setMinutes(setHours(new Date(), isPM ? hour + 12 : hour), minute);
+  });
+
+  if (!isBefore(start, end)) return [];
+
+  return eachMinuteOfInterval({ start, end }, { step: 30 }).map((time) => format(time, "HH:mm"));
+};
 
 function ScheduleAppointmentForm({ doctor }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState(null);
   const [availableTimes, setAvailableTimes] = useState([]);
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
+    name: patientProfileData.name || "",
+    email: patientProfileData.contact || "",
+    phone: patientProfileData.phone || "",
     reason: "",
+    gender: patientProfileData.gender || "",
+    age: patientProfileData.age || "",
     date: format(new Date(), "yyyy-MM-dd"),
     time: "",
     doctorName: doctor.name,
@@ -32,8 +48,7 @@ function ScheduleAppointmentForm({ doctor }) {
   });
 
   useEffect(() => {
-    const times = generateAvailableTimes(doctor.schedule, selectedDate);
-    setAvailableTimes(times);
+    setAvailableTimes(generateAvailableTimes(doctor.schedule, selectedDate));
   }, [doctor.schedule, selectedDate]);
 
   useEffect(() => {
@@ -43,66 +58,40 @@ function ScheduleAppointmentForm({ doctor }) {
     }));
   }, [selectedDate]);
 
-  const getNextDays = () => {
-    const days = [];
-    for (let i = 0; i < 4; i++) {
-      days.push(addDays(new Date(), i));
-    }
-    return days;
-  };
-
-  const handleDateClick = (date) => {
+  const handleDateClick = useCallback((date) => {
     setSelectedDate(date);
     setSelectedTime(null);
-  };
+  }, []);
 
-  const handleTimeClick = (time) => {
+  const handleTimeClick = useCallback((time) => {
     setSelectedTime(time);
     setFormData((prevState) => ({
       ...prevState,
       time: time,
     }));
-  };
+  }, []);
 
-  const generateAvailableTimes = (schedule, date) => {
-    const dayOfWeek = format(date, "EEEE");
-    const range = schedule[dayOfWeek];
-    if (!range) return [];
-
-    const [start, end] = range.map((timeString) => {
-      const [hour, minute] = timeString.match(/\d+/g).map(Number);
-      const isPM = timeString.includes("PM");
-      return setMinutes(setHours(new Date(), isPM ? hour + 12 : hour), minute);
-    });
-
-    if (!isBefore(start, end)) return [];
-
-    return eachMinuteOfInterval({ start, end }, { step: 30 }).map((time) =>
-      format(time, "HH:mm"),
-    );
-  };
-
-  const handleInputChange = (e) => {
+  const handleInputChange = useCallback((e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevState) => ({
+      ...prevState,
       [name]: value,
-    });
-  };
+    }));
+  }, []);
 
-  const handlePhoneChange = (value) => {
-    setFormData({
-      ...formData,
+  const handlePhoneChange = useCallback((value) => {
+    setFormData((prevState) => ({
+      ...prevState,
       phone: value,
-    });
-  };
+    }));
+  }, []);
 
-  const handleDictate = (text) => {
+  const handleDictate = useCallback((text) => {
     setFormData((prevState) => ({
       ...prevState,
       reason: text,
     }));
-  };
+  }, []);
 
   const navigate = useNavigate();
 
@@ -112,35 +101,24 @@ function ScheduleAppointmentForm({ doctor }) {
     navigate("/patient/appointment/confirmation", { state: { formData } });
   };
 
+  const nextDays = useMemo(() => getNextDays(), []);
+  const times = useMemo(() => availableTimes, [availableTimes]);
+
   return (
-    <main className="max-w-md mx-auto p-4 font-josefin">
+    <main className="max-w-screen-lg mx-auto p-4">
       <BackButton />
       <section>
         <h2 className="text-xl font-bold mb-4 text-center">Nueva Cita</h2>
-
-        {/* Información del médico */}
-        {doctor && (
-          <div className="mb-4 text-center">
-            <img
-              src={doctor.photo}
-              alt={doctor.name}
-              className="w-24 h-24 rounded-full mx-auto mb-2"
-            />
-            <h3 className="text-lg font-semibold">{doctor.name}</h3>
-            <p className="text-gray-600">{doctor.specialty}</p>
-          </div>
-        )}
-
         <div className="mb-4">
           <p className="text-lg font-semibold">Selecciona una fecha:</p>
-          <div className="flex space-x-2 mt-2">
-            {getNextDays().map((date) => (
+          <div className="flex flex-wrap justify-center space-x-2 mt-2">
+            {nextDays.map((date) => (
               <button
                 key={date.toISOString()}
-                className={`py-2 px-4 rounded ${
+                className={`py-2 px-4 rounded-lg h-16 md:w-20 md:h-20 ${
                   date.toDateString() === selectedDate.toDateString()
-                    ? "bg-Justina_8 text-white"
-                    : "bg-gray-200 text-gray-800"
+                    ? "bg-gradient-button-2 text-white rounded-custom shadow-inner-custom"
+                    : " text-gray-800 border border-1 border-slate-100 shadow-md"
                 }`}
                 onClick={() => handleDateClick(date)}
               >
@@ -153,14 +131,14 @@ function ScheduleAppointmentForm({ doctor }) {
         </div>
         <div className="mb-4">
           <h3 className="text-lg font-semibold">Selecciona una hora:</h3>
-          <div className="grid grid-cols-2 gap-2 mt-2">
-            {availableTimes.map((time) => (
+          <div className="grid grid-cols-2 gap-2 mt-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            {times.map((time) => (
               <button
                 key={time}
                 className={`py-2 px-4 rounded ${
                   time === selectedTime
-                    ? "bg-Justina_8 text-white"
-                    : "bg-gray-200 text-gray-800"
+                    ? "bg-gradient-button-2 text-white rounded-custom shadow-inner-custom"
+                    : "text-gray-800 border border-1 border-slate-100 shadow-md"
                 }`}
                 onClick={() => handleTimeClick(time)}
               >
@@ -170,19 +148,17 @@ function ScheduleAppointmentForm({ doctor }) {
           </div>
         </div>
         <div>
-          <h2 className="font-semibold text-normal mb-4">
-            Confirmar datos del paciente
-          </h2>
+          <h2 className="font-semibold text-normal mb-4">Datos del paciente</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-gray-700">Nombre</label>
+              <label className="block text-gray-700">Nombre Completo</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
                 className="w-full px-4 py-2 border rounded-md outline-none"
-                placeholder="Nombre completo"
+                placeholder="Ingrese su nombre completo"
                 required
               />
             </div>
@@ -194,7 +170,7 @@ function ScheduleAppointmentForm({ doctor }) {
                 value={formData.email}
                 onChange={handleInputChange}
                 className="w-full px-4 py-2 border rounded-md outline-none"
-                placeholder="Correo electrónico"
+                placeholder="Ingrese su correo electrónico"
                 required
               />
             </div>
@@ -219,26 +195,50 @@ function ScheduleAppointmentForm({ doctor }) {
               />
             </div>
             <div>
-              <label className="block text-gray-700">Observaciones</label>
+              <label className="block text-gray-700">Género</label>
+              <input
+                type="text"
+                name="gender"
+                value={formData.gender}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-md outline-none"
+                placeholder="Ingrese su género"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700">Edad</label>
+              <input
+                type="number"
+                name="age"
+                value={formData.age}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-md outline-none"
+                placeholder="Ingrese su edad"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700"> Motivo de la Consulta</label>
               <div className="relative">
                 <textarea
                   name="reason"
                   value={formData.reason}
                   onChange={handleInputChange}
                   className="w-full px-4 py-2 border rounded-md outline-none"
-                  placeholder="Escribe el motivo de la consulta"
+                  placeholder="Describa brevemente el motivo de su consulta..."
                   rows="4"
                   required
                 />
                 <VoiceDictation onDictate={handleDictate} />
               </div>
             </div>
-            <div className="flex justify-center">
+            <div>
               <button
                 type="submit"
-                className="bg-Justina_8 text-white py-2 px-4 rounded-md outline-none"
+                className="w-full px-4 py-2 bg-Justina_8 text-white font-semibold rounded-md"
               >
-                Agendar cita
+                Confirmar cita
               </button>
             </div>
           </form>

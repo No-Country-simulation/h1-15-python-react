@@ -1,5 +1,7 @@
-import { Routes } from "react-router-dom";
-import { doctorRoutes, patientRoutes, publicRoutes } from "./routes";
+import { Routes, Route } from "react-router-dom";
+import { doctorRoutes, publicRoutes } from "./routes";
+import { patientRoutes } from "./routes/PatientRoutes";
+import NotFound from "./components/PageNotFound/NotFound";
 
 function App() {
   return (
@@ -12,6 +14,9 @@ function App() {
 
       {/* Patient Routes */}
       {patientRoutes}
+
+      {/* 404 Route */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

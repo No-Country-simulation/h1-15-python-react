@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Calendar from "../../../components/Calendar/Calendar";
-import CardSchedule from "../../../components/Cards/CardSchedule";
 import FooterNav from "../../../components/FooterNav/FooterNav";
 import Profile from "../../../components/Profile/Profile";
 import data from "../../../data/patientDataSchedule.json";
+import CardSchedule from "./CardSchedule";
 
 const Schedule = () => {
   const [schedules, setSchedules] = useState([]);
@@ -40,18 +40,24 @@ const Schedule = () => {
   }
 
   return (
-    <div className="max-w-lg mx-auto flex flex-col min-h-screen pb-16">
+    <div className="max-w-screen-lg mx-auto flex flex-col min-h-screen">
       <Profile
         icon_name="calendarOrange"
         greeting="Estos son tus turnos,"
         patientName="Laura!"
         photo="/Bung1.png"
       />
-      <section className="flex flex-col space-y-[18px] px-2 pb-[420px]">
-        {filteredSchedules && filteredSchedules.length > 0 ? (
+      
+      {/* Calendario fijo en la parte superior */}
+      <section className="sticky top-0 z-10 bg-[#fff]">
+          <Calendar onDateClick={handleDateClick} />
+      </section>
+
+      <section className="grid md:grid-cols-2 gap-2 px-4 py-6 pb-20">
+        {filteredSchedules.length > 0 ? (
           filteredSchedules.map((schedule) => (
             <CardSchedule
-              key={schedule.id} 
+              key={schedule.id}
               id={schedule.id}
               profileImage={schedule.profileImage}
               name={schedule.name}
@@ -61,13 +67,12 @@ const Schedule = () => {
             />
           ))
         ) : (
-          <p className="text-center mt-5 font-josefin">No tienes citas pendientes para esta fecha</p> 
+          <p className="col-span-2 text-center text-gray-500">
+            No tienes citas pendientes para esta fecha
+          </p>
         )}
       </section>
 
-      <section className="bg-Justina_9 pb-4">
-        <Calendar onDateClick={handleDateClick} />
-      </section>
       <FooterNav />
     </div>
   );

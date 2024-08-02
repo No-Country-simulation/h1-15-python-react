@@ -3,7 +3,7 @@ import PageConstruction from "../../../components/PageConstruction/PageConstruct
 
 const SupportComunity = () => {
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-screen-lg mx-auto">
       <section>
         <PageConstruction />
       </section>
