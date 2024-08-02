@@ -75,7 +75,7 @@ const Calendar = ({ onDateClick }) => {
 
   return (
     <div className="bg-[#0001] p-4">
-      <header className="flex items-center justify-center text-[#00ADDE] py-4 gap-2">
+      <header className="flex items-center justify-center py-4 gap-2 text-Justina_8">
         <button onClick={handlePrevMonth} className="text-lg font-semibold">
           &lt;
         </button>
@@ -89,11 +89,11 @@ const Calendar = ({ onDateClick }) => {
           &gt;
         </button>
       </header>
-      <div className="grid grid-cols-7 text-center text-[#00ADDE] font-light pb-3">
+      <div className="grid grid-cols-7 text-center font-light pb-3">
         {daysOfWeek.map((day) => (
           <div
             key={day}
-            className="text-white bg-[#00ADDE] rounded-lg mr-3 text-xs p-2 font-light"
+            className="text-white bg-Justina_8 rounded-lg mr-3 text-xs p-2 font-light"
           >
             {day}
           </div>
@@ -125,7 +125,7 @@ const Calendar = ({ onDateClick }) => {
               return "bg-white text-gray-300 cursor-not-allowed rounded-full";
             }
             if (isSelectedDate || isToday) {
-              return "bg-[#00ADDE] text-white rounded-full cursor-pointer";
+              return "bg-Justina_8 text-white rounded-full cursor-pointer";
             }
             return "bg-white text-gray-900 cursor-pointer rounded-full";
           };
