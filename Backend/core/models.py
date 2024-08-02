@@ -111,6 +111,7 @@ class PersonalMedico(models.Model):
 
 class Especialidad(models.Model):
     tipo = models.IntegerField()
+    descripcion = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
 
 # TipoDocumento model
