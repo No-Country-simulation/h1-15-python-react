@@ -4,7 +4,7 @@ import patientData from "../../../data/PatientProfile.json";
 
 const PatientProfile = () => {
   return (
-    <section className="grid max-w-lg w-full mx-auto p-2">
+    <section className="grid max-w-screen-lg w-full mx-auto p-2">
       <section>
         <BackButton />
       </section>

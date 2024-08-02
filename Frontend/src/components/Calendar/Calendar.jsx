@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
 const Calendar = ({ onDateClick }) => {
@@ -73,8 +74,8 @@ const Calendar = ({ onDateClick }) => {
   const dates = getDates();
 
   return (
-    <div className="max-w-lg mx-auto fixed bottom-0 left-0 right-0 shadow-lg z-40 font-spartan bg-[#CAD6FF] p-4 mb-14">
-      <header className="flex items-center justify-center bg-[#CAD6FF] text-[#00ADDE] py-4 gap-2">
+    <div className="bg-[#0001] p-4">
+      <header className="flex items-center justify-center text-[#00ADDE] py-4 gap-2">
         <button onClick={handlePrevMonth} className="text-lg font-semibold">
           &lt;
         </button>
@@ -88,11 +89,11 @@ const Calendar = ({ onDateClick }) => {
           &gt;
         </button>
       </header>
-      <div className="grid grid-cols-7 text-center bg-[#CAD6FF] text-[#00ADDE] font-light pb-3">
+      <div className="grid grid-cols-7 text-center text-[#00ADDE] font-light pb-3">
         {daysOfWeek.map((day) => (
           <div
             key={day}
-            className="text-white bg-[#00ADDE] rounded-[18px] mr-3 text-xs p-2 font-light"
+            className="text-white bg-[#00ADDE] rounded-lg mr-3 text-xs p-2 font-light"
           >
             {day}
           </div>
