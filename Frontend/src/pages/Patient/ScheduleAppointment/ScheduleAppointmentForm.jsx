@@ -105,7 +105,7 @@ function ScheduleAppointmentForm({ doctor }) {
   const times = useMemo(() => availableTimes, [availableTimes]);
 
   return (
-    <main className="max-w-screen-lg mx-auto p-4 font-josefin">
+    <main className="max-w-screen-lg mx-auto p-4">
       <BackButton />
       <section>
         <h2 className="text-xl font-bold mb-4 text-center">Nueva Cita</h2>

@@ -29,7 +29,7 @@ const PatientMain = () => {
   }, []);
 
   return (
-    <main className="relative max-w-screen-lg mx-auto flex flex-col items-center w-full p-6 font-josefin gap-7">
+    <main className="relative max-w-screen-lg mx-auto flex flex-col items-center w-full p-6 gap-7">
       <nav className="flex justify-between w-full items-center">
         <Icon name="bars" />
         <div ref={profileRef} className="relative">
@@ -49,7 +49,7 @@ const PatientMain = () => {
       <h2 className="font-medium text-3xl md:text-4xl text-[#25282B] mt-7 self-start">
         Localiza <span className="font-medium text-[#A0A4A8]">tu médico</span>
       </h2>
-      <div className="w-full relative h-[56px] rounded-[18px] bg-[#F6F6F6] my-auto">
+      <div className="w-full relative h-[56px] rounded-lg bg-[#F6F6F6] my-auto">
         <input
           placeholder="Buscar médicos, indicaciones, etc"
           className="w-full h-full bg-transparent pl-4 outline-none"

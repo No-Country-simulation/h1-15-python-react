@@ -21,7 +21,7 @@ function DoctorList() {
   );
 
   return (
-    <div className="max-w-screen-lg mx-auto p-4 grid gap-4 font-josefin">
+    <div className="max-w-screen-lg mx-auto p-4 grid gap-4">
       <BackButton />
       <section className="flex mb-4">
         <input

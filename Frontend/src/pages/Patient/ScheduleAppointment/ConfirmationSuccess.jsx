@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function ConfirmationSuccess() {
   return (
-    <main className="max-w-scree-lg mx-auto p-4 font-josefin">
+    <main className="max-w-scree-lg mx-auto p-4">
       <h2 className="text-xl font-bold mb-4 text-center">¡Cita Confirmada!</h2>
       <div className="text-center">
         <p className="mb-4">

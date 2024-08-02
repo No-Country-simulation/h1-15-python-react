@@ -61,7 +61,7 @@ const Schedule = () => {
             />
           ))
         ) : (
-          <p className="text-center mt-5 font-josefin">No tienes citas pendientes para esta fecha</p> 
+          <p className="text-center mt-5">No tienes citas pendientes para esta fecha</p> 
         )}
       </section>
 
