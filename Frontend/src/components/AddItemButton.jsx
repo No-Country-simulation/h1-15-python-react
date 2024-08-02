@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const AddItemButton = ({ to, label }) => {
@@ -16,7 +16,7 @@ const AddItemButton = ({ to, label }) => {
       <div className="absolute inset-0 flex items-center justify-center group-hover:hidden">
         <span className="text-4xl">+</span>
       </div>
-      
+
       <div className="absolute inset-0 flex items-center justify-start pl-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:flex">
         <span className="text-4xl">+</span>
         <span className="ml-2 whitespace-nowrap">{label}</span>

@@ -31,17 +31,15 @@ const CardSchedule = ({
       </div>
 
       <div className="flex flex-wrap gap-1 md:gap-4">
-  <div className="flex-1 flex items-center bg-white text-Justina_8 px-2 md:px-4 py-1 rounded-xl gap-2 text-xs md:text-sm min-h-[40px] flex-shrink-0 whitespace-nowrap overflow-hidden uppercase">
-    <Icon name="calendarSkyblue" />
-    <p className="truncate">{date}</p>
-  </div>
-  <div className="flex-1 flex items-center bg-white text-Justina_8 px-2 md:px-4 py-1 rounded-xl gap-2 text-xs md:text-sm min-h-[40px] flex-shrink-0 whitespace-nowrap overflow-hidden">
-    <Icon name="clock" />
-    <p className="truncate">{timeRange}</p>
-  </div>
-</div>
-
-
+        <div className="flex-1 flex items-center bg-white text-Justina_8 px-2 md:px-4 py-1 rounded-xl gap-2 text-xs md:text-sm min-h-[40px] flex-shrink-0 whitespace-nowrap overflow-hidden uppercase">
+          <Icon name="calendarSkyblue" />
+          <p className="truncate">{date}</p>
+        </div>
+        <div className="flex-1 flex items-center bg-white text-Justina_8 px-2 md:px-4 py-1 rounded-xl gap-2 text-xs md:text-sm min-h-[40px] flex-shrink-0 whitespace-nowrap overflow-hidden">
+          <Icon name="clock" />
+          <p className="truncate">{timeRange}</p>
+        </div>
+      </div>
 
       <button
         className="w-full h-[40px] bg-Justina_8 text-white rounded-lg py-1 text-sm md:text-base focus:outline-none"

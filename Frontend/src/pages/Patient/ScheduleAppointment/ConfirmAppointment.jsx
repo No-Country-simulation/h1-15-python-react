@@ -19,7 +19,9 @@ function ConfirmAppointment() {
     <main className="max-w-screen-lg mx-auto p-4">
       <BackButton />
       <section className="pb-20">
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">Tu cita</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
+          Tu cita
+        </h2>
         <div className="space-y-6 md:space-y-8">
           <div className="flex flex-col items-center md:flex-row md:items-start md:justify-center">
             <img
@@ -45,7 +47,9 @@ function ConfirmAppointment() {
             <p>{formData.name}</p>
           </div>
           <div>
-            <h3 className="font-semibold text-lg md:text-xl">Correo Electrónico</h3>
+            <h3 className="font-semibold text-lg md:text-xl">
+              Correo Electrónico
+            </h3>
             <p>{formData.email}</p>
           </div>
           <div>

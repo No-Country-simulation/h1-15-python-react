@@ -5,12 +5,12 @@ import Icon from "../../../components/Icon/Icon";
 import doctorsData from "../../../data/patientDataDoctors.json";
 import FooterNav from "../../../components/FooterNav/FooterNav";
 import BackButton from "../../../components/BackButton/BackButton";
-import PopupMessage from "../../../components/PopupMessage"; // Asegúrate de importar el componente PopupMessage
+import PopupMessage from "../../../components/PopupMessage";
 
 function DoctorList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [doctors, setDoctors] = useState([]);
-  const [isPopupOpen, setIsPopupOpen] = useState(true); // Estado para manejar la visibilidad del popup
+  const [isPopupOpen, setIsPopupOpen] = useState(true);
 
   useEffect(() => {
     setDoctors(doctorsData);
@@ -61,7 +61,6 @@ function DoctorList() {
         <FooterNav />
       </section>
 
-      {/* Mostrar el PopupMessage si isPopupOpen es true */}
       <PopupMessage isOpen={isPopupOpen} onClose={handleClosePopup} />
     </div>
   );

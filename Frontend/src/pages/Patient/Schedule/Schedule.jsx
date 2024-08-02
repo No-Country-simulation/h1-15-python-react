@@ -48,9 +48,9 @@ const Schedule = () => {
         patientName="Laura!"
         photo="/Bung1.png"
       />
-      
+
       <section className="sticky top-0 z-10 bg-[#fff]">
-          <Calendar onDateClick={handleDateClick} />
+        <Calendar onDateClick={handleDateClick} />
       </section>
 
       <section className="grid md:grid-cols-2 gap-2 px-4 py-6 pb-20">
@@ -73,7 +73,7 @@ const Schedule = () => {
         )}
       </section>
       <section className="absolute justify-end right-2 bottom-20">
-      <AddItemButton to="/patient/doctor-information" label="Nueva Cita" />
+        <AddItemButton to="/patient/doctor-information" label="Nueva Cita" />
       </section>
 
       <FooterNav />

@@ -21,4 +21,3 @@ export const doctorRoutes = (
     <Route path="appointments" element={<DoctorAppointments />} />
   </Route>
 );
-
