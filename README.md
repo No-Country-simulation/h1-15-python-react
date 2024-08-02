@@ -88,7 +88,7 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 #### - _Fernando Suarez_
 
-[![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)]()
+[![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)](https://my-portfolio-fernando-suarez.netlify.app/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/fernandogabrielsuarez/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://www.github.com/fer-gab-sua)
 [![mail](https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white)](mailto:fer.gab.sua@gmail.com)
