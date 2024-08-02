@@ -22,9 +22,10 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 ### Team Lider
 
+![Yefferson Espinoza](images/yefferson_espinoza.png)
+
 ### - _Yefferson Espinoza_
 
-![Yefferson Espinoza](images/yefferson_espinoza.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)]()
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/espinozayeff/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://github.com/espinozayff)
@@ -32,9 +33,10 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 ### Diseño UI/UX
 
+![Juan Lobo](images/juan_lobo.png)
+
 #### - _Juan Ignacio Lobo_
 
-![Juan Lobo](images/juan_lobo.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)](https://juanignaciolobo.myportfolio.com/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/juaniglobo/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)]()
@@ -43,25 +45,28 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 ### Frontend
 
+![Max Cereceda](images/max_cereceda.png)
+
 #### - _Max Cereceda_
 
-![Max Cereceda](images/max_cereceda.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)](https://max-cereceda.vercel.app/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/maxcereceda/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://github.com/cereceda1991)
 [![mail](https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white)](mailto:cereceda1991@gmail.com)
 
+![Rafael Strongoli](images/rafael_strongoli.png)
+
 #### - _Rafael Strongoli_
 
-![Rafael Strongoli](images/rafael_strongoli.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)](https://strongoli-portfolio.vercel.app/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rafael-strongoli/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://github.com/rafaric)
 [![mail](https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white)](mailto:rafaelstrongoli@gmail.com)
 
+![Lautaro Duran](images/lautaro_duran.png)
+
 #### - _Lautaro Duran_
 
-![Lautaro Duran](images/lautaro_duran.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)](https://lautaro-duran.netlify.app/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lautaro-duran/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://github.com/LautaroLD)
@@ -70,25 +75,28 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 ### Backend
 
+![Félix Pacheco](images/felix_pacheco.png)
+
 #### - _Félix Pacheco_
 
-![Félix Pacheco](images/felix_pacheco.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)](https://porfolio-rho-azure.vercel.app/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/felix-pacheco-lobos/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://www.github.com/Thoraker)
 [![mail](https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white)](mailto:thoraker.dev@gmail.com)
 
+![Fernando Suarez](images/fernando_suarez.png)
+
 #### - _Fernando Suarez_
 
-![Fernando Suarez](images/fernando_suarez.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)]()
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/fernandogabrielsuarez/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://www.github.com/fer-gab-sua)
 [![mail](https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white)](mailto:fer.gab.sua@gmail.com)
 
+![Damian Berrojalvis](images/damian_berrojalvis.png)
+
 #### - _Damian Berrojalvis_
 
-![Damian Berrojalvis](images/damian_berrojalvis.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)]()
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dambedev/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://www.github.com/DamBeDev)
