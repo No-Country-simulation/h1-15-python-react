@@ -7,7 +7,7 @@ const CardEvent = ({
   eventTimeUnit,
 }) => {
   return (
-    <div className="flex items-center p-4 bg-[#E4E4E4] shadow-inner-custom font-josefin">
+    <div className="flex items-center p-4 bg-[#E4E4E4] shadow-inner-custom  font-sans text-xs md:text-base">
       <div
         className="w-4 h-4 rounded-full"
         style={{ backgroundColor: color }}
@@ -15,12 +15,12 @@ const CardEvent = ({
       <div className="ml-3 flex-grow">
         <div>
           <span className="font-light">{eventAction} </span>
-          <span className="font-normal">{eventName}</span>
+          <span className="font-medium underline">{eventName}</span>
         </div>
       </div>
-      <div className="text-gray-600">
-        <span className="font-light">{eventTime}</span>{" "}
-        <span className="font-normal">{eventTimeUnit}</span>
+      <div>
+        <span className="font-normal text-normal text-gray-600">{eventTime}</span>{" "}
+        <span className="font-semibold super text-xs text-gray-400">{eventTimeUnit}</span>
       </div>
     </div>
   );

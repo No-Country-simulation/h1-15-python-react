@@ -22,7 +22,7 @@ const Profile = ({ icon_name, greeting, photo, patientName }) => {
           </>
         )}
       </div>
-      <h1 className="font-josefin font-semibold text-2xl mt-2 text-center text-[#A0A4A8]">
+      <h1 className="font-semibold text-2xl mt-2 text-center text-[#A0A4A8]">
         {greeting}
         <span className="ml-4 font-medium text-2xl text-black ">
           {patientName}

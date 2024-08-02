@@ -7,6 +7,7 @@ export default {
         sans: ["Inter", "sans-serif"],
         josefin: ["Josefin Sans", "sans-serif"],
         spartan: ["League Spartan", "sans-serif"],
+        noto: ['Noto Sans Arabic', 'sans-serif'],
       },
       colors: {
         primary: {
@@ -45,7 +46,7 @@ export default {
           800: "#62532c",
           900: "#312a16",
         },
-        magentaButton: "#D22B8B",
+        magentaButton: "#d667cd",
         Justina_1: "#5563C4",
         Justina_2: "#9AC9B9",
         Justina_3: "#EE6092",
@@ -64,7 +65,7 @@ export default {
           // "linear-gradient(0deg, #FFC791 0%, #FF78A8 100%)",
           "linear-gradient(0deg, #0002 0%, #f4f4f4 100%)",
         "gradient-button":
-          "linear-gradient(0deg, #D22B8B, #D22B8B), linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%)",
+          "linear-gradient(0deg, #d667cd, #d667cd), linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%)",
         "footer-gradient": 
         `linear-gradient(180deg, #5b5a94 0%, #4a4a7a 50%, #3b3b60 100%)`,
         "gradient-button-2":

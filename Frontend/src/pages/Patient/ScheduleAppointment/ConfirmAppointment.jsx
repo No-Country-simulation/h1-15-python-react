@@ -16,7 +16,7 @@ function ConfirmAppointment() {
   if (!formData) return <p>No se encontraron datos del formulario.</p>;
 
   return (
-    <main className="max-w-screen-lg mx-auto p-4 font-josefin">
+    <main className="max-w-screen-lg mx-auto p-4">
       <BackButton />
       <section className="pb-20">
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">Tu cita</h2>

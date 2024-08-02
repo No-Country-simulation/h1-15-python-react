@@ -3,7 +3,7 @@
     "id": 1,
     "icon": "medicineSkyblue",
     "titulo": "Medicación",
-    "color": "#6ED1AF",
+    "color": "#4fd2c2",
     "link": "/patient/treatment"
   },
   {
@@ -38,7 +38,7 @@
     "id": 6,
     "icon": "phoneViolet",
     "titulo": "Contacto De Emergencia",
-    "color": "#D22B8B",
+    "color": "#d667cd",
     "link": "/patient/emergency-contacts"
   }
 ]

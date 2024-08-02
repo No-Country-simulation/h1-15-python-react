@@ -16,7 +16,7 @@ const CardOptions = ({ icon, titulo, color, link }) => {
         <Icon name={icon} className="w-8 h-8" />
       </div>
       <div className="flex items-center">
-        <p className="text-center text-white text-sm md:text-xl font-semibold leading-5">
+        <p className="text-center text-white text-sm md:text-xl leading-5 tracking-widest">
           {titulo}
         </p>
       </div>
