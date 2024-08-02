@@ -2,7 +2,7 @@ from rest_framework import generics , status
 from core.models import PersonalMedico
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from personal_medico.serializers import PersonalMedicoSerializer
+from personal_medico.serializers import PersonalMedicoSerializer, PersonalMedicoNewSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 from drf_spectacular.utils import extend_schema
 
@@ -10,7 +10,12 @@ from drf_spectacular.utils import extend_schema
 
 class PersonalMedicoList(generics.ListCreateAPIView):
     queryset = PersonalMedico.objects.all()
-    serializer_class = PersonalMedicoSerializer
+
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return PersonalMedicoNewSerializer
+        return PersonalMedicoSerializer
 
     @extend_schema(
         tags=['Personal Medico'],

@@ -104,6 +104,7 @@ class PersonalMedico(models.Model):
     id_especialidad = models.ForeignKey(
         'Especialidad', on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=255)
+    telefono_consulta = models.IntegerField()
     is_active = models.BooleanField(default=True)
 
 # Especialidad model
@@ -111,7 +112,7 @@ class PersonalMedico(models.Model):
 
 class Especialidad(models.Model):
     tipo = models.IntegerField()
-    descripcion = models.CharField(max_length=255)
+    descripcion = models.CharField(max_length=255, default='Descripcion Preterminada')
     is_active = models.BooleanField(default=True)
 
 # TipoDocumento model
@@ -195,8 +196,8 @@ class Turno(models.Model):
         ("reservado", "Reservado"),
         ("cancelado", "Cancelado"),
     ]
-    fecha_turno = models.CharField(max_length=10)
-    hora_turno = models.CharField(max_length=10)
+    fecha_turno = models.CharField(max_length=10,default='01-01-2024')
+    hora_turno = models.CharField(max_length=10, default='00:00')
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, blank=True, null=True)
     medico = models.ForeignKey(PersonalMedico, on_delete=models.CASCADE)
     entidad = models.ForeignKey(Entidad, on_delete=models.CASCADE)
