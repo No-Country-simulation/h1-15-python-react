@@ -105,10 +105,21 @@ class PersonalMedico(models.Model):
         'Especialidad', on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=255)
     telefono_consulta = models.IntegerField()
+    photo = models.CharField(max_length=255, default="None")
     is_active = models.BooleanField(default=True)
 
-# Especialidad model
+# ECalificaicones Medicas
 
+class PersonalMedicoReviews(models.Model):
+    id_personal_medico = models.ForeignKey(PersonalMedico, on_delete=models.CASCADE, related_name='reviews')
+    descripcion = models.CharField(max_length=255)
+    calificacion = models.DecimalField(max_digits=3, decimal_places=2)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.descripcion} - {self.calificacion}"
+
+# Especialidad model
 
 class Especialidad(models.Model):
     tipo = models.IntegerField()

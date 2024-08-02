@@ -15,13 +15,14 @@ from informacion_personal.views import InformacionPersonalList, InformacionPerso
 from pacientes.views import PacienteList, PacienteDetail
 from tipo_usuario.views import TipoUsuarioList, TipoUsuarioDetail
 from direcciones.views import DireccionList, DireccionDetail
-from personal_medico.views import PersonalMedicoList, PersonalMedicoDetail
+from personal_medico.views import PersonalMedicoList, PersonalMedicoDetail, CalificaPersonalMedicoList
 from especialidad.views import EspecialidadList, EspecialidadDetail
 from medicamentos.views import MedicamentoDetail, MedicamentoList
 from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
 from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
 from historia_clinica.views import HistoriaClinicaDetail, HistoriaClinicaList
 from entidad.views import EntidadDetail, EntidadList
+
 # Create your views here.
 urlpatterns = [
     # Admin route
@@ -53,8 +54,11 @@ urlpatterns = [
     path('nomenclador/', NomencladorList.as_view(),),
     path('nomenclador/<int:pk>/',NomencladorDetail.as_view(),),
     path('nomenclador/upload/', FileUploadView.as_view(),),
+
     path('doctor/',  PersonalMedicoList.as_view(),),
     path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
+    path('doctor/<int:pk>/reviews/',CalificaPersonalMedicoList.as_view(),),
+    
 
     path('especialidad/', EspecialidadList.as_view(),),
     path('especialidad/<int:pk>',EspecialidadDetail.as_view(),),

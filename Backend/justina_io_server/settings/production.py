@@ -26,9 +26,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 ALLOWED_HOSTS = ['*']
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost',
+    'http://localhost:8080',
     'http://127.0.0.1',
     'http://0.0.0.0',
+    'https://justina-latam.vercel.app/',
 ]
 
 CORS_ALLOW_CREDENTIALS = True

@@ -1,8 +1,8 @@
 from rest_framework import generics , status
-from core.models import PersonalMedico
+from core.models import PersonalMedico, PersonalMedicoReviews
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from personal_medico.serializers import PersonalMedicoSerializer, PersonalMedicoNewSerializer
+from personal_medico.serializers import PersonalMedicoSerializer, PersonalMedicoNewSerializer, ReviewSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 from drf_spectacular.utils import extend_schema
 
@@ -10,7 +10,6 @@ from drf_spectacular.utils import extend_schema
 
 class PersonalMedicoList(generics.ListCreateAPIView):
     queryset = PersonalMedico.objects.all()
-
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
@@ -70,3 +69,33 @@ class PersonalMedicoDetail(generics.RetrieveUpdateDestroyAPIView):
     )
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+
+class CalificaPersonalMedicoList(generics.ListCreateAPIView):
+    serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        return PersonalMedicoReviews.objects.filter(id_personal_medico=self.kwargs['pk'])
+
+    def perform_create(self, serializer):
+        # Obtener el id_personal_medico de la URL
+        id_personal_medico = self.kwargs['pk']
+        personal_medico_instance = PersonalMedico.objects.get(id=id_personal_medico)
+        serializer.save(id_personal_medico=personal_medico_instance)
+
+
+    @extend_schema(
+        tags=['Calificaciones a personal Medico'],
+        summary='Lista todas las calificaciones medicas',
+        description="Lista todas las calificaciones medicas"
+    )
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    @extend_schema(
+        tags=['Calificaciones a personal Medico'],
+        summary='Graba una nueva calificacion medica',
+        description="Crea una nueva calificacion Medica"
+    )
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
