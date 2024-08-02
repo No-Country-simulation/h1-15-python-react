@@ -26,9 +26,6 @@ export default function DoctorHeader() {
           </div>
         )}
       </div>
-      {/* <div>
-        <UserMenu />
-      </div> */}
     </div>
   );
 }
