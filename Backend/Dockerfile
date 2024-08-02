@@ -16,8 +16,9 @@ ENV PYTHONUNBUFFERED=1
 #     --uid "${UID}" \
 #     appuser
 
-RUN --mount=type=bind,source=requirements.txt,target=requirements.txt \
-    python -m pip install -r requirements.txt
+COPY ./requirements.txt ./requirements.txt
+
+RUN python -m pip install -r requirements.txt
 
 WORKDIR /app
 
