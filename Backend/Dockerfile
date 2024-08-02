@@ -16,7 +16,7 @@ ENV PYTHONUNBUFFERED=1
 #     --uid "${UID}" \
 #     appuser
 
-RUN --mount=type=cache,target=/root/.cache/pip \
+RUN --mount=type=cache,id=pip_cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
 
