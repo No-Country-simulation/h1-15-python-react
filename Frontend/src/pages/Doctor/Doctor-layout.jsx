@@ -4,7 +4,7 @@ import Navigation from "./Navigation";
 
 export default function DoctorLayout() {
   return (
-    <main className="flex w-full min-h-[1024px] p-5 gap-5">
+    <main className="flex w-full min-h-[1024px] p-5 gap-5 bg-slate-50">
       <Navigation />
       <section className="flex flex-col w-full">
         <DoctorHeader />
