@@ -23,15 +23,18 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 ### Team Lider
 
 ### - _Yefferson Espinoza_
+
+![Yefferson Espinoza](images/yefferson_espinoza.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)]()
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)]()
-[![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)]()
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/espinozayeff/)
+[![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://github.com/espinozayff)
 [![mail](https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white)](mailto:espinozayeff@gmail.com)
 
 ### Diseño UI/UX
 
 #### - _Juan Ignacio Lobo_
 
+![Juan Lobo](images/juan_lobo.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)](https://juanignaciolobo.myportfolio.com/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/juaniglobo/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)]()
@@ -42,6 +45,7 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 #### - _Max Cereceda_
 
+![Max Cereceda](images/max_cereceda.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)](https://max-cereceda.vercel.app/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/maxcereceda/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://github.com/cereceda1991)
@@ -49,6 +53,7 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 #### - _Rafael Strongoli_
 
+![Rafael Strongoli](images/rafael_strongoli.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)](https://strongoli-portfolio.vercel.app/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rafael-strongoli/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://github.com/rafaric)
@@ -56,6 +61,7 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 #### - _Lautaro Duran_
 
+![Lautaro Duran](images/lautaro_duran.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)](https://lautaro-duran.netlify.app/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lautaro-duran/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://github.com/LautaroLD)
@@ -66,6 +72,7 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 #### - _Félix Pacheco_
 
+![Félix Pacheco](images/felix_pacheco.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)](https://porfolio-rho-azure.vercel.app/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/felix-pacheco-lobos/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://www.github.com/Thoraker)
@@ -73,6 +80,7 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 #### - _Fernando Suarez_
 
+![Fernando Suarez](images/fernando_suarez.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)]()
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/fernandogabrielsuarez/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://www.github.com/fer-gab-sua)
@@ -80,6 +88,7 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 #### - _Damian Berrojalvis_
 
+![Damian Berrojalvis](images/damian_berrojalvis.png)
 [![portfolio](https://img.shields.io/badge/my_portfolio-grey?style=flat&logo=ko-fi&logoColor=white)]()
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dambedev/)
 [![github](https://img.shields.io/badge/github-grey?style=flat&logo=github&logoColor=white)](https://www.github.com/DamBeDev)
