@@ -2,9 +2,9 @@
 import { useState } from "react";
 
 const Calendar = ({ onDateClick }) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(null);
   const today = new Date();
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(today);
 
   const handlePrevMonth = () => {
     setCurrentDate(
@@ -41,7 +41,7 @@ const Calendar = ({ onDateClick }) => {
           "Fecha del calendario seleccionada:",
           formatDate(clickedDate),
         );
-        onDateClick(clickedDate); // Llama a la función onDateClick
+        onDateClick(clickedDate);
       }
     }
   };
@@ -57,7 +57,6 @@ const Calendar = ({ onDateClick }) => {
     currentDate.getMonth(),
     1,
   ).getDay();
-
   const adjustedStartDay = (startDay + 6) % 7;
 
   const getDates = () => {
@@ -115,16 +114,12 @@ const Calendar = ({ onDateClick }) => {
             selectedDate.getDate() === date &&
             selectedDate.getMonth() === currentDate.getMonth() &&
             selectedDate.getFullYear() === currentDate.getFullYear();
-          const isToday =
-            today.getDate() === date &&
-            today.getMonth() === currentDate.getMonth() &&
-            today.getFullYear() === currentDate.getFullYear();
 
           const getClassNames = () => {
             if (isPastDate) {
               return "bg-white text-gray-300 cursor-not-allowed rounded-full";
             }
-            if (isSelectedDate || isToday) {
+            if (isSelectedDate) {
               return "bg-Justina_8 text-white rounded-full cursor-pointer";
             }
             return "bg-white text-gray-900 cursor-pointer rounded-full";
