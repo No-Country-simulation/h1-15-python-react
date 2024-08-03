@@ -5,27 +5,23 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
-import LateralView from "../../../components/LateralView";
 
 const DoctorMain = () => {
   const [articulos, setArticulos] = useState();
+  async function loadNames() {
+    const response = await fetch('/src/data/News.json');
+    const names = await response.json();
+    console.log(names.articles);
+    setArticulos(names.articles); 
+  }
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        "https://newsapi.org/v2/everything?q=medicina&pageSize=10&language=es&apiKey=f7dd73b34df54a918588a3acdc64e91a",
-      );
-      const content = await response.json();
-      const articulos = content.articles;
-      return articulos;
-    }
-    fetchData().then((articles) => {
-      setArticulos(articles);
-    });
+  loadNames()
   }, []);
 
   return (
-    <div className="flex">
-      <section className="min-w-[689px] grid grid-cols-2 gap-2 h-fit">
+    <main className="flex w-full min-h-[1024px] gap-5">
+      {/**CONTENIDO PRINCIPAL */}
+      <section className="grid grid-cols-2 gap-2 h-fit">
         <article className="border border-blue-500 rounded-2xl shadow-blue-500 shadow-md">
           {/**calendario */}
           <Calendar />
@@ -39,7 +35,9 @@ const DoctorMain = () => {
           {articulos && (
             <Swiper
               navigation
-              autoplay
+              autoplay={
+                { delay: 5000 }
+              }
               scrollbar={{ draggable: true }}
               slidesPerView={1}
               modules={[Navigation, Autoplay]}
@@ -81,8 +79,8 @@ const DoctorMain = () => {
           </h4>
         </article>
       </section>
-      <LateralView />
-    </div>
+
+    </main>
   );
 };
 
