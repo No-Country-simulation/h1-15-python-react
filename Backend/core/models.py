@@ -101,7 +101,7 @@ class Direccion(models.Model):
 
 class PersonalMedico(models.Model):
     id_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    nombre_completo = models.CharField(max_length=50)
+    #nombre_completo = models.CharField(max_length=50)
     id_especialidad = models.ForeignKey(
         'Especialidad', on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=255)
@@ -109,8 +109,8 @@ class PersonalMedico(models.Model):
     photo = models.CharField(max_length=255, default="None")
     is_active = models.BooleanField(default=True)
     
-    def __str__(self):
-        return self.nombre_completo
+    #def __str__(self):
+    #    return self.nombre_completo
 
 # ECalificaicones Medicas
 
