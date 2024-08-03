@@ -11,7 +11,7 @@ const DoctorPatients = () => {
   const [pacientes, setPacientes] = useState([]);
   const [pacienteSeleccionado, setPacienteSeleccionado] = useState();
   async function loadPacientes() {
-    const response = await fetch("/src/data/pacientes.json");
+    const response = await fetch("../../../data/pacientes.json");
     const names = await response.json();
     setPacientes(names.result);
   }
