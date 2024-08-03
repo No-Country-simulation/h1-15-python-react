@@ -6,10 +6,10 @@ const CardPeople = ({ imagen, nombre, posicion, bio }) => {
     <div className="bg-white w-full h-[580px] flex flex-col items-center rounded-[10px]">
       <Avatar imagen={imagen} />
       <div className="flex flex-col justify-center items-center mt-[66px]">
-        <h2 className="text-[31.25px] font-bold font-josefin text-[#232233]">
+        <h2 className="text-[31.25px] font-bold text-[#232233]">
           {nombre}
         </h2>
-        <h3 className="text-[20px] font-josefin font-semibold text-[#6C6C72] pb-4">
+        <h3 className="text-[20px] font-semibold text-[#6C6C72] pb-4">
           {posicion}
         </h3>
         <p className="w-[313px] text-center text-[#6C6C72]">{bio}</p>

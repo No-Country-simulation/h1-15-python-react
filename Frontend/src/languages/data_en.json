@@ -1,0 +1,181 @@
+{
+	"home": {
+		"navbar": {
+			"title": "Login"
+		},
+		"cta": {
+			"title": "AN APP THAT SAVES LIVES",
+			"description": "Our app connects you with emergency medical services in real time and provides personalized health tracking.",
+			"button": "Get Started"
+		},
+		"landing": {
+			"image": "/mockup_1_en.png"
+		},
+		"about": {
+			"title": "ABOUT OUR APP",
+			"description": "Our app is designed to provide quick and accessible medical assistance, improving the quality of life for our users.",
+			"cards": [
+				{
+					"title": "ACCESSIBLE DESIGN",
+					"message": "We’ve created an intuitive interface so that anyone can use the app without difficulties."
+				},
+				{
+					"title": "EASY TO USE",
+					"message": "Our app is simple and straightforward, allowing you to access medical services with just a few taps."
+				},
+				{
+					"title": "THE BEST EXPERIENCE",
+					"message": "We guarantee an excellent user experience, focused on your needs and well-being."
+				}
+			]
+		},
+		"functions": {
+			"title": "APP FEATURES",
+			"description": "Discover the key features that make our app an indispensable tool for your health care.",
+			"cards": [
+				{
+					"imgSrc": "comment.svg",
+					"title": "PERSONALIZED CARE",
+					"message": "Access personalized medical consultations with certified professionals."
+				},
+				{
+					"imgSrc": "browser.svg",
+					"title": "DAILY REMINDERS",
+					"message": "Receive daily notifications to take your medications and attend your medical appointments."
+				},
+				{
+					"imgSrc": "vector.svg",
+					"title": "ONLINE MEDICAL RECORD",
+					"message": "Keep an updated record of your medical history and share it with your doctor easily."
+				},
+				{
+					"imgSrc": "cell-phone.svg",
+					"title": "IOS & ANDROID VERSION",
+					"message": "Available on major mobile platforms for your convenience."
+				},
+				{
+					"imgSrc": "telemarketer.svg",
+					"title": "24/7 SUPPORT BY REAL MEDICAL STAFF",
+					"message": "Get medical support anytime from qualified personnel."
+				}
+			]
+		},
+		"mockup": {
+			"image": "/mockup_en.png"
+		},
+		"howItWorks": {
+			"title": "HOW OUR APP WORKS",
+			"description": "Our app uses advanced technology to connect users with medical services efficiently and securely.",
+			"video": "/icons/Video-crop.png"
+		},
+		"whoWeAre": {
+			"title": "WHO WE ARE",
+			"description": "We are a dedicated team of health and technology professionals committed to your well-being.",
+			"cards": [
+				{
+					"imagen": "Profile.png",
+					"nombre": "EZEQUIEL LOCANE",
+					"bio": "Founder and CEO. With over 15 years of experience in the health industry, Ezequiel leads our team with passion and dedication.",
+					"posicion": "FOUNDER"
+				},
+				{
+					"imagen": "Profile1.png",
+					"nombre": "CARLOS MARTÍN",
+					"bio": "Surgeon with over 20 years of experience. Carlos ensures that our app meets the highest medical standards.",
+					"posicion": "SURGEON"
+				},
+				{
+					"imagen": "Profile2.png",
+					"nombre": "MARÍA PÉREZ",
+					"bio": "Medical specialist in digital health. María works to effectively integrate technology into our app.",
+					"posicion": "DOCTOR"
+				}
+			]
+		},
+		"testimonials": {
+			"title": "TESTIMONIALS",
+			"description": "Our users share their experiences and how our app has improved their health and well-being.",
+			"cards": [
+				{
+					"name": "ANA GARCIA",
+					"condition": "TRANSPLANT PATIENT",
+					"comment": "The app was crucial for receiving a kidney transplant. The speed in finding a donor was incredible.",
+					"image": "https://randomuser.me/api/portraits/women/45.jpg"
+				},
+				{
+					"name": "JUAN PÉREZ",
+					"condition": "DIABETES PATIENT",
+					"comment": "Thanks to the app, I found the support I needed to manage my diabetes and improve my quality of life.",
+					"image": "https://randomuser.me/api/portraits/men/76.jpg"
+				},
+				{
+					"name": "MARÍA LOPEZ",
+					"condition": "HYPERTENSION PATIENT",
+					"comment": "The app helped me get the right treatment for my hypertension and maintain regular follow-ups.",
+					"image": "https://randomuser.me/api/portraits/women/68.jpg"
+				},
+				{
+					"name": "LUIS MARTÍNEZ",
+					"condition": "RECOVERING PATIENT",
+					"comment": "The app was key to my recovery. I found the resources I needed for my rehabilitation with ease.",
+					"image": "https://randomuser.me/api/portraits/men/62.jpg"
+				}
+			]
+		},
+		"footer": {
+			"slogan": "We join forces to build a bright future, full of hope and opportunities.",
+			"links": [
+				{
+					"title": "Links"
+				},
+				{
+					"name": "About Us",
+					"url": "/"
+				},
+				{
+					"name": "Contact Us",
+					"url": "/"
+				},
+				{
+					"name": "Terms of Service",
+					"url": "/"
+				},
+				{
+					"name": "Privacy Policy",
+					"url": "/"
+				},
+				{
+					"name": "Blog",
+					"url": "/"
+				}
+			],
+			"newsletter": {
+				"title": "NEWSLETTER",
+				"heading": "Subscribe to Our Newsletter",
+				"placeholder": "Enter your email address",
+				"buttonText": "Subscribe"
+			},
+			"socialMedia": {
+				"facebook": {
+					"url": "/"
+				},
+				"instagram": {
+					"url": "/"
+				},
+				"youtube": {
+					"url": "/"
+				},
+				"twitter": {
+					"url": "/"
+				}
+			},
+			"Copyright": {
+				"title": "Copyright 2024 .h1-15. All rights reserved."
+			}
+		}
+	},
+	"about": {
+		"title": "ABOUT US",
+		"description": "Here you can find more information about our company and our team."
+	}
+}

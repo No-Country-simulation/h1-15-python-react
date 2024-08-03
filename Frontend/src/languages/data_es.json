@@ -1,0 +1,181 @@
+{
+  "home": {
+    "navbar": {
+      "title": "Acceso"
+    },
+    "cta": {
+      "title": "UNA APP QUE SALVA VIDAS",
+      "description": "Nuestra aplicación te conecta con servicios médicos de emergencia en tiempo real y proporciona seguimiento personalizado de tu salud.",
+      "button": "Comenzar"
+    },
+    "landing": {
+      "image": "/mockup_1_es.png"
+    },
+    "about": {
+      "title": "SOBRE NUESTRA APP",
+      "description": "Nuestra app está diseñada para ofrecer asistencia médica de manera rápida y accesible, mejorando la calidad de vida de nuestros usuarios.",
+      "cards": [
+        {
+          "title": "DISEÑO ACCESIBLE",
+          "message": "Hemos creado una interfaz intuitiva para que cualquier persona pueda usar la app sin dificultades."
+        },
+        {
+          "title": "FÁCIL DE USAR",
+          "message": "Nuestra app es simple y directa, permitiéndote acceder a servicios médicos con unos pocos toques."
+        },
+        {
+          "title": "LA MEJOR EXPERIENCIA",
+          "message": "Garantizamos una experiencia de usuario excelente, enfocada en tus necesidades y bienestar."
+        }
+      ]
+    },
+    "functions": {
+      "title": "FUNCIONES DE LA APP",
+      "description": "Descubre las funcionalidades clave que hacen de nuestra app una herramienta indispensable para el cuidado de tu salud.",
+      "cards": [
+        {
+          "imgSrc": "comment.svg",
+          "title": "ATENCIÓN PERSONALIZADA",
+          "message": "Accede a consultas médicas personalizadas con profesionales certificados."
+        },
+        {
+          "imgSrc": "browser.svg",
+          "title": "RECORDATORIOS DIARIOS",
+          "message": "Recibe notificaciones diarias para tomar tus medicamentos y asistir a tus citas médicas."
+        },
+        {
+          "imgSrc": "vector.svg",
+          "title": "REGISTRO MÉDICO EN LÍNEA",
+          "message": "Mantén un registro actualizado de tu historial médico y compártelo con tu médico fácilmente."
+        },
+        {
+          "imgSrc": "cell-phone.svg",
+          "title": "VERSIÓN DE IOS & ANDROID",
+          "message": "Disponible en las principales plataformas móviles para tu comodidad."
+        },
+        {
+          "imgSrc": "telemarketer.svg",
+          "title": "24/7 SOPORTE POR PERSONAL MÉDICO REAL",
+          "message": "Obtén soporte médico en cualquier momento del día por personal cualificado."
+        }
+      ]
+    },
+    "mockup": {
+      "image": "/mockup_es.png"
+    },
+    "howItWorks": {
+      "title": "CÓMO FUNCIONA NUESTRA APP",
+      "description": "Nuestra app utiliza tecnología avanzada para conectar a los usuarios con servicios médicos de manera eficiente y segura.",
+      "video": "/icons/Video-crop.png"
+    },
+    "whoWeAre": {
+      "title": "QUIÉNES SOMOS",
+      "description": "Somos un equipo dedicado de profesionales de la salud y tecnología comprometidos con tu bienestar.",
+      "cards": [
+        {
+          "imagen": "Profile.png",
+          "nombre": "EZEQUIEL LOCANE",
+          "bio": "Fundador y CEO. Con más de 15 años de experiencia en la industria de la salud, Ezequiel lidera nuestro equipo con pasión y dedicación.",
+          "posicion": "FUNDADOR"
+        },
+        {
+          "imagen": "Profile1.png",
+          "nombre": "CARLOS MARTÍN",
+          "bio": "Cirujano con más de 20 años de experiencia. Carlos asegura que nuestra app cumpla con los más altos estándares médicos.",
+          "posicion": "CIRUJANO"
+        },
+        {
+          "imagen": "Profile2.png",
+          "nombre": "MARÍA PÉREZ",
+          "bio": "Médica especialista en salud digital. María trabaja para integrar la tecnología de manera efectiva en nuestra app.",
+          "posicion": "MÉDICA"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "TESTIMONIOS",
+      "description": "Nuestros usuarios comparten sus experiencias y cómo nuestra app ha mejorado su salud y bienestar.",
+      "cards": [
+        {
+          "name": "ANA GARCIA",
+          "condition": "PACIENTE TRANSPLANTADO",
+          "comment": "La app fue fundamental para recibir un trasplante de riñón. La rapidez en encontrar un donante fue increíble.",
+          "image": "https://randomuser.me/api/portraits/women/45.jpg"
+        },
+        {
+          "name": "JUAN PÉREZ",
+          "condition": "PACIENTE CON DIABETES",
+          "comment": "Gracias a la app, encontré el apoyo que necesitaba para controlar mi diabetes y mejorar mi calidad de vida.",
+          "image": "https://randomuser.me/api/portraits/men/76.jpg"
+        },
+        {
+          "name": "MARÍA LOPEZ",
+          "condition": "PACIENTE CON HIPERTENSIÓN",
+          "comment": "La app me ayudó a recibir el tratamiento adecuado para mi hipertensión y a mantener un seguimiento constante.",
+          "image": "https://randomuser.me/api/portraits/women/68.jpg"
+        },
+        {
+          "name": "LUIS MARTÍNEZ",
+          "condition": "PACIENTE EN RECUPERACIÓN",
+          "comment": "La app fue clave para mi recuperación. Encontré los recursos que necesitaba para mi rehabilitación con facilidad.",
+          "image": "https://randomuser.me/api/portraits/men/62.jpg"
+        }
+      ]
+    },
+    "footer": {
+      "slogan": "Unimos fuerzas para construir un futuro brillante, lleno de esperanza y oportunidades.",
+      "links": [
+        {
+          "title": "Enlaces"
+        },
+        {
+          "name": "Acerca de Nosotros",
+          "url": "/"
+        },
+        {
+          "name": "Contáctanos",
+          "url": "/"
+        },
+        {
+          "name": "Términos de Servicio",
+          "url": "/"
+        },
+        {
+          "name": "Política de Privacidad",
+          "url": "/"
+        },
+        {
+          "name": "Blog",
+          "url": "/"
+        }
+      ],
+      "newsletter": {
+        "title": "BOLETÍN",
+        "heading": "Suscríbete a Nuestro Boletín",
+        "placeholder": "Introduce tu correo electrónico",
+        "buttonText": "Suscribirse"
+      },
+      "socialMedia": {
+        "facebook": {
+          "url": "/"
+        },
+        "instagram": {
+          "url": "/"
+        },
+        "youtube": {
+          "url": "/"
+        },
+        "twitter": {
+          "url": "/"
+        }
+      },
+      "Copyright": {
+        "title": "Copyright 2024 .h1-15. Derechos reservados."
+      }
+    }
+  },
+  "about": {
+    "title": "SOBRE NOSOTROS",
+    "description": "Aquí puedes encontrar más información sobre nuestra empresa y nuestro equipo."
+  }
+}
