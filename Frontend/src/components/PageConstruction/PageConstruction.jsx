@@ -62,7 +62,7 @@ const PageConstruction = () => {
         <hr className="w-full mt-8 border-t-2 border-gray-300" />
         <div className="mt-4">
           <img
-            src="/justinaLogo.png"
+            src="/justinaLogo.webp"
             alt={languageData.PageConstruction.logoAltText}
             className="w-48 h-auto"
           />

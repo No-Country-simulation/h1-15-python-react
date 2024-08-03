@@ -30,7 +30,7 @@ const NotFound = () => {
       </div>
       <hr className="w-full mt-8 border-t-2 border-gray-300" />
       <div className="mt-4">
-        <img src="/justinaLogo.png" alt="Logo" className="w-48 h-auto" />
+        <img src="/justinaLogo.webp" alt="Logo" className="w-48 h-auto" />
       </div>
     </main>
   );

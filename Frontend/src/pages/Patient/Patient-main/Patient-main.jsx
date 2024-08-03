@@ -36,7 +36,7 @@ const PatientMain = () => {
         <div ref={profileRef} className="relative">
           <img
             className="w-[36px] h-[36px] rounded-full cursor-pointer"
-            src="/Bung1.png"
+            src="/Bung1.webp"
             alt="Profile"
             onClick={toggleLogout}
           />

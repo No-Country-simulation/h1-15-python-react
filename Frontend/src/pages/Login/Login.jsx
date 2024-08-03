@@ -70,7 +70,7 @@ const Login = () => {
     <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-background_1">
       <ToastContainer />
       <section className="cursor-pointer max-w-[206px]">
-        <img onClick={() => navigate("/")} src="/justinaLogo.png" alt="logo" />
+        <img onClick={() => navigate("/")} src="/justinaLogo.webp" alt="logo" />
       </section>
       <section className="flex flex-col justify-center w-full p-6 bg-white shadow-lg rounded-lg lg:max-w-[548px]">
         <h1 className="text-2xl font-bold text-center">

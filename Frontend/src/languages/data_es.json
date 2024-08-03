@@ -9,7 +9,7 @@
       "button": "Comenzar"
     },
     "landing": {
-      "image": "/mockup_1_es.png"
+      "image": "/mockup_1_es.webp"
     },
     "about": {
       "title": "SOBRE NUESTRA APP",
@@ -61,31 +61,31 @@
       ]
     },
     "mockup": {
-      "image": "/mockup_es.png"
+      "image": "/mockup_es.webp"
     },
     "howItWorks": {
       "title": "CÓMO FUNCIONA NUESTRA APP",
       "description": "Nuestra app utiliza tecnología avanzada para conectar a los usuarios con servicios médicos de manera eficiente y segura.",
-      "video": "/icons/Video-crop.png"
+      "video": "/icons/Video-crop.webp"
     },
     "whoWeAre": {
       "title": "QUIÉNES SOMOS",
       "description": "Somos un equipo dedicado de profesionales de la salud y tecnología comprometidos con tu bienestar.",
       "cards": [
         {
-          "imagen": "Profile.png",
+          "imagen": "Profile.webp",
           "nombre": "EZEQUIEL LOCANE",
           "bio": "Fundador y CEO. Con más de 15 años de experiencia en la industria de la salud, Ezequiel lidera nuestro equipo con pasión y dedicación.",
           "posicion": "FUNDADOR"
         },
         {
-          "imagen": "Profile1.png",
+          "imagen": "Profile1.webp",
           "nombre": "CARLOS MARTÍN",
           "bio": "Cirujano con más de 20 años de experiencia. Carlos asegura que nuestra app cumpla con los más altos estándares médicos.",
           "posicion": "CIRUJANO"
         },
         {
-          "imagen": "Profile2.png",
+          "imagen": "Profile2.webp",
           "nombre": "MARÍA PÉREZ",
           "bio": "Médica especialista en salud digital. María trabaja para integrar la tecnología de manera efectiva en nuestra app.",
           "posicion": "MÉDICA"
@@ -264,7 +264,7 @@
       "icon_name": "medicine",
       "greeting": "Buen día,",
       "patientName": "Laura!",
-      "photo": "/Bung1.png"
+      "photo": "/Bung1.webp"
     },
     "CardTitle": [
       {
@@ -339,7 +339,7 @@
       "c": "calendarOrange",
       "greeting": "Estos son tus turnos,",
       "patientName": "Laura!",
-      "photo": "/Bung1.png"
+      "photo": "/Bung1.webp"
     },
     "warning": {
       "message": "No tienes citas pendientes para esta fecha"
