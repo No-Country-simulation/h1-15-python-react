@@ -24,9 +24,7 @@ const CardAppKey = ({ title, message }) => {
         </svg>
       </div>
       <div>
-        <h4 className="text-xl font-semibold text-[#232233]">
-          {title}
-        </h4>
+        <h4 className="text-xl font-semibold text-[#232233]">{title}</h4>
         <p className="text-base text-[#6C6C72]">{message}</p>
       </div>
     </div>

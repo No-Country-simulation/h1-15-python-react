@@ -1,27 +1,25 @@
-import  { useState } from "react";
+import { useState } from "react";
 import BackButton from "../BackButton/BackButton";
 import { showToast } from "../../utils/toast";
 import { ToastContainer } from "react-toastify";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const PageConstruction = () => {
   const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
 
-
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
     showToast("Serás notificado.", "success");
 
     setTimeout(() => {
-      navigate('/patient');
-    }, 2000); 
+      navigate("/patient");
+    }, 2000);
   };
 
   return (

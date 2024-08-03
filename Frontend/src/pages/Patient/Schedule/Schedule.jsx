@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import Calendar from "../../../components/Calendar/Calendar";
 import FooterNav from "../../../components/FooterNav/FooterNav";
 import Profile from "../../../components/Profile/Profile";
 import data from "../../../data/patientDataSchedule.json";
 import CardSchedule from "./CardSchedule";
+import AddItemButton from "../../../components/AddItemButton";
+import Calendar from "./Calendar";
 
 const Schedule = () => {
   const [schedules, setSchedules] = useState([]);
@@ -40,17 +41,16 @@ const Schedule = () => {
   }
 
   return (
-    <div className="max-w-screen-lg mx-auto flex flex-col min-h-screen">
+    <div className="relative max-w-screen-lg mx-auto flex flex-col min-h-screen">
       <Profile
         icon_name="calendarOrange"
         greeting="Estos son tus turnos,"
         patientName="Laura!"
         photo="/Bung1.png"
       />
-      
-      {/* Calendario fijo en la parte superior */}
+
       <section className="sticky top-0 z-10 bg-[#fff]">
-          <Calendar onDateClick={handleDateClick} />
+        <Calendar onDateClick={handleDateClick} />
       </section>
 
       <section className="grid md:grid-cols-2 gap-2 px-4 py-6 pb-20">
@@ -71,6 +71,9 @@ const Schedule = () => {
             No tienes citas pendientes para esta fecha
           </p>
         )}
+      </section>
+      <section className="absolute justify-end right-2 bottom-20">
+        <AddItemButton to="/patient/doctor-information" label="Nueva Cita" />
       </section>
 
       <FooterNav />

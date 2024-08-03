@@ -19,8 +19,12 @@ const CardEvent = ({
         </div>
       </div>
       <div>
-        <span className="font-normal text-normal text-gray-600">{eventTime}</span>{" "}
-        <span className="font-semibold super text-xs text-gray-400">{eventTimeUnit}</span>
+        <span className="font-normal text-normal text-gray-600">
+          {eventTime}
+        </span>{" "}
+        <span className="font-semibold super text-xs text-gray-400">
+          {eventTimeUnit}
+        </span>
       </div>
     </div>
   );

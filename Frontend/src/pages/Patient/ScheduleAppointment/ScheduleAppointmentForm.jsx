@@ -1,6 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { format, addDays, isBefore, setMinutes, setHours, eachMinuteOfInterval } from "date-fns";
+import {
+  format,
+  addDays,
+  isBefore,
+  setMinutes,
+  setHours,
+  eachMinuteOfInterval,
+} from "date-fns";
 import { useNavigate } from "react-router-dom";
 import BackButton from "../../../components/BackButton/BackButton";
 import PhoneInput from "react-phone-input-2";
@@ -26,7 +33,9 @@ const generateAvailableTimes = (schedule, date) => {
 
   if (!isBefore(start, end)) return [];
 
-  return eachMinuteOfInterval({ start, end }, { step: 30 }).map((time) => format(time, "HH:mm"));
+  return eachMinuteOfInterval({ start, end }, { step: 30 }).map((time) =>
+    format(time, "HH:mm"),
+  );
 };
 
 function ScheduleAppointmentForm({ doctor }) {
@@ -219,7 +228,10 @@ function ScheduleAppointmentForm({ doctor }) {
               />
             </div>
             <div>
-              <label className="block text-gray-700"> Motivo de la Consulta</label>
+              <label className="block text-gray-700">
+                {" "}
+                Motivo de la Consulta
+              </label>
               <div className="relative">
                 <textarea
                   name="reason"
