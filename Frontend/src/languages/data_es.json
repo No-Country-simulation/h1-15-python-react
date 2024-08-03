@@ -333,5 +333,22 @@
         "unit": "PM"
       }
     ]
+  },
+  "Schedule": {
+    "Profile": {
+      "c": "calendarOrange",
+      "greeting": "Estos son tus turnos,",
+      "patientName": "Laura!",
+      "photo": "/Bung1.png"
+    },
+    "warning": {
+      "message": "No tienes citas pendientes para esta fecha"
+    },
+    "AddItemButton": {
+      "text": "Nueva cita"
+    }
+  },
+  "Navbar": {
+    "title": "Salir"
   }
 }

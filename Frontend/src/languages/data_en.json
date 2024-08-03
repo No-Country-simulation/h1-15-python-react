@@ -333,5 +333,22 @@
 				"unit": "PM"
 			}
 		]
+	},
+	"Schedule": {
+		"Profile": {
+			"icon_name": "calendarOrange",
+			"greeting": "These are your appointments,",
+			"patientName": "Laura!",
+			"photo": "/Bung1.png"
+		},
+		"warning": {
+			"message": "You have no pending appointments for this date"
+		},
+		"AddItemButton": {
+			"text": "New appointment"
+		}
+	},
+	"Navbar": {
+		"title": "Log out"
 	}
 }
