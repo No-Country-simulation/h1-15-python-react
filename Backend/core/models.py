@@ -101,12 +101,16 @@ class Direccion(models.Model):
 
 class PersonalMedico(models.Model):
     id_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    nombre_completo = models.CharField(max_length=50)
     id_especialidad = models.ForeignKey(
         'Especialidad', on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=255)
     telefono_consulta = models.IntegerField()
     photo = models.CharField(max_length=255, default="None")
     is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.nombre_completo
 
 # ECalificaicones Medicas
 
@@ -122,9 +126,12 @@ class PersonalMedicoReviews(models.Model):
 # Especialidad model
 
 class Especialidad(models.Model):
-    tipo = models.IntegerField()
+    tipo = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=255, default='Descripcion Preterminada')
     is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.tipo
 
 # TipoDocumento model
 
@@ -165,13 +172,20 @@ class Patologia(models.Model):
         'Especialidad', on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.descripcion
 
 # Tratamiento model
 
 
 class Tratamiento(models.Model):
     id_patologia = models.ForeignKey('Patologia', on_delete=models.CASCADE)
+    descripcion = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.descripcion
 
 # Farmacia model
 
@@ -190,6 +204,7 @@ class Medicamento(models.Model):
     id_farmacia = models.ForeignKey('Farmacia', on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
+    
 
 # Entidad model
 
@@ -197,6 +212,9 @@ class Medicamento(models.Model):
 class Entidad(models.Model):
     descripcion = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.descripcion
 
 # Turnos model
 
@@ -214,6 +232,9 @@ class Turno(models.Model):
     entidad = models.ForeignKey(Entidad, on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="disponible")
     is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f'{self.entidad}, {self.medico}, {self.fecha_turno}, {self.hora_turno}'
 
 # Disponibilidad model
 class Disponibilidad(models.Model):
@@ -239,3 +260,6 @@ class TrasplanteCruzado(models.Model):
     donante_cruzado = models.ForeignKey(Paciente, related_name='PacienteCruzado', on_delete=models.CASCADE)
     descripcion = models.TextField(max_length=500)
     is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.descripcion
