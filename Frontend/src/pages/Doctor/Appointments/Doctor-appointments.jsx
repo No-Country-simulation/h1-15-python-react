@@ -295,8 +295,8 @@ const DoctorAppointments = () => {
   }, [fecha]);
 
   return (
-    <>
-      <section className="min-w-[689px] grid mx-auto gap-2 h-fit relative">
+    <div className="flex justify-between gap-2 full">
+      <section className="grid gap-2 h-fit relative grow">
         <h1 className="font-josefin text-3xl text-center">TURNOS</h1>
         <h4
           className="w-fit justify-self-center cursor-pointer text-center text-lg font-bold underline my-4"
@@ -337,7 +337,7 @@ const DoctorAppointments = () => {
         </article>
       </section>
       <LateralView paciente={selectedPatient} />
-    </>
+    </div>
   );
 };
 
