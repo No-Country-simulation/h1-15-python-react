@@ -1,17 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import CardOptions from "../../../components/Cards/CardOptions";
 import Icon from "../../../components/Icon/Icon";
-import cardData from "../../../data/patientCardData.json";
 import Logout from "../../../components/Logout/Logout";
+import useLanguage from "../../../hooks/useLanguage";
 
 const PatientMain = () => {
-  const [cards, setCards] = useState([]);
   const [showLogout, setShowLogout] = useState(false);
   const profileRef = useRef(null);
-
-  useEffect(() => {
-    setCards(cardData);
-  }, []);
 
   const toggleLogout = () => setShowLogout((prev) => !prev);
 
@@ -27,6 +22,12 @@ const PatientMain = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const languageData = useLanguage();
+
+  if (!languageData) {
+    return <div>Cargando datos...</div>;
+  }
 
   return (
     <main className="relative max-w-screen-lg mx-auto flex flex-col items-center w-full p-6 gap-7">
@@ -47,11 +48,14 @@ const PatientMain = () => {
         </div>
       </nav>
       <h2 className="font-medium text-3xl md:text-4xl text-[#25282B] mt-7 self-start">
-        Localiza <span className="font-medium text-[#A0A4A8]">tu médico</span>
+        {languageData.patientMain.locateTitle}{" "}
+        <span className="font-medium text-[#A0A4A8]">
+          {languageData.patientMain.locateSubtitle}
+        </span>
       </h2>
       <div className="w-full relative h-[56px] rounded-lg bg-[#F6F6F6] my-auto">
         <input
-          placeholder="Buscar médicos, indicaciones, etc"
+          placeholder={languageData.patientMain.searchPlaceholder}
           className="w-full h-full bg-transparent pl-4 outline-none"
         />
         <div className="absolute top-[30%] right-[1%]">
@@ -59,11 +63,11 @@ const PatientMain = () => {
         </div>
       </div>
       <section className="grid grid-cols-2 gap-4 w-full h-full mt-5">
-        {cards.map((card, id) => (
+        {languageData.patientMain.cardData.map((card) => (
           <CardOptions
-            key={id}
+            key={card.id}
             icon={card.icon}
-            titulo={card.titulo}
+            title={card.title}
             color={card.color}
             link={card.link}
           />
