@@ -194,8 +194,8 @@ class Turno(models.Model):
         ("reservado", "Reservado"),
         ("cancelado", "Cancelado"),
     ]
-    fecha_turno = models.CharField(max_length=10)
-    hora_turno = models.CharField(max_length=10)
+    fecha_turno = models.DateField()  # Cambiado a DateField
+    hora_turno = models.TimeField()   # Cambiado a TimeField
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, blank=True, null=True)
     medico = models.ForeignKey(PersonalMedico, on_delete=models.CASCADE)
     entidad = models.ForeignKey(Entidad, on_delete=models.CASCADE)

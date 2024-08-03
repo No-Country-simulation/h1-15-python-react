@@ -1,6 +1,6 @@
 from rest_framework import generics
-from core.models import AntecedenteMedico as ModeloCore
-from antecedente_medico.serializers import AntecedenteMedicoSerializer as Serializador
+from core.models import Entidad as ModeloCore
+from entidad.serializers import EntidadSerializer as Serializador
 from drf_spectacular.utils import extend_schema
 
 REFERENCIA_TAGS = "Entidad"

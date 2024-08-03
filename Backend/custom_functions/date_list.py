@@ -59,7 +59,7 @@ def validar_fechas(datos_dias, fecha_inicio, fecha_fin, duracion):
         if turnos_dia != "vacio":
             lista_turnos.append(turnos_dia)
         fecha_revisar += timedelta(days=1)
-    
+    print(lista_turnos)
     return lista_turnos
 
 def obtener_fecha_actual_str():

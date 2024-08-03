@@ -21,7 +21,7 @@ from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
 from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
 from historia_clinica.views import HistoriaClinicaDetail, HistoriaClinicaList
 from entidad.views import EntidadDetail, EntidadList
-from turnos.views import DisponibilidadList, DisponibilidadCreate, DisponibilidadDetail, TurnoListCreate, TurnoDetail
+from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListCreate, TurnoDetail
 # Create your views here.
 urlpatterns = [
     # Admin route
@@ -79,6 +79,8 @@ urlpatterns = [
     path('disponibilidad/', DisponibilidadList.as_view(),),
     path('disponibilidad/create/', DisponibilidadCreate.as_view(),),
     path('disponibilidad/<int:pk>/',DisponibilidadDetail.as_view(),),
+    
+    path('turno/', TurnoCreate.as_view(),),
     path('turno/<int:pk>/', TurnoListCreate.as_view(),),
     path('turno/detail/<int:pk>/',TurnoDetail.as_view(),),
 ]
