@@ -7,6 +7,7 @@ import DoctorLayout from "../pages/Doctor/Doctor-layout";
 import DoctorAppointments from "../pages/Doctor/Appointments/Doctor-appointments";
 import DoctorMain from "../pages/Doctor/Doctor-main/Doctor-main";
 import DoctorTransplants from "../pages/Doctor/Transplants/Doctor-transplant";
+import DoctorPatients from "../pages/Doctor/Patients/Doctor-patients";
 
 export const publicRoutes = (
   <>
@@ -21,5 +22,6 @@ export const doctorRoutes = (
     <Route index element={<DoctorMain />} />
     <Route path="appointments" element={<DoctorAppointments />} />
     <Route path="transplants" element={<DoctorTransplants />} />
+    <Route path="patients" element={<DoctorPatients />} />
   </Route>
 );
