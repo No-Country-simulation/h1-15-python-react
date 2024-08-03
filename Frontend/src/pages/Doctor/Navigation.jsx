@@ -33,11 +33,11 @@ const Navigation = () => {
           Tratamientos
         </Link>
         <Link
-          to="/"
+          to="transplants"
           className="flex text-base items-center gap-2 hover:bg-secondary-400 w-full p-3"
         >
           <TbHearts />
-          Transplantes Cruzados
+          Trasplantes Cruzados
         </Link>
         <Link
           to="appointments"

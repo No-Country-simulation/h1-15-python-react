@@ -4,17 +4,28 @@ import eye_off from "/icons/eye_off.svg";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { showToast } from "../../utils/toast";
+import useLanguage from "../../hooks/useLanguage";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [email, setEmail] = useState("laura.garcia@example.com");
-  const [password, setPassword] = useState("Password123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
-    if (token) {
-      navigate("/patient");
+    const userType = localStorage.getItem("userType");
+    if (token && userType) {
+      navigate(`/${userType}`);
+    }
+
+    const storedEmail = localStorage.getItem("rememberMeEmail");
+    const storedPassword = localStorage.getItem("rememberMePassword");
+    if (storedEmail && storedPassword) {
+      setEmail(storedEmail);
+      setPassword(storedPassword);
+      setRememberMe(true);
     }
   }, [navigate]);
 
@@ -22,13 +33,38 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === "laura.garcia@example.com" && password === "Password123") {
+    if (email === "laura.garcia@example.com" && password === "Password$123") {
       localStorage.setItem("authToken", "example123");
+      localStorage.setItem("userType", "patient");
+      if (rememberMe) {
+        localStorage.setItem("rememberMeEmail", email);
+        localStorage.setItem("rememberMePassword", password);
+      } else {
+        localStorage.removeItem("rememberMeEmail");
+        localStorage.removeItem("rememberMePassword");
+      }
       navigate("/patient");
+    } else if (email === "doctor@example.com" && password === "Password$123") {
+      localStorage.setItem("authToken", "doctorToken123");
+      localStorage.setItem("userType", "doctor");
+      if (rememberMe) {
+        localStorage.setItem("rememberMeEmail", email);
+        localStorage.setItem("rememberMePassword", password);
+      } else {
+        localStorage.removeItem("rememberMeEmail");
+        localStorage.removeItem("rememberMePassword");
+      }
+      navigate("/doctor");
     } else {
       showToast("Credenciales inválidas.", "error");
     }
   };
+
+  const languageData = useLanguage();
+
+  if (!languageData) {
+    return <div>Cargando datos...</div>;
+  }
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-background_1">
@@ -37,20 +73,22 @@ const Login = () => {
         <img onClick={() => navigate("/")} src="/justinaLogo.png" alt="logo" />
       </section>
       <section className="flex flex-col justify-center w-full p-6 bg-white shadow-lg rounded-lg lg:max-w-[548px]">
-        <h1 className="text-2xl font-bold text-center">Iniciar Sesión</h1>
+        <h1 className="text-2xl font-bold text-center">
+          {languageData.login.title}
+        </h1>
         <p className="mt-6 text-center text-sm text-text_primary">
-          ¿No tienes cuenta?
+          {languageData.login.noAccount}
           <span
             onClick={() => navigate("/register")}
             className="ml-1 font-semibold cursor-pointer text-text_secondary"
           >
-            Regístrate
+            {languageData.login.register}
           </span>
         </p>
         <form className="flex flex-col space-y-6 mt-6" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email" className="block text-sm font-medium">
-              Correo
+              {languageData.login.emailLabel}
             </label>
             <input
               id="email"
@@ -58,13 +96,13 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              placeholder="Ingrese su correo electrónico"
+              placeholder={languageData.login.emailPlaceholder}
               className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
             />
           </div>
           <div>
             <label htmlFor="password" className="block text-sm font-medium">
-              Contraseña
+              {languageData.login.passwordLabel}
             </label>
             <div className="relative">
               <input
@@ -73,7 +111,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="Ingrese una contraseña"
+                placeholder={languageData.login.passwordPlaceholder}
                 className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
               />
               <button
@@ -85,8 +123,8 @@ const Login = () => {
                   src={passwordVisible ? eye_off : eye}
                   alt={
                     passwordVisible
-                      ? "Ocultar contraseña"
-                      : "Mostrar contraseña"
+                      ? languageData.login.eyeAltHide
+                      : languageData.login.eyeAltShow
                   }
                   className="w-4 h-4"
                 />
@@ -98,27 +136,29 @@ const Login = () => {
               <input
                 id="remember-me"
                 type="checkbox"
+                checked={rememberMe}
+                onChange={() => setRememberMe((prev) => !prev)}
                 className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
               />
               <label htmlFor="remember-me" className="ml-2 text-sm">
-                Recuérdame
+                {languageData.login.rememberMe}
               </label>
             </div>
             <span className="text-sm cursor-pointer text-text_secondary font-bold">
-              ¿Olvidaste tu contraseña?
+              {languageData.login.forgotPassword}
             </span>
           </div>
           <button
             type="submit"
             className="w-full py-2 text-sm font-medium text-white bg-gradient-button rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500"
           >
-            Iniciar Sesión
+            {languageData.login.loginButton}
           </button>
         </form>
 
         <div className="flex items-center py-6">
           <hr className="w-1/2 border-gray-200" />
-          <span className="px-2 text-sm">O</span>
+          <span className="px-2 text-sm">{languageData.login.or}</span>
           <hr className="w-1/2 border-gray-200" />
         </div>
 
@@ -132,7 +172,7 @@ const Login = () => {
               alt="Google"
               className="mr-2 w-5 h-5"
             />
-            <span>Continuar con Google</span>
+            <span>{languageData.login.googleSignIn}</span>
           </button>
           <button
             type="button"
@@ -143,7 +183,7 @@ const Login = () => {
               alt="Facebook"
               className="mr-2 w-5 h-5"
             />
-            <span>Continuar con Facebook</span>
+            <span>{languageData.login.facebookSignIn}</span>
           </button>
         </div>
       </section>

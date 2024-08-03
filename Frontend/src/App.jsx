@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import { doctorRoutes, publicRoutes } from "./routes";
 import { patientRoutes } from "./routes/PatientRoutes";
+import { publicRoutes } from "./routes/PublicRoutes";
+import { doctorRoutes } from "./routes/DoctorRoutes";
 import NotFound from "./components/PageNotFound/NotFound";
 
 function App() {

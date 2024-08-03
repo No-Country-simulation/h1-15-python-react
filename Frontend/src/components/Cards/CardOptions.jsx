@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Icon from "../Icon/Icon";
 
 /* eslint-disable react/prop-types */
-const CardOptions = ({ icon, titulo, color, link }) => {
+const CardOptions = ({ icon, title, color, link }) => {
   return (
     <Link
       to={link}
@@ -17,7 +17,7 @@ const CardOptions = ({ icon, titulo, color, link }) => {
       </div>
       <div className="flex items-center">
         <p className="text-center text-white text-sm md:text-xl leading-5 tracking-widest">
-          {titulo}
+          {title}
         </p>
       </div>
     </Link>
