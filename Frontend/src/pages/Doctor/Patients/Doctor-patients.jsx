@@ -58,18 +58,21 @@ const DoctorPatients = () => {
           Agregar paciente
         </button>
       </div>
-      <ul className="gap-4 flex flex-col w-2/3 mt-10">
-        {/*Lista de pacientes */}
-        {pacientes &&
-          pacientes.map((paciente, index) => (
-            <CardPatientList
-              key={index}
-              paciente={pacienteSeleccionado}
-              setPacienteSeleccionado={setPacienteSeleccionado}
-            />
-          ))}
-      </ul>
-      <LateralView paciente={pacienteSeleccionado} />
+      <section className="flex gap-6">
+        <ul className="gap-4 flex flex-col w-2/3 mt-10">
+          {/*Lista de pacientes */}
+          {pacientes &&
+            pacientes.map((paciente, index) => (
+              <CardPatientList
+                key={index}
+                paciente={paciente}
+                pacienteSeleccionado={pacienteSeleccionado}
+                setPacienteSeleccionado={setPacienteSeleccionado}
+              />
+            ))}
+        </ul>
+        <LateralView paciente={pacienteSeleccionado} />
+      </section>
     </main>
   );
 };
