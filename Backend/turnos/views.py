@@ -165,7 +165,6 @@ class TurnoCreate(generics.CreateAPIView):
         while fecha_inicio <= fecha_fin:
             for disp in disponibilidad:
                 if dias_a_numeros[disp.dia.lower()] == fecha_inicio.weekday():
-                    print("aca llego")
                     hora_inicio = disp.hora_inicio_turnos  # Ya es un objeto time
                     hora_fin = disp.hora_fin_turnos  # Ya es un objeto time
 
