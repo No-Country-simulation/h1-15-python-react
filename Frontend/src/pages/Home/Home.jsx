@@ -43,14 +43,14 @@ function Home() {
         </button>
       </nav>
 
-      <section className="w-full flex flex-col md:flex-row flex-grow">
+      <section className="w-full flex flex-col md:flex-row md:justify-around">
         {/* CTA */}
 
         <section className="flex flex-col justify-center items-center md:w-1/2 p-4 gap-12">
           <div className="relative flex flex-col justify-center items-center w-full p-6">
             {/* Borde amarillo */}
             <div className="absolute inset-0 flex justify-center items-center">
-              <div className="w-[200px] md:w-[350px] h-[240px] md:h-[350px] border-8 border-yellow-500"></div>
+              <div className="w-[200px] md:w-[260px] h-[280px] md:h-[350px] border-8 border-yellow-500"></div>
             </div>
 
             {/* Contenedor de contenido */}
@@ -73,12 +73,12 @@ function Home() {
         </section>
 
         {/* Mockup */}
-        <section className="w-full flex justify-center items-center my-8 md:my-0 md:w-1/2 p-4">
+        <section className="w-full flex justify-center items-center md:my-0 md:w-1/2 p-4">
           <div className="flex justify-center items-center w-full">
             <img
               src={languageData.home.landing.image}
               alt="Mockup"
-              className="w-full md:w-[50%] h-auto"
+              className="w-full md:w-[70%] h-auto"
             />
           </div>
         </section>

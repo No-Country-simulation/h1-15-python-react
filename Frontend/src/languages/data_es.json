@@ -174,8 +174,181 @@
       }
     }
   },
-  "about": {
-    "title": "SOBRE NOSOTROS",
-    "description": "Aquí puedes encontrar más información sobre nuestra empresa y nuestro equipo."
+  "login": {
+    "title": "Iniciar Sesión",
+    "noAccount": "¿No tienes cuenta?",
+    "register": "Regístrate",
+    "emailLabel": "Correo",
+    "emailPlaceholder": "Ingrese su correo electrónico",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "Ingrese una contraseña",
+    "rememberMe": "Recuérdame",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "loginButton": "Iniciar Sesión",
+    "or": "O",
+    "googleSignIn": "Continuar con Google",
+    "facebookSignIn": "Continuar con Facebook",
+    "eyeAltShow": "Mostrar contraseña",
+    "eyeAltHide": "Ocultar contraseña"
+  },
+  "patientMain": {
+    "locateTitle": "Localiza",
+    "locateSubtitle": "tu médico",
+    "searchPlaceholder": "Buscar médicos, indicaciones, etc",
+    "cardData": [
+      {
+        "id": 1,
+        "icon": "medicineSkyblue",
+        "title": "Medicación",
+        "color": "#4fd2c2",
+        "link": "/patient/treatment"
+      },
+      {
+        "id": 2,
+        "icon": "calendarOrange",
+        "title": "Citas Médicas",
+        "color": "#E58426",
+        "link": "/patient/schedule"
+      },
+      {
+        "id": 3,
+        "icon": "stethoscopeBlue",
+        "title": "Personal Médico",
+        "color": "#5563C4",
+        "link": "/patient/doctor-information"
+      },
+      {
+        "id": 4,
+        "icon": "handsOrange",
+        "title": "Soporte y Comunidad",
+        "color": "#FBC046",
+        "link": "/patient/support"
+      },
+      {
+        "id": 5,
+        "icon": "clipboardSkyblue",
+        "title": "Historial Médico",
+        "color": "#00ADDE",
+        "link": "/patient/medical-history"
+      },
+      {
+        "id": 6,
+        "icon": "phoneViolet",
+        "title": "Contacto De Emergencia",
+        "color": "#d667cd",
+        "link": "/patient/emergency-contacts"
+      }
+    ]
+  },
+  "PopupMessage": {
+    "title": "¡Atención!",
+    "content": " Debe elegir un médico para continuar con su cita.",
+    "textButton": "Entendido"
+  },
+  "NotFound": {
+    "title": "404 - Página no encontrada",
+    "message": "Lo sentimos, la página que estás buscando no existe.",
+    "button": "Volver a Inicio",
+    "logoAltText": "Logo"
+  },
+  "PageConstruction": {
+    "title": "¡Esta sección está en construcción!",
+    "message": "Notificarme cuando esté disponible",
+    "emailPlaceholder": "Introduce tu correo electrónico",
+    "submitButton": "Enviar",
+    "logoAltText": "Logo",
+    "toastSuccessMessage": "Serás notificado."
+  },
+  "Treatment": {
+    "Profile": {
+      "icon_name": "medicine",
+      "greeting": "Buen día,",
+      "patientName": "Laura!",
+      "photo": "/Bung1.png"
+    },
+    "CardTitle": [
+      {
+        "titles": [
+          "Tratamientos"
+        ],
+        "backgroundColor": "#4fd2c2",
+        "textColor": "#FFF"
+      },
+      {
+        "titles": [
+          "Medicamentos Pendientes:"
+        ],
+        "backgroundColor": "#d667cd",
+        "textColor": "#FFF"
+      }
+    ],
+    "cardEvent": [
+      {
+        "color": "#d667cd",
+        "action": "Nueva toma de",
+        "name": "Ciclosporina 10mg",
+        "time": "8:30",
+        "unit": "AM"
+      },
+      {
+        "color": "#4fd2c2",
+        "action": "Turno médico con",
+        "name": "Doctor Chang",
+        "time": "8:30",
+        "unit": "PM"
+      },
+      {
+        "color": "#d667cd",
+        "action": "Nueva toma de",
+        "name": "Ciclosporina 10mg",
+        "time": "8:30",
+        "unit": "AM"
+      },
+      {
+        "color": "#4fd2c2",
+        "action": "Turno médico con",
+        "name": "Dra. Smith",
+        "time": "10:00",
+        "unit": "AM"
+      },
+      {
+        "color": "#d667cd",
+        "action": "Nueva toma de",
+        "name": "Ibuprofeno 200mg",
+        "time": "12:30",
+        "unit": "PM"
+      },
+      {
+        "color": "#4fd2c2",
+        "action": "Turno médico con",
+        "name": "Nutricionista",
+        "time": "2:00",
+        "unit": "PM"
+      },
+      {
+        "color": "#d667cd",
+        "action": "Nueva toma de",
+        "name": "Paracetamol 500mg",
+        "time": "4:00",
+        "unit": "PM"
+      }
+    ]
+  },
+  "Schedule": {
+    "Profile": {
+      "c": "calendarOrange",
+      "greeting": "Estos son tus turnos,",
+      "patientName": "Laura!",
+      "photo": "/Bung1.png"
+    },
+    "warning": {
+      "message": "No tienes citas pendientes para esta fecha"
+    },
+    "AddItemButton": {
+      "text": "Nueva cita"
+    }
+  },
+  "Navbar": {
+    "title": "Salir"
   }
 }

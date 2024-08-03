@@ -5,11 +5,13 @@ import data from "../../../data/patientDataSchedule.json";
 import CardSchedule from "./CardSchedule";
 import AddItemButton from "../../../components/AddItemButton";
 import Calendar from "./Calendar";
+import useLanguage from "../../../hooks/useLanguage";
 
 const Schedule = () => {
   const [schedules, setSchedules] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const today = new Date();
+  const languageData = useLanguage(); // Mover useLanguage aquí
 
   useEffect(() => {
     setSchedules(data);
@@ -30,23 +32,17 @@ const Schedule = () => {
     ? schedules.filter((schedule) => schedule.date === formatDate(selectedDate))
     : schedules.filter((schedule) => schedule.date === formatDate(today));
 
-  console.log(
-    "Fecha seleccionada formateada:",
-    selectedDate ? formatDate(selectedDate) : formatDate(today),
-  );
-  console.log("Citas filtradas:", filteredSchedules);
-
-  if (schedules.length === 0) {
-    return <div>Cargando...</div>;
+  if (schedules.length === 0 || !languageData) {
+    return <div>Cargando datos...</div>;
   }
 
   return (
     <div className="relative max-w-screen-lg mx-auto flex flex-col min-h-screen">
       <Profile
-        icon_name="calendarOrange"
-        greeting="Estos son tus turnos,"
-        patientName="Laura!"
-        photo="/Bung1.png"
+        icon_name={languageData.Schedule.Profile.icon_name}
+        greeting={languageData.Schedule.Profile.greeting}
+        patientName={languageData.Schedule.Profile.patientName}
+        photo={languageData.Schedule.Profile.photo}
       />
 
       <section className="sticky top-0 z-10 bg-[#fff]">
@@ -68,12 +64,12 @@ const Schedule = () => {
           ))
         ) : (
           <p className="col-span-2 text-center text-gray-500">
-            No tienes citas pendientes para esta fecha
+            {languageData.Schedule.warning.message}
           </p>
         )}
       </section>
       <section className="absolute justify-end right-2 bottom-20">
-        <AddItemButton to="/patient/doctor-information" label="Nueva Cita" />
+        <AddItemButton to="/patient/doctor-information" label={languageData.Schedule.AddItemButton.text}/>
       </section>
 
       <FooterNav />
