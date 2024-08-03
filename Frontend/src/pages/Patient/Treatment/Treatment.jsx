@@ -3,49 +3,56 @@ import CardEvent from "../../../components/Cards/CardEvent";
 import CardTitle from "../../../components/Cards/CardTitle";
 import FooterNav from "../../../components/FooterNav/FooterNav";
 import Profile from "../../../components/Profile/Profile";
-import data from "../../../data/cardEvent.json";
+import useLanguage from "../../../hooks/useLanguage";
 
 const Treatment = () => {
   const [selectedColor, setSelectedColor] = useState("");
   const [events, setEvents] = useState([]);
+  const languageData = useLanguage(); 
 
   useEffect(() => {
-    setEvents(data);
-  }, []);
+    if (languageData) {
+      setEvents(languageData.Treatment.cardEvent); 
+    }
+  }, [languageData]);
 
   const filteredEvents = selectedColor
     ? events.filter((event) => event.color === selectedColor)
     : events;
 
   const pendingMedicationsCount = events.filter(
-    (event) => event.color === "#d667cd",
+    (event) => event.color === "#d667cd"
   ).length;
+
+  if (!languageData) {
+    return <div>Cargando datos...</div>;
+  }
 
   return (
     <div className="max-w-screen-lg mx-auto pb-14">
       <section className="p-4">
         <Profile
-          icon_name="medicine"
-          greeting="Buen día,"
-          patientName="Laura!"
-          photo="/Bung1.png"
+          icon_name={languageData.Treatment.Profile.icon_name}
+          greeting={languageData.Treatment.Profile.greeting}
+          patientName={languageData.Treatment.Profile.patientName}
+          photo={languageData.Treatment.Profile.photo}
         />
       </section>
       <section className="flex flex-wrap shadow-inner-custom">
         <div className="w-1/2">
           <CardTitle
-            titles={["Tratamientos"]}
-            backgroundColor="#4fd2c2"
-            textColor="#FFF"
-            onClick={() => setSelectedColor("#4fd2c2")}
+            titles={languageData.Treatment.CardTitle[0].titles}
+            backgroundColor={languageData.Treatment.CardTitle[0].backgroundColor}
+            textColor={languageData.Treatment.CardTitle[0].textColor}
+            onClick={() => setSelectedColor(languageData.Treatment.CardTitle[0].backgroundColor)}
           />
         </div>
         <div className="w-1/2">
           <CardTitle
-            titles={["Medicamentos Pendientes:", pendingMedicationsCount]}
-            backgroundColor="#d667cd"
-            textColor="#FFF"
-            onClick={() => setSelectedColor("#d667cd")}
+            titles={[languageData.Treatment.CardTitle[1].titles[0], pendingMedicationsCount]}
+            backgroundColor={languageData.Treatment.CardTitle[1].backgroundColor}
+            textColor={languageData.Treatment.CardTitle[1].textColor}
+            onClick={() => setSelectedColor(languageData.Treatment.CardTitle[1].backgroundColor)}
           />
         </div>
       </section>

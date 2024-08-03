@@ -258,5 +258,80 @@
 		"submitButton": "Send",
 		"logoAltText": "Logo",
 		"toastSuccessMessage": "You will be notified."
+	},
+	"Treatment": {
+		"Profile": {
+			"icon_name": "medicine",
+			"greeting": "Good day,",
+			"patientName": "Laura!",
+			"photo": "/Bung1.png"
+		},
+		"CardTitle": [
+			{
+				"titles": [
+					"Treatments"
+				],
+				"backgroundColor": "#4fd2c2",
+				"textColor": "#FFF"
+			},
+			{
+				"titles": [
+					"Pending Medications:"
+				],
+				"backgroundColor": "#d667cd",
+				"textColor": "#FFF"
+			}
+		],
+		"cardEvent": [
+			{
+				"color": "#d667cd",
+				"action": "New dose of",
+				"name": "Cyclosporine 10mg",
+				"time": "8:30",
+				"unit": "AM"
+			},
+			{
+				"color": "#4fd2c2",
+				"action": "Medical appointment with",
+				"name": "Dr. Chang",
+				"time": "8:30",
+				"unit": "PM"
+			},
+			{
+				"color": "#d667cd",
+				"action": "New dose of",
+				"name": "Cyclosporine 10mg",
+				"time": "8:30",
+				"unit": "AM"
+			},
+			{
+				"color": "#4fd2c2",
+				"action": "Medical appointment with",
+				"name": "Dr. Smith",
+				"time": "10:00",
+				"unit": "AM"
+			},
+			{
+				"color": "#d667cd",
+				"action": "New dose of",
+				"name": "Ibuprofen 200mg",
+				"time": "12:30",
+				"unit": "PM"
+			},
+			{
+				"color": "#4fd2c2",
+				"action": "Medical appointment with",
+				"name": "Nutritionist",
+				"time": "2:00",
+				"unit": "PM"
+			},
+			{
+				"color": "#d667cd",
+				"action": "New dose of",
+				"name": "Paracetamol 500mg",
+				"time": "4:00",
+				"unit": "PM"
+			}
+		]
 	}
 }

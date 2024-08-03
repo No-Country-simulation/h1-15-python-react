@@ -251,12 +251,87 @@
     "button": "Volver a Inicio",
     "logoAltText": "Logo"
   },
-    "PageConstruction": {
-      "title": "¡Esta sección está en construcción!",
-      "message": "Notificarme cuando esté disponible",
-      "emailPlaceholder": "Introduce tu correo electrónico",
-      "submitButton": "Enviar",
-      "logoAltText": "Logo",
-      "toastSuccessMessage": "Serás notificado."
-    }
+  "PageConstruction": {
+    "title": "¡Esta sección está en construcción!",
+    "message": "Notificarme cuando esté disponible",
+    "emailPlaceholder": "Introduce tu correo electrónico",
+    "submitButton": "Enviar",
+    "logoAltText": "Logo",
+    "toastSuccessMessage": "Serás notificado."
+  },
+  "Treatment": {
+    "Profile": {
+      "icon_name": "medicine",
+      "greeting": "Buen día,",
+      "patientName": "Laura!",
+      "photo": "/Bung1.png"
+    },
+    "CardTitle": [
+      {
+        "titles": [
+          "Tratamientos"
+        ],
+        "backgroundColor": "#4fd2c2",
+        "textColor": "#FFF"
+      },
+      {
+        "titles": [
+          "Medicamentos Pendientes:"
+        ],
+        "backgroundColor": "#d667cd",
+        "textColor": "#FFF"
+      }
+    ],
+    "cardEvent": [
+      {
+        "color": "#d667cd",
+        "action": "Nueva toma de",
+        "name": "Ciclosporina 10mg",
+        "time": "8:30",
+        "unit": "AM"
+      },
+      {
+        "color": "#4fd2c2",
+        "action": "Turno médico con",
+        "name": "Doctor Chang",
+        "time": "8:30",
+        "unit": "PM"
+      },
+      {
+        "color": "#d667cd",
+        "action": "Nueva toma de",
+        "name": "Ciclosporina 10mg",
+        "time": "8:30",
+        "unit": "AM"
+      },
+      {
+        "color": "#4fd2c2",
+        "action": "Turno médico con",
+        "name": "Dra. Smith",
+        "time": "10:00",
+        "unit": "AM"
+      },
+      {
+        "color": "#d667cd",
+        "action": "Nueva toma de",
+        "name": "Ibuprofeno 200mg",
+        "time": "12:30",
+        "unit": "PM"
+      },
+      {
+        "color": "#4fd2c2",
+        "action": "Turno médico con",
+        "name": "Nutricionista",
+        "time": "2:00",
+        "unit": "PM"
+      },
+      {
+        "color": "#d667cd",
+        "action": "Nueva toma de",
+        "name": "Paracetamol 500mg",
+        "time": "4:00",
+        "unit": "PM"
+      }
+    ]
+  }
 }
