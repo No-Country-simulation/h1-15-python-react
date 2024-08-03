@@ -19,7 +19,6 @@ class DisponibilidadSerializer(serializers.ModelSerializer):
         fields = ['dia', 'hora_inicio_turnos', 'hora_fin_turnos']
 
 class PersonalMedicoSerializer(serializers.ModelSerializer):
-    name = serializers.SerializerMethodField()
     specialty = serializers.CharField(source='id_especialidad.descripcion')
     schedule = serializers.SerializerMethodField()
     whatsapp = serializers.SerializerMethodField()
@@ -28,17 +27,30 @@ class PersonalMedicoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PersonalMedico
-        fields = ['id', 'name', 'specialty', 'reviews', 'photo', 'rating', 'descripcion', 'schedule', 'whatsapp']
+        fields = ['id', 'nombre_completo', 'specialty', 'reviews', 'photo', 'rating', 'descripcion', 'schedule', 'whatsapp']
 
-    def get_name(self, obj):
-        return f"Dr. {obj.id_user.first_name} {obj.id_user.last_name}"
-    
     def get_schedule(self, obj):
         availability = Disponibilidad.objects.filter(medico=obj)
         schedule = {}
+
         for slot in availability:
+            institucion = slot.institucion.descripcion
             day = slot.dia.capitalize()
-            schedule[day] = [slot.hora_inicio_turnos.strftime("%I:%M %p"), slot.hora_fin_turnos.strftime("%I:%M %p")]
+            
+            # Asegurarse de que la institución esté en el diccionario
+            if institucion not in schedule:
+                schedule[institucion] = {}
+
+            # Asegurarse de que el día esté en el diccionario de la institución
+            if day not in schedule[institucion]:
+                schedule[institucion][day] = []
+
+            # Agregar los horarios a la lista del día
+            schedule[institucion][day].append([
+                slot.hora_inicio_turnos.strftime("%I:%M %p"),
+                slot.hora_fin_turnos.strftime("%I:%M %p")
+            ])
+
         return schedule
 
    
@@ -59,5 +71,5 @@ class PersonalMedicoNewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PersonalMedico
-        fields = ['id', 'id_user', 'id_especialidad', 'photo', 'descripcion', 'telefono_consulta', 'is_active']
+        fields = ['id', 'nombre_completo','id_user', 'id_especialidad', 'photo', 'descripcion', 'telefono_consulta', 'is_active']
 

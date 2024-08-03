@@ -41,7 +41,7 @@ class DisponibilidadCreate(views.APIView):
         datos_solicitud = request.data
         medico = datos_solicitud['medico']
 
-        medico = get_object_or_404(PersonalMedico, id_user_id=datos_solicitud['medico'])
+        medico = get_object_or_404(PersonalMedico, id=datos_solicitud['medico'])
         institucion = get_object_or_404(Entidad, descripcion=datos_solicitud['institucion'])
 
         horarios = datos_solicitud['horarios']
@@ -137,7 +137,7 @@ class TurnoCreate(generics.CreateAPIView):
         medico_id = datos_solicitud['medico']
         institucion_desc = datos_solicitud['institucion']
 
-        medico = get_object_or_404(PersonalMedico, id_user_id=medico_id)
+        medico = get_object_or_404(PersonalMedico, id=medico_id)
         institucion = get_object_or_404(Entidad, descripcion=institucion_desc)
 
         disponibilidad = Disponibilidad.objects.filter(medico=medico, institucion=institucion)
