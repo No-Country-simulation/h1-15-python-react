@@ -5,6 +5,7 @@ import { TbHearts } from "react-icons/tb";
 import { IoSettingsOutline } from "react-icons/io5";
 import { CiCalendar } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { SlPeople } from "react-icons/sl";
 
 const Navigation = () => {
   return (
@@ -19,8 +20,15 @@ const Navigation = () => {
           Inicio
         </Link>
         <Link
+          to="patients"
+          className="flex text-base items-center gap-2 hover:bg-secondary-400 w-full px-4 py-1"
+        >
+          <SlPeople />
+          Pacientes
+        </Link>
+        <Link
           to="/"
-          className="flex text-base items-center gap-2 hover:bg-secondary-400 w-full p-3"
+          className="flex text-base items-center gap-2 hover:bg-secondary-400 w-full px-4 py-1"
         >
           <BiChat />
           Mensajes

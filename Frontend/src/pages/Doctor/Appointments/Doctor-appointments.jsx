@@ -295,14 +295,18 @@ const DoctorAppointments = () => {
   }, [fecha]);
 
   return (
-    <div className="flex justify-between gap-2 full">
-      <section className="grid gap-2 h-fit relative grow">
+    <div className="flex justify-between gap-2">
+      <section className="grid gap-2 h-fit relative w-2/3">
         <h1 className="font-josefin text-3xl text-center">TURNOS</h1>
         <h4
           className="w-fit justify-self-center cursor-pointer text-center text-lg font-bold underline my-4"
           onMouseEnter={() => setShowCalendar(true)}
         >
-          {capitalizar(dayjs(fecha).weekday(fecha.getDay()).format("dddd")) +
+          {capitalizar(
+            dayjs(fecha)
+              .weekday(fecha.getDay() - 1)
+              .format("dddd"),
+          ) +
             ", " +
             fecha.toLocaleDateString()}
         </h4>
@@ -316,7 +320,7 @@ const DoctorAppointments = () => {
           <Calendar fecha={setFecha} />
         </div>
         {/**LISTADO DE TURNOS DE LA FECHA SELECCIONADA */}
-        <article>
+        <article className="rounded-xl bg-[#00000010] w-full min-h-[400px] shadow-[inset_-2px_-2px_5px_3px_#00000030]">
           {turnos
             .filter((turno) =>
               dayjs(new Date(turno.appointmentDate)).isSame(
@@ -336,6 +340,7 @@ const DoctorAppointments = () => {
             })}
         </article>
       </section>
+
       <LateralView paciente={selectedPatient} />
     </div>
   );
