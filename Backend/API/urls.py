@@ -1,9 +1,5 @@
 from django.urls import path
 from django.contrib import admin
-from usuarios.views import UserList, UserDetail
-from tratamientos.views import TratamientoList, TratamientoDetail
-from financiadores.views import FinanciadoresList, FinanciadoresDetail
-from nomencladores.views import NomencladorList, NomencladorDetail, FileUploadView
 from django.urls import include, path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
@@ -12,17 +8,20 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 from usuarios.views import UserList, UserDetail
 from tratamientos.views import TratamientoList, TratamientoDetail
 from informacion_personal.views import InformacionPersonalList, InformacionPersonalDetail
+from financiadores.views import FinanciadoresList, FinanciadoresDetail
+from nomencladores.views import NomencladorList, NomencladorDetail, FileUploadView
 from pacientes.views import PacienteList, PacienteDetail
 from tipo_usuario.views import TipoUsuarioList, TipoUsuarioDetail
 from direcciones.views import DireccionList, DireccionDetail
 from personal_medico.views import PersonalMedicoList, PersonalMedicoDetail, CalificaPersonalMedicoList
+from trasplantes_cruzados.views import TrasplanteCruzadoList, TrasplanteCruzadoDetail
 from especialidad.views import EspecialidadList, EspecialidadDetail
 from medicamentos.views import MedicamentoDetail, MedicamentoList
 from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
 from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
 from historia_clinica.views import HistoriaClinicaDetail, HistoriaClinicaList
 from entidad.views import EntidadDetail, EntidadList
-
+from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListCreate, TurnoDetail
 # Create your views here.
 urlpatterns = [
     # Admin route
@@ -55,6 +54,8 @@ urlpatterns = [
     path('nomenclador/<int:pk>/',NomencladorDetail.as_view(),),
     path('nomenclador/upload/', FileUploadView.as_view(),),
 
+    path('crosstransplant/', TrasplanteCruzadoList.as_view(),),
+    path('crosstransplant/<int:pk>/', TrasplanteCruzadoDetail.as_view(),),
     path('doctor/',  PersonalMedicoList.as_view(),),
     path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
     path('doctor/<int:pk>/reviews/',CalificaPersonalMedicoList.as_view(),),
@@ -77,4 +78,12 @@ urlpatterns = [
 
     path('entidad/', EntidadList.as_view(),),
     path('entidad/<int:pk>',EntidadDetail.as_view(),),
+    
+    path('disponibilidad/', DisponibilidadList.as_view(),),
+    path('disponibilidad/create/', DisponibilidadCreate.as_view(),),
+    path('disponibilidad/<int:pk>/',DisponibilidadDetail.as_view(),),
+    
+    path('turno/', TurnoCreate.as_view(),),
+    path('turno/<int:pk>/', TurnoListCreate.as_view(),),
+    path('turno/detail/<int:pk>/',TurnoDetail.as_view(),),
 ]
