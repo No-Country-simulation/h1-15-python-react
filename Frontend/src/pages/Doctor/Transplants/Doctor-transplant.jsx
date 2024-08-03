@@ -54,9 +54,12 @@ const DoctorTransplants = () => {
                         </p>
                       </div>
                     </div>
+                    <Tooltip title="No disponible aún">
+                      
                     <button className="font-sans py-2 px-6 text-xs rounded-[100px] font-medium bg-[#FFF693] shadow-[0px_4px_4px_0px_#00000040] text-[#CA9600] hover:text-black hover:font-semibold">
                       Ver Detalle...
                     </button>
+                    </Tooltip>
                   </article>
                 ))}
             </div>
@@ -83,7 +86,7 @@ const DoctorTransplants = () => {
                       key={index}
                       className={`flex gap-2 items-center justify-around my-4 cursor-pointer hover:bg-blue-100/55 px-4 py-1 rounded-lg shadow-[0px_4px_4px_0px_#00000040] ${pacienteSeleccionado && pacienteSeleccionado._id === paciente._id ? "bg-yellow-100" : ""}`}
                     >
-                      <Avatar className="w-10 h-10 m-0" />
+                      <Avatar className="w-10 h-10 m-0" imagen={intercambiar ? paciente.picture : "/Profile1.png"}/>
                       <div className="flex flex-col text-left flex-grow">
                         <p>{paciente.name}</p>
                         <div>
@@ -94,11 +97,15 @@ const DoctorTransplants = () => {
                       </div>
                       <button
                         onClick={() => {
+                          if (pacienteSeleccionado === undefined)
                           setPacienteSeleccionado(paciente);
+                          else {
+                            setPacienteSeleccionado(undefined)
+                          }
                         }}
                         className="font-sans py-2 px-6 text-xs rounded-[100px] font-medium bg-[#FFF693] shadow-[0px_4px_4px_0px_#00000040] text-[#CA9600] hover:text-black hover:font-semibold"
                       >
-                        Ver afin...
+                        {pacienteSeleccionado === paciente ?"Ocultar afin..." : "Ver afin..."}
                       </button>
                     </article>
                   );

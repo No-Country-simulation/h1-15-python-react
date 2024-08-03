@@ -26,6 +26,8 @@ const CardPatientAttendance = ({ paciente }) => {
   }
   useEffect(() => {
     controlState(paciente);
+
+    
   }, [paciente]);
 
   return (

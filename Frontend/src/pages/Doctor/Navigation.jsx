@@ -5,6 +5,7 @@ import { TbHearts } from "react-icons/tb";
 import { IoSettingsOutline } from "react-icons/io5";
 import { CiCalendar } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { Tooltip } from "@mui/material";
 
 const Navigation = () => {
   return (
@@ -50,13 +51,14 @@ const Navigation = () => {
           <CiCalendar />
           Calendario
         </Link>
-        <Link
-          to="/"
-          className="flex text-base items-center gap-2 hover:bg-secondary-400 w-full px-4 py-1 mt-auto"
+        <Tooltip title="No disponible aún">
+        <p
+          className="flex text-base items-center gap-2 hover:bg-secondary-400 w-full px-4 py-1 mt-auto hover:cursor-pointer select-none"
         >
           <IoSettingsOutline />
           Configuraciones
-        </Link>
+        </p>
+        </Tooltip>
       </nav>
     </aside>
   );

@@ -1,6 +1,14 @@
 /* eslint-disable react/prop-types */
+"use client"
+import { useEffect, useState } from "react";
 
 const Avatar = ({ imagen, className }) => {
+  const [picture, setPicture] = useState("/Profile1.png")
+  useEffect(()=>{
+    if (imagen){
+      setPicture(imagen)
+    }
+  },[imagen])
   return (
     <div
       className={`${
@@ -12,7 +20,7 @@ const Avatar = ({ imagen, className }) => {
         className={`${
           className ? className : "w-[198px] h-[198px] rounded-full"
         }`}
-        src={imagen ? imagen : "/Profile1.png"}
+        src={picture}
         alt="avatar"
       />
     </div>
