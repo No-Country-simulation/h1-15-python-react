@@ -174,8 +174,181 @@
 			}
 		}
 	},
-	"about": {
-		"title": "ABOUT US",
-		"description": "Here you can find more information about our company and our team."
+	"login": {
+		"title": "Log In",
+		"noAccount": "Don't have an account?",
+		"register": "Sign Up",
+		"emailLabel": "Email",
+		"emailPlaceholder": "Enter your email address",
+		"passwordLabel": "Password",
+		"passwordPlaceholder": "Enter a password",
+		"rememberMe": "Remember Me",
+		"forgotPassword": "Forgot your password?",
+		"loginButton": "Log In",
+		"or": "Or",
+		"googleSignIn": "Continue with Google",
+		"facebookSignIn": "Continue with Facebook",
+		"eyeAltShow": "Show password",
+		"eyeAltHide": "Hide password"
+	},
+	"patientMain": {
+		"locateTitle": "Locate",
+		"locateSubtitle": "your doctor",
+		"searchPlaceholder": "Search for doctors, directions, etc.",
+		"cardData": [
+			{
+				"id": 1,
+				"icon": "medicineSkyblue",
+				"title": "Medication",
+				"color": "#4fd2c2",
+				"link": "/patient/treatment"
+			},
+			{
+				"id": 2,
+				"icon": "calendarOrange",
+				"title": "Medical Appointments",
+				"color": "#E58426",
+				"link": "/patient/schedule"
+			},
+			{
+				"id": 3,
+				"icon": "stethoscopeBlue",
+				"title": "Medical Staff",
+				"color": "#5563C4",
+				"link": "/patient/doctor-information"
+			},
+			{
+				"id": 4,
+				"icon": "handsOrange",
+				"title": "Support and Community",
+				"color": "#FBC046",
+				"link": "/patient/support"
+			},
+			{
+				"id": 5,
+				"icon": "clipboardSkyblue",
+				"title": "Medical History",
+				"color": "#00ADDE",
+				"link": "/patient/medical-history"
+			},
+			{
+				"id": 6,
+				"icon": "phoneViolet",
+				"title": "Emergency Contact",
+				"color": "#d667cd",
+				"link": "/patient/emergency-contacts"
+			}
+		]
+	},
+	"PopupMessage": {
+		"title": "Attention!",
+		"content": "You must choose a doctor to proceed with your appointment.",
+		"textButton": "Got it"
+	},
+	"NotFound": {
+		"title": "404 - Page Not Found",
+		"message": "Sorry, the page you are looking for does not exist.",
+		"button": "Go Back to Home",
+		"logoAltText": "Logo"
+	},
+	"PageConstruction": {
+		"title": "This Section is Under Construction!",
+		"message": "Notify me when it's available",
+		"emailPlaceholder": "Enter your email address",
+		"submitButton": "Send",
+		"logoAltText": "Logo",
+		"toastSuccessMessage": "You will be notified."
+	},
+	"Treatment": {
+		"Profile": {
+			"icon_name": "medicine",
+			"greeting": "Good day,",
+			"patientName": "Laura!",
+			"photo": "/Bung1.png"
+		},
+		"CardTitle": [
+			{
+				"titles": [
+					"Treatments"
+				],
+				"backgroundColor": "#4fd2c2",
+				"textColor": "#FFF"
+			},
+			{
+				"titles": [
+					"Pending Medications:"
+				],
+				"backgroundColor": "#d667cd",
+				"textColor": "#FFF"
+			}
+		],
+		"cardEvent": [
+			{
+				"color": "#d667cd",
+				"action": "New dose of",
+				"name": "Cyclosporine 10mg",
+				"time": "8:30",
+				"unit": "AM"
+			},
+			{
+				"color": "#4fd2c2",
+				"action": "Medical appointment with",
+				"name": "Dr. Chang",
+				"time": "8:30",
+				"unit": "PM"
+			},
+			{
+				"color": "#d667cd",
+				"action": "New dose of",
+				"name": "Cyclosporine 10mg",
+				"time": "8:30",
+				"unit": "AM"
+			},
+			{
+				"color": "#4fd2c2",
+				"action": "Medical appointment with",
+				"name": "Dr. Smith",
+				"time": "10:00",
+				"unit": "AM"
+			},
+			{
+				"color": "#d667cd",
+				"action": "New dose of",
+				"name": "Ibuprofen 200mg",
+				"time": "12:30",
+				"unit": "PM"
+			},
+			{
+				"color": "#4fd2c2",
+				"action": "Medical appointment with",
+				"name": "Nutritionist",
+				"time": "2:00",
+				"unit": "PM"
+			},
+			{
+				"color": "#d667cd",
+				"action": "New dose of",
+				"name": "Paracetamol 500mg",
+				"time": "4:00",
+				"unit": "PM"
+			}
+		]
+	},
+	"Schedule": {
+		"Profile": {
+			"icon_name": "calendarOrange",
+			"greeting": "These are your appointments,",
+			"patientName": "Laura!",
+			"photo": "/Bung1.png"
+		},
+		"warning": {
+			"message": "You have no pending appointments for this date"
+		},
+		"AddItemButton": {
+			"text": "New appointment"
+		}
+	},
+	"Navbar": {
+		"title": "Log out"
 	}
 }

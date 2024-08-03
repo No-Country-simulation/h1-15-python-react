@@ -3,7 +3,7 @@ import CardPatientAttendance from "./Cards/CardPatientAttendance";
 
 const LateralView = ({ paciente }) => {
   return (
-    <section className="flex flex-col w-1/4">
+    <section className="flex flex-col">
       <aside className="flex flex-col items-center w-full">
         {paciente && <CardPatientAttendance paciente={paciente} />}
       </aside>
