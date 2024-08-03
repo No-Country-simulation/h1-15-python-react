@@ -19,59 +19,59 @@ export const patientRoutes = (
   <>
     <Route
       path="/patient"
-      element={<ProtectedRoute element={<PatientMain />} />}
+      element={<ProtectedRoute element={<PatientMain />} allowedRoles={["patient"]} />}
     />
     <Route
       path="/patient/profile"
-      element={<ProtectedRoute element={<PatientProfile />} />}
+      element={<ProtectedRoute element={<PatientProfile />} allowedRoles={["patient"]} />}
     />
     <Route
       path="/patient/treatment"
-      element={<ProtectedRoute element={<Treatment />} />}
+      element={<ProtectedRoute element={<Treatment />} allowedRoles={["patient"]} />}
     />
     <Route
       path="/patient/schedule"
-      element={<ProtectedRoute element={<Schedule />} />}
+      element={<ProtectedRoute element={<Schedule />} allowedRoles={["patient"]} />}
     />
     <Route
       path="/patient/postoperative"
-      element={<ProtectedRoute element={<Postoperative />} />}
+      element={<ProtectedRoute element={<Postoperative />} allowedRoles={["patient"]} />}
     />
     <Route
       path="/patient/support"
-      element={<ProtectedRoute element={<SupportComunity />} />}
+      element={<ProtectedRoute element={<SupportComunity />} allowedRoles={["patient"]} />}
     />
     <Route
       path="/patient/medical-history"
-      element={<ProtectedRoute element={<HistoryMedical />} />}
+      element={<ProtectedRoute element={<HistoryMedical />} allowedRoles={["patient"]} />}
     />
     <Route
       path="/patient/emergency-contacts"
-      element={<ProtectedRoute element={<Emergency />} />}
+      element={<ProtectedRoute element={<Emergency />} allowedRoles={["patient"]} />}
     />
     <Route
       path="/patient/doctor-information"
-      element={<ProtectedRoute element={<DoctorList />} />}
+      element={<ProtectedRoute element={<DoctorList />} allowedRoles={["patient"]} />}
     />
     <Route
       path="/patient/doctor-information/:id"
-      element={<ProtectedRoute element={<DoctorDetail />} />}
+      element={<ProtectedRoute element={<DoctorDetail />} allowedRoles={["patient"]} />}
     />
     <Route
       path="patient/schedule/appointment/:id"
-      element={<ProtectedRoute element={<ScheduleAppointment />} />}
+      element={<ProtectedRoute element={<ScheduleAppointment />} allowedRoles={["patient"]} />}
     />
     <Route
       path="/patient/appointment/confirmation"
-      element={<ProtectedRoute element={<ConfirmAppointment />} />}
+      element={<ProtectedRoute element={<ConfirmAppointment />} allowedRoles={["patient"]} />}
     />
     <Route
       path="/patient/appointment/success"
-      element={<ProtectedRoute element={<ConfirmationSuccess />} />}
+      element={<ProtectedRoute element={<ConfirmationSuccess />} allowedRoles={["patient"]} />}
     />
     <Route
       path="/patient/schedule/details/:id"
-      element={<ProtectedRoute element={<DetailSchedule />} />}
+      element={<ProtectedRoute element={<DetailSchedule />} allowedRoles={["patient"]} />}
     />
   </>
 );
