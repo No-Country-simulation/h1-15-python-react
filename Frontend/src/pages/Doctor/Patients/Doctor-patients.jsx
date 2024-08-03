@@ -6,8 +6,9 @@ import LateralView from "../../../components/LateralView";
 
 const DoctorPatients = () => {
   const [hasContent, setHasContent] = useState(false);
+  const [filteredPatients, setFilteredPatients] = useState([]);
   const [value, setValue] = useState("");
-  const [pacientes, setPacientes] = useState();
+  const [pacientes, setPacientes] = useState([]);
   const [pacienteSeleccionado, setPacienteSeleccionado] = useState();
   async function loadPacientes() {
     const response = await fetch("/src/data/pacientes.json");
@@ -17,6 +18,12 @@ const DoctorPatients = () => {
   useEffect(() => {
     loadPacientes();
   }, []);
+  useEffect(() => {
+    const filtered = pacientes.filter((patient) =>
+      patient.name.toLowerCase().includes(value.toLowerCase()),
+    );
+    setFilteredPatients(filtered);
+  }, [pacientes, value]);
 
   const handleInputChange = (e) => {
     setValue(e.target.value);
@@ -61,8 +68,8 @@ const DoctorPatients = () => {
       <section className="flex gap-6">
         <ul className="gap-4 flex flex-col w-2/3 mt-10">
           {/*Lista de pacientes */}
-          {pacientes &&
-            pacientes.map((paciente, index) => (
+          {filteredPatients &&
+            filteredPatients.map((paciente, index) => (
               <CardPatientList
                 key={index}
                 paciente={paciente}
