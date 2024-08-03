@@ -21,7 +21,7 @@ const timeline = [
     is_active: true,
     paciente: {
       prepaga: "osde",
-      name: "Pablo",
+      name: "Kyrie Stewart",
       age: 20,
       risk: "alto",
     },
@@ -35,7 +35,7 @@ const timeline = [
     is_active: true,
     paciente: {
       prepaga: "osde",
-      name: "Juan",
+      name: "Anna Davidson",
       age: 50,
       risk: "bajo",
     },
@@ -49,7 +49,7 @@ const timeline = [
     is_active: true,
     paciente: {
       prepaga: "osde",
-      name: "José",
+      name: "Mariana Ross",
       age: 36,
       risk: "bajo",
     },
@@ -59,7 +59,7 @@ const timeline = [
 ];
 export default function DoctorTimeline({ setPatient }) {
   return (
-    <Timeline className="">
+    <Timeline>
       {timeline.map(({ paciente, hora_turno }, index) => (
         <TimelineItem key={index}>
           <TimelineOppositeContent color="textSecondary" className="max-w-min">
@@ -70,7 +70,7 @@ export default function DoctorTimeline({ setPatient }) {
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>
-            <Accordion>
+            <Accordion className="divide-y" style={{ borderRadius: 20 }}>
               <AccordionSummary
                 expandIcon={<ArrowDropDownIcon />}
                 aria-controls="panel2-content"

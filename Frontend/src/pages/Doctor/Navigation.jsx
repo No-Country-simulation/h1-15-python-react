@@ -19,7 +19,7 @@ const Navigation = () => {
           Inicio
         </Link>
         <Link
-          href="/"
+          to="/"
           className="flex text-base items-center gap-2 hover:bg-secondary-400 w-full p-3"
         >
           <BiChat />
