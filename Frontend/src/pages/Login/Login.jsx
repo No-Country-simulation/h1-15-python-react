@@ -7,14 +7,24 @@ import { showToast } from "../../utils/toast";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [email, setEmail] = useState("laura.garcia@example.com");
-  const [password, setPassword] = useState("Password123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
-    if (token) {
-      navigate("/patient");
+    const userType = localStorage.getItem("userType");
+    if (token && userType) {
+      navigate(`/${userType}`);
+    }
+
+    const storedEmail = localStorage.getItem("rememberMeEmail");
+    const storedPassword = localStorage.getItem("rememberMePassword");
+    if (storedEmail && storedPassword) {
+      setEmail(storedEmail);
+      setPassword(storedPassword);
+      setRememberMe(true);
     }
   }, [navigate]);
 
@@ -22,9 +32,28 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === "laura.garcia@example.com" && password === "Password123") {
+    if (email === "laura.garcia@example.com" && password === "Password$123") {
       localStorage.setItem("authToken", "example123");
+      localStorage.setItem("userType", "patient");
+      if (rememberMe) {
+        localStorage.setItem("rememberMeEmail", email);
+        localStorage.setItem("rememberMePassword", password);
+      } else {
+        localStorage.removeItem("rememberMeEmail");
+        localStorage.removeItem("rememberMePassword");
+      }
       navigate("/patient");
+    } else if (email === "doctor@example.com" && password === "Password$123") {
+      localStorage.setItem("authToken", "doctorToken123");
+      localStorage.setItem("userType", "doctor");
+      if (rememberMe) {
+        localStorage.setItem("rememberMeEmail", email);
+        localStorage.setItem("rememberMePassword", password);
+      } else {
+        localStorage.removeItem("rememberMeEmail");
+        localStorage.removeItem("rememberMePassword");
+      }
+      navigate("/doctor");
     } else {
       showToast("Credenciales inválidas.", "error");
     }
@@ -98,6 +127,8 @@ const Login = () => {
               <input
                 id="remember-me"
                 type="checkbox"
+                checked={rememberMe}
+                onChange={() => setRememberMe((prev) => !prev)}
                 className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
               />
               <label htmlFor="remember-me" className="ml-2 text-sm">
