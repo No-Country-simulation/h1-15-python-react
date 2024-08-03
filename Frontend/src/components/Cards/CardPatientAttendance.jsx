@@ -2,6 +2,7 @@
 import dayjs from "dayjs";
 import Avatar from "./../Avatar";
 import { useEffect, useState } from "react";
+import { Tooltip } from "@mui/material";
 const CardPatientAttendance = ({ paciente }) => {
   const [estado, setStado] = useState(false);
   const diagnostico = paciente.diagnostic ? paciente.diagnostic : "Arritmia";
@@ -76,9 +77,11 @@ const CardPatientAttendance = ({ paciente }) => {
           <p className="w-36">
             Ultimo Reporte: <a href="">Aqui</a>
           </p>
-          <button className="bg-black hover:bg-slate-500 hover:text-black text-yellow-400 text-xs absolute bottom-3 right-3 p-3 rounded-3xl ">
-            Detalles...
-          </button>
+          <Tooltip title="Proximamente...">
+            <button className="bg-black hover:bg-slate-500 hover:text-black text-yellow-400 text-xs absolute bottom-3 right-3 p-3 rounded-3xl ">
+              Detalles...
+            </button>
+          </Tooltip>
         </div>
       </div>
     </div>

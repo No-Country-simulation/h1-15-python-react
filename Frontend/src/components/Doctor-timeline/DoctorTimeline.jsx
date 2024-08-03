@@ -10,6 +10,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { ArrowDropDownIcon } from "@mui/x-date-pickers/icons";
@@ -86,12 +87,14 @@ export default function DoctorTimeline({ setPatient }) {
                   <p>Prepaga: {paciente.prepaga}</p>
                 </div>
                 <div className="flex justify-evenly">
-                  <span
-                    className="text-text_secondary cursor-pointer hover:underline"
-                    onClick={() => setPatient(paciente)}
-                  >
-                    Ver historial clínico
-                  </span>
+                  <Tooltip title="Proximamente...">
+                    <span
+                      className="text-text_secondary cursor-pointer hover:underline"
+                      onClick={() => setPatient(paciente)}
+                    >
+                      Ver historial clínico
+                    </span>
+                  </Tooltip>
                   <span
                     className="text-text_secondary cursor-pointer hover:underline"
                     onClick={() => setPatient(paciente)}
