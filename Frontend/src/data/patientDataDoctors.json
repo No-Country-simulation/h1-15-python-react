@@ -4,7 +4,7 @@
     "name": "Dr. Olivia Turner",
     "specialty": "Endocrinología",
     "reviews": 135,
-    "photo": "/doc1.png",
+    "photo": "/doc1.webp",
     "rating": 4.5,
     "description": "La Dra. Olivia Turner es una destacada endocrinóloga en el Hospital London Bridge en Londres. Ha recibido varios premios y reconocimientos por su contribución y servicio en su campo. Está disponible para consultas.",
     "schedule": {
@@ -22,7 +22,7 @@
     "name": "Dr. Mensah T",
     "specialty": "Oncología",
     "reviews": 135,
-    "photo": "/doc2.png",
+    "photo": "/doc2.webp",
     "rating": 4.5,
     "description": "El Dr. Mensah T es un oncólogo experimentado en el Hospital General de Accra, especializado en tratamientos innovadores para el cáncer.",
     "schedule": {
@@ -39,7 +39,7 @@
     "name": "Dr. Klimisch J",
     "specialty": "Neurología",
     "reviews": 18,
-    "photo": "/doc3.png",
+    "photo": "/doc3.webp",
     "rating": 4.5,
     "description": "El Dr. Klimisch J es neurólogo en el Hospital Universitario de Berlín, conocido por su enfoque en la investigación de enfermedades neurodegenerativas.",
     "schedule": {
@@ -56,7 +56,7 @@
     "name": "Dr. Martinez K",
     "specialty": "Pediatría",
     "reviews": 30,
-    "photo": "/doc4.png",
+    "photo": "/doc4.webp",
     "rating": 4.6,
     "description": "El Dr. Martinez K es pediatra en el Hospital Infantil de Madrid, especializada en cuidados intensivos neonatales.",
     "schedule": {
@@ -73,7 +73,7 @@
     "name": "Dr. María M",
     "specialty": "Ginecología",
     "reviews": 22,
-    "photo": "/doc5.png",
+    "photo": "/doc5.webp",
     "rating": 4.6,
     "description": "La Dra. María M es ginecóloga en el Hospital Central de Buenos Aires, enfocada en la salud reproductiva de la mujer.",
     "schedule": {
@@ -89,7 +89,7 @@
     "name": "Dr. O’Boyle J",
     "specialty": "Oftalmología",
     "reviews": 12,
-    "photo": "/doc6.png",
+    "photo": "/doc6.webp",
     "rating": 4.2,
     "description": "El Dr. O’Boyle J es oftalmólogo en el Hospital EyeCare de Dublín, experto en cirugías de cataratas y tratamientos de retina.",
     "schedule": {
@@ -105,7 +105,7 @@
     "name": "Dr. Samantha R",
     "specialty": "Cardiología",
     "reviews": 45,
-    "photo": "/doc7.png",
+    "photo": "/doc7.webp",
     "rating": 4.8,
     "description": "La Dra. Samantha R es cardióloga en el Hospital CardioCare de Nueva York, especializada en enfermedades cardíacas y prevención de infartos.",
     "schedule": {
@@ -122,7 +122,7 @@
     "name": "Dr. Ahmed K",
     "specialty": "Dermatología",
     "reviews": 29,
-    "photo": "/doc8.png",
+    "photo": "/doc8.webp",
     "rating": 4.7,
     "description": "El Dr. Ahmed K es dermatólogo en el Centro Dermatológico de El Cairo, con experiencia en tratamientos de piel y estéticos.",
     "schedule": {
@@ -139,7 +139,7 @@
     "name": "Dr. Elena P",
     "specialty": "Psiquiatría",
     "reviews": 27,
-    "photo": "/doc9.png",
+    "photo": "/doc9.webp",
     "rating": 4.4,
     "description": "La Dra. Elena P es psiquiatra en el Hospital Mental de São Paulo, especializada en trastornos afectivos y terapia cognitivo-conductual.",
     "schedule": {
@@ -156,7 +156,7 @@
     "name": "Dr. Lucas B",
     "specialty": "Urología",
     "reviews": 20,
-    "photo": "/doc10.png",
+    "photo": "/doc10.webp",
     "rating": 4.3,
     "description": "El Dr. Lucas B es urólogo en el Hospital de Especialidades de Sydney, con experiencia en cirugía robótica y tratamientos para enfermedades del tracto urinario.",
     "schedule": {

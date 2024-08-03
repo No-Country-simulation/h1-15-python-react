@@ -9,7 +9,7 @@
 			"button": "Get Started"
 		},
 		"landing": {
-			"image": "/mockup_1_en.png"
+			"image": "/mockup_1_en.webp"
 		},
 		"about": {
 			"title": "ABOUT OUR APP",
@@ -61,31 +61,31 @@
 			]
 		},
 		"mockup": {
-			"image": "/mockup_en.png"
+			"image": "/mockup_en.webp"
 		},
 		"howItWorks": {
 			"title": "HOW OUR APP WORKS",
 			"description": "Our app uses advanced technology to connect users with medical services efficiently and securely.",
-			"video": "/icons/Video-crop.png"
+			"video": "/icons/Video-crop.webp"
 		},
 		"whoWeAre": {
 			"title": "WHO WE ARE",
 			"description": "We are a dedicated team of health and technology professionals committed to your well-being.",
 			"cards": [
 				{
-					"imagen": "Profile.png",
+					"imagen": "Profile.webp",
 					"nombre": "EZEQUIEL LOCANE",
 					"bio": "Founder and CEO. With over 15 years of experience in the health industry, Ezequiel leads our team with passion and dedication.",
 					"posicion": "FOUNDER"
 				},
 				{
-					"imagen": "Profile1.png",
+					"imagen": "Profile1.webp",
 					"nombre": "CARLOS MARTÍN",
 					"bio": "Surgeon with over 20 years of experience. Carlos ensures that our app meets the highest medical standards.",
 					"posicion": "SURGEON"
 				},
 				{
-					"imagen": "Profile2.png",
+					"imagen": "Profile2.webp",
 					"nombre": "MARÍA PÉREZ",
 					"bio": "Medical specialist in digital health. María works to effectively integrate technology into our app.",
 					"posicion": "DOCTOR"
@@ -264,7 +264,7 @@
 			"icon_name": "medicine",
 			"greeting": "Good day,",
 			"patientName": "Laura!",
-			"photo": "/Bung1.png"
+			"photo": "/Bung1.webp"
 		},
 		"CardTitle": [
 			{
@@ -339,7 +339,7 @@
 			"icon_name": "calendarOrange",
 			"greeting": "These are your appointments,",
 			"patientName": "Laura!",
-			"photo": "/Bung1.png"
+			"photo": "/Bung1.webp"
 		},
 		"warning": {
 			"message": "You have no pending appointments for this date"

@@ -25,7 +25,7 @@ function Home() {
     <main className="flex flex-col items-center w-full max-w-screen-2xl mx-auto bg-gradient-background_1 font-josefin">
       <nav className="flex pt-8 pb-16 px-6 md:px-14 items-center justify-between w-full">
         <div className="w-[100px] h-[50px] rounded-md">
-          <img src="/justinaLogo.png" alt="logo" className="w-full h-auto" />
+          <img src="/justinaLogo.webp" alt="logo" className="w-full h-auto" />
         </div>
 
         <section>
