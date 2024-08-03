@@ -160,7 +160,7 @@ function Home() {
               y2="528"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stopColor="#D22B8B" />
+              <stop stopColor="#d667cd" />
               <stop offset="1" stopColor="#FBC046" />
             </linearGradient>
           </defs>
@@ -168,7 +168,7 @@ function Home() {
       </div>
 
       {/* How It Works */}
-      <section className="w-full h-auto flex flex-col items-center py-16 bg-[#D22B8B]">
+      <section className="w-full h-auto flex flex-col items-center py-16 bg-[#d667cd]">
         <h2 className="font-josefin font-semibold text-[1.5625rem] text-center text-white pt-[3.75rem] md:text-4xl">
           {content.howItWorks.title}
         </h2>

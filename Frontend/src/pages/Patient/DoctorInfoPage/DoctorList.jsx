@@ -5,10 +5,12 @@ import Icon from "../../../components/Icon/Icon";
 import doctorsData from "../../../data/patientDataDoctors.json";
 import FooterNav from "../../../components/FooterNav/FooterNav";
 import BackButton from "../../../components/BackButton/BackButton";
+import PopupMessage from "../../../components/PopupMessage";
 
 function DoctorList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [doctors, setDoctors] = useState([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(true);
 
   useEffect(() => {
     setDoctors(doctorsData);
@@ -20,16 +22,20 @@ function DoctorList() {
       doctor.specialty.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
-    <div className="max-w-lg mx-auto p-4 grid gap-4 font-josefin">
+    <div className="max-w-screen-lg mx-auto p-4 grid gap-4">
       <BackButton />
       <section className="flex mb-4">
         <input
           type="text"
-          placeholder="Busca por nombre del médico o especialista"
+          placeholder="Buscar por nombre del médico o especialista"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-grow p-2 border border-gray-300 rounded-l outline-none h-10"
+          className="flex-grow p-2 border border-gray-300 rounded-lg outline-none h-10 text-xs md:text-lg"
         />
         <button className="p-2 rounded-r">
           <Icon name="search" />
@@ -54,6 +60,8 @@ function DoctorList() {
       <section>
         <FooterNav />
       </section>
+
+      <PopupMessage isOpen={isPopupOpen} onClose={handleClosePopup} />
     </div>
   );
 }

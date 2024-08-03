@@ -17,7 +17,7 @@ export default function DoctorHeader() {
         <img src="/ProfileImageSlide.png" className="w-10 aspect-square" />
         <div>
           <p>Ashley Lars</p>
-          <p className="text-slate-500">Receptionist</p>
+          <p className="text-slate-500 text-sm">Medico clínico</p>
         </div>
         <FaAngleDown className="cursor-pointer" onClick={toggleShowLogout} />
         {showLogout && (
@@ -26,9 +26,6 @@ export default function DoctorHeader() {
           </div>
         )}
       </div>
-      {/* <div>
-        <UserMenu />
-      </div> */}
     </div>
   );
 }

@@ -71,7 +71,7 @@ const DetailSchedule = () => {
   };
 
   return (
-    <main className="max-w-lg mx-auto">
+    <main className="max-w-screen-lg mx-auto">
       <BackButton />
       <section className="grid justify-center">
         <button
@@ -147,7 +147,7 @@ const DetailSchedule = () => {
                   <InfoRow label="Edad" value={patient.age} />
                   <InfoRow label="Contacto" value={patient.contact} />
                   <InfoRow label="Teléfono" value={patient.phone} />
-                  <InfoRow label="Sexo" value={patient.sex} />
+                  <InfoRow label="Sexo" value={patient.gender} />
                   <InfoRow
                     label="Fecha de Nacimiento"
                     value={new Date(patient.dateOfBirth).toLocaleDateString(

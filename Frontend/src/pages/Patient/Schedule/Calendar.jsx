@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
 const Calendar = ({ onDateClick }) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(null);
   const today = new Date();
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(today);
 
   const handlePrevMonth = () => {
     setCurrentDate(
@@ -40,7 +41,7 @@ const Calendar = ({ onDateClick }) => {
           "Fecha del calendario seleccionada:",
           formatDate(clickedDate),
         );
-        onDateClick(clickedDate); // Llama a la función onDateClick
+        onDateClick(clickedDate);
       }
     }
   };
@@ -56,7 +57,6 @@ const Calendar = ({ onDateClick }) => {
     currentDate.getMonth(),
     1,
   ).getDay();
-
   const adjustedStartDay = (startDay + 6) % 7;
 
   const getDates = () => {
@@ -73,8 +73,8 @@ const Calendar = ({ onDateClick }) => {
   const dates = getDates();
 
   return (
-    <div className="max-w-lg mx-auto fixed bottom-0 left-0 right-0 shadow-lg z-40 font-spartan bg-[#CAD6FF] p-4 mb-14">
-      <header className="flex items-center justify-center bg-[#CAD6FF] text-[#00ADDE] py-4 gap-2">
+    <div className="bg-[#0001] p-4">
+      <header className="flex items-center justify-center py-4 gap-2 text-Justina_8">
         <button onClick={handlePrevMonth} className="text-lg font-semibold">
           &lt;
         </button>
@@ -88,11 +88,11 @@ const Calendar = ({ onDateClick }) => {
           &gt;
         </button>
       </header>
-      <div className="grid grid-cols-7 text-center bg-[#CAD6FF] text-[#00ADDE] font-light pb-3">
+      <div className="grid grid-cols-7 text-center font-light pb-3">
         {daysOfWeek.map((day) => (
           <div
             key={day}
-            className="text-white bg-[#00ADDE] rounded-[18px] mr-3 text-xs p-2 font-light"
+            className="text-white bg-Justina_8 rounded-lg mr-3 text-xs p-2 font-light"
           >
             {day}
           </div>
@@ -114,17 +114,13 @@ const Calendar = ({ onDateClick }) => {
             selectedDate.getDate() === date &&
             selectedDate.getMonth() === currentDate.getMonth() &&
             selectedDate.getFullYear() === currentDate.getFullYear();
-          const isToday =
-            today.getDate() === date &&
-            today.getMonth() === currentDate.getMonth() &&
-            today.getFullYear() === currentDate.getFullYear();
 
           const getClassNames = () => {
             if (isPastDate) {
               return "bg-white text-gray-300 cursor-not-allowed rounded-full";
             }
-            if (isSelectedDate || isToday) {
-              return "bg-[#00ADDE] text-white rounded-full cursor-pointer";
+            if (isSelectedDate) {
+              return "bg-Justina_8 text-white rounded-full cursor-pointer";
             }
             return "bg-white text-gray-900 cursor-pointer rounded-full";
           };

@@ -18,11 +18,11 @@ const Treatment = () => {
     : events;
 
   const pendingMedicationsCount = events.filter(
-    (event) => event.color === "#D22B8B",
+    (event) => event.color === "#d667cd",
   ).length;
 
   return (
-    <div className="max-w-lg mx-auto pb-14">
+    <div className="max-w-screen-lg mx-auto pb-14">
       <section className="p-4">
         <Profile
           icon_name="medicine"
@@ -35,17 +35,17 @@ const Treatment = () => {
         <div className="w-1/2">
           <CardTitle
             titles={["Tratamientos"]}
-            backgroundColor="#6ED1AF"
+            backgroundColor="#4fd2c2"
             textColor="#FFF"
-            onClick={() => setSelectedColor("#6ED1AF")}
+            onClick={() => setSelectedColor("#4fd2c2")}
           />
         </div>
         <div className="w-1/2">
           <CardTitle
             titles={["Medicamentos Pendientes:", pendingMedicationsCount]}
-            backgroundColor="#D22B8B"
+            backgroundColor="#d667cd"
             textColor="#FFF"
-            onClick={() => setSelectedColor("#D22B8B")}
+            onClick={() => setSelectedColor("#d667cd")}
           />
         </div>
       </section>
