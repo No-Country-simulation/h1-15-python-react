@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
+import json
 
 
 User = get_user_model()
@@ -191,19 +192,31 @@ class Tratamiento(models.Model):
 
 
 class Farmacia(models.Model):
-    id_laboratorio = models.IntegerField()
-    id_medicamento = models.IntegerField()
+    nombre_laboratorio = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.nombre_laboratorio
 
 # Medicamento model
 
 
 class Medicamento(models.Model):
-    id_patologia = models.ForeignKey('Patologia', on_delete=models.CASCADE)
-    id_tratamiento = models.ForeignKey('Tratamiento', on_delete=models.CASCADE)
-    id_farmacia = models.ForeignKey('Farmacia', on_delete=models.CASCADE)
+    patologia = models.ForeignKey('Patologia', on_delete=models.CASCADE)
+    tratamiento = models.ForeignKey('Tratamiento', on_delete=models.CASCADE)
+    farmacia = models.ForeignKey('Farmacia', on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
+    dosis_presentacion = models.CharField(max_length=255)
+    
+    def set_dosis_presentacion(self, lst):
+        self.dosis_presentacion = json.dumps(lst)
+    
+    def get_dosis_presentacion(self):
+        return json.loads(self.dosis_presentacion)
+    
+    def __str__(self):
+        return self.descripcion
     
 
 # Entidad model
