@@ -32,6 +32,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://justina-latam.vercel.app/',
 ]
 
+
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
@@ -42,7 +43,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -53,3 +54,4 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT')
     }
 }
+"""

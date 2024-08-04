@@ -1,6 +1,5 @@
 from django.urls import path
 from django.contrib import admin
-from django.urls import include, path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
@@ -21,7 +20,7 @@ from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
 from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
 from historia_clinica.views import HistoriaClinicaDetail, HistoriaClinicaList
 from entidad.views import EntidadDetail, EntidadList
-from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListCreate, TurnoDetail
+from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListCreate, TurnoDetail, TurnoListView, MisTurnoListView, ReservarTurnoView
 from patologias.views import PatologiaList, PatologiaDetail
 from farmacia.views import FarmaciaList, FarmaciaDetail
 
@@ -95,4 +94,10 @@ urlpatterns = [
     
     path('farmacia/', FarmaciaList.as_view(),),
     path('farmacia/<int:pk>/',FarmaciaDetail.as_view(),),
+    path('turnos/', TurnoListView.as_view()),
+    path('turno/<int:pk>/', TurnoDetail.as_view(),),
+
+    path('mis_turnos/', MisTurnoListView.as_view()),
+    path('mis_turnos/<int:pk>', ReservarTurnoView.as_view()),
+
 ]

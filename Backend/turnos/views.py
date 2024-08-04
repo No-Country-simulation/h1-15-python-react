@@ -1,12 +1,172 @@
 from turnos.serializers import TurnoSerializer, DisponibilidadSerializer
 from rest_framework import generics, views
-from drf_spectacular.utils import extend_schema
-from core.models import Turno, Disponibilidad, PersonalMedico, Entidad
+from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiTypes
+from core.models import Turno, Disponibilidad, PersonalMedico, Entidad, User
 from custom_functions.date_list import validar_fechas, obtener_fecha_actual_str, generar_fecha_fin_str
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
 from datetime import datetime, timedelta
+
+
+
+class TurnoListView(generics.ListAPIView):
+    serializer_class = TurnoSerializer
+
+    def get_queryset(self):
+        status = self.request.query_params.get('status', None)
+        queryset = Turno.objects.all()
+        if status:
+            queryset = queryset.filter(status=status)
+        medico = self.request.query_params.get('doctor_id',None)
+        if medico:
+            queryset = queryset.filter(medico=medico)
+        fecha = self.request.query_params.get('fecha',None)
+        if fecha:
+            queryset = queryset.filter(fecha_turno=fecha)
+        
+        
+        return queryset
+    
+    @extend_schema(
+        tags=['Turno'],
+        summary='Lista los turnos disponibles ',
+        description=(
+    "Este endpoint permite obtener una lista de turnos disponibles, con la posibilidad de aplicar filtros por "
+    "estado del turno, médico asignado y fecha específica. Utiliza este endpoint para consultar la disponibilidad "
+    "de turnos según los parámetros que se detallan a continuación.\n\n"
+    "Ejemplos de uso:\n\n"
+    "`/api/turnos/?status=disponible&doctor_id=2&fecha=2024-08-06 `\n\n"
+    "`/api/turnos/?status=disponible&doctor_id=2`\n\n"
+    "`/api/turnos/?fecha=2024-08-06`\n"
+    ),
+        parameters=[
+            OpenApiParameter(
+                name='status',
+                description='Filtra los turnos por estado. Ejemplos: disponible, ocupado, cancelado.',
+                required=False,
+                type=OpenApiTypes.STR,
+            ),
+            OpenApiParameter(
+                name='doctor_id',
+                description='Filtra los turnos por el ID del médico. Debe ser un número entero.',
+                required=False,
+                type=OpenApiTypes.INT,
+            ),
+            OpenApiParameter(
+                name='fecha',
+                description='Filtra los turnos por fecha. Formato: AAAA-MM-DD.',
+                required=False,
+                type=OpenApiTypes.DATE,
+            ),
+        ],
+        responses={
+            200: TurnoSerializer(many=True),
+            400: 'Solicitud incorrecta',
+        },
+    )
+
+
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+    
+class MisTurnoListView(generics.ListAPIView): #LO TENGO QUE PROBAR
+    serializer_class = TurnoSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        if not user.is_authenticated:
+            # Maneja el caso de usuario no autenticado si es necesario
+            return Turno.objects.none()  # O lanza una excepción, etc.
+        queryset = Turno.objects.filter(id_usuario=user)
+        return queryset
+    
+    @extend_schema(
+        tags=['MisTurnos'],
+        summary='Lista los turnos de un usuario ',
+        description=(
+    "Este endpoint permite obtener una lista de turnos pedidos y cerrados de un usuario.\n\n"
+    "Ejemplos de uso:\n\n"
+    "`/api/mis_turnos/ `\n\n"
+    "`/api/mis_turnos/?status=reservado`\n\n"
+    "`/api/turnos/?fecha=2024-08-06`\n"
+    ),
+        parameters=[
+            OpenApiParameter(
+                name='status',
+                description='Filtra los turnos por estado. Ejemplos: disponible, ocupado, cancelado.',
+                required=False,
+                type=OpenApiTypes.STR,
+            )
+        ],
+        responses={
+            200: TurnoSerializer(many=True),
+            400: 'Solicitud incorrecta',
+        },
+    )
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+    
+class ReservarTurnoView(generics.UpdateAPIView):
+    queryset = Turno.objects.all()
+    serializer_class = TurnoSerializer
+
+    @extend_schema(
+        tags=['MisTurnos'],
+        summary='Reserva un turno específico',
+        description=(
+            "Este endpoint permite a un usuario reservar un turno específico por ID.\n\n"
+            "Para reservar un turno, el usuario debe enviar una solicitud PATCH con el ID del turno.\n\n"
+            "Ejemplo de uso:\n\n"
+            "`PATCH /api/reservar_turno/{id_turno}/`\n\n"
+            "Cuerpo de la solicitud:\n"
+            "{\n"
+            "  \"status\": \"reservado\"\n"
+            "}\n\n"
+            "Además, permite que un doctor reserve un turno a nombre de otro usuario, especificando el ID del usuario en el cuerpo de la solicitud.\n\n"
+            "Ejemplo de uso:\n\n"
+            "Cuerpo de la solicitud:\n"
+            "{\n"
+            "  \"status\": \"reservado\",\n"
+            "  \"id_usuario\": 2\"\n"
+            "}\n"
+        ),
+        request=TurnoSerializer,
+        responses={
+            200: TurnoSerializer,
+            400: 'Solicitud incorrecta',
+            401: 'No autorizado',
+            404: 'Turno no encontrado',
+        },
+    )
+    def patch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return Response({"detail": "Autenticación requerida."}, status=status.HTTP_401_UNAUTHORIZED)
+
+        turno = self.get_object()
+        if turno.id_usuario:
+            return Response({"detail": "El turno ya está reservado."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Asigna el usuario autenticado al turno o utiliza el usuario enviado en la solicitud
+        id_usuario = request.data.get('id_usuario', None)
+        if id_usuario is None:
+            id_usuario = request.user
+        else:
+            try:
+                id_usuario = User.objects.get(id=id_usuario)  # Obtener instancia de User
+            except:
+                return Response({"detail": "El usuario no existe."}, status=status.HTTP_400_BAD_REQUEST)
+
+        turno.id_usuario = id_usuario
+        turno.status = request.data.get('status', 'reservado')
+        turno.save()
+
+        serializer = self.get_serializer(turno)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def perform_update(self, serializer):
+        serializer.save()
+
 
 
 class DisponibilidadList(generics.ListAPIView):
@@ -218,7 +378,7 @@ class TurnoListCreate(generics.ListCreateAPIView):
 
 class TurnoDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Turno.objects.all()
-    serializer_class = DisponibilidadSerializer
+    serializer_class = TurnoSerializer
 
     @extend_schema(
         tags=['Turno'],
