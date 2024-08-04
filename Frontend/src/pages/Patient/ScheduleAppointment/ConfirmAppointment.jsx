@@ -9,7 +9,6 @@ function ConfirmAppointment() {
   const { formData } = location.state || {};
 
   const handleConfirm = () => {
-    console.log("Cita confirmada:", formData);
     navigate("/patient/appointment/success");
   };
 

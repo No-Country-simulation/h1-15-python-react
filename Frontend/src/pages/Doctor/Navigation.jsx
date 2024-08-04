@@ -10,7 +10,6 @@ import { Tooltip } from "@mui/material";
 
 const Navigation = () => {
   const actual = useLocation();
-  console.log(actual.pathname);
 
   return (
     <aside className="flex flex-col w-[264px] bg-secondary-600 text-white font-semibold rounded-3xl h-full min-h-[90dvh] overflow-hidden pt-4">

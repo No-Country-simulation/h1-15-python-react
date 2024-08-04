@@ -15,12 +15,10 @@ const Schedule = () => {
 
   useEffect(() => {
     setSchedules(data);
-    console.log("Data cargada:", data);
   }, []);
 
   const handleDateClick = (date) => {
     setSelectedDate(date);
-    console.log("Fecha seleccionada:", date);
   };
 
   const formatDate = (date) => {
@@ -69,7 +67,10 @@ const Schedule = () => {
         )}
       </section>
       <section className="absolute justify-end right-2 bottom-20">
-        <AddItemButton to="/patient/doctor-information" label={languageData.Schedule.AddItemButton.text}/>
+        <AddItemButton
+          to="/patient/doctor-information"
+          label={languageData.Schedule.AddItemButton.text}
+        />
       </section>
 
       <FooterNav />

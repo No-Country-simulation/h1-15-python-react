@@ -20,7 +20,6 @@ const SearchBar = ({ onFocus, onBlur }) => {
 
   const handleSearchSubmit = () => {
     if (searchValue.trim() !== "") {
-      console.log("Searching for:", searchValue);
       setSearchValue("");
       setInputVisible(false);
     }

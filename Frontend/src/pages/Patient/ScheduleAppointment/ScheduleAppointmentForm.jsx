@@ -106,7 +106,6 @@ function ScheduleAppointmentForm({ doctor }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Formulario enviado:", formData);
     navigate("/patient/appointment/confirmation", { state: { formData } });
   };
 
