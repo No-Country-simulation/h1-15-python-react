@@ -28,7 +28,7 @@ class TurnoSerializer(serializers.ModelSerializer):
         return {
             "id": obj.medico.id,
             "nombre_completo": obj.medico.nombre_completo,
-            "tipo": obj.medico.id_especialidad.tipo,  # Aquí usamos id_especialidad
+            "tipo": obj.medico.id_especialidad.tipo,  
             "descripcion_especialidad": obj.medico.id_especialidad.descripcion
         }
     
