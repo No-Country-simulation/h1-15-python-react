@@ -16,7 +16,7 @@ from direcciones.views import DireccionList, DireccionDetail
 from personal_medico.views import PersonalMedicoList, PersonalMedicoDetail, CalificaPersonalMedicoList
 from trasplantes_cruzados.views import TrasplanteCruzadoList, TrasplanteCruzadoDetail
 from especialidad.views import EspecialidadList, EspecialidadDetail
-from medicamentos.views import MedicamentoDetail, MedicamentoList
+from medicamentos.views import MedicamentoDetail, MedicamentoListCreate
 from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
 from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
 from historia_clinica.views import HistoriaClinicaDetail, HistoriaClinicaList
@@ -62,22 +62,22 @@ urlpatterns = [
     
 
     path('especialidad/', EspecialidadList.as_view(),),
-    path('especialidad/<int:pk>',EspecialidadDetail.as_view(),),
+    path('especialidad/<int:pk>/',EspecialidadDetail.as_view(),),
 
-    path('medicametnos/', MedicamentoList.as_view(),),
-    path('medicametnos/<int:pk>',MedicamentoDetail.as_view(),),
+    path('medicamentos/', MedicamentoListCreate.as_view(),),
+    path('medicamentos/<int:pk>/',MedicamentoDetail.as_view(),),
 
     path('tipo_documento/', TipoDocumentoList.as_view(),),
-    path('tipo_documento/<int:pk>',TipoDocumentoDetail.as_view(),),
+    path('tipo_documento/<int:pk>/',TipoDocumentoDetail.as_view(),),
     
     path('antecedente_medico/', AntecedenteMedicoList.as_view(),),
-    path('antecedente_medico/<int:pk>',AntecedenteMedicoDetail.as_view(),),
+    path('antecedente_medico/<int:pk>/',AntecedenteMedicoDetail.as_view(),),
 
     path('historia_clinica/', HistoriaClinicaList.as_view(),),
-    path('historia_clinica/<int:pk>',HistoriaClinicaDetail.as_view(),),
+    path('historia_clinica/<int:pk>/',HistoriaClinicaDetail.as_view(),),
 
     path('entidad/', EntidadList.as_view(),),
-    path('entidad/<int:pk>',EntidadDetail.as_view(),),
+    path('entidad/<int:pk>/',EntidadDetail.as_view(),),
     
     path('disponibilidad/', DisponibilidadList.as_view(),),
     path('disponibilidad/create/', DisponibilidadCreate.as_view(),),
