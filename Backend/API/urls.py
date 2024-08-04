@@ -95,7 +95,7 @@ urlpatterns = [
     path('farmacia/', FarmaciaList.as_view(),),
     path('farmacia/<int:pk>/',FarmaciaDetail.as_view(),),
     path('turnos/', TurnoListView.as_view()),
-    path('turno/<int:pk>/', TurnoDetail.as_view(),),
+    path('turnos/<int:pk>/', TurnoDetail.as_view(),),
 
     path('mis_turnos/', MisTurnoListView.as_view()),
     path('mis_turnos/<int:pk>', ReservarTurnoView.as_view()),
