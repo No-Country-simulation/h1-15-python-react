@@ -33,11 +33,11 @@ const LanguageSelector = () => {
   };
 
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex items-center font-josefin text-sm">
       <IoLanguageSharp className="text-lg text-gray-600 mr-2" />
       <button 
         onClick={() => setIsOpen(!isOpen)} 
-        className="bg-magentaButton text-white rounded-md px-3 py-1 focus:outline-none flex items-center space-x-2"
+        className="bg-magentaButton text-white rounded-md px-4 py-1 focus:outline-none flex items-center space-x-2 h-[34px]"
       >
         <span>{languages.find(lang => lang.value === selectedLanguage)?.label}</span>
       </button>

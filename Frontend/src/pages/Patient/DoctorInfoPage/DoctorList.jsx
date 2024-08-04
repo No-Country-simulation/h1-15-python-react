@@ -35,7 +35,7 @@ function DoctorList() {
           placeholder="Buscar por nombre del médico o especialista"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-grow p-2 border border-gray-300 rounded-lg outline-none h-10 text-xs md:text-lg"
+          className="flex-grow p-2 border border-gray-300 rounded-lg outline-none h-10 text-sm md:text-lg"
         />
         <button className="p-2 rounded-r">
           <Icon name="search" />
