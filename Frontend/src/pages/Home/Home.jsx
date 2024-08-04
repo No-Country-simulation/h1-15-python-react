@@ -23,8 +23,8 @@ function Home() {
 
   return (
     <main className="flex flex-col items-center w-full max-w-screen-2xl mx-auto bg-gradient-background_1 font-josefin">
-      <nav className="flex pt-8 pb-16 px-6 md:px-14 items-center justify-between w-full">
-        <div className="w-[100px] h-[50px] rounded-md">
+      <nav className="flex pt-4 pb-16 px-6 md:px-14 items-center justify-between w-full">
+        <div className="w-[100px] h-full rounded-md">
           <img src="/justinaLogo.webp" alt="logo" className="w-full h-auto" />
         </div>
 
@@ -34,7 +34,7 @@ function Home() {
 
         <button
           onClick={handleLoginClick}
-          className="bg-magentaButton h-[34px] font-bold text-sm text-white rounded-md hover:bg-magentaButtonDark transition duration-300 px-4 flex items-center justify-center"
+          className="bg-magentaButton h-[34px] text-sm text-white rounded-md hover:bg-magentaButtonDark transition duration-300 px-4 flex items-center justify-center"
           aria-label={languageData.home.navbar.title}
         >
           <span className="text-xs md:text-sm">
@@ -78,7 +78,7 @@ function Home() {
             <img
               src={languageData.home.landing.image}
               alt="Mockup"
-              className="w-full md:w-[70%] h-auto"
+              className="w-full max-w-sm h-auto"
             />
           </div>
         </section>
@@ -119,23 +119,23 @@ function Home() {
         </div>
       </section>
       {/* MockUp */}
-      <div className="bg-[url('/fondoLanding.png')] flex w-full justify-center items-center py-8">
-        <img src={languageData.home.mockup.image} alt="mockup" />
+      <div className="flex w-full justify-center items-center p-8">
+        <img src={languageData.home.mockup.image} alt="mockup" className="w-full max-w-lg h-auto"/>
       </div>
 
       {/* How It Works */}
-      <section className="w-full h-auto flex flex-col items-center py-16 bg-[#d667cd]">
+      <section className="w-full h-auto flex flex-col items-center px-4 py-16 bg-[#d667cd]">
         <h2 className="font-semibold text-[25px] text-center text-white pt-[60px] md:text-4xl">
           {languageData.home.howItWorks.title}
         </h2>
         <p className="text-white text-center mt-10 md:text-lg md:max-w-2xl">
           {languageData.home.howItWorks.description}
         </p>
-        <div className="w-full mt-10 p-4 md:w-[600px] md:h-[300px]">
+        <div className="w-full mt-10 p-4 max-w-xl h-auto">
           <img
             className="w-full h-full"
             src={languageData.home.howItWorks.video}
-            alt="video"
+            alt="mockup"
           />
         </div>
       </section>

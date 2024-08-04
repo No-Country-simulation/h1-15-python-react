@@ -24,7 +24,7 @@ const Profile = ({ icon_name, greeting, photo, patientName }) => {
       </div>
       <h1 className="font-semibold text-lg md:text-3xl mt-2 text-center text-[#A0A4A8]">
         {greeting}
-        <span className="ml-1 md:ml-2 font-medium text-lg md:text-3xl text-black ">
+        <span className="ml-1 md:ml-2 font-medium text-lg md:text-3xl text-[#25282B] ">
           {patientName}
         </span>
       </h1>

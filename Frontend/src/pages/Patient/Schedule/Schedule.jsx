@@ -66,7 +66,7 @@ const Schedule = () => {
           </p>
         )}
       </section>
-      <section className="absolute justify-end right-2 bottom-20">
+      <section className="fixed justify-end right-2 bottom-20">
         <AddItemButton
           to="/patient/doctor-information"
           label={languageData.Schedule.AddItemButton.text}

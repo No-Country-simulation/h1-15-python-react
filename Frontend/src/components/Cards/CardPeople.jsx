@@ -3,9 +3,9 @@ import Avatar from "../Avatar";
 
 const CardPeople = ({ imagen, nombre, posicion, bio }) => {
   return (
-    <div className="bg-white w-full h-[580px] flex flex-col items-center rounded-[10px]">
+    <div className="bg-white w-full max-h-[620px] flex flex-col items-center rounded-lg px-4 py-6">
       <Avatar imagen={imagen} />
-      <div className="flex flex-col justify-center items-center mt-[66px]">
+      <div className="flex flex-col justify-center items-center mt-[20px]">
         <h2 className="text-[31.25px] font-bold text-[#232233]">
           {nombre}
         </h2>
