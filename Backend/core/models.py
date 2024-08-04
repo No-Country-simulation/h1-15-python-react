@@ -227,7 +227,7 @@ class Turno(models.Model):
     ]
     fecha_turno = models.CharField(max_length=10,default='01-01-2024')
     hora_turno = models.CharField(max_length=10, default='00:00')
-    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, blank=True, null=True)
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     medico = models.ForeignKey(PersonalMedico, on_delete=models.CASCADE)
     entidad = models.ForeignKey(Entidad, on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="disponible")
