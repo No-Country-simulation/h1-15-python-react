@@ -32,6 +32,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://justina-latam.vercel.app/',
 ]
 
+
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
