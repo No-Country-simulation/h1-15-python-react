@@ -22,7 +22,10 @@ from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoL
 from historia_clinica.views import HistoriaClinicaDetail, HistoriaClinicaList
 from entidad.views import EntidadDetail, EntidadList
 from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListCreate, TurnoDetail
-# Create your views here.
+from patologias.views import PatologiaList, PatologiaDetail
+from farmacia.views import FarmaciaList, FarmaciaDetail
+
+
 urlpatterns = [
     # Admin route
     path('admin/', admin.site.urls),
@@ -86,4 +89,10 @@ urlpatterns = [
     path('turno/', TurnoCreate.as_view(),),
     path('turno/<int:pk>/', TurnoListCreate.as_view(),),
     path('turno/detail/<int:pk>/',TurnoDetail.as_view(),),
+    
+    path('patologias/', PatologiaList.as_view(),),
+    path('patologias/<int:pk>/',PatologiaDetail.as_view(),),
+    
+    path('farmacia/', FarmaciaList.as_view(),),
+    path('farmacia/<int:pk>/',FarmaciaDetail.as_view(),),
 ]
