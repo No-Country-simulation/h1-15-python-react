@@ -43,7 +43,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -54,3 +54,4 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT')
     }
 }
+"""
