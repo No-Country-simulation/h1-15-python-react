@@ -15,6 +15,7 @@ import "react-phone-input-2/lib/style.css";
 import VoiceDictation from "../../../components/VoiceDictation/VoiceDictation";
 import FooterNav from "../../../components/FooterNav/FooterNav";
 import patientProfileData from "../../../data/PatientProfile.json";
+import showDialog from "../../../utils/showDialog";
 
 const getNextDays = () => {
   return Array.from({ length: 4 }, (_, i) => addDays(new Date(), i));
@@ -104,9 +105,18 @@ function ScheduleAppointmentForm({ doctor }) {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/patient/appointment/confirmation", { state: { formData } });
+    const confirmed = await showDialog(
+      "Confirmar Acción",
+      "¿Estás seguro de que deseas realizar esta acción?",
+      "warning",
+      "#00ADDE",
+    );
+
+    if (confirmed) {
+      navigate("/patient/appointment/confirmation", { state: { formData } });
+    }
   };
 
   const nextDays = useMemo(() => getNextDays(), []);
@@ -226,23 +236,21 @@ function ScheduleAppointmentForm({ doctor }) {
                 required
               />
             </div>
-            <div>
-              <label className="block text-gray-700">
-                {" "}
-                Motivo de la Consulta
-              </label>
-              <div className="relative">
-                <textarea
-                  name="reason"
-                  value={formData.reason}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md outline-none"
-                  placeholder="Describa brevemente el motivo de su consulta..."
-                  rows="4"
-                  required
-                />
-                <VoiceDictation onDictate={handleDictate} />
-              </div>
+            <label className="block text-gray-700">
+              {" "}
+              Motivo de la Consulta
+            </label>
+            <div className="relative">
+              <textarea
+                name="reason"
+                value={formData.reason}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-md outline-none"
+                placeholder="Describa brevemente el motivo de su consulta..."
+                rows="4"
+                required
+              />
+              <VoiceDictation onDictate={handleDictate} />
             </div>
             <div>
               <button

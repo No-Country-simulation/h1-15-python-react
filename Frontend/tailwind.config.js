@@ -75,6 +75,17 @@ export default {
         "card-shadow":
           "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;",
       },
+      animation: {
+        blink: 'blink 1s infinite',
+      },
+      keyframes: {
+        blink: {
+          '0%': { opacity: '1' },
+          '50%': { opacity: '0.5' },
+          '100%': { opacity: '1' },
+        },
+      },
+      
     },
   },
   plugins: [],
