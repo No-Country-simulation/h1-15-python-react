@@ -336,7 +336,7 @@
   },
   "Schedule": {
     "Profile": {
-      "c": "calendarOrange",
+      "icon_name": "calendarOrange",
       "greeting": "Estos son tus turnos,",
       "patientName": "Laura!",
       "photo": "/Bung1.webp"
