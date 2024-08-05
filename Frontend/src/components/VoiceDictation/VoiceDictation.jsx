@@ -56,17 +56,23 @@ const VoiceDictation = ({ onDictate }) => {
   };
 
   const handleConfirm = () => {
-    onDictate(transcript);
-    setIsModalOpen(false);
+    onDictate(transcript); 
+    setTranscript(""); 
+    setIsModalOpen(false); 
+    stopListening();
   };
+  
 
   const handleClose = () => {
+    setTranscript(""); 
     setIsModalOpen(false);
+    stopListening(); 
   };
 
   return (
     <div className="absolute flex items-center bottom-2 right-1">
       <button
+      type="button"
         onClick={() => {
           if (isListening) {
             stopListening();
@@ -74,8 +80,8 @@ const VoiceDictation = ({ onDictate }) => {
             startListening();
           }
         }}
-        className={`flex items-center justify-center transition-colors duration-300 rounded-r-xl${
-          isListening & "bg-red-500 hover:bg-red-700 text-white"
+        className={`flex items-center justify-center transition-all duration-300 rounded-r-xl ${
+          isListening ? "animate-blink" : ""
         }`}
         style={{ width: "40px", height: "40px" }}
       >
