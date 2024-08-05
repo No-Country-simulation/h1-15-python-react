@@ -29,8 +29,6 @@ const DoctorTransplants = () => {
     loadDonantes();
   }, []);
 
-  console.log(pacientes);
-
   return (
     <main className="flex w-full max-h-[1024px]  gap-5">
       <section className="min-w-[689px] grid mx-auto h-fit relative font-josefin">
