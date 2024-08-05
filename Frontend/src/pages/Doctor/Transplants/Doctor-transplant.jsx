@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import LateralView from "../../../components/LateralView";
 import { useEffect } from "react";
-import Avatar from "../../../components/Avatar";
 import { Switch, Tooltip } from "@mui/material";
 
 const DoctorTransplants = () => {
@@ -12,7 +11,7 @@ const DoctorTransplants = () => {
   const [pacienteSeleccionado, setPacienteSeleccionado] = useState();
   async function loadPacientes() {
     const response = await fetch(
-      "https://raw.githubusercontent.com/No-Country-simulation/h1-15-python-react/77130797313cdfcc6a228211aeec88e0bb7921ce/Frontend/src/data/pacientes.json",
+      "https://raw.githubusercontent.com/No-Country-simulation/h1-15-python-react/frontend-stable/Frontend/src/data/pacientes.json",
     );
     const names = await response.json();
     setPacientes(names.result);
@@ -29,6 +28,8 @@ const DoctorTransplants = () => {
     loadPacientes();
     loadDonantes();
   }, []);
+
+  console.log(pacientes);
 
   return (
     <main className="flex w-full max-h-[1024px]  gap-5">
@@ -47,7 +48,11 @@ const DoctorTransplants = () => {
                     key={index}
                     className="flex gap-2 items-center justify-around my-4 cursor-pointer hover:bg-blue-100/55 px-4 py-1 rounded-lg shadow-[0px_4px_4px_0px_#00000040]"
                   >
-                    <Avatar className="w-10 h-10 m-0 rounded-full" />
+                    <img
+                      src={donante.picture}
+                      alt={donante.nombre}
+                      className="w-10 h-10 m-0 rounded-full"
+                    />
                     <div className="flex flex-col text-left flex-grow">
                       <p className="overflow-hidden whitespace-nowrap text-ellipsis">
                         {donante.nombre}
@@ -88,7 +93,11 @@ const DoctorTransplants = () => {
                       key={index}
                       className={`flex gap-2 items-center justify-around my-4 cursor-pointer hover:bg-blue-100/55 px-4 py-1 rounded-lg shadow-[0px_4px_4px_0px_#00000040] ${pacienteSeleccionado && pacienteSeleccionado._id === paciente._id ? "bg-yellow-100" : ""}`}
                     >
-                      <Avatar className="w-10 h-10 m-0 rounded-full" />
+                      <img
+                        src={paciente.picture}
+                        alt={paciente.nombre}
+                        className="w-10 h-10 m-0 rounded-full"
+                      />
                       <div className="flex flex-col text-left flex-grow">
                         <p>{paciente.name}</p>
                         <div>

@@ -3,6 +3,7 @@ import { BiSearch } from "react-icons/bi";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import CardPatientList from "../../../components/Cards/CardPatientList";
 import LateralView from "../../../components/LateralView";
+import { Tooltip } from "@mui/material";
 
 const DoctorPatients = () => {
   const [hasContent, setHasContent] = useState(false);
@@ -10,6 +11,7 @@ const DoctorPatients = () => {
   const [value, setValue] = useState("");
   const [pacientes, setPacientes] = useState([]);
   const [pacienteSeleccionado, setPacienteSeleccionado] = useState();
+
   async function loadPacientes() {
     const response = await fetch(
       "https://raw.githubusercontent.com/No-Country-simulation/h1-15-python-react/frontend-stable/Frontend/src/data/pacientes.json",
@@ -31,6 +33,7 @@ const DoctorPatients = () => {
     setValue(e.target.value);
     setHasContent(e.target.value !== "");
   };
+
   return (
     <main>
       <h1 className="font-semibold text-5xl font-josefin">Pacientes</h1>
@@ -63,9 +66,11 @@ const DoctorPatients = () => {
           </label>
         </div>
         {/**BOTON DE AGREGAR PACIENTES */}
-        <button className="mt-10 py-[19px] px-[15px] font-semibold font-josefin rounded-3xl text-base text-center text-white bg-[#28ADE4] hover:shadow-[2px_2px_5px_2px_#00000020] hover:bg-[#41b3e4]">
-          Agregar paciente
-        </button>
+        <Tooltip title="Proximamente...">
+          <button className="mt-10 py-[19px] px-[15px] font-semibold font-josefin rounded-3xl text-base text-center text-white bg-[#28ADE4] hover:shadow-[2px_2px_5px_2px_#00000020] hover:bg-[#41b3e4]">
+            Agregar paciente
+          </button>
+        </Tooltip>
       </div>
       <section className="flex gap-6">
         <ul className="gap-4 flex flex-col w-2/3 mt-10">
