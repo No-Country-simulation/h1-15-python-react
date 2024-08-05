@@ -1,0 +1,236 @@
+import { useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
+import eye from "/icons/eye.svg";
+import eye_off from "/icons/eye_off.svg";
+import { useNavigate } from "react-router-dom";
+import useLanguage from "../../hooks/useLanguage";
+
+const Register = () => {
+  const [phone, setPhone] = useState("+54");
+  const [secondaryPhone, setSecondaryPhone] = useState("+54");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+
+  const languageData = useLanguage();
+
+  if (!languageData) {
+    return <div>Cargando datos...</div>;
+  }
+
+  console.log(languageData);
+  
+
+  return (
+    <main className="flex p-4 flex-col items-center justify-center min-h-screen bg-gradient-background_1">
+      <section className="flex lg:max-w-[788px] flex-col justify-center p-[24px] bg-white shadow-lg rounded-lg overflow-hidden w-full">
+        <section className="max-w-[206px] mb-6 cursor-pointer">
+          <img
+            onClick={handleLoginClick}
+            src="/icons/arrowleft.svg"
+            alt="logo"
+          />
+        </section>
+        <section>
+          <h1 className="text-left text-[32px] font-bold">
+            {languageData.register.title}
+          </h1>
+          <p className="mt-6 text-left text-sm text-text_primary">
+            {languageData.register.alreadyHaveAccount}
+            <span
+              onClick={handleLoginClick}
+              className="ml-1 text-text_secondary font-semibold cursor-pointer"
+            >
+              {languageData.register.login}
+            </span>
+          </p>
+        </section>
+        <section className="flex flex-col justify-center w-full pt-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <div className="flex flex-col md:flex-row space-y-4 md:space-x-9 md:space-y-0">
+              <div className="flex-1">
+                <label
+                  htmlFor="first-name"
+                  className="block text-sm font-medium"
+                >
+                  {languageData.register.firstNameLabel}
+                </label>
+                <input
+                  id="first-name"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
+                  type="text"
+                  placeholder={languageData.register.firstNamePlaceholder}
+                  required
+                />
+              </div>
+              <div className="flex-1">
+                <label
+                  htmlFor="last-name"
+                  className="block text-sm font-medium"
+                >
+                  {languageData.register.lastNameLabel}
+                </label>
+                <input
+                  id="last-name"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
+                  type="text"
+                  placeholder={languageData.register.lastNamePlaceholder}
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="dni" className="block text-sm font-medium">
+                {languageData.register.dniLabel}
+              </label>
+              <input
+                id="dni"
+                className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
+                type="text"
+                placeholder={languageData.register.dniPlaceholder}
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="obra-social"
+                className="block text-sm font-medium"
+              >
+                {languageData.register.obraSocialLabel}
+              </label>
+              <input
+                id="obra-social"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
+                type="text"
+                placeholder={languageData.register.obraSocialPlaceholder}
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium">
+                {languageData.register.emailLabel}
+              </label>
+              <input
+                id="email"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
+                type="email"
+                placeholder={languageData.register.emailPlaceholder}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="nacimiento" className="block text-sm font-medium">
+                {languageData.register.birthdateLabel}
+              </label>
+              <input
+                id="nacimiento"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
+                type="date"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="telefono" className="block text-sm font-medium">
+                {languageData.register.phoneLabel}
+              </label>
+              <PhoneInput
+                country={"ar"}
+                value={phone}
+                onChange={setPhone}
+                inputStyle={{
+                  width: "100%",
+                  padding: "10px 10px 10px 26px",
+                  border: "1px solid #D1D5DB",
+                  borderRadius: "0.375rem",
+                  boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
+                  textIndent: "24px",
+                }}
+                inputProps={{
+                  name: "phone",
+                  required: true,
+                }}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="contacto-secundario"
+                className="block text-sm font-medium"
+              >
+                {languageData.register.secondaryPhoneLabel}
+              </label>
+              <PhoneInput
+                country={"ar"}
+                value={secondaryPhone}
+                onChange={setSecondaryPhone}
+                inputStyle={{
+                  width: "100%",
+                  padding: "10px 10px 10px 26px",
+                  border: "1px solid #D1D5DB",
+                  borderRadius: "0.375rem",
+                  boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
+                  textIndent: "24px",
+                }}
+                inputProps={{
+                  name: "secondaryPhone",
+                  required: true,
+                }}
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium">
+                {languageData.register.passwordLabel}
+              </label>
+              <section className="relative">
+                <input
+                  id="password"
+                  className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
+                  type={passwordVisible ? "text" : "password"}
+                  placeholder={languageData.register.passwordPlaceholder}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center"
+                >
+                  <img
+                    src={passwordVisible ? eye_off : eye}
+                    alt={
+                      passwordVisible
+                        ? languageData.register.hidePasswordAlt
+                        : languageData.register.showPasswordAlt
+                    }
+                    className="h-4 w-auto"
+                  />
+                </button>
+              </section>
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-button focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500"
+              >
+                {languageData.register.registerButton}
+              </button>
+            </div>
+          </form>
+        </section>
+      </section>
+    </main>
+  );
+};
+
+export default Register;

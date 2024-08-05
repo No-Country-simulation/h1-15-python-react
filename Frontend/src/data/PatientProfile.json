@@ -1,0 +1,25 @@
+{
+  "name": "Laura García",
+  "profession": "Gerente de Proyectos",
+  "bio": "Soy una persona dedicada con pasión por liderar equipos y gestionar proyectos complejos. Actualmente, estoy bajo tratamiento para controlar mi diabetes tipo 2, lo que implica seguir una dieta equilibrada recomendada por mi endocrinólogo y realizar ejercicio regular. Además, estoy trabajando en mejorar mi bienestar general mediante chequeos médicos periódicos y seguimiento con un nutricionista. Mi objetivo es mantener un estilo de vida saludable para apoyar mi vida profesional y personal.",
+  "age": 28,
+  "contact": "laura.garcia@example.com",
+  "phone": "+54 650 153 456",
+  "photo": "/Bung2.webp",
+  "gender": "Femenino",
+  "medicalHistory": "Diagnóstico de diabetes tipo 2. Sin antecedentes médicos importantes.",
+  "allergies": "No tiene alergias conocidas.",
+  "currentMedications": "Metformina (para diabetes tipo 2), en tratamiento de seguimiento.",
+  "emergencyContact": {
+    "name": "Carlos García",
+    "relation": "Esposo",
+    "phone": "+54 600 123 456"
+  },
+  "dateOfBirth": "1996-07-15",
+  "dni": "12345678A",
+  "insurance": {
+    "provider": "SaludPlus",
+    "policyNumber": "SP123456789",
+    "coverage": "Cobertura total en consultas y tratamientos médicos, excluye cirugías estéticas."
+  }
+}
