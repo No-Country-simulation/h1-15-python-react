@@ -350,5 +350,28 @@
   },
   "Navbar": {
     "title": "Salir"
+  },
+  "register": {
+    "title": "Registrarse",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "login": "Iniciar Sesión",
+    "firstNameLabel": "Nombre",
+    "firstNamePlaceholder": "Ingrese su nombre",
+    "lastNameLabel": "Apellido",
+    "lastNamePlaceholder": "Ingrese su apellido",
+    "dniLabel": "DNI",
+    "dniPlaceholder": "Ingrese su DNI",
+    "obraSocialLabel": "Obra Social",
+    "obraSocialPlaceholder": "Ingrese su obra social",
+    "emailLabel": "Correo",
+    "emailPlaceholder": "Ingrese su correo electrónico",
+    "birthdateLabel": "Fecha de Nacimiento",
+    "phoneLabel": "Número de Teléfono",
+    "secondaryPhoneLabel": "Contacto Secundario",
+    "passwordLabel": "Definir Contraseña",
+    "passwordPlaceholder": "Ingrese una contraseña",
+    "showPasswordAlt": "Mostrar contraseña",
+    "hidePasswordAlt": "Ocultar contraseña",
+    "registerButton": "Registrarse"
   }
 }

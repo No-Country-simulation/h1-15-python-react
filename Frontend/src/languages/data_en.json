@@ -350,5 +350,28 @@
 	},
 	"Navbar": {
 		"title": "Log out"
+	},
+	"register": {
+		"title": "Register",
+		"alreadyHaveAccount": "Already have an account?",
+		"login": "Login",
+		"firstNameLabel": "First Name",
+		"firstNamePlaceholder": "Enter your first name",
+		"lastNameLabel": "Last Name",
+		"lastNamePlaceholder": "Enter your last name",
+		"dniLabel": "DNI",
+		"dniPlaceholder": "Enter your DNI",
+		"obraSocialLabel": "Health Insurance",
+		"obraSocialPlaceholder": "Enter your health insurance",
+		"emailLabel": "Email",
+		"emailPlaceholder": "Enter your email address",
+		"birthdateLabel": "Birthdate",
+		"phoneLabel": "Phone Number",
+		"secondaryPhoneLabel": "Secondary Contact",
+		"passwordLabel": "Set Password",
+		"passwordPlaceholder": "Enter a password",
+		"showPasswordAlt": "Show password",
+		"hidePasswordAlt": "Hide password",
+		"registerButton": "Register"
 	}
 }

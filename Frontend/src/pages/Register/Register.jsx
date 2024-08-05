@@ -5,6 +5,7 @@ import "react-phone-input-2/lib/style.css";
 import eye from "/icons/eye.svg";
 import eye_off from "/icons/eye_off.svg";
 import { useNavigate } from "react-router-dom";
+import useLanguage from "../../hooks/useLanguage";
 
 const Register = () => {
   const [phone, setPhone] = useState("+54");
@@ -25,6 +26,15 @@ const Register = () => {
     navigate("/login");
   };
 
+  const languageData = useLanguage();
+
+  if (!languageData) {
+    return <div>Cargando datos...</div>;
+  }
+
+  console.log(languageData);
+  
+
   return (
     <main className="flex p-4 flex-col items-center justify-center min-h-screen bg-gradient-background_1">
       <section className="flex lg:max-w-[788px] flex-col justify-center p-[24px] bg-white shadow-lg rounded-lg overflow-hidden w-full">
@@ -36,14 +46,16 @@ const Register = () => {
           />
         </section>
         <section>
-          <h1 className="text-left text-[32px] font-bold">Registrarse</h1>
+          <h1 className="text-left text-[32px] font-bold">
+            {languageData.register.title}
+          </h1>
           <p className="mt-6 text-left text-sm text-text_primary">
-            ¿Ya tienes una cuenta?
+            {languageData.register.alreadyHaveAccount}
             <span
               onClick={handleLoginClick}
               className="ml-1 text-text_secondary font-semibold cursor-pointer"
             >
-              Iniciar Sesión
+              {languageData.register.login}
             </span>
           </p>
         </section>
@@ -55,13 +67,13 @@ const Register = () => {
                   htmlFor="first-name"
                   className="block text-sm font-medium"
                 >
-                  Nombre
+                  {languageData.register.firstNameLabel}
                 </label>
                 <input
                   id="first-name"
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
                   type="text"
-                  placeholder="Ingrese su nombre"
+                  placeholder={languageData.register.firstNamePlaceholder}
                   required
                 />
               </div>
@@ -70,26 +82,26 @@ const Register = () => {
                   htmlFor="last-name"
                   className="block text-sm font-medium"
                 >
-                  Apellido
+                  {languageData.register.lastNameLabel}
                 </label>
                 <input
                   id="last-name"
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
                   type="text"
-                  placeholder="Ingrese su apellido"
+                  placeholder={languageData.register.lastNamePlaceholder}
                   required
                 />
               </div>
             </div>
             <div>
               <label htmlFor="dni" className="block text-sm font-medium">
-                DNI
+                {languageData.register.dniLabel}
               </label>
               <input
                 id="dni"
                 className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
                 type="text"
-                placeholder="Ingrese su DNI"
+                placeholder={languageData.register.dniPlaceholder}
                 required
               />
             </div>
@@ -98,30 +110,30 @@ const Register = () => {
                 htmlFor="obra-social"
                 className="block text-sm font-medium"
               >
-                Obra Social
+                {languageData.register.obraSocialLabel}
               </label>
               <input
                 id="obra-social"
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
                 type="text"
-                placeholder="Ingrese su obra social"
+                placeholder={languageData.register.obraSocialPlaceholder}
               />
             </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium">
-                Correo
+                {languageData.register.emailLabel}
               </label>
               <input
                 id="email"
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
                 type="email"
-                placeholder="Ingrese su correo electrónico"
+                placeholder={languageData.register.emailPlaceholder}
                 required
               />
             </div>
             <div>
               <label htmlFor="nacimiento" className="block text-sm font-medium">
-                Fecha de Nacimiento
+                {languageData.register.birthdateLabel}
               </label>
               <input
                 id="nacimiento"
@@ -132,7 +144,7 @@ const Register = () => {
             </div>
             <div>
               <label htmlFor="telefono" className="block text-sm font-medium">
-                Número de Teléfono
+                {languageData.register.phoneLabel}
               </label>
               <PhoneInput
                 country={"ar"}
@@ -157,7 +169,7 @@ const Register = () => {
                 htmlFor="contacto-secundario"
                 className="block text-sm font-medium"
               >
-                Contacto Secundario
+                {languageData.register.secondaryPhoneLabel}
               </label>
               <PhoneInput
                 country={"ar"}
@@ -179,14 +191,14 @@ const Register = () => {
             </div>
             <div>
               <label htmlFor="password" className="block text-sm font-medium">
-                Definir Contraseña
+                {languageData.register.passwordLabel}
               </label>
               <section className="relative">
                 <input
                   id="password"
                   className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
                   type={passwordVisible ? "text" : "password"}
-                  placeholder="Ingrese una contraseña"
+                  placeholder={languageData.register.passwordPlaceholder}
                   required
                 />
                 <button
@@ -198,8 +210,8 @@ const Register = () => {
                     src={passwordVisible ? eye_off : eye}
                     alt={
                       passwordVisible
-                        ? "Ocultar contraseña"
-                        : "Mostrar contraseña"
+                        ? languageData.register.hidePasswordAlt
+                        : languageData.register.showPasswordAlt
                     }
                     className="h-4 w-auto"
                   />
@@ -211,7 +223,7 @@ const Register = () => {
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-button focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500"
               >
-                Registrarse
+                {languageData.register.registerButton}
               </button>
             </div>
           </form>
