@@ -43,9 +43,9 @@ const CardPatientAttendance = ({ paciente }) => {
       </div>
       {/**FIN CONECTOR */}
       <div className="bg-yellow-300 rounded-3xl p-3 flex justify-center items-stretch flex-col">
-        <div className="flex justify-around">
+        <div className="flex justify-around gap-4">
           <Avatar
-            className={"w-25 h-auto rounded-full mt-0 self-center"}
+            className={"w-[100px] h-auto rounded-full mt-0 self-center"}
             imagen={imagen}
           />
           <div className="flex flex-col">
