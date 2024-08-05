@@ -129,11 +129,11 @@ function ScheduleAppointmentForm({ doctor }) {
         <h2 className="text-xl font-bold mb-4 text-center">Nueva Cita</h2>
         <div className="mb-4">
           <p className="text-lg font-semibold">Selecciona una fecha:</p>
-          <div className="flex flex-wrap justify-center space-x-2 mt-2">
+          <div className="flex flex-wrap justify-center mt-2 w-full gap-2">
             {nextDays.map((date) => (
               <button
                 key={date.toISOString()}
-                className={`py-2 px-4 rounded-lg h-16 md:w-20 md:h-20 ${
+                className={`w-18 py-2 px-4 rounded-lg h-16 md:w-20 md:h-20 ${
                   date.toDateString() === selectedDate.toDateString()
                     ? "bg-gradient-button-2 text-white rounded-custom shadow-inner-custom"
                     : " text-gray-800 border border-1 border-slate-100 shadow-md"
@@ -142,7 +142,7 @@ function ScheduleAppointmentForm({ doctor }) {
               >
                 {format(date, "dd")}
                 <br />
-                <span className="text-sm">{format(date, "EEEE")}</span>
+                <span className="text-sm">{format(date, "EE")}</span>
               </button>
             ))}
           </div>
