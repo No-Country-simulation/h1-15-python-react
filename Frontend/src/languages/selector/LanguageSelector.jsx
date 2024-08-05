@@ -4,6 +4,7 @@ import { IoLanguageSharp } from 'react-icons/io5';
 import { setLanguageData } from '../../redux/slice/langSlice';
 import data_en from '../data_en.json';
 import data_es from '../data_es.json';
+import data_pt from '../data_pt.json'; 
 
 const LanguageSelector = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,8 @@ const LanguageSelector = () => {
   const [selectedLanguage, setSelectedLanguage] = useState(localStorage.getItem('selectedLanguage') || 'es');
   const languages = [
     { value: 'es', label: 'Español' },
-    { value: 'en', label: 'English' }
+    { value: 'en', label: 'English' },
+    { value: 'pt', label: 'Português' } 
   ];
 
   const handleSelect = (language) => {
@@ -19,6 +21,9 @@ const LanguageSelector = () => {
     switch (language) {
       case 'en':
         data = data_en;
+        break;
+      case 'pt':
+        data = data_pt; 
         break;
       default:
         data = data_es;
