@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'entidad.apps.EntidadConfig',
     'especialidad.apps.EspecialidadConfig',
     'financiadores.apps.FinanciadoresConfig',
-    'historia_clinica.apps.HistoriaClinicaConfig',
     'medicamentos.apps.MedicamentosConfig',
     'nomencladores.apps.NomencladoresConfig',
     'personal_medico.apps.PersonalMedicoConfig',

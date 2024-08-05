@@ -23,28 +23,16 @@ class Paciente(models.Model):
     id_entidad = models.ForeignKey('Entidad', on_delete=models.CASCADE)
     id_financiador = models.ForeignKey('Financiador', on_delete=models.CASCADE)
     id_tratamiento = models.ForeignKey('Tratamiento', on_delete=models.CASCADE)
-    id_personal_medico = models.ForeignKey(
-        'PersonalMedico', on_delete=models.CASCADE)
     id_patologia = models.ForeignKey('Patologia', on_delete=models.CASCADE)
-    id_tipo_documento = models.ForeignKey(
-        'TipoDocumento', on_delete=models.CASCADE)
-    id_historia_clinica = models.ForeignKey(
-        'HistoriaClinica', on_delete=models.CASCADE)
-
-# HistoriaClinica model
-
-
-class HistoriaClinica(models.Model):
-    id_antecedente_medico = models.ForeignKey(
-        'AntecedenteMedico', on_delete=models.CASCADE)
-
-# AntecedenteMedico model
+    id_tipo_documento = models.ForeignKey('TipoDocumento', on_delete=models.CASCADE)
 
 
 class AntecedenteMedico(models.Model):
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, related_name='antecedentes_medicos')
     fecha_atencion = models.DateTimeField()
     informacion = models.TextField()
     identificador_examen = models.CharField(max_length=255)
+    id_personal_medico = models.ForeignKey('PersonalMedico', on_delete=models.CASCADE, blank=True, null=True)
     id_patologia = models.ForeignKey('Patologia', on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
 
