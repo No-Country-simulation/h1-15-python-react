@@ -6,6 +6,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import VoiceDictation from "../../../components/VoiceDictation/VoiceDictation";
 import { useDropzone } from "react-dropzone";
+import { showToast } from "../../../utils/toast";
+import { ToastContainer } from "react-toastify";
 
 const DoctorTreatments = () => {
   const [data, setData] = useState({
@@ -73,8 +75,6 @@ const DoctorTreatments = () => {
     setData({ ...data, duracion: e.target.value });
   };
   const handleDesdeSelect = (e) => {
-    console.log(e.$d);
-
     setData({ ...data, desde: e.$d });
   };
   const handleComentariosChange = (e) => {
@@ -91,24 +91,27 @@ const DoctorTreatments = () => {
     e.preventDefault();
     if (data.paciente === "") {
       setError({ ...error, paciente: true });
+    } else {
+      showToast("Tratamiento asignado correctamente", "success");
     }
   };
-  const getPacientes = async () => {
+  /* const getPacientes = async () => {
     const response = await fetch(
       "https://justinaback.pythonanywhere.com/api/patient/",
     );
     const data = await response.json();
     console.log(data);
-  };
+  }; */
 
   useEffect(() => {
     setDosis(medicina.medicamentos[data.medicamento]);
-    getPacientes();
+    // getPacientes();
   }, [data]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <main className="w-2/3 flex flex-col items-center">
+        <ToastContainer />
         <h1 className="font-semibold text-[64px] font-josefin">Tratamientos</h1>
         <section>
           <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
@@ -282,6 +285,7 @@ const DoctorTreatments = () => {
             </button>
           </form>
         </section>
+        <ToastContainer />
       </main>
     </LocalizationProvider>
   );
