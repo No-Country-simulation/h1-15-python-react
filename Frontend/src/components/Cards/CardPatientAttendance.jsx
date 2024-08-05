@@ -45,25 +45,27 @@ const CardPatientAttendance = ({ paciente }) => {
       <div className="bg-yellow-300 rounded-3xl p-3 flex justify-center items-stretch flex-col">
         <div className="flex justify-around">
           <Avatar
-            className={"w-20 h-20 rounded-full mt-0 self-center"}
+            className={"w-25 h-auto rounded-full mt-0 self-center"}
             imagen={imagen}
           />
           <div className="flex flex-col">
             <div className={`flex gap-3 items-center font-bold `}>
               <div
                 className={`${
-                  estado ? "bg-green-500" : "bg-orange-500"
+                  estado ? "bg-green-500" : "bg-green-500"
                 } rounded-full w-5 h-5`}
               ></div>
               {estado ? "En consulta" : "Agendado"}
             </div>
             <p className="text-xl">{nombre}</p>
-            <p className="font-light text-sm">
+            <p className="font-light">
               Edad: <span>{edad}</span> años
             </p>
-            <div className="w-full h-[1px] bg-slate-400 my-3"></div>
-            <p>{doctor}</p>
-            <p className="font-semibold text-sm">{especialidad}</p>
+            <div className="w-full bg-slate-400 my-2"></div>
+            <b>Médico a cargo:</b>
+            <span className="font-light">{doctor}</span>
+            <b>Especialidad:</b>
+            <span className="font-light"> {especialidad}</span>
           </div>
         </div>
 
