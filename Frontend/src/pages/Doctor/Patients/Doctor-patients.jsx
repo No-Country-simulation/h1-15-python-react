@@ -3,7 +3,6 @@ import { BiSearch } from "react-icons/bi";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import CardPatientList from "../../../components/Cards/CardPatientList";
 import LateralView from "../../../components/LateralView";
-import { Tooltip } from "@mui/material";
 
 const DoctorPatients = () => {
   const [hasContent, setHasContent] = useState(false);
@@ -39,7 +38,7 @@ const DoctorPatients = () => {
       <h1 className="font-semibold text-5xl font-josefin">Pacientes</h1>
       <div className="flex items-center">
         {/**CUADRO DE BUSQUEDA */}
-        <div className="relative px-2 w-[507px] h-[56px]">
+        <div className="relative px-2 w-[705px] h-[56px]">
           <BiSearch className="relative top-[38px] left-3 text-xl" />
           <IoMdCloseCircleOutline
             className="absolute top-[38px] right-3 text-xl cursor-pointer"
@@ -65,12 +64,6 @@ const DoctorPatients = () => {
             Nombre del paciente
           </label>
         </div>
-        {/**BOTON DE AGREGAR PACIENTES */}
-        <Tooltip title="Proximamente...">
-          <button className="mt-10 py-[19px] px-[15px] font-semibold font-josefin rounded-3xl text-base text-center text-white bg-[#28ADE4] hover:shadow-[2px_2px_5px_2px_#00000020] hover:bg-[#41b3e4]">
-            Agregar paciente
-          </button>
-        </Tooltip>
       </div>
       <section className="flex gap-6">
         <ul className="gap-4 flex flex-col w-2/3 mt-10">
