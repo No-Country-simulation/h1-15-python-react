@@ -1,15 +1,24 @@
-FROM node:20.15.0-slim
+# syntax=docker/dockerfile:1
 
-WORKDIR /app
+ARG NODE_VERSION=20.11.0
+FROM node:${NODE_VERSION}-alpine AS base
 
-COPY . .
+WORKDIR /usr/src/app
 
-RUN npm install
+FROM base AS deps
+
+RUN --mount=type=bind,source=package.json,target=package.json \
+    --mount=type=bind,source=package-lock.json,target=package-lock.json \
+    --mount=type=cache,target=/root/.npm \
+    npm ci --omit=dev
+
+FROM deps AS build
+
+RUN --mount=type=bind,source=package.json,target=package.json \
+    --mount=type=bind,source=package-lock.json,target=package-lock.json \
+    --mount=type=cache,target=/root/.npm \
+    npm ci
 
 COPY . .
 
 RUN npm run build
-
-EXPOSE 4173
-
-CMD ["npm", "run", "preview"]
