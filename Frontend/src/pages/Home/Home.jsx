@@ -28,19 +28,18 @@ function Home() {
           <img src="/justinaLogo.webp" alt="logo" className="w-full h-auto" />
         </div>
 
-        <section>
+        <section className="flex gap-2">
           <LanguageSelector />
+          <button
+            onClick={handleLoginClick}
+            className="bg-magentaButton h-[34px] text-sm text-white rounded-md hover:bg-magentaButtonDark transition duration-300 px-4 flex items-center justify-center"
+            aria-label={languageData.home.navbar.title}
+          >
+            <span className="text-xs md:text-sm">
+              {languageData.home.navbar.title}
+            </span>
+          </button>
         </section>
-
-        <button
-          onClick={handleLoginClick}
-          className="bg-magentaButton h-[34px] text-sm text-white rounded-md hover:bg-magentaButtonDark transition duration-300 px-4 flex items-center justify-center"
-          aria-label={languageData.home.navbar.title}
-        >
-          <span className="text-xs md:text-sm">
-            {languageData.home.navbar.title}
-          </span>
-        </button>
       </nav>
 
       <section className="w-full flex flex-col md:flex-row md:justify-around">
@@ -66,7 +65,10 @@ function Home() {
 
           {/* Botón */}
           <div className="flex justify-center items-center p-6">
-            <button className="bg-magentaButton w-[150px] md:w-[195px] h-[50px] md:h-[63px] font-bold text-lg md:text-xl text-white rounded-lg hover:bg-magentaButtonDark transition duration-300 focus:outline-none focus:ring-2 focus:ring-magentaButtonDark">
+            <button
+              onClick={handleLoginClick}
+              className="bg-magentaButton w-[150px] md:w-[195px] h-[50px] md:h-[63px] font-bold text-lg md:text-xl text-white rounded-lg hover:bg-magentaButtonDark transition duration-300 focus:outline-none focus:ring-2 focus:ring-magentaButtonDark"
+            >
               {languageData.home.cta.button}
             </button>
           </div>
@@ -120,7 +122,11 @@ function Home() {
       </section>
       {/* MockUp */}
       <div className="flex w-full justify-center items-center p-8">
-        <img src={languageData.home.mockup.image} alt="mockup" className="w-full max-w-lg h-auto"/>
+        <img
+          src={languageData.home.mockup.image}
+          alt="mockup"
+          className="w-full max-w-lg h-auto"
+        />
       </div>
 
       {/* How It Works */}
