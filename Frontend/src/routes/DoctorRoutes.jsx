@@ -6,6 +6,7 @@ import DoctorMain from "../pages/Doctor/Doctor-main/Doctor-main";
 import DoctorPatients from "../pages/Doctor/Patients/Doctor-patients";
 import DoctorTransplants from "../pages/Doctor/Transplants/Doctor-transplant";
 import PageConstruction from "../components/PageConstruction/PageConstruction";
+import DoctorTreatments from "../pages/Doctor/Treatments/Doctor-treatments";
 
 export const doctorRoutes = (
   <Route
@@ -19,6 +20,6 @@ export const doctorRoutes = (
     <Route path="patients" element={<DoctorPatients />} />
     <Route path="transplants" element={<DoctorTransplants />} />
     <Route path="messages" element={<PageConstruction />} />
-    <Route path="treatments" element={<PageConstruction />} />
+    <Route path="treatments" element={<DoctorTreatments />} />
   </Route>
 );

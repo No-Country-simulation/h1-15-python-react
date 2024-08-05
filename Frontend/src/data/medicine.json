@@ -1,0 +1,24 @@
+{
+    "medicamentos":[
+        {
+            "medicamento":"CICLOSPORINA",
+            "dosis":["12,5mg", "15mg"]
+        },
+        {
+            "medicamento":"TACROLIMUS",
+            "dosis":["0,10mg", "0,20mg", "0,30mg"]
+        },
+        {
+            "medicamento":"MICOFENOLATO",
+            "dosis":["0,5g","1g","1,5g","3g"]
+        },
+        {
+            "medicamento":"AZATIOPRINA",
+            "dosis":["1mg","1,5mg","2mg", "2,5mg"]
+        },{
+            "medicamento":"PREDNISONA",
+            "dosis":["5mg", "10mg", "15mg","20mg","30mg","40mg", "50mg","60mg"]
+        }
+
+    ]
+}
