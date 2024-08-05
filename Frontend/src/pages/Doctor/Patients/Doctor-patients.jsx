@@ -12,7 +12,7 @@ const DoctorPatients = () => {
   const [pacienteSeleccionado, setPacienteSeleccionado] = useState();
   async function loadPacientes() {
     const response = await fetch(
-      "https://raw.githubusercontent.com/No-Country-simulation/h1-15-python-react/77130797313cdfcc6a228211aeec88e0bb7921ce/Frontend/src/data/pacientes.json",
+      "https://raw.githubusercontent.com/No-Country-simulation/h1-15-python-react/frontend-stable/Frontend/src/data/pacientes.json",
     );
     const names = await response.json();
     setPacientes(names.result);

@@ -12,9 +12,9 @@ const Navigation = () => {
   const actual = useLocation();
 
   return (
-    <aside className="flex flex-col w-[264px] bg-secondary-600 text-white font-semibold rounded-3xl h-full min-h-[90dvh] overflow-hidden pt-4">
-      <img className="self-center w-1/2" src="/justinaLogo.png" alt="Logo" />
-      <nav className="flex flex-col w-full min-h-full gap-2 flex-grow py-4 ">
+    <aside className="flex flex-col w-[264px]  text-white font-semibold h-full min-h-[90dvh] overflow-hidden pt-4">
+      <img className="self-center w-[75%]" src="/justinaLogo.png" alt="Logo" />
+      <nav className="flex flex-col bg-secondary-600 w-full min-h-full gap-2 flex-grow py-4 rounded-lg mt-4">
         <Link
           to="/doctor"
           className={`flex text-base items-center gap-2 hover:bg-secondary-400 w-full p-2 ${actual.pathname === "/doctor" ? "bg-secondary-500" : ""}`}
