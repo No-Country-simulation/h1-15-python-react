@@ -20,7 +20,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         #if user.user_types:
         data['id_user'] = user.id
         data['user_types'] = user.user_types.tipo
-        data['firts_login'] = user.first_login
+        data['first_login'] = user.first_login
 
         return data
     
