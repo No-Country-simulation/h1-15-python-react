@@ -235,7 +235,7 @@
                 "id": 6,
                 "icon": "phoneViolet",
                 "title": "Contato de Emergência",
-                "color": "#d667cd",
+                "color": "#D22B8B",
                 "link": "/patient/emergency-contacts"
             }
         ]
@@ -278,13 +278,13 @@
                 "titles": [
                     "Medicamentos Pendentes:"
                 ],
-                "backgroundColor": "#d667cd",
+                "backgroundColor": "#D22B8B",
                 "textColor": "#FFF"
             }
         ],
         "cardEvent": [
             {
-                "color": "#d667cd",
+                "color": "#D22B8B",
                 "action": "Nova dose de",
                 "name": "Ciclosporina 10mg",
                 "time": "8:30",
@@ -298,7 +298,7 @@
                 "unit": "PM"
             },
             {
-                "color": "#d667cd",
+                "color": "#D22B8B",
                 "action": "Nova dose de",
                 "name": "Ciclosporina 10mg",
                 "time": "8:30",
@@ -312,7 +312,7 @@
                 "unit": "AM"
             },
             {
-                "color": "#d667cd",
+                "color": "#D22B8B",
                 "action": "Nova dose de",
                 "name": "Ibuprofeno 200mg",
                 "time": "12:30",
@@ -326,7 +326,7 @@
                 "unit": "PM"
             },
             {
-                "color": "#d667cd",
+                "color": "#D22B8B",
                 "action": "Nova dose de",
                 "name": "Paracetamol 500mg",
                 "time": "4:00",

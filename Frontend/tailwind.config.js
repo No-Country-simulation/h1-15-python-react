@@ -46,7 +46,7 @@ export default {
           800: "#62532c",
           900: "#312a16",
         },
-        magentaButton: "#d667cd",
+        magentaButton: "#D22B8B",
         Justina_1: "#5563C4",
         Justina_2: "#9AC9B9",
         Justina_3: "#EE6092",
@@ -65,7 +65,7 @@ export default {
           // "linear-gradient(0deg, #FFC791 0%, #FF78A8 100%)",
           "linear-gradient(0deg, #0002 0%, #f4f4f4 100%)",
         "gradient-button":
-          "linear-gradient(0deg, #d667cd, #d667cd), linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%)",
+          "linear-gradient(0deg, #D22B8B, #D22B8B), linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%)",
         "footer-gradient": `linear-gradient(180deg, #5b5a94 0%, #4a4a7a 50%, #3b3b60 100%)`,
         "gradient-button-2":
           "linear-gradient(0deg, #28ADE4, #28ADE4),linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.189) 50%, rgba(0, 0, 0, 0.2) 100%)",
