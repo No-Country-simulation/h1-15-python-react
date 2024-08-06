@@ -28,7 +28,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=255, null=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    user_types = models.ForeignKey('TipoUsuario', on_delete=models.CASCADE, related_name='users')
+    user_types = models.ForeignKey('TipoUsuario', on_delete=models.CASCADE, related_name='users', null=True, blank=True)
     first_login = models.BooleanField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True)
 
