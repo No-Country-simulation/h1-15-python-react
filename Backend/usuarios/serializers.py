@@ -18,12 +18,10 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         user = self.user
         
         #if user.user_types:
-        data['first_name '] = user.first_name 
+        data['id_user'] = user.id
         data['user_types'] = user.user_types.tipo
         data['firts_login'] = user.first_login
 
-        #else:
-        #    data['user_types'] = ''
         return data
     
 

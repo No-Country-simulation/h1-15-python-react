@@ -69,7 +69,7 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     def patch(self, request, *args, **kwargs):
         user = User.objects.get(id=kwargs['pk'])
         activation_mail(user.email, request.data['password'])
-        user.is_active = request.data['is_active']
+        user.first_login = False
         user.set_password(request.data['password'])
         user.save()
         return self.partial_update(request, *args, **kwargs)
@@ -81,8 +81,4 @@ class CustomTokenObtainPairView(TokenObtainPairView):
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
         data = response.data
-        user = request.user
-        print(user.email)
-        data['email'] = getattr(user, 'email', 'Unknown')
-        
         return Response(data, status=status.HTTP_200_OK)
