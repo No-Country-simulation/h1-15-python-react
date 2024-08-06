@@ -21,7 +21,7 @@ const Treatment = () => {
     : events;
 
   const pendingMedicationsCount = events.filter(
-    (event) => event.color === "#d667cd"
+    (event) => event.color === "#D22B8B"
   ).length;
 
   if (!languageData) {
