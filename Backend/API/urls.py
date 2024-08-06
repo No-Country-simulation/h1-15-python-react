@@ -23,13 +23,14 @@ from entidad.views import EntidadDetail, EntidadList
 from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListCreate, TurnoDetail, TurnoListView, MisTurnoListView, ReservarTurnoView
 from patologias.views import PatologiaList, PatologiaDetail
 from farmacia.views import FarmaciaList, FarmaciaDetail
+from usuarios.views import CustomTokenObtainPairView
 
 
 urlpatterns = [
     # Admin route
     path('admin/', admin.site.urls),
     # Simple JWT API
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # DRF Spectacular URLs

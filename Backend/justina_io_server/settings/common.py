@@ -184,5 +184,22 @@ SPECTACULAR_SETTINGS = {
 }
 
 
-#AUTH_USER_MODEL = 'core.CoreUser'
+AUTH_USER_MODEL = 'core.User'
 
+
+ALLOWED_HOSTS = ['*']
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080',
+    'http://127.0.0.1',
+    'http://0.0.0.0',
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost',
+    'http://127.0.0.1',
+    'http://0.0.0.0',
+]

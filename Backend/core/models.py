@@ -1,25 +1,59 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group
+
 import json
 
+# Custom UserManager
+class UserManager(BaseUserManager):
+    def create_user(self, email, first_name, last_name, password=None, **extra_fields):
+        if not email:
+            raise ValueError('El email es obligatorio')
+        email = self.normalize_email(email)
+        user = self.model(email=email, first_name=first_name, last_name=last_name, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
-User = get_user_model()
+    def create_superuser(self, email, first_name, last_name, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
 
+        return self.create_user(email, first_name, last_name, password, **extra_fields)
+    
+# Definición del modelo User para representar los usuarios
+class User(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(unique=True, null=False)
+    first_name = models.CharField(max_length=255, null=False)
+    last_name = models.CharField(max_length=255, null=False)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    user_types = models.ForeignKey('TipoUsuario', on_delete=models.CASCADE, related_name='users')
+    first_login = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name']
+
+    objects = UserManager()
+
+    def __str__(self):
+        return self.email
 
 # TipoUsuario model
 class TipoUsuario(models.Model):
-    tipo = models.IntegerField()
-    id_usuario = models.ForeignKey(
-        User, related_name='user', on_delete=models.CASCADE)
+    tipo = models.CharField(max_length=20, null=False)
+
     id_group = models.ForeignKey(
-        Group, related_name='group', on_delete=models.CASCADE)
+        Group, related_name='groups', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.tipo
+
 
 # Paciente model
-
-
 class Paciente(models.Model):
-    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey('core.User', on_delete=models.CASCADE)
     id_entidad = models.ForeignKey('Entidad', on_delete=models.CASCADE)
     id_financiador = models.ForeignKey('Financiador', on_delete=models.CASCADE)
     id_tratamiento = models.ForeignKey('Tratamiento', on_delete=models.CASCADE)
@@ -50,14 +84,12 @@ class InformacionPersonal(models.Model):
     nro_documento = models.CharField(max_length=20)
     fecha_nacimiento = models.DateTimeField()
     sexo = models.CharField(max_length=10)
-    direccion = models.ForeignKey(
-        'Direccion', related_name='direcciones', on_delete=models.CASCADE)
+    direccion = models.ForeignKey('Direccion', related_name='direcciones', on_delete=models.CASCADE)
     numero_telefono = models.CharField(max_length=20)
     numero_telefono_2 = models.CharField(max_length=20, null=True, blank=True)
     correo_contacto = models.EmailField()
     factor_sanguineo = models.CharField(max_length=3)
-    id_informacion_personal = models.ForeignKey(
-        User, related_name='usuario', on_delete=models.CASCADE, null=True, blank=True)
+    id_informacion_personal = models.ForeignKey('core.User', related_name='usuario', on_delete=models.CASCADE, null=True, blank=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):

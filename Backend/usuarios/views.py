@@ -1,19 +1,19 @@
 from django.contrib.auth import get_user_model
 from mail.views import activation_mail
+from core.models import User
 from usuarios.serializers import UserSerializer
 from rest_framework import generics, permissions
 from drf_spectacular.utils import extend_schema
-from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.views import TokenObtainPairView
+from usuarios.serializers import CustomTokenObtainPairSerializer
+from rest_framework.response import Response
+from rest_framework import status
 
-User = get_user_model()
-
-0
 # Create your views here.
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
 
     @extend_schema(
         tags=['Usuarios'],
@@ -22,6 +22,7 @@ class UserList(generics.ListCreateAPIView):
     )
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
+
 
     @extend_schema(
         tags=['Usuarios'],
@@ -72,3 +73,16 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
         user.set_password(request.data['password'])
         user.save()
         return self.partial_update(request, *args, **kwargs)
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
+
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        data = response.data
+        user = request.user
+        print(user.email)
+        data['email'] = getattr(user, 'email', 'Unknown')
+        
+        return Response(data, status=status.HTTP_200_OK)
