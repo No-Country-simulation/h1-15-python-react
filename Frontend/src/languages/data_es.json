@@ -191,6 +191,18 @@
     "eyeAltShow": "Mostrar contraseña",
     "eyeAltHide": "Ocultar contraseña"
   },
+  "updatePassword": {
+    "title": "Actualizar Contraseña",
+    "newPasswordLabel": "Nueva Contraseña",
+    "newPasswordPlaceholder": "Ingrese una nueva contraseña",
+    "confirmNewPasswordLabel": "Confirmar Nueva Contraseña",
+    "confirmNewPasswordPlaceholder": "Confirme su nueva contraseña",
+    "updateButton": "Actualizar Contraseña",
+    "backToLogin": "Volver al inicio de sesión",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "passwordUpdated": "Contraseña actualizada exitosamente",
+    "errorUpdatingPassword": "Error al actualizar la contraseña"
+  },
   "patientMain": {
     "locateTitle": "Localiza",
     "locateSubtitle": "tu médico",
@@ -359,19 +371,13 @@
     "firstNamePlaceholder": "Ingrese su nombre",
     "lastNameLabel": "Apellido",
     "lastNamePlaceholder": "Ingrese su apellido",
-    "dniLabel": "DNI",
-    "dniPlaceholder": "Ingrese su DNI",
-    "obraSocialLabel": "Obra Social",
-    "obraSocialPlaceholder": "Ingrese su obra social",
     "emailLabel": "Correo",
     "emailPlaceholder": "Ingrese su correo electrónico",
-    "birthdateLabel": "Fecha de Nacimiento",
-    "phoneLabel": "Número de Teléfono",
-    "secondaryPhoneLabel": "Contacto Secundario",
-    "passwordLabel": "Definir Contraseña",
-    "passwordPlaceholder": "Ingrese una contraseña",
-    "showPasswordAlt": "Mostrar contraseña",
-    "hidePasswordAlt": "Ocultar contraseña",
-    "registerButton": "Registrarse"
+    "roleLabel": "Selecciona tu rol para registrarte:",
+    "patientRole": "Paciente: Para gestionar tus citas y consultas médicas.",
+    "doctorRole": "Médico: Para administrar tus consultas y pacientes.",
+    "registerButton": "Registrarse",
+    "registrationSuccessTitle": "Registro Exitoso",
+    "registrationSuccessMessage": "Se ha enviado un correo con la contraseña de acceso a la aplicación."
   }
 }

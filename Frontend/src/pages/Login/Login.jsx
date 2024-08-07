@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { showToast } from "../../utils/toast";
 import useLanguage from "../../hooks/useLanguage";
+import { loginUser } from "../../services/auth";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -31,11 +32,16 @@ const Login = () => {
 
   const togglePasswordVisibility = () => setPasswordVisible((prev) => !prev);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email === "laura.garcia@example.com" && password === "Password$123") {
-      localStorage.setItem("authToken", "example123");
-      localStorage.setItem("userType", "patient");
+    try {
+      const data = await loginUser(email, password);
+
+      localStorage.setItem("authToken", data.access);
+      localStorage.setItem("userType", data.user_types.toLowerCase());
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userId", data.id_user);
+
       if (rememberMe) {
         localStorage.setItem("rememberMeEmail", email);
         localStorage.setItem("rememberMePassword", password);
@@ -43,19 +49,16 @@ const Login = () => {
         localStorage.removeItem("rememberMeEmail");
         localStorage.removeItem("rememberMePassword");
       }
-      navigate("/patient");
-    } else if (email === "doctor@example.com" && password === "Password$123") {
-      localStorage.setItem("authToken", "doctorToken123");
-      localStorage.setItem("userType", "doctor");
-      if (rememberMe) {
-        localStorage.setItem("rememberMeEmail", email);
-        localStorage.setItem("rememberMePassword", password);
+
+      // Redirige a la página /update-password solo si es el primer inicio de sesión
+      if (data.first_login) {
+        navigate("/update-password");
       } else {
-        localStorage.removeItem("rememberMeEmail");
-        localStorage.removeItem("rememberMePassword");
+        // Redirige al tipo de usuario después del primer inicio de sesión
+        navigate(`/${data.user_types.toLowerCase()}`);
       }
-      navigate("/doctor");
-    } else {
+    } catch (error) {
+      console.error("Login Error:", error); // Log error
       showToast("Credenciales inválidas.", "error");
     }
   };

@@ -191,6 +191,18 @@
         "eyeAltShow": "Mostrar senha",
         "eyeAltHide": "Ocultar senha"
     },
+    "updatePassword": {
+        "title": "Atualizar Senha",
+        "newPasswordLabel": "Nova Senha",
+        "newPasswordPlaceholder": "Digite uma nova senha",
+        "confirmNewPasswordLabel": "Confirmar Nova Senha",
+        "confirmNewPasswordPlaceholder": "Confirme sua nova senha",
+        "updateButton": "Atualizar Senha",
+        "backToLogin": "Voltar para o login",
+        "passwordMismatch": "As senhas não coincidem",
+        "passwordUpdated": "Senha atualizada com sucesso",
+        "errorUpdatingPassword": "Erro ao atualizar a senha"
+    },
     "patientMain": {
         "locateTitle": "Localize",
         "locateSubtitle": "seu médico",
@@ -352,26 +364,20 @@
         "title": "Sair"
     },
     "register": {
-        "title": "Registrar-se",
+        "title": "Cadastrar",
         "alreadyHaveAccount": "Já tem uma conta?",
         "login": "Entrar",
         "firstNameLabel": "Nome",
         "firstNamePlaceholder": "Digite seu nome",
         "lastNameLabel": "Sobrenome",
         "lastNamePlaceholder": "Digite seu sobrenome",
-        "dniLabel": "DNI",
-        "dniPlaceholder": "Digite seu DNI",
-        "obraSocialLabel": "Plano de Saúde",
-        "obraSocialPlaceholder": "Digite seu plano de saúde",
         "emailLabel": "E-mail",
         "emailPlaceholder": "Digite seu e-mail",
-        "birthdateLabel": "Data de Nascimento",
-        "phoneLabel": "Número de Telefone",
-        "secondaryPhoneLabel": "Contato Secundário",
-        "passwordLabel": "Definir Senha",
-        "passwordPlaceholder": "Digite uma senha",
-        "showPasswordAlt": "Mostrar senha",
-        "hidePasswordAlt": "Ocultar senha",
-        "registerButton": "Registrar-se"
+        "roleLabel": "Selecione seu papel para se registrar:",
+        "patientRole": "Paciente: Para gerenciar suas consultas e atendimentos médicos.",
+        "doctorRole": "Médico: Para gerenciar suas consultas e pacientes.",
+        "registerButton": "Cadastrar",
+        "registrationSuccessTitle": "Cadastro Bem-Sucedido",
+        "registrationSuccessMessage": "Um e-mail com a senha de acesso ao aplicativo foi enviado."
     }
 }
