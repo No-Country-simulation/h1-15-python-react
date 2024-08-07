@@ -151,7 +151,7 @@ const Register = () => {
                     onChange={handleChange}
                     className="form-radio text-secondary-500"
                   />
-                  <span className="ml-2 sm:text-sm">
+                  <span className="ml-2 text-sm">
                     {languageData.register.patientRole}
                   </span>
                 </label>
@@ -164,7 +164,7 @@ const Register = () => {
                     onChange={handleChange}
                     className="form-radio text-secondary-500 sm:text-sm"
                   />
-                  <span className="ml-2 sm:text-sm">
+                  <span className="ml-2 text-sm">
                     {languageData.register.doctorRole}
                   </span>
                 </label>
