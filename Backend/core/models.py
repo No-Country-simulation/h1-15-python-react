@@ -43,13 +43,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 # TipoUsuario model
 class TipoUsuario(models.Model):
-    tipo = models.CharField(max_length=20, null=False)
-
+    type_user = models.CharField(max_length=20, null=False)
     id_group = models.ForeignKey(
         Group, related_name='groups', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.tipo
+        return self.type_user
 
 # Paciente model
 class Paciente(models.Model):
