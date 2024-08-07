@@ -67,15 +67,14 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 
     @extend_schema(
         tags=['Users'],
-        summary='Partial update of a user',
-        description="Allows modifying certain details of the user specified by their ID."
+        summary='Change Password and set first_login in False',
+        description="Allows you to modify the password of the user specified by their ID."
     )
     def patch(self, request, *args, **kwargs):
         user = User.objects.get(id=kwargs['pk'])
         activation_mail(user.email, request.data['password'])
         user.first_login = False
         user.set_password(request.data['password'])
-        print(user.password)
         user.save()
         return self.partial_update(request, *args, **kwargs)
 

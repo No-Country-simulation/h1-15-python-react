@@ -46,6 +46,10 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'usuarios.apps.UsuariosConfig',
     'tipo_usuario.apps.TipoUsuarioConfig',
+    'pacientes.apps.PacientesConfig',
+    'financiadores.apps.FinanciadoresConfig',
+    'tipo_documento.apps.TipoDocumentoConfig',
+    'direcciones.apps.DireccionesConfig',
 
 ]
 
@@ -55,20 +59,16 @@ apifaltan = [
     'mail.apps.MailConfig',
     'tratamientos.apps.TratamientosConfig',
     'informacion_personal.apps.InformacionPersonalConfig',
-    'pacientes.apps.PacientesConfig',
     'patologias.apps.PatologiasConfig',
-    'direcciones.apps.DireccionesConfig',
     'turnos.apps.TurnosConfig',
     'trasplantes_cruzados.apps.TrasplantesCruzadosConfig',
     'farmacia.apps.FarmaciaConfig',
     'antecedente_medico.apps.AntecedenteMedicoConfig',
     'entidad.apps.EntidadConfig',
     'especialidad.apps.EspecialidadConfig',
-    'financiadores.apps.FinanciadoresConfig',
     'medicamentos.apps.MedicamentosConfig',
     'nomencladores.apps.NomencladoresConfig',
     'personal_medico.apps.PersonalMedicoConfig',
-    'tipo_documento.apps.TipoDocumentoConfig',
 
 ]
 

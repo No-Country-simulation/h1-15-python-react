@@ -41,21 +41,20 @@ urlpatterns = [
     # API URLs
     path('users/', UserList.as_view()),
     path('users/<int:pk>/', UserDetail.as_view()),
-
+    path('patient/', PacienteList.as_view(),),
+    path('patient/<int:pk>/', PacienteDetail.as_view(),),
+    path('personal/', InformacionPersonalList.as_view(),),
+    path('personal/<int:pk>/', InformacionPersonalDetail.as_view(),),
+    path('address/', DireccionList.as_view(),),
+    path('address/<int:pk>/', DireccionDetail.as_view(),),
+    path('financers/', FinanciadoresList.as_view(),),
 ]
 
 """
 path('treatment/', TratamientoList.as_view(),),
 path('treatment/<int:pk>/', TratamientoDetail.as_view(),),
-path('personal/', InformacionPersonalList.as_view(),),
-path('personal/<int:pk>/', InformacionPersonalDetail.as_view(),),
-path('patient/', PacienteList.as_view(),),
-path('patient/<int:pk>/', PacienteDetail.as_view(),),
 path('type/', TipoUsuarioList.as_view(),),
 path('type/<int:pk>/', TipoUsuarioDetail.as_view(),),
-path('address/', DireccionList.as_view(),),
-path('address/<int:pk>/', DireccionDetail.as_view(),),
-path('financiadores/', FinanciadoresList.as_view(),),
 path('financiadores/<int:pk>/',FinanciadoresDetail.as_view(),),
 path('nomenclador/', NomencladorList.as_view(),),
 path('nomenclador/<int:pk>/',NomencladorDetail.as_view(),),

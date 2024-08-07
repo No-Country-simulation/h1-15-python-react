@@ -147,10 +147,13 @@ class Specialty(models.Model):
 
 # Financer model
 class Financer(models.Model):
-    medical_staff = models.ForeignKey(
-        'MedicalStaff', on_delete=models.CASCADE)
+    #medical_staff = models.ForeignKey(
+    #    'MedicalStaff', on_delete=models.CASCADE)
     description = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f"{self.id} - {self.description}"
 
 
 # Nomenclature model

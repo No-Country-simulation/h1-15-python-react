@@ -5,16 +5,17 @@ from .models import *
 admin.site.site_header = 'Administración'
 admin.site.site_header = 'Administración de la base de datos de Justina.io'
 admin.site.register(UserType)
+admin.site.register(Address)
+admin.site.register(DocumentType)
+admin.site.register(User)
+admin.site.register(Financer)
 
 """
 admin.site.register(Paciente)
 admin.site.register(AntecedenteClinico)
 admin.site.register(InformacionPersonal)
-admin.site.register(Direccion)
 admin.site.register(PersonalMedico)
 admin.site.register(Especialidad)
-admin.site.register(TipoDocumento)
-admin.site.register(Financiador)
 admin.site.register(Patologia)
 admin.site.register(Tratamiento)
 admin.site.register(Farmacia)

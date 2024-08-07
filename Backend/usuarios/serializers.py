@@ -59,6 +59,14 @@ class UserSerializerPatch(serializers.ModelSerializer):
         fields = ['email', 'password']
         extra_kwargs = {'password': {'write_only': True}}
 
+    def update(self, instance, validated_data):
+        password = validated_data.pop('password', None)  # Extrae la contraseña si está en los datos validados
+        instance = super().update(instance, validated_data)  # Actualiza los demás campos
+        if password:
+            instance.set_password(password)  # Aplica el hash a la contraseña
+            instance.save()
+        return instance
+
 
 
 
