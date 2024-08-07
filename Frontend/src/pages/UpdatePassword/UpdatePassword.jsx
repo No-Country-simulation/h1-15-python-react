@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import { showToast } from "../../utils/toast";
 import useLanguage from "../../hooks/useLanguage";
 import { updatePassword } from "../../services/auth";
 import eye from "/icons/eye.svg";
 import eye_off from "/icons/eye_off.svg";
+import { validatePassword } from "../../utils/validatePassword";
 
 const UpdatePassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -13,25 +12,34 @@ const UpdatePassword = () => {
   const [newPasswordVisible, setNewPasswordVisible] = useState(false);
   const [confirmNewPasswordVisible, setConfirmNewPasswordVisible] =
     useState(false);
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const navigate = useNavigate();
   const languageData = useLanguage();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setPasswordError("");
+    setConfirmPasswordError("");
+
+    const validationMessage = validatePassword(newPassword, languageData.updatePassword);
+    if (validationMessage) {
+      setPasswordError(validationMessage);
+      return;
+    }
+
     if (newPassword !== confirmNewPassword) {
-      showToast(languageData.updatePassword.passwordMismatch, "error");
+      setConfirmPasswordError(languageData.updatePassword.passwordMismatch);
       return;
     }
 
     try {
       await updatePassword(newPassword);
-      showToast(languageData.updatePassword.passwordUpdated, "success");
       navigate("/login");
     } catch (error) {
       console.error("Error updating password:", error);
-      showToast(
-        error.message || languageData.updatePassword.errorUpdatingPassword,
-        "error",
+      setPasswordError(
+        error.message || languageData.updatePassword.errorUpdatingPassword
       );
     }
   };
@@ -42,7 +50,6 @@ const UpdatePassword = () => {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-background_1">
-      <ToastContainer />
       <section className="cursor-pointer max-w-[206px]">
         <img onClick={() => navigate("/")} src="/justinaLogo.webp" alt="logo" />
       </section>
@@ -81,6 +88,9 @@ const UpdatePassword = () => {
                 />
               </button>
             </div>
+            {passwordError && (
+              <p className="mt-2 text-sm text-red-600">{passwordError}</p>
+            )}
           </div>
           <div>
             <label
@@ -117,6 +127,9 @@ const UpdatePassword = () => {
                 />
               </button>
             </div>
+            {confirmPasswordError && (
+              <p className="mt-2 text-sm text-red-600">{confirmPasswordError}</p>
+            )}
           </div>
           <button
             type="submit"

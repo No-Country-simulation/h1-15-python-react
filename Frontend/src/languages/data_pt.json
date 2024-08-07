@@ -198,10 +198,15 @@
         "confirmNewPasswordLabel": "Confirmar Nova Senha",
         "confirmNewPasswordPlaceholder": "Confirme sua nova senha",
         "updateButton": "Atualizar Senha",
-        "backToLogin": "Voltar para o login",
+        "backToLogin": "Voltar ao Login",
         "passwordMismatch": "As senhas não coincidem",
         "passwordUpdated": "Senha atualizada com sucesso",
-        "errorUpdatingPassword": "Erro ao atualizar a senha"
+        "errorUpdatingPassword": "Erro ao atualizar a senha",
+        "minLength": "A senha deve ter pelo menos {minLength} caracteres.",
+        "hasUpperCase": "A senha deve conter pelo menos uma letra maiúscula.",
+        "hasLowerCase": "A senha deve conter pelo menos uma letra minúscula.",
+        "hasNumber": "A senha deve conter pelo menos um dígito.",
+        "hasSpecialChar": "A senha deve conter pelo menos um caractere especial."
     },
     "patientMain": {
         "locateTitle": "Localize",

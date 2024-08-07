@@ -52,7 +52,7 @@ const Login = () => {
 
       // Redirige a la página /update-password solo si es el primer inicio de sesión
       if (data.first_login) {
-        navigate("/update-password");
+        navigate(`/${data.user_types.toLowerCase()}/update-password`);
       } else {
         // Redirige al tipo de usuario después del primer inicio de sesión
         navigate(`/${data.user_types.toLowerCase()}`);

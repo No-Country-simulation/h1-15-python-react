@@ -198,10 +198,15 @@
 		"confirmNewPasswordLabel": "Confirm New Password",
 		"confirmNewPasswordPlaceholder": "Confirm your new password",
 		"updateButton": "Update Password",
-		"backToLogin": "Back to login",
+		"backToLogin": "Back to Login",
 		"passwordMismatch": "Passwords do not match",
-		"passwordUpdated": "Password successfully updated",
-		"errorUpdatingPassword": "Error updating password"
+		"passwordUpdated": "Password updated successfully",
+		"errorUpdatingPassword": "Error updating password",
+		"minLength": "The password must be at least {minLength} characters long.",
+		"hasUpperCase": "The password must contain at least one uppercase letter.",
+		"hasLowerCase": "The password must contain at least one lowercase letter.",
+		"hasNumber": "The password must contain at least one digit.",
+		"hasSpecialChar": "The password must contain at least one special character."
 	},
 	"patientMain": {
 		"locateTitle": "Locate",
