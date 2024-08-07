@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import weekday from "dayjs/plugin/weekday";
 import "dayjs/locale/es";
 import { capitalizar } from "../../../utils/Capitalize";
-import CardPatientAppointment from "../../../components/Cards/CardPatientAppointment";
+import DoctorTimeline from "../../../components/Doctor-timeline/DoctorTimeline";
 
 const DoctorAppointments = () => {
   const [turnos, setTurnos] = useState([
@@ -287,9 +287,7 @@ const DoctorAppointments = () => {
   if (showCalendar == 3) {
     setTurnos(4);
   }
-  {
-    /** */
-  }
+
   useEffect(() => {
     setSelectedPatient(undefined);
   }, [fecha]);
@@ -297,51 +295,70 @@ const DoctorAppointments = () => {
   return (
     <div className="flex justify-between gap-2">
       <section className="grid gap-2 h-fit relative w-2/3">
-        <h1 className="font-josefin text-3xl text-center">TURNOS</h1>
-        <h4
-          className="w-fit justify-self-center cursor-pointer text-center text-lg font-bold underline my-4"
-          onMouseEnter={() => setShowCalendar(true)}
-        >
-          {capitalizar(
-            dayjs(fecha)
-              .weekday(fecha.getDay() - 1)
-              .format("dddd"),
-          ) +
-            ", " +
-            fecha.toLocaleDateString()}
-        </h4>
-
-        <div
-          className={`${
-            showCalendar ? "opacity-100" : "opacity-0 -z-20"
-          } transition-opacity duration-500 easy-in-out absolute top-28 left-5 bg-white border border-blue-600 shadow-md shadow-blue-700 rounded-lg translate-x-1/2`}
-          onMouseLeave={() => setShowCalendar(false)}
-        >
-          <Calendar fecha={setFecha} />
+        <div className="flex gap-10 justify-between">
+          <h1 className="font-semibold text-5xl font-josefin">Turnos</h1>
+          <h4
+            className="w-fit cursor-pointer text-center text-lg font-bold underline my-4 mr-10"
+            onClick={() => {
+              if ((selectedPatient !== undefined) | null) {
+                setSelectedPatient(null);
+              }
+              setShowCalendar(true);
+            }}
+          >
+            {capitalizar(
+              dayjs(fecha)
+                .weekday(fecha.getDay() - 1)
+                .format("dddd"),
+            ) +
+              ", " +
+              fecha.toLocaleDateString()}
+          </h4>
         </div>
+
         {/**LISTADO DE TURNOS DE LA FECHA SELECCIONADA */}
-        <article className="rounded-xl bg-[#00000010] w-full min-h-[400px] shadow-[inset_-2px_-2px_5px_3px_#00000030]">
-          {turnos
-            .filter((turno) =>
-              dayjs(new Date(turno.appointmentDate)).isSame(
-                dayjs(fecha),
-                "day",
-              ),
-            )
-            .map((paciente) => {
-              return (
-                <CardPatientAppointment
-                  key={paciente._id}
-                  paciente={paciente}
-                  clickear={setSelectedPatient}
-                  pacienteSeleccionado={selectedPatient}
-                />
-              );
-            })}
+        <article className="">
+          {turnos.filter((turno) =>
+            dayjs(new Date(turno.appointmentDate)).isSame(dayjs(fecha), "day"),
+          ).length === 0 ? (
+            <div className="w-full py-20">
+              <p className="text-center text-3xl text-green-800 opacity-60">
+                No hay turnos para la fecha seleccionada
+              </p>
+            </div>
+          ) : (
+            turnos
+              .filter((turno) =>
+                dayjs(new Date(turno.appointmentDate)).isSame(
+                  dayjs(fecha),
+                  "day",
+                ),
+              )
+              .map((paciente, index) => {
+                return (
+                  <DoctorTimeline
+                    key={index}
+                    setPatient={setSelectedPatient}
+                    selectedPatient={selectedPatient}
+                  />
+                );
+              })
+          )}
         </article>
       </section>
 
       <LateralView paciente={selectedPatient} />
+      <div
+        className={`${
+          showCalendar ? "opacity-100" : "absolute opacity-0 -z-20"
+        } transition-opacity duration-500 easy-in-out bg-white border border-blue-600 shadow-md shadow-blue-700 rounded-lg mt-24`}
+        onClick={() => {
+          setShowCalendar(false);
+          setSelectedPatient(null);
+        }}
+      >
+        <Calendar fecha={setFecha} />
+      </div>
     </div>
   );
 };

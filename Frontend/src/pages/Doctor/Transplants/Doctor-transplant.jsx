@@ -32,7 +32,7 @@ const DoctorTransplants = () => {
   return (
     <main className="flex w-full max-h-[1024px]  gap-5">
       <section className="min-w-[689px] grid mx-auto h-fit relative font-josefin">
-        <h1 className="font-josefin text-3xl text-center">
+        <h1 className="font-semibold text-5xl font-josefin">
           TRANSPLANTES CRUZADOS
         </h1>
         <div className="grid grid-cols-[1fr_2px_1fr] gap-x-4 mt-6">

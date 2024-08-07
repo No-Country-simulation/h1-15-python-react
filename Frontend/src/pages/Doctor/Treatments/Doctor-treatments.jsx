@@ -112,7 +112,9 @@ const DoctorTreatments = () => {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <main className="w-2/3 flex flex-col items-center">
         <ToastContainer />
-        <h1 className="font-semibold text-[64px] font-josefin">Tratamientos</h1>
+        <h1 className="font-semibold text-5xl font-josefin text-start self-start">
+          Tratamientos
+        </h1>
         <section>
           <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
             <h3 className="font-medium text-2xl font-josefin mt-6">

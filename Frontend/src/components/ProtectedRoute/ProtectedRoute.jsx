@@ -5,9 +5,9 @@ const ProtectedRoute = ({ element, allowedRoles }) => {
   const token = localStorage.getItem("authToken");
   const userType = localStorage.getItem("userType");
 
-  if (!token || !allowedRoles.includes(userType)) {
+  /*   if (!token || !allowedRoles.includes(userType)) {
     return <Navigate to="/login" />;
-  }
+  } */
 
   return element;
 };

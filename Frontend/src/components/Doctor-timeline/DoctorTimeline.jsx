@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
@@ -64,7 +64,7 @@ const timeline = [
 ];
 
 // eslint-disable-next-line react/prop-types
-export default function DoctorTimeline({ setPatient }) {
+export default function DoctorTimeline({ setPatient, selectedPatient }) {
   const [expanded, setExpanded] = useState(null);
 
   const handleAccordionChange = (isExpanded, paciente) => {
@@ -75,6 +75,12 @@ export default function DoctorTimeline({ setPatient }) {
     }
     setExpanded(isExpanded ? paciente : null);
   };
+
+  useEffect(() => {
+    if ((selectedPatient === null) | undefined) {
+      setExpanded(null);
+    }
+  }, [selectedPatient]);
 
   return (
     <Timeline>
