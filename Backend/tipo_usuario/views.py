@@ -1,13 +1,13 @@
 from tipo_usuario.serializers import TipoUsuarioSerializer
 from rest_framework import generics
-from core.models import TipoUsuario
+from core.models import UserType
 from drf_spectacular.utils import extend_schema
 
 # Create your views here.
 
 
 class TipoUsuarioList(generics.ListCreateAPIView):
-    queryset = TipoUsuario.objects.all()
+    queryset = UserType.objects.all()
     serializer_class = TipoUsuarioSerializer
 
     @extend_schema(
@@ -28,7 +28,7 @@ class TipoUsuarioList(generics.ListCreateAPIView):
 
 
 class TipoUsuarioDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = TipoUsuario.objects.all()
+    queryset = UserType.objects.all()
     serializer_class = TipoUsuarioSerializer
 
     @extend_schema(

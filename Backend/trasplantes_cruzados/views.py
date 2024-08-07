@@ -1,11 +1,11 @@
 from trasplantes_cruzados.serializers import TrasplanteCruzadoSerializer
 from rest_framework import generics
 from drf_spectacular.utils import extend_schema
-from core.models import TrasplanteCruzado
+from core.models import CrossTransplant
 
 
 class TrasplanteCruzadoList(generics.ListCreateAPIView):
-    queryset = TrasplanteCruzado.objects.all()
+    queryset = CrossTransplant.objects.all()
     serializer_class = TrasplanteCruzadoSerializer
 
     @extend_schema(
@@ -25,7 +25,7 @@ class TrasplanteCruzadoList(generics.ListCreateAPIView):
         return self.create(request, *args, **kwargs)
     
 class TrasplanteCruzadoDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = TrasplanteCruzado.objects.all()
+    queryset = CrossTransplant.objects.all()
     serializer_class = TrasplanteCruzadoSerializer
 
     @extend_schema(

@@ -1,7 +1,7 @@
 from turnos.serializers import TurnoSerializer, DisponibilidadSerializer
 from rest_framework import generics, views
 from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiTypes
-from core.models import Turno, Disponibilidad, PersonalMedico, Entidad, User
+from core.models import Appointment, Availability, MedicalStaff, Entity, User
 from custom_functions.date_list import validar_fechas, obtener_fecha_actual_str, generar_fecha_fin_str
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
@@ -15,7 +15,7 @@ class TurnoListView(generics.ListAPIView):
 
     def get_queryset(self):
         status = self.request.query_params.get('status', None)
-        queryset = Turno.objects.all()
+        queryset = Appointment.objects.all()
         if status:
             queryset = queryset.filter(status=status)
         medico = self.request.query_params.get('doctor_id',None)
@@ -77,8 +77,8 @@ class MisTurnoListView(generics.ListAPIView): #LO TENGO QUE PROBAR
         user = self.request.user
         if not user.is_authenticated:
             # Maneja el caso de usuario no autenticado si es necesario
-            return Turno.objects.none()  # O lanza una excepción, etc.
-        queryset = Turno.objects.filter(id_usuario=user)
+            return Appointment.objects.none()  # O lanza una excepción, etc.
+        queryset = Appointment.objects.filter(id_usuario=user)
         return queryset
     
     @extend_schema(
@@ -108,7 +108,7 @@ class MisTurnoListView(generics.ListAPIView): #LO TENGO QUE PROBAR
         return super().get(request, *args, **kwargs)
     
 class ReservarTurnoView(generics.UpdateAPIView):
-    queryset = Turno.objects.all()
+    queryset = Appointment.objects.all()
     serializer_class = TurnoSerializer
 
     @extend_schema(
@@ -170,7 +170,7 @@ class ReservarTurnoView(generics.UpdateAPIView):
 
 
 class DisponibilidadList(generics.ListAPIView):
-    queryset = Disponibilidad.objects.all()
+    queryset = Availability.objects.all()
     serializer_class = DisponibilidadSerializer
     
     @extend_schema(
@@ -201,8 +201,8 @@ class DisponibilidadCreate(views.APIView):
         datos_solicitud = request.data
         medico = datos_solicitud['medico']
 
-        medico = get_object_or_404(PersonalMedico, id=datos_solicitud['medico'])
-        institucion = get_object_or_404(Entidad, descripcion=datos_solicitud['institucion'])
+        medico = get_object_or_404(MedicalStaff, id=datos_solicitud['medico'])
+        institucion = get_object_or_404(Entity, descripcion=datos_solicitud['institucion'])
 
         horarios = datos_solicitud['horarios']
         lista_horarios = horarios
@@ -237,7 +237,7 @@ class DisponibilidadCreate(views.APIView):
         return Response({"message": "Disponibilidad creada con éxito."}, status=status.HTTP_201_CREATED)  
     
 class DisponibilidadDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Disponibilidad.objects.all()
+    queryset = Availability.objects.all()
     serializer_class = DisponibilidadSerializer
 
     @extend_schema(
@@ -297,10 +297,10 @@ class TurnoCreate(generics.CreateAPIView):
         medico_id = datos_solicitud['medico']
         institucion_desc = datos_solicitud['institucion']
 
-        medico = get_object_or_404(PersonalMedico, id=medico_id)
-        institucion = get_object_or_404(Entidad, descripcion=institucion_desc)
+        medico = get_object_or_404(MedicalStaff, id=medico_id)
+        institucion = get_object_or_404(Entity, descripcion=institucion_desc)
 
-        disponibilidad = Disponibilidad.objects.filter(medico=medico, institucion=institucion)
+        disponibilidad = Availability.objects.filter(medico=medico, institucion=institucion)
 
         if not disponibilidad.exists():
             return Response({"message": "No hay disponibilidad registrada para el médico en esta institución."}, status=status.HTTP_400_BAD_REQUEST)
@@ -332,7 +332,7 @@ class TurnoCreate(generics.CreateAPIView):
                     while hora_actual.time() < hora_fin:
                         hora_fin_datetime = datetime.combine(fecha_inicio, hora_fin)
                         if hora_actual + timedelta(minutes=duracion_turnos) <= hora_fin_datetime:
-                            Turno.objects.create(
+                            Appointment.objects.create(
                                 medico=medico,
                                 entidad=institucion,  # Cambiado a 'entidad'
                                 fecha_turno=fecha_inicio.strftime('%Y-%m-%d'),  # Cambiado a 'fecha_turno'
@@ -350,7 +350,7 @@ class TurnoCreate(generics.CreateAPIView):
         
         
 class TurnoListCreate(generics.ListCreateAPIView):
-    queryset = Turno.objects.all()
+    queryset = Appointment.objects.all()
     serializer_class = TurnoSerializer
 
     @extend_schema(
@@ -377,7 +377,7 @@ class TurnoListCreate(generics.ListCreateAPIView):
             return("Turno no encontrado")
 
 class TurnoDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Turno.objects.all()
+    queryset = Appointment.objects.all()
     serializer_class = TurnoSerializer
 
     @extend_schema(

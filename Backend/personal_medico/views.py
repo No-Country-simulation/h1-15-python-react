@@ -1,5 +1,5 @@
 from rest_framework import generics , status
-from core.models import PersonalMedico, PersonalMedicoReviews
+from core.models import MedicalStaff, MedicalStaffReviews
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from personal_medico.serializers import PersonalMedicoSerializer, PersonalMedicoNewSerializer, ReviewSerializer
@@ -9,7 +9,7 @@ from drf_spectacular.utils import extend_schema
 
 
 class PersonalMedicoList(generics.ListCreateAPIView):
-    queryset = PersonalMedico.objects.all()
+    queryset = MedicalStaff.objects.all()
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
@@ -34,7 +34,7 @@ class PersonalMedicoList(generics.ListCreateAPIView):
 
 
 class PersonalMedicoDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PersonalMedico.objects.all()
+    queryset = MedicalStaff.objects.all()
     serializer_class = PersonalMedicoSerializer
 
     @extend_schema(
@@ -75,12 +75,12 @@ class CalificaPersonalMedicoList(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
 
     def get_queryset(self):
-        return PersonalMedicoReviews.objects.filter(id_personal_medico=self.kwargs['pk'])
+        return MedicalStaffReviews.objects.filter(id_personal_medico=self.kwargs['pk'])
 
     def perform_create(self, serializer):
         # Obtener el id_personal_medico de la URL
         id_personal_medico = self.kwargs['pk']
-        personal_medico_instance = PersonalMedico.objects.get(id=id_personal_medico)
+        personal_medico_instance = MedicalStaff.objects.get(id=id_personal_medico)
         serializer.save(id_personal_medico=personal_medico_instance)
 
 

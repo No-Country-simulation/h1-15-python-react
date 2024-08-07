@@ -1,4 +1,4 @@
-from core.models import Paciente
+from core.models import Patient
 from pacientes.serializers import PacienteSerializer
 from rest_framework import generics
 from drf_spectacular.utils import extend_schema
@@ -7,7 +7,7 @@ from drf_spectacular.utils import extend_schema
 
 
 class PacienteList(generics.ListCreateAPIView):
-    queryset = Paciente.objects.all()
+    queryset = Patient.objects.all()
     serializer_class = PacienteSerializer
 
     @extend_schema(
@@ -28,7 +28,7 @@ class PacienteList(generics.ListCreateAPIView):
 
 
 class PacienteDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Paciente.objects.all()
+    queryset = Patient.objects.all()
     serializer_class = PacienteSerializer
 
     @extend_schema(

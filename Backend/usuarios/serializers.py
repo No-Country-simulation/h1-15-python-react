@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from mail.views import registration_mail
 from django.contrib.auth.password_validation import validate_password
 from uuid import uuid4
-from core.models import TipoUsuario
+from core.models import UserType
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -30,8 +30,8 @@ User = get_user_model()
 
 class TipoUsuarioSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TipoUsuario
-        fields = ['id', 'tipo']  
+        model = UserType
+        fields = ['id', 'type']  
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -51,3 +51,14 @@ class UserSerializer(serializers.ModelSerializer):
         user.is_active = True
         user.save()
         return user
+
+
+class UserSerializerPatch(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['email', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
+
+
+
+

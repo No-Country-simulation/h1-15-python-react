@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from core.models import Turno, Disponibilidad
+from core.models import Availability,Appointment
 
 
 # Serializers for Disponibilidad model
 class DisponibilidadSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Disponibilidad
+        model = Appointment
         fields = '__all__'
 
 # Serializers for Turno model
@@ -15,7 +15,7 @@ class TurnoSerializer(serializers.ModelSerializer):
     id_usuario = serializers.SerializerMethodField()
 
     class Meta:
-        model = Turno  
+        model = Availability  
         fields = '__all__'
     
     def get_entidad(self, obj):
@@ -42,5 +42,5 @@ class TurnoSerializer(serializers.ModelSerializer):
     
 class TurnoUpdateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Turno
+        model = Availability
         fields = ['id_usuario', 'status']

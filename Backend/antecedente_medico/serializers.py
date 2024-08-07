@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from core.models import AntecedenteClinico as Modelo
+from core.models import MedicalHistory as Modelo
 import os
 
 class AntecedenteMedicoSerializer(serializers.ModelSerializer):

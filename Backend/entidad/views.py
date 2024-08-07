@@ -1,5 +1,5 @@
 from rest_framework import generics
-from core.models import Entidad as ModeloCore
+from core.models import Entity as ModeloCore
 from entidad.serializers import EntidadSerializer as Serializador
 from drf_spectacular.utils import extend_schema
 

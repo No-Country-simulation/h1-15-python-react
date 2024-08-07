@@ -1,5 +1,5 @@
 from rest_framework import generics
-from core.models import Especialidad as ModeloCore
+from core.models import Specialty as ModeloCore
 from especialidad.serializers import EspecialidadSerializer as Serializador
 from drf_spectacular.utils import extend_schema
 

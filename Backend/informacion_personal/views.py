@@ -1,13 +1,13 @@
 from informacion_personal.serializers import InformacionPersonalSerializer
 from rest_framework import generics
 from drf_spectacular.utils import extend_schema
-from core.models import InformacionPersonal
+from core.models import PersonalInfo
 
 # Create your views here.
 
 
 class InformacionPersonalList(generics.ListCreateAPIView):
-    queryset = InformacionPersonal.objects.all()
+    queryset = PersonalInfo.objects.all()
     serializer_class = InformacionPersonalSerializer
 
     @extend_schema(
@@ -28,7 +28,7 @@ class InformacionPersonalList(generics.ListCreateAPIView):
 
 
 class InformacionPersonalDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = InformacionPersonal.objects.all()
+    queryset = PersonalInfo.objects.all()
     serializer_class = InformacionPersonalSerializer
 
     @extend_schema(

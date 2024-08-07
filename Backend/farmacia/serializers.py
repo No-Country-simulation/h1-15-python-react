@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from core.models import Farmacia as Modelo
+from core.models import Pharmacy as Modelo
 import os
 
 class FarmaciasSerializer(serializers.ModelSerializer):

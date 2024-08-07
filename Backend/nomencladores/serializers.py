@@ -1,11 +1,11 @@
 
 from rest_framework import serializers
-from core.models import Nomenclador , FileUpload
+from core.models import Nomenclature , FileUpload
 import os
 
 class NomencladorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Nomenclador
+        model = Nomenclature
         fields = '__all__'
 
 

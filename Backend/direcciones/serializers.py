@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from core.models import Direccion
+from core.models import Address
 
 # Serializers for Direccion model
 
 
 class DireccionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Direccion
+        model = Address
         fields = '__all__'

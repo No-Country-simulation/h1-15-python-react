@@ -35,16 +35,28 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Local apps
+
+    # 3rd party apps
+    'rest_framework',
+    'corsheaders',
+    'rest_framework_simplejwt',
+    'drf_spectacular',
+    #local apps
     'api.apps.ApiConfig',
-    'usuarios.apps.UsuariosConfig',
-    'mail.apps.MailConfig',
     'core.apps.CoreConfig',
+    'usuarios.apps.UsuariosConfig',
+    'tipo_usuario.apps.TipoUsuarioConfig',
+
+]
+
+
+apifaltan = [    
+    # Local apps
+    'mail.apps.MailConfig',
     'tratamientos.apps.TratamientosConfig',
     'informacion_personal.apps.InformacionPersonalConfig',
     'pacientes.apps.PacientesConfig',
     'patologias.apps.PatologiasConfig',
-    'tipo_usuario.apps.TipoUsuarioConfig',
     'direcciones.apps.DireccionesConfig',
     'turnos.apps.TurnosConfig',
     'trasplantes_cruzados.apps.TrasplantesCruzadosConfig',
@@ -57,11 +69,7 @@ INSTALLED_APPS = [
     'nomencladores.apps.NomencladoresConfig',
     'personal_medico.apps.PersonalMedicoConfig',
     'tipo_documento.apps.TipoDocumentoConfig',
-    # 3rd party apps
-    'rest_framework',
-    'corsheaders',
-    'rest_framework_simplejwt',
-    'drf_spectacular',
+
 ]
 
 MIDDLEWARE = [

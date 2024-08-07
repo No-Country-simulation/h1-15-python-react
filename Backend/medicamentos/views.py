@@ -1,5 +1,5 @@
 from rest_framework import generics, views, status, response
-from core.models import Medicamento, Patologia, Tratamiento, Farmacia
+from core.models import Medication, Pathology, Treatment, Pharmacy
 from medicamentos.serializers import MedicamentosSerializer as Serializador
 from drf_spectacular.utils import extend_schema
 from django.shortcuts import get_object_or_404
@@ -15,7 +15,7 @@ class MedicamentoListCreate(views.APIView):
         description="Trae a todas los medicamentos"
     )
     def get(self, request, format=None):
-        queryset = Medicamento.objects.all()
+        queryset = Medication.objects.all()
         
         try:
             lista_medicamentos = []
@@ -44,13 +44,13 @@ class MedicamentoListCreate(views.APIView):
         datos_solicitud = request.data
         
         try:
-            patologia = get_object_or_404(Patologia, descripcion=datos_solicitud['patologia'])
-            tratamiento = get_object_or_404(Tratamiento, descripcion=datos_solicitud['tratamiento'])
-            farmacia = get_object_or_404(Farmacia, nombre_laboratorio=datos_solicitud['farmacia'])
+            patologia = get_object_or_404(Pathology, descripcion=datos_solicitud['patologia'])
+            tratamiento = get_object_or_404(Treatment, descripcion=datos_solicitud['tratamiento'])
+            farmacia = get_object_or_404(Pharmacy, nombre_laboratorio=datos_solicitud['farmacia'])
             descripcion = datos_solicitud['descripcion']
             
         
-            medicamento = Medicamento.objects.create(patologia=patologia, tratamiento=tratamiento, farmacia=farmacia, descripcion=descripcion)
+            medicamento = Medication.objects.create(patologia=patologia, tratamiento=tratamiento, farmacia=farmacia, descripcion=descripcion)
             medicamento.set_dosis_presentacion(datos_solicitud['dosis_presentacion'])
             medicamento.save()
             return response.Response("Medicamento creado", status=status.HTTP_201_CREATED)
@@ -59,7 +59,7 @@ class MedicamentoListCreate(views.APIView):
 
 
 class  MedicamentoDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Medicamento.objects.all()
+    queryset = Medication.objects.all()
     serializer_class = Serializador
 
     @extend_schema(

@@ -1,21 +1,21 @@
 
 from rest_framework import serializers
-from core.models import PersonalMedico, Disponibilidad, PersonalMedicoReviews
+from core.models import MedicalStaff, Availability, MedicalStaffReviews
 from django.db.models import Avg
 import os
 
 class ReviewSerializer(serializers.ModelSerializer):
-    id_personal_medico = serializers.PrimaryKeyRelatedField(queryset=PersonalMedico.objects.all(), write_only=True)
+    id_personal_medico = serializers.PrimaryKeyRelatedField(queryset=MedicalStaff.objects.all(), write_only=True)
 
     class Meta:
-        model = PersonalMedicoReviews
+        model = MedicalStaffReviews
         fields = ['id', 'descripcion', 'calificacion', 'timestamp', 'id_personal_medico']
 
 
 
 class DisponibilidadSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Disponibilidad
+        model = Availability
         fields = ['dia', 'hora_inicio_turnos', 'hora_fin_turnos']
 
 class PersonalMedicoSerializer(serializers.ModelSerializer):
@@ -26,11 +26,11 @@ class PersonalMedicoSerializer(serializers.ModelSerializer):
     rating = serializers.SerializerMethodField()
 
     class Meta:
-        model = PersonalMedico
+        model = MedicalStaff
         fields = ['id', 'nombre_completo', 'specialty', 'reviews', 'photo', 'rating', 'descripcion', 'schedule', 'whatsapp']
 
     def get_schedule(self, obj):
-        availability = Disponibilidad.objects.filter(medico=obj)
+        availability = Availability.objects.filter(medico=obj)
         schedule = {}
 
         for slot in availability:
@@ -58,10 +58,10 @@ class PersonalMedicoSerializer(serializers.ModelSerializer):
         return obj.telefono_consulta  # Asegúrate de que este campo exista en tu perfil de usuario
     
     def get_reviews(self, obj):
-        return PersonalMedicoReviews.objects.filter(id_personal_medico=obj).count()
+        return MedicalStaffReviews.objects.filter(id_personal_medico=obj).count()
     
     def get_rating(self, obj):
-        reviews = PersonalMedicoReviews.objects.filter(id_personal_medico=obj)
+        reviews = MedicalStaffReviews.objects.filter(id_personal_medico=obj)
         if reviews.exists():
             return round(reviews.aggregate(Avg('calificacion'))['calificacion__avg'], 2)
         return None  # Devuelve `None` si no hay calificaciones
@@ -70,6 +70,6 @@ class PersonalMedicoSerializer(serializers.ModelSerializer):
 class PersonalMedicoNewSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = PersonalMedico
+        model = MedicalStaff
         fields = ['id', 'nombre_completo','id_user', 'id_especialidad', 'photo', 'descripcion', 'telefono_consulta', 'is_active']
 

@@ -1,5 +1,5 @@
 from rest_framework import generics
-from core.models import TipoDocumento as ModeloCore
+from core.models import DocumentType as ModeloCore
 from tipo_documento.serializers import TipoDocumentoSerializer as Serializador
 from drf_spectacular.utils import extend_schema
 

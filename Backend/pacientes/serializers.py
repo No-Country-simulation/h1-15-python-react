@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from core.models import Paciente
+from core.models import Patient
 from usuarios.serializers import UserSerializer
 from tratamientos.serializers import TratamientoSerializer
 from patologias.serializers import PatologiaSerializer
@@ -13,5 +13,5 @@ class PacienteSerializer(ModelSerializer):
     pathology_reference = PatologiaSerializer(read_only=True, many=True)
 
     class Meta:
-        model = Paciente
+        model = Patient
         fields = '__all__'

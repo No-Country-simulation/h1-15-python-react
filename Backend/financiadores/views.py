@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.views import APIView
-from core.models import Financiador #, FileUpload
+from core.models import Financer #, FileUpload
 from rest_framework.response import Response
 from financiadores.serializers import FinanciadorSerializer#, FileUploadSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
@@ -11,7 +11,7 @@ import pandas as pd
 # Create your views here.
 
 class FinanciadoresList(generics.ListCreateAPIView):
-    queryset = Financiador.objects.all()
+    queryset = Financer.objects.all()
     serializer_class = FinanciadorSerializer
 
     @extend_schema(
@@ -32,7 +32,7 @@ class FinanciadoresList(generics.ListCreateAPIView):
 
 
 class FinanciadoresDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Financiador.objects.all()
+    queryset = Financer.objects.all()
     serializer_class = FinanciadorSerializer
 
     @extend_schema(
