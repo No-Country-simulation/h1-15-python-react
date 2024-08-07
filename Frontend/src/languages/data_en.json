@@ -191,6 +191,18 @@
 		"eyeAltShow": "Show password",
 		"eyeAltHide": "Hide password"
 	},
+	"updatePassword": {
+		"title": "Update Password",
+		"newPasswordLabel": "New Password",
+		"newPasswordPlaceholder": "Enter a new password",
+		"confirmNewPasswordLabel": "Confirm New Password",
+		"confirmNewPasswordPlaceholder": "Confirm your new password",
+		"updateButton": "Update Password",
+		"backToLogin": "Back to login",
+		"passwordMismatch": "Passwords do not match",
+		"passwordUpdated": "Password successfully updated",
+		"errorUpdatingPassword": "Error updating password"
+	},
 	"patientMain": {
 		"locateTitle": "Locate",
 		"locateSubtitle": "your doctor",
@@ -354,24 +366,18 @@
 	"register": {
 		"title": "Register",
 		"alreadyHaveAccount": "Already have an account?",
-		"login": "Login",
+		"login": "Log In",
 		"firstNameLabel": "First Name",
 		"firstNamePlaceholder": "Enter your first name",
 		"lastNameLabel": "Last Name",
 		"lastNamePlaceholder": "Enter your last name",
-		"dniLabel": "DNI",
-		"dniPlaceholder": "Enter your DNI",
-		"obraSocialLabel": "Health Insurance",
-		"obraSocialPlaceholder": "Enter your health insurance",
 		"emailLabel": "Email",
 		"emailPlaceholder": "Enter your email address",
-		"birthdateLabel": "Birthdate",
-		"phoneLabel": "Phone Number",
-		"secondaryPhoneLabel": "Secondary Contact",
-		"passwordLabel": "Set Password",
-		"passwordPlaceholder": "Enter a password",
-		"showPasswordAlt": "Show password",
-		"hidePasswordAlt": "Hide password",
-		"registerButton": "Register"
+		"roleLabel": "Select your role to register:",
+		"patientRole": "Patient: To manage your appointments and medical consultations.",
+		"doctorRole": "Doctor: To manage your consultations and patients.",
+		"registerButton": "Register",
+		"registrationSuccessTitle": "Registration Successful",
+		"registrationSuccessMessage": "An email with the access password to the application has been sent."
 	}
 }
