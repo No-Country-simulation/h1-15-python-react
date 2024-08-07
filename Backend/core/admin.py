@@ -8,7 +8,7 @@ admin.site.site_header = 'Administración de la base de datos de Justina.io'
 
 admin.site.register(TipoUsuario)
 admin.site.register(Paciente)
-admin.site.register(AntecedenteMedico)
+admin.site.register(AntecedenteClinico)
 admin.site.register(InformacionPersonal)
 admin.site.register(Direccion)
 admin.site.register(PersonalMedico)

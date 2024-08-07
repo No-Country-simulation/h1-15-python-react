@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group
 
+
 import json
 
 # Custom UserManager
@@ -50,62 +51,51 @@ class TipoUsuario(models.Model):
     def __str__(self):
         return self.tipo
 
-
 # Paciente model
 class Paciente(models.Model):
-    id_usuario = models.ForeignKey('core.User', on_delete=models.CASCADE)
-    id_entidad = models.ForeignKey('Entidad', on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey('User', on_delete=models.CASCADE)
     id_financiador = models.ForeignKey('Financiador', on_delete=models.CASCADE)
-    id_tratamiento = models.ForeignKey('Tratamiento', on_delete=models.CASCADE)
-    id_patologia = models.ForeignKey('Patologia', on_delete=models.CASCADE)
-    id_tipo_documento = models.ForeignKey('TipoDocumento', on_delete=models.CASCADE)
 
 
-class AntecedenteMedico(models.Model):
-    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, related_name='antecedentes_medicos')
-    fecha_atencion = models.DateTimeField()
-    informacion = models.TextField()
-    identificador_examen = models.CharField(max_length=255)
-    id_personal_medico = models.ForeignKey('PersonalMedico', on_delete=models.CASCADE, blank=True, null=True)
-    id_patologia = models.ForeignKey('Patologia', on_delete=models.CASCADE)
+class AntecedenteClinico(models.Model):
+    paciente = models.ForeignKey('Paciente', on_delete=models.CASCADE, related_name='antecedentes_medicos')
+    afecciones = models.TextField()
+    intervenciones = models.TextField()
+    afecciones_familiares = models.TextField()
+    alergias = models.TextField()
+    medicacion_activa = models.TextField()
     is_active = models.BooleanField(default=True)
 
-    class Meta:
-        indexes = [
-            models.Index(fields=['fecha_atencion'], name='fecha_atencion')
-        ]
-
 # InformacionPersonal model
-
-
 class InformacionPersonal(models.Model):
-    nombres = models.CharField(max_length=255)
-    apellidos = models.CharField(max_length=255)
+    paciente = models.ForeignKey('Paciente', on_delete=models.CASCADE, related_name='informacion_personal')
+    tipo_documento = models.ForeignKey('TipoDocumento', on_delete=models.CASCADE)
     nro_documento = models.CharField(max_length=20)
     fecha_nacimiento = models.DateTimeField()
     sexo = models.CharField(max_length=10)
     direccion = models.ForeignKey('Direccion', related_name='direcciones', on_delete=models.CASCADE)
     numero_telefono = models.CharField(max_length=20)
     numero_telefono_2 = models.CharField(max_length=20, null=True, blank=True)
-    correo_contacto = models.EmailField()
+    telefono_contacto = models.CharField(max_length=20)
     factor_sanguineo = models.CharField(max_length=3)
-    id_informacion_personal = models.ForeignKey('core.User', related_name='usuario', on_delete=models.CASCADE, null=True, blank=True)
+    sobre_mi = models.TextField()
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return '%s, %s, %s' % (self.nombres, self.apellidos, self.nro_documento)
+        return self.paciente
 
-    class Meta:
-        unique_together = ('nombres', 'apellidos', 'nro_documento')
-        ordering = ['apellidos', 'nombres']
-
+# TipoDocumento model
+class TipoDocumento(models.Model):
+    descripcion = models.CharField(max_length=255)
+    is_active = models.BooleanField(default=True)
+    
 # Direccion model
-
-
 class Direccion(models.Model):
-    ciudad = models.CharField(max_length=255, null=True, blank=True)
     calle = models.CharField(max_length=255, null=True, blank=True)
     numero = models.CharField(max_length=10, null=True, blank=True)
+    ciudad = models.CharField(max_length=255, null=True, blank=True)
+    provincia = models.CharField(max_length=255, null=True, blank=True)
+    pais = models.CharField(max_length=255, null=True, blank=True)
     observaciones = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
 
@@ -118,25 +108,20 @@ class Direccion(models.Model):
 
 
 # PersonalMedico model
-
-
 class PersonalMedico(models.Model):
-    id_user = models.IntegerField()
-    nombre_completo = models.CharField(max_length=50)
-    id_especialidad = models.ForeignKey(
-        'Especialidad', on_delete=models.CASCADE)
-    descripcion = models.CharField(max_length=255)
-    telefono_consulta = models.IntegerField()
-    photo = models.CharField(max_length=255, default="None")
+    user = models.ForeignKey('User', on_delete=models.CASCADE, related_name='medico')
+    id_especialidad = models.ForeignKey('Especialidad', on_delete=models.CASCADE)
+    matricula_medica = models.CharField(max_length=255)
+    telefono_consulta = models.CharField(max_length=20)
+    documentos = models.FilePathField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
     
     def __str__(self):
-        return self.nombre_completo
+        return self.user
 
-# ECalificaicones Medicas
-
+# Calificaicones Medicas
 class PersonalMedicoReviews(models.Model):
-    id_personal_medico = models.ForeignKey(PersonalMedico, on_delete=models.CASCADE, related_name='reviews')
+    personal_medico = models.ForeignKey('PersonalMedico', on_delete=models.CASCADE, related_name='reviews')
     descripcion = models.CharField(max_length=255)
     calificacion = models.DecimalField(max_digits=3, decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -147,25 +132,15 @@ class PersonalMedicoReviews(models.Model):
 # Especialidad model
 
 class Especialidad(models.Model):
-    tipo = models.CharField(max_length=100)
+    nombre = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=255, default='Descripcion Preterminada')
     is_active = models.BooleanField(default=True)
     
     def __str__(self):
-        return self.tipo
+        return self.nombre
 
-# TipoDocumento model
-
-
-class TipoDocumento(models.Model):
-    id_personal_medico = models.ForeignKey(
-        'PersonalMedico', on_delete=models.CASCADE)
-    descripcion = models.CharField(max_length=255)
-    is_active = models.BooleanField(default=True)
 
 # Financiador model
-
-
 class Financiador(models.Model):
     id_personal_medico = models.ForeignKey(
         'PersonalMedico', on_delete=models.CASCADE)
@@ -240,18 +215,16 @@ class Medicamento(models.Model):
     
 
 # Entidad model
-
-
 class Entidad(models.Model):
-    descripcion = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=100)
+    descripcion = models.CharField(max_length=255, default='Institución médica')
+    direccion = models.ForeignKey('Direccion', on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
     
     def __str__(self):
-        return self.descripcion
+        return self.nombre
 
 # Turnos model
-
-
 class Turno(models.Model):
     STATUS_CHOICES = [
         ("disponible", "Disponible"),
