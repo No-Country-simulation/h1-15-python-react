@@ -303,7 +303,7 @@ const DoctorAppointments = () => {
               if ((selectedPatient !== undefined) | null) {
                 setSelectedPatient(null);
               }
-              setShowCalendar(true);
+              setShowCalendar(!showCalendar);
             }}
           >
             {capitalizar(
