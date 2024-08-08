@@ -189,6 +189,9 @@ class Treatment(models.Model):
     pathology = models.ForeignKey('Pathology', on_delete=models.CASCADE)
     treat_type = models.CharField(max_length=100)
     treat_indications = models.TextField()
+    start_date = models.CharField(max_length=10)
+    treat_duration = models.CharField(max_length=50)
+    treat_adherence = models.TextField()
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
