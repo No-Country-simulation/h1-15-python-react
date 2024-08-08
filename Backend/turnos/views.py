@@ -2,7 +2,7 @@ from turnos.serializers import TurnoSerializer, DisponibilidadSerializer
 from rest_framework import generics, views
 from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiTypes
 from core.models import Appointment, Availability, MedicalStaff, Entity, User
-from custom_functions.date_list import validar_fechas, obtener_fecha_actual_str, generar_fecha_fin_str
+from custom_functions.date_list import validate_dates, get_current_date_str, generate_end_date_str
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
@@ -24,8 +24,6 @@ class TurnoListView(generics.ListAPIView):
         fecha = self.request.query_params.get('fecha',None)
         if fecha:
             queryset = queryset.filter(fecha_turno=fecha)
-        
-        
         return queryset
     
     @extend_schema(
@@ -65,8 +63,6 @@ class TurnoListView(generics.ListAPIView):
             400: 'Solicitud incorrecta',
         },
     )
-
-
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
     
@@ -198,43 +194,42 @@ class DisponibilidadCreate(views.APIView):
                     """
     )
     def post(self, request):
-        datos_solicitud = request.data
-        medico = datos_solicitud['medico']
+        request_data = request.data
+        doctor = request_data['doctor']
 
-        medico = get_object_or_404(MedicalStaff, id=datos_solicitud['medico'])
-        institucion = get_object_or_404(Entity, descripcion=datos_solicitud['institucion'])
+        doctor = get_object_or_404(MedicalStaff, id=request_data['doctor'])
+        entity = get_object_or_404(Entity, description=request_data['entity'])
 
-        horarios = datos_solicitud['horarios']
-        lista_horarios = horarios
-        fecha_inicio = obtener_fecha_actual_str()
-        fecha_fin = generar_fecha_fin_str(3)
-        duracion_turnos = 15
-        lista_turnos = validar_fechas(lista_horarios, fecha_inicio, fecha_fin, duracion_turnos)
-        errores = []
+        schedules = request_data['schedules']
+        schedule_list = schedules
+        date_start = get_current_date_str()
+        date_end = generate_end_date_str(3)
+        appointment_duration = 15
+        appointment_list = validate_dates(schedule_list, date_start, date_end, appointment_duration)
+        errors = []
 
-        for horario in lista_horarios:
-            dia = horario[0]
-            hora_inicio = horario[1]
-            hora_fin = horario[2]
-            datos_disponibilidad = {
-                'medico': medico.id,
-                'institucion': institucion.id,
-                'dia': dia,
-                'hora_inicio_turnos': hora_inicio,
-                'hora_fin_turnos': hora_fin,
+        for schedule in schedule_list:
+            day = schedule[0]
+            start_time = schedule[1]
+            end_time = schedule[2]
+            availability_data = {
+                'doctor': doctor.id,
+                'entity': entity.id,
+                'day': day,
+                'start_time_appointments': start_time,
+                'end_time_appointments': end_time,
             }
-            disponibilidad_serializer = DisponibilidadSerializer(data=datos_disponibilidad)
+            availability_serializer = TurnoSerializer(data=availability_data)
             
-            if disponibilidad_serializer.is_valid():
-                disponibilidad_serializer.save()
+            if availability_serializer.is_valid():
+                availability_serializer.save()
             else:
-                errores.append(disponibilidad_serializer.errors)
+                errors.append(availability_serializer.errors)
             
-        if errores:
-            return Response({"errors": errores}, status=status.HTTP_400_BAD_REQUEST)
+        if errors:
+            return Response({"errors": errors}, status=status.HTTP_400_BAD_REQUEST)
         
-
-        return Response({"message": "Disponibilidad creada con éxito."}, status=status.HTTP_201_CREATED)  
+        return Response({"message": "Availability created successfully."}, status=status.HTTP_201_CREATED)
     
 class DisponibilidadDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Availability.objects.all()
@@ -280,11 +275,11 @@ class TurnoCreate(generics.CreateAPIView):
 
         Args:
             {
-                "medico": "2",
-                "institucion": "Mater Dei",
-                "fecha_inicio": "2024-08-01",
-                "fecha_fin": "2024-08-10",
-                "duracion_turnos": "15"
+                "doctor_id": "2",
+                "entity": "Mater Dei",
+                "date_init": "2024-08-01",
+                "date_end": "2024-08-10",
+                "appointment_duration": "15"
             }
 
         Returns:
@@ -293,26 +288,26 @@ class TurnoCreate(generics.CreateAPIView):
     )
     def post(self, request):
         
-        datos_solicitud = request.data
-        medico_id = datos_solicitud['medico']
-        institucion_desc = datos_solicitud['institucion']
+        data_request = request.data
+        doctor_id = data_request['doctor_id']
+        entity = data_request['entity']
 
-        medico = get_object_or_404(MedicalStaff, id=medico_id)
-        institucion = get_object_or_404(Entity, descripcion=institucion_desc)
+        doctor = get_object_or_404(MedicalStaff, id=doctor_id)
+        entity = get_object_or_404(Entity, descripcion=entity)
 
-        disponibilidad = Availability.objects.filter(medico=medico, institucion=institucion)
+        availability = Availability.objects.filter(doctor=doctor, entity=entity)
 
-        if not disponibilidad.exists():
+        if not availability.exists():
             return Response({"message": "No hay disponibilidad registrada para el médico en esta institución."}, status=status.HTTP_400_BAD_REQUEST)
 
-        fecha_inicio = datetime.strptime(datos_solicitud['fecha_inicio'], '%Y-%m-%d')
-        fecha_fin = datetime.strptime(datos_solicitud['fecha_fin'], '%Y-%m-%d')
-        duracion_turnos = int(datos_solicitud['duracion_turnos'])  # asumiendo que es un entero en minutos
+        date_init = datetime.strptime(data_request['date_init'], '%Y-%m-%d')
+        date_end = datetime.strptime(data_request['date_end'], '%Y-%m-%d')
+        appointment_duration = int(data_request['appointment_duration'])  # asumiendo que es un entero en minutos
 
-        turnos_creados = 0
+        created_appointments = 0
 
         # Diccionario de mapeo de días de la semana a números
-        dias_a_numeros = {
+        days_to_numbers = {
             'lunes': 0,
             'martes': 1,
             'miércoles': 2,
@@ -321,30 +316,29 @@ class TurnoCreate(generics.CreateAPIView):
             'sábado': 5,
             'domingo': 6
         }
+        while date_init <= date_end:
+            for avail in availability:
+                if days_to_numbers[avail.day.lower()] == date_init.weekday():
+                    start_time = avail.start_time_appointments  # Already a time object
+                    end_time = avail.end_time_appointments  # Already a time object
 
-        while fecha_inicio <= fecha_fin:
-            for disp in disponibilidad:
-                if dias_a_numeros[disp.dia.lower()] == fecha_inicio.weekday():
-                    hora_inicio = disp.hora_inicio_turnos  # Ya es un objeto time
-                    hora_fin = disp.hora_fin_turnos  # Ya es un objeto time
-
-                    hora_actual = datetime.combine(fecha_inicio, hora_inicio)
-                    while hora_actual.time() < hora_fin:
-                        hora_fin_datetime = datetime.combine(fecha_inicio, hora_fin)
-                        if hora_actual + timedelta(minutes=duracion_turnos) <= hora_fin_datetime:
+                    current_time = datetime.combine(date_init, start_time)
+                    while current_time.time() < end_time:
+                        end_time_datetime = datetime.combine(date_init, end_time)
+                        if current_time + timedelta(minutes=appointment_duration) <= end_time_datetime:
                             Appointment.objects.create(
-                                medico=medico,
-                                entidad=institucion,  # Cambiado a 'entidad'
-                                fecha_turno=fecha_inicio.strftime('%Y-%m-%d'),  # Cambiado a 'fecha_turno'
-                                hora_turno=hora_actual.time().strftime('%H:%M'),  # Cambiado a 'hora_turno'
-                                status='disponible'  # O el valor que prefieras
+                                doctor=doctor,
+                                entity=entity,  # Changed to 'entity'
+                                appointment_date=date_init.strftime('%Y-%m-%d'),  # Changed to 'appointment_date'
+                                appointment_time=current_time.time().strftime('%H:%M'),  # Changed to 'appointment_time'
+                                status='available'  # Or the value you prefer
                             )
-                            turnos_creados += 1
-                        hora_actual += timedelta(minutes=duracion_turnos)
-            fecha_inicio += timedelta(days=1)
+                            created_appointments += 1
+                        current_time += timedelta(minutes=appointment_duration)
+            date_init += timedelta(days=1)
 
-        if turnos_creados > 0:
-            return Response({"message": "Turnos creados con éxito."}, status=status.HTTP_201_CREATED)
+        if created_appointments > 0:
+            return Response({"message": "Turnos creados con éxito. {created_appointments}"}, status=status.HTTP_201_CREATED)
         else:
             return Response({"message": "No se crearon turnos."}, status=status.HTTP_400_BAD_REQUEST)
         
@@ -368,7 +362,7 @@ class TurnoListCreate(generics.ListCreateAPIView):
     )
     def post(self, request, *args, **kwargs):
         instance = self.get_object()
-        patient = request.POST['paciente']
+        patient = request.POST['patient']
         if not instance.paciente:
             instance.paciente = patient
             instance.save()
@@ -408,4 +402,4 @@ class TurnoDetail(generics.RetrieveUpdateDestroyAPIView):
             instance.save()
             return instance
         else:
-            return("Trasplante Cruzado no encontrado")
+            return("Turno eliminado")

@@ -261,7 +261,7 @@ class Availability(models.Model):
         ("sunday", "Sunday"),
     ]
     doctor = models.ForeignKey(MedicalStaff, on_delete=models.CASCADE)
-    institution = models.ForeignKey(Entity, on_delete=models.CASCADE)
+    entity = models.ForeignKey(Entity, on_delete=models.CASCADE)
     day = models.CharField(max_length=10, choices=DAY_CHOICES)
     start_time = models.TimeField()
     end_time = models.TimeField()

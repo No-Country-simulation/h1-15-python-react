@@ -48,6 +48,15 @@ urlpatterns = [
     path('address/', DireccionList.as_view(),),
     path('address/<int:pk>/', DireccionDetail.as_view(),),
     path('financers/', FinanciadoresList.as_view(),),
+
+
+
+
+    #path('appointment/', TurnoCreate.as_view(),),
+    path('appointment/<int:pk>/', TurnoListCreate.as_view(),),
+    path('appointment/detail/<int:pk>/',TurnoDetail.as_view(),),
+    path('appointment/', MisTurnoListView.as_view()), #es para buscar turnos
+    path('appointment/<int:pk>', ReservarTurnoView.as_view()), #es para reservar un turno
 ]
 
 """
@@ -87,9 +96,6 @@ path('disponibilidad/', DisponibilidadList.as_view(),),
 path('disponibilidad/create/', DisponibilidadCreate.as_view(),),
 path('disponibilidad/<int:pk>/',DisponibilidadDetail.as_view(),),
 
-path('turno/', TurnoCreate.as_view(),),
-path('turno/<int:pk>/', TurnoListCreate.as_view(),),
-path('turno/detail/<int:pk>/',TurnoDetail.as_view(),),
 
 path('patologias/', PatologiaList.as_view(),),
 path('patologias/<int:pk>/',PatologiaDetail.as_view(),),
@@ -99,7 +105,5 @@ path('farmacia/<int:pk>/',FarmaciaDetail.as_view(),),
 path('turnos/', TurnoListView.as_view()),
 path('turnos/<int:pk>/', TurnoDetail.as_view(),),
 
-path('mis_turnos/', MisTurnoListView.as_view()),
-path('mis_turnos/<int:pk>', ReservarTurnoView.as_view()),
 """
 
