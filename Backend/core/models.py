@@ -32,6 +32,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     user_types = models.ForeignKey('UserType', on_delete=models.CASCADE, related_name='users', null=True, blank=True)
     first_login = models.BooleanField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True)
+    url_photo = models.FilePathField(max_length=100, blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
@@ -75,7 +76,7 @@ class PersonalInfo(models.Model):
     document_number = models.CharField(max_length=20)
     birth_date = models.DateTimeField()
     gender = models.CharField(max_length=10)
-    address = models.ForeignKey('Address', related_name='addresses', on_delete=models.CASCADE)
+    address = models.ForeignKey('Address', related_name='addresses', on_delete=models.CASCADE, null=True, blank=True)
     phone_number = models.CharField(max_length=20)
     phone_number_2 = models.CharField(max_length=20, null=True, blank=True)
     emergency_contact = models.CharField(max_length=20)
@@ -150,6 +151,8 @@ class Financer(models.Model):
     #medical_staff = models.ForeignKey(
     #    'MedicalStaff', on_delete=models.CASCADE)
     description = models.CharField(max_length=255)
+    affiliate_code = models.CharField(max_length=100, null=True, blank=True)
+    plan = models.CharField(max_length=20, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     
     def __str__(self):
