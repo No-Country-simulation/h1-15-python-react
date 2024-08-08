@@ -173,22 +173,26 @@ class FileUpload(models.Model):
 
 # Pathology model
 class Pathology(models.Model):
+    name = models.CharField(max_length=100)
     specialty = models.ForeignKey('Specialty', on_delete=models.CASCADE)
+    nomenclature = models.ForeignKey('Nomenclature', on_delete=models.CASCADE, blank=True, null=True)
     description = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.description
+        return f"{self.name} - {self.specialty}"
 
 
 # Treatment model
 class Treatment(models.Model):
+    treat_name = models.CharField(max_length=100)
     pathology = models.ForeignKey('Pathology', on_delete=models.CASCADE)
-    description = models.CharField(max_length=255)
+    treat_type = models.CharField(max_length=100)
+    treat_indications = models.TextField()
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.description
+        return f"{self.treat_name} - {self.treat_indications}"
 
 
 # Pharmacy model
@@ -270,8 +274,10 @@ class Availability(models.Model):
 
 # Cross Transplant model
 class CrossTransplant(models.Model):
-    cross_patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    cross_donor = models.ForeignKey(Patient, related_name='CrossDonor', on_delete=models.CASCADE)
+    cross_patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+    HLA_patient = models.CharField(max_length=255, blank=True, null=True)
+    cross_donor = models.ForeignKey('Patient', related_name='CrossDonor', on_delete=models.CASCADE)
+    HLA_donor = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(max_length=500)
     is_active = models.BooleanField(default=True)
 
