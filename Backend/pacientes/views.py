@@ -2,6 +2,8 @@ from core.models import Patient
 from pacientes.serializers import PacienteSerializer
 from rest_framework import generics
 from drf_spectacular.utils import extend_schema
+from django.shortcuts import get_object_or_404
+from rest_framework.response import Response
 
 # Create your views here.
 
@@ -37,7 +39,7 @@ class PacienteDetail(generics.RetrieveUpdateDestroyAPIView):
         description="Entrega un paciente especificado con su numero de ID"
     )
     def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+        return super().get(request, *args, **kwargs)
 
     @extend_schema(
         tags=['Pacientes'],

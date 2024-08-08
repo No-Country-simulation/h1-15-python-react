@@ -51,6 +51,8 @@ urlpatterns = [
 ]
 
 """
+path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
+path('doctor/<int:pk>/reviews/',CalificaPersonalMedicoList.as_view(),),
 path('treatment/', TratamientoList.as_view(),),
 path('treatment/<int:pk>/', TratamientoDetail.as_view(),),
 path('type/', TipoUsuarioList.as_view(),),
@@ -63,8 +65,6 @@ path('nomenclador/upload/', FileUploadView.as_view(),),
 path('crosstransplant/', TrasplanteCruzadoList.as_view(),),
 path('crosstransplant/<int:pk>/', TrasplanteCruzadoDetail.as_view(),),
 path('doctor/',  PersonalMedicoList.as_view(),),
-path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
-path('doctor/<int:pk>/reviews/',CalificaPersonalMedicoList.as_view(),),
 
 
 path('especialidad/', EspecialidadList.as_view(),),

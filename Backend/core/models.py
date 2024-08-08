@@ -56,6 +56,8 @@ class UserType(models.Model):
 class Patient(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE)
     financer = models.ForeignKey('Financer', on_delete=models.CASCADE)
+    affiliate_code = models.CharField(max_length=100, null=True, blank=True)
+    plan = models.CharField(max_length=20, null=True, blank=True)
 
 
 #MedicalHistory model
@@ -151,8 +153,6 @@ class Financer(models.Model):
     #medical_staff = models.ForeignKey(
     #    'MedicalStaff', on_delete=models.CASCADE)
     description = models.CharField(max_length=255)
-    affiliate_code = models.CharField(max_length=100, null=True, blank=True)
-    plan = models.CharField(max_length=20, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     
     def __str__(self):
