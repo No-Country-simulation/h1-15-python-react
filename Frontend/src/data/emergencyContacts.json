@@ -1,0 +1,166 @@
+{
+  "Buenos Aires": [
+    {
+      "id": 1,
+      "name": "Policía",
+      "phone": "911",
+      "relationship": "Servicio de emergencia",
+      "type": "Público"
+    },
+    {
+      "id": 2,
+      "name": "Ambulancia (SAME)",
+      "phone": "107",
+      "relationship": "Atención médica de urgencia",
+      "type": "Público"
+    },
+    {
+      "id": 3,
+      "name": "Bomberos",
+      "phone": "100",
+      "relationship": "Atención de emergencias",
+      "type": "Público"
+    },
+    {
+      "id": 4,
+      "name": "Emergencias",
+      "phone": "103",
+      "relationship": "Emergencias diversas",
+      "type": "Público"
+    },
+    {
+      "id": 5,
+      "name": "Violencia de género",
+      "phone": "144",
+      "relationship": "Atención a víctimas de violencia de género",
+      "type": "Público"
+    },
+    {
+      "id": 6,
+      "name": "Denuncias por protección del trabajo",
+      "phone": "0800-222-2224",
+      "relationship": "Denuncias laborales",
+      "type": "Público"
+    },
+    {
+      "id": 7,
+      "name": "Gobierno de la Ciudad",
+      "phone": "5091-7200",
+      "relationship": "Información gubernamental",
+      "type": "Público"
+    },
+    {
+      "id": 8,
+      "name": "Línea Social",
+      "phone": "108",
+      "relationship": "Asesoramiento social",
+      "type": "Público"
+    },
+    {
+      "id": 9,
+      "name": "Atención ciudadana",
+      "phone": "147",
+      "relationship": "Asesoramiento e información",
+      "type": "Público"
+    },
+    {
+      "id": 10,
+      "name": "Trata de personas",
+      "phone": "145",
+      "relationship": "Denuncias de trata de personas",
+      "type": "Público"
+    }
+  ],
+  "CABA": [
+    {
+      "id": 1,
+      "name": "Policía",
+      "phone": "911",
+      "relationship": "Servicio de emergencia",
+      "type": "Público"
+    },
+    {
+      "id": 2,
+      "name": "Ambulancia",
+      "phone": "107",
+      "relationship": "Servicio de emergencia",
+      "type": "Público"
+    },
+    {
+      "id": 3,
+      "name": "Bomberos",
+      "phone": "100",
+      "relationship": "Servicio de emergencia",
+      "type": "Público"
+    }
+  ],
+  "Rosario": [
+    {
+      "id": 1,
+      "name": "Policía",
+      "phone": "911",
+      "relationship": "Servicio de emergencia",
+      "type": "Público"
+    },
+    {
+      "id": 2,
+      "name": "Ambulancia",
+      "phone": "107",
+      "relationship": "Servicio de emergencia",
+      "type": "Público"
+    },
+    {
+      "id": 3,
+      "name": "Bomberos",
+      "phone": "100",
+      "relationship": "Servicio de emergencia",
+      "type": "Público"
+    }
+  ],
+  "Córdoba": [
+    {
+      "id": 1,
+      "name": "Policía",
+      "phone": "911",
+      "relationship": "Servicio de emergencia",
+      "type": "Público"
+    },
+    {
+      "id": 2,
+      "name": "Ambulancia",
+      "phone": "107",
+      "relationship": "Servicio de emergencia",
+      "type": "Público"
+    },
+    {
+      "id": 3,
+      "name": "Bomberos",
+      "phone": "100",
+      "relationship": "Servicio de emergencia",
+      "type": "Público"
+    }
+  ],
+  "Mendoza": [
+    {
+      "id": 1,
+      "name": "Policía",
+      "phone": "911",
+      "relationship": "Servicio de emergencia",
+      "type": "Público"
+    },
+    {
+      "id": 2,
+      "name": "Ambulancia",
+      "phone": "107",
+      "relationship": "Servicio de emergencia",
+      "type": "Público"
+    },
+    {
+      "id": 3,
+      "name": "Bomberos",
+      "phone": "100",
+      "relationship": "Servicio de emergencia",
+      "type": "Público"
+    }
+  ]
+}

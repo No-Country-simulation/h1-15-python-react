@@ -30,7 +30,6 @@ const Register = () => {
     try {
       await registerUser(formData);
 
-
       await showDialog(
         languageData.register.registrationSuccessTitle,
         languageData.register.registrationSuccessMessage,

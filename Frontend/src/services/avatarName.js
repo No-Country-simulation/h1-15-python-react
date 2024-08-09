@@ -3,9 +3,14 @@ import axios from "axios";
 // Obtén la URL de la API desde la variable de entorno
 const API_URL = import.meta.env.VITE_API_URL;
 
-// Función para obtener datos del usuario
 export const fetchUserData = async () => {
   try {
+    const storedFirstName = localStorage.getItem("firstName");
+    const storedLastName = localStorage.getItem("lastName");
+    if (storedFirstName && storedLastName) {
+      return { first_name: storedFirstName, last_name: storedLastName };
+    }
+
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("authToken");
 
@@ -19,7 +24,10 @@ export const fetchUserData = async () => {
 
     const { first_name, last_name } = response.data;
 
-    // Almacena first_name y last_name en el local storage
+    if (!first_name || !last_name) {
+      throw new Error("Datos del usuario incompletos");
+    }
+
     localStorage.setItem("firstName", first_name);
     localStorage.setItem("lastName", last_name);
 
@@ -27,7 +35,9 @@ export const fetchUserData = async () => {
   } catch (error) {
     console.error("Error al obtener los datos del usuario:", error);
     throw new Error(
-      error.response?.data?.detail || "Error al obtener los datos del usuario",
+      error.response?.data?.detail ||
+        error.message ||
+        "Error al obtener los datos del usuario",
     );
   }
 };

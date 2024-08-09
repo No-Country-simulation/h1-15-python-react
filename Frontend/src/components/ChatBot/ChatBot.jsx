@@ -62,8 +62,8 @@ const Chatbot = () => {
             </div>
           </div>
           <img
-            src="/chatbot.png"
-            alt="Robot amarillo"
+            src="/chatbot.webp"
+            alt="Bot Justina"
             className="cursor-pointer w-[80px] md:w-[120px] rounded-full"
             onClick={showChat}
           />

@@ -3,7 +3,7 @@ import CardOptions from "../../../components/Cards/CardOptions";
 import Icon from "../../../components/Icon/Icon";
 import Logout from "../../../components/Logout/Logout";
 import useLanguage from "../../../hooks/useLanguage";
-import AvatarUpperCase from "../../../components/UserInitials";
+import UserInitials from "../../../components/UserInitials";
 
 const PatientMain = () => {
   const [showLogout, setShowLogout] = useState(false);
@@ -34,7 +34,7 @@ const PatientMain = () => {
       <nav className="flex justify-between w-full items-center">
         <Icon name="bars" />
         <div ref={profileRef} className="relative">
-          <AvatarUpperCase  onClick={toggleLogout}/>         
+          <UserInitials onClick={toggleLogout} />
           {showLogout && (
             <div className="absolute mt-2 right-0 z-10">
               <Logout />

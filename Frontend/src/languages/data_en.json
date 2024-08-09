@@ -1,388 +1,383 @@
 {
-	"home": {
-		"navbar": {
-			"title": "Login"
-		},
-		"cta": {
-			"title": "AN APP THAT SAVES LIVES",
-			"description": "Our app connects you with emergency medical services in real time and provides personalized health tracking.",
-			"button": "Get Started"
-		},
-		"landing": {
-			"image": "/mockup_1_en.webp"
-		},
-		"about": {
-			"title": "ABOUT OUR APP",
-			"description": "Our app is designed to provide quick and accessible medical assistance, improving the quality of life for our users.",
-			"cards": [
-				{
-					"title": "ACCESSIBLE DESIGN",
-					"message": "We’ve created an intuitive interface so that anyone can use the app without difficulties."
-				},
-				{
-					"title": "EASY TO USE",
-					"message": "Our app is simple and straightforward, allowing you to access medical services with just a few taps."
-				},
-				{
-					"title": "THE BEST EXPERIENCE",
-					"message": "We guarantee an excellent user experience, focused on your needs and well-being."
-				}
-			]
-		},
-		"functions": {
-			"title": "APP FEATURES",
-			"description": "Discover the key features that make our app an indispensable tool for your health care.",
-			"cards": [
-				{
-					"imgSrc": "comment.svg",
-					"title": "PERSONALIZED CARE",
-					"message": "Access personalized medical consultations with certified professionals."
-				},
-				{
-					"imgSrc": "browser.svg",
-					"title": "DAILY REMINDERS",
-					"message": "Receive daily notifications to take your medications and attend your medical appointments."
-				},
-				{
-					"imgSrc": "vector.svg",
-					"title": "ONLINE MEDICAL RECORD",
-					"message": "Keep an updated record of your medical history and share it with your doctor easily."
-				},
-				{
-					"imgSrc": "cell-phone.svg",
-					"title": "IOS & ANDROID VERSION",
-					"message": "Available on major mobile platforms for your convenience."
-				},
-				{
-					"imgSrc": "telemarketer.svg",
-					"title": "24/7 SUPPORT BY REAL MEDICAL STAFF",
-					"message": "Get medical support anytime from qualified personnel."
-				}
-			]
-		},
-		"mockup": {
-			"image": "/mockup_en.webp"
-		},
-		"howItWorks": {
-			"title": "HOW OUR APP WORKS",
-			"description": "Our app uses advanced technology to connect users with medical services efficiently and securely.",
-			"video": "/about_app_en.webp"
-		},
-		"whoWeAre": {
-			"title": "WHO WE ARE",
-			"description": "We are a dedicated team of health and technology professionals committed to your well-being.",
-			"cards": [
-				{
-					"imagen": "Profile.webp",
-					"nombre": "EZEQUIEL  LO CANE",
-					"bio": "Founder and CEO. With over 15 years of experience in the health industry, Ezequiel leads our team with passion and dedication.",
-					"posicion": "FOUNDER"
-				},
-				{
-					"imagen": "Profile1.webp",
-					"nombre": "CARLOS MARTÍN",
-					"bio": "Surgeon with over 20 years of experience. Carlos ensures that our app meets the highest medical standards.",
-					"posicion": "SURGEON"
-				},
-				{
-					"imagen": "Profile2.webp",
-					"nombre": "MARÍA PÉREZ",
-					"bio": "Medical specialist in digital health. María works to effectively integrate technology into our app.",
-					"posicion": "DOCTOR"
-				}
-			]
-		},
-		"testimonials": {
-			"title": "TESTIMONIALS",
-			"description": "Our users share their experiences and how our app has improved their health and well-being.",
-			"cards": [
-				{
-					"name": "ANA GARCIA",
-					"condition": "TRANSPLANT PATIENT",
-					"comment": "The app was crucial for receiving a kidney transplant. The speed in finding a donor was incredible.",
-					"image": "https://randomuser.me/api/portraits/women/45.jpg"
-				},
-				{
-					"name": "JUAN PÉREZ",
-					"condition": "DIABETES PATIENT",
-					"comment": "Thanks to the app, I found the support I needed to manage my diabetes and improve my quality of life.",
-					"image": "https://randomuser.me/api/portraits/men/76.jpg"
-				},
-				{
-					"name": "MARÍA LOPEZ",
-					"condition": "HYPERTENSION PATIENT",
-					"comment": "The app helped me get the right treatment for my hypertension and maintain regular follow-ups.",
-					"image": "https://randomuser.me/api/portraits/women/68.jpg"
-				},
-				{
-					"name": "LUIS MARTÍNEZ",
-					"condition": "RECOVERING PATIENT",
-					"comment": "The app was key to my recovery. I found the resources I needed for my rehabilitation with ease.",
-					"image": "https://randomuser.me/api/portraits/men/62.jpg"
-				}
-			]
-		},
-		"footer": {
-			"slogan": "We join forces to build a bright future, full of hope and opportunities.",
-			"links": [
-				{
-					"title": "Links"
-				},
-				{
-					"name": "About Us",
-					"url": "/"
-				},
-				{
-					"name": "Contact Us",
-					"url": "/"
-				},
-				{
-					"name": "Terms of Service",
-					"url": "/"
-				},
-				{
-					"name": "Privacy Policy",
-					"url": "/"
-				},
-				{
-					"name": "Blog",
-					"url": "/"
-				}
-			],
-			"newsletter": {
-				"title": "NEWSLETTER",
-				"heading": "Subscribe to Our Newsletter",
-				"placeholder": "Enter your email address",
-				"buttonText": "Subscribe"
-			},
-			"socialMedia": {
-				"facebook": {
-					"url": "/"
-				},
-				"instagram": {
-					"url": "/"
-				},
-				"youtube": {
-					"url": "/"
-				},
-				"twitter": {
-					"url": "/"
-				}
-			},
-			"Copyright": {
-				"title": "Copyright 2024 .h1-15. All rights reserved."
-			}
-		}
-	},
-	"login": {
-		"title": "Log In",
-		"noAccount": "Don't have an account?",
-		"register": "Sign Up",
-		"emailLabel": "Email",
-		"emailPlaceholder": "Enter your email address",
-		"passwordLabel": "Password",
-		"passwordPlaceholder": "Enter a password",
-		"rememberMe": "Remember Me",
-		"forgotPassword": "Forgot your password?",
-		"loginButton": "Log In",
-		"or": "Or",
-		"googleSignIn": "Continue with Google",
-		"facebookSignIn": "Continue with Facebook",
-		"eyeAltShow": "Show password",
-		"eyeAltHide": "Hide password"
-	},
-	"updatePassword": {
-		"title": "Update Password",
-		"newPasswordLabel": "New Password",
-		"newPasswordPlaceholder": "Enter a new password",
-		"confirmNewPasswordLabel": "Confirm New Password",
-		"confirmNewPasswordPlaceholder": "Confirm your new password",
-		"updateButton": "Update Password",
-		"backToLogin": "Back to Login",
-		"passwordMismatch": "Passwords do not match",
-		"passwordUpdated": "Password updated successfully",
-		"errorUpdatingPassword": "Error updating password",
-		"minLength": "The password must be at least {minLength} characters long.",
-		"hasUpperCase": "The password must contain at least one uppercase letter.",
-		"hasLowerCase": "The password must contain at least one lowercase letter.",
-		"hasNumber": "The password must contain at least one digit.",
-		"hasSpecialChar": "The password must contain at least one special character."
-	},
-	"patientMain": {
-		"locateTitle": "Locate",
-		"locateSubtitle": "your doctor",
-		"searchPlaceholder": "Search for doctors, directions, etc.",
-		"cardData": [
-			{
-				"id": 1,
-				"icon": "medicineSkyblue",
-				"title": "Medication",
-				"color": "#4fd2c2",
-				"link": "/patient/treatment"
-			},
-			{
-				"id": 2,
-				"icon": "calendarOrange",
-				"title": "Medical Appointments",
-				"color": "#E58426",
-				"link": "/patient/schedule"
-			},
-			{
-				"id": 3,
-				"icon": "stethoscopeBlue",
-				"title": "Medical Staff",
-				"color": "#5563C4",
-				"link": "/patient/doctor-information"
-			},
-			{
-				"id": 4,
-				"icon": "handsOrange",
-				"title": "Support and Community",
-				"color": "#FBC046",
-				"link": "/patient/support"
-			},
-			{
-				"id": 5,
-				"icon": "clipboardSkyblue",
-				"title": "Medical History",
-				"color": "#00ADDE",
-				"link": "/patient/medical-history"
-			},
-			{
-				"id": 6,
-				"icon": "phoneViolet",
-				"title": "Emergency Contact",
-				"color": "#D22B8B",
-				"link": "/patient/emergency-contacts"
-			}
-		]
-	},
-	"PopupMessage": {
-		"title": "Attention!",
-		"content": "You must choose a doctor to proceed with your appointment.",
-		"textButton": "Got it"
-	},
-	"NotFound": {
-		"title": "404 - Page Not Found",
-		"message": "Sorry, the page you are looking for does not exist.",
-		"button": "Go Back to Home",
-		"logoAltText": "Logo"
-	},
-	"PageConstruction": {
-		"title": "This Section is Under Construction!",
-		"message": "Notify me when it's available",
-		"emailPlaceholder": "Enter your email address",
-		"submitButton": "Send",
-		"logoAltText": "Logo",
-		"toastSuccessMessage": "You will be notified."
-	},
-	"Treatment": {
-		"Profile": {
-			"icon_name": "medicine",
-			"greeting": "Good day,",
-			"patientName": "Laura!",
-			"photo": "/Bung1.webp"
-		},
-		"CardTitle": [
-			{
-				"titles": [
-					"Treatments"
-				],
-				"backgroundColor": "#4fd2c2",
-				"textColor": "#FFF"
-			},
-			{
-				"titles": [
-					"Pending Medications:"
-				],
-				"backgroundColor": "#D22B8B",
-				"textColor": "#FFF"
-			}
-		],
-		"cardEvent": [
-			{
-				"color": "#D22B8B",
-				"action": "New dose of",
-				"name": "Cyclosporine 10mg",
-				"time": "8:30",
-				"unit": "AM"
-			},
-			{
-				"color": "#4fd2c2",
-				"action": "Medical appointment with",
-				"name": "Dr. Chang",
-				"time": "8:30",
-				"unit": "PM"
-			},
-			{
-				"color": "#D22B8B",
-				"action": "New dose of",
-				"name": "Cyclosporine 10mg",
-				"time": "8:30",
-				"unit": "AM"
-			},
-			{
-				"color": "#4fd2c2",
-				"action": "Medical appointment with",
-				"name": "Dr. Smith",
-				"time": "10:00",
-				"unit": "AM"
-			},
-			{
-				"color": "#D22B8B",
-				"action": "New dose of",
-				"name": "Ibuprofen 200mg",
-				"time": "12:30",
-				"unit": "PM"
-			},
-			{
-				"color": "#4fd2c2",
-				"action": "Medical appointment with",
-				"name": "Nutritionist",
-				"time": "2:00",
-				"unit": "PM"
-			},
-			{
-				"color": "#D22B8B",
-				"action": "New dose of",
-				"name": "Paracetamol 500mg",
-				"time": "4:00",
-				"unit": "PM"
-			}
-		]
-	},
-	"Schedule": {
-		"Profile": {
-			"icon_name": "calendarOrange",
-			"greeting": "These are your appointments,",
-			"patientName": "Laura!",
-			"photo": "/Bung1.webp"
-		},
-		"warning": {
-			"message": "You have no pending appointments for this date"
-		},
-		"AddItemButton": {
-			"text": "New appointment"
-		}
-	},
-	"Navbar": {
-		"title": "Log out"
-	},
-	"register": {
-		"title": "Register",
-		"alreadyHaveAccount": "Already have an account?",
-		"login": "Log In",
-		"firstNameLabel": "First Name",
-		"firstNamePlaceholder": "Enter your first name",
-		"lastNameLabel": "Last Name",
-		"lastNamePlaceholder": "Enter your last name",
-		"emailLabel": "Email",
-		"emailPlaceholder": "Enter your email address",
-		"roleLabel": "Select your role to register:",
-		"patientRole": "Patient: To manage your appointments and medical consultations.",
-		"doctorRole": "Doctor: To manage your consultations and patients.",
-		"registerButton": "Register",
-		"registrationSuccessTitle": "Registration Successful",
-		"registrationSuccessMessage": "An email with the access password to the application has been sent."
-	}
+  "home": {
+    "navbar": {
+      "title": "Login"
+    },
+    "cta": {
+      "title": "AN APP THAT SAVES LIVES",
+      "description": "Our app connects you with emergency medical services in real time and provides personalized health tracking.",
+      "button": "Get Started"
+    },
+    "landing": {
+      "image": "/mockup_1_en.webp"
+    },
+    "about": {
+      "title": "ABOUT OUR APP",
+      "description": "Our app is designed to provide quick and accessible medical assistance, improving the quality of life for our users.",
+      "cards": [
+        {
+          "title": "ACCESSIBLE DESIGN",
+          "message": "We’ve created an intuitive interface so that anyone can use the app without difficulties."
+        },
+        {
+          "title": "EASY TO USE",
+          "message": "Our app is simple and straightforward, allowing you to access medical services with just a few taps."
+        },
+        {
+          "title": "THE BEST EXPERIENCE",
+          "message": "We guarantee an excellent user experience, focused on your needs and well-being."
+        }
+      ]
+    },
+    "functions": {
+      "title": "APP FEATURES",
+      "description": "Discover the key features that make our app an indispensable tool for your health care.",
+      "cards": [
+        {
+          "imgSrc": "comment.svg",
+          "title": "PERSONALIZED CARE",
+          "message": "Access personalized medical consultations with certified professionals."
+        },
+        {
+          "imgSrc": "browser.svg",
+          "title": "DAILY REMINDERS",
+          "message": "Receive daily notifications to take your medications and attend your medical appointments."
+        },
+        {
+          "imgSrc": "vector.svg",
+          "title": "ONLINE MEDICAL RECORD",
+          "message": "Keep an updated record of your medical history and share it with your doctor easily."
+        },
+        {
+          "imgSrc": "cell-phone.svg",
+          "title": "IOS & ANDROID VERSION",
+          "message": "Available on major mobile platforms for your convenience."
+        },
+        {
+          "imgSrc": "telemarketer.svg",
+          "title": "24/7 SUPPORT BY REAL MEDICAL STAFF",
+          "message": "Get medical support anytime from qualified personnel."
+        }
+      ]
+    },
+    "mockup": {
+      "image": "/mockup_en.webp"
+    },
+    "howItWorks": {
+      "title": "HOW OUR APP WORKS",
+      "description": "Our app uses advanced technology to connect users with medical services efficiently and securely.",
+      "video": "/about_app_en.webp"
+    },
+    "whoWeAre": {
+      "title": "WHO WE ARE",
+      "description": "We are a dedicated team of health and technology professionals committed to your well-being.",
+      "cards": [
+        {
+          "imagen": "Profile.webp",
+          "nombre": "EZEQUIEL  LO CANE",
+          "bio": "Founder and CEO. With over 15 years of experience in the health industry, Ezequiel leads our team with passion and dedication.",
+          "posicion": "FOUNDER"
+        },
+        {
+          "imagen": "Profile1.webp",
+          "nombre": "CARLOS MARTÍN",
+          "bio": "Surgeon with over 20 years of experience. Carlos ensures that our app meets the highest medical standards.",
+          "posicion": "SURGEON"
+        },
+        {
+          "imagen": "Profile2.webp",
+          "nombre": "MARÍA PÉREZ",
+          "bio": "Medical specialist in digital health. María works to effectively integrate technology into our app.",
+          "posicion": "DOCTOR"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "TESTIMONIALS",
+      "description": "Our users share their experiences and how our app has improved their health and well-being.",
+      "cards": [
+        {
+          "name": "ANA GARCIA",
+          "condition": "TRANSPLANT PATIENT",
+          "comment": "The app was crucial for receiving a kidney transplant. The speed in finding a donor was incredible.",
+          "image": "https://randomuser.me/api/portraits/women/45.jpg"
+        },
+        {
+          "name": "JUAN PÉREZ",
+          "condition": "DIABETES PATIENT",
+          "comment": "Thanks to the app, I found the support I needed to manage my diabetes and improve my quality of life.",
+          "image": "https://randomuser.me/api/portraits/men/76.jpg"
+        },
+        {
+          "name": "MARÍA LOPEZ",
+          "condition": "HYPERTENSION PATIENT",
+          "comment": "The app helped me get the right treatment for my hypertension and maintain regular follow-ups.",
+          "image": "https://randomuser.me/api/portraits/women/68.jpg"
+        },
+        {
+          "name": "LUIS MARTÍNEZ",
+          "condition": "RECOVERING PATIENT",
+          "comment": "The app was key to my recovery. I found the resources I needed for my rehabilitation with ease.",
+          "image": "https://randomuser.me/api/portraits/men/62.jpg"
+        }
+      ]
+    },
+    "footer": {
+      "slogan": "We join forces to build a bright future, full of hope and opportunities.",
+      "links": [
+        {
+          "title": "Links"
+        },
+        {
+          "name": "About Us",
+          "url": "/"
+        },
+        {
+          "name": "Contact Us",
+          "url": "/"
+        },
+        {
+          "name": "Terms of Service",
+          "url": "/"
+        },
+        {
+          "name": "Privacy Policy",
+          "url": "/"
+        },
+        {
+          "name": "Blog",
+          "url": "/"
+        }
+      ],
+      "newsletter": {
+        "title": "NEWSLETTER",
+        "heading": "Subscribe to Our Newsletter",
+        "placeholder": "Enter your email address",
+        "buttonText": "Subscribe"
+      },
+      "socialMedia": {
+        "facebook": {
+          "url": "/"
+        },
+        "instagram": {
+          "url": "/"
+        },
+        "youtube": {
+          "url": "/"
+        },
+        "twitter": {
+          "url": "/"
+        }
+      },
+      "Copyright": {
+        "title": "Copyright 2024 .h1-15. All rights reserved."
+      }
+    }
+  },
+  "login": {
+    "title": "Log In",
+    "noAccount": "Don't have an account?",
+    "register": "Sign Up",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Enter your email address",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter a password",
+    "rememberMe": "Remember Me",
+    "forgotPassword": "Forgot your password?",
+    "loginButton": "Log In",
+    "or": "Or",
+    "googleSignIn": "Continue with Google",
+    "facebookSignIn": "Continue with Facebook",
+    "eyeAltShow": "Show password",
+    "eyeAltHide": "Hide password"
+  },
+  "updatePassword": {
+    "title": "Update Password",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter a new password",
+    "confirmNewPasswordLabel": "Confirm New Password",
+    "confirmNewPasswordPlaceholder": "Confirm your new password",
+    "updateButton": "Update Password",
+    "backToLogin": "Back to Login",
+    "passwordMismatch": "Passwords do not match",
+    "passwordUpdated": "Password updated successfully",
+    "errorUpdatingPassword": "Error updating password",
+    "minLength": "The password must be at least {minLength} characters long.",
+    "hasUpperCase": "The password must contain at least one uppercase letter.",
+    "hasLowerCase": "The password must contain at least one lowercase letter.",
+    "hasNumber": "The password must contain at least one digit.",
+    "hasSpecialChar": "The password must contain at least one special character."
+  },
+  "patientMain": {
+    "locateTitle": "Locate",
+    "locateSubtitle": "your doctor",
+    "searchPlaceholder": "Search for doctors, directions, etc.",
+    "cardData": [
+      {
+        "id": 1,
+        "icon": "medicineSkyblue",
+        "title": "Medication",
+        "color": "#4fd2c2",
+        "link": "/patient/treatment"
+      },
+      {
+        "id": 2,
+        "icon": "calendarOrange",
+        "title": "Medical Appointments",
+        "color": "#E58426",
+        "link": "/patient/schedule"
+      },
+      {
+        "id": 3,
+        "icon": "stethoscopeBlue",
+        "title": "Medical Staff",
+        "color": "#5563C4",
+        "link": "/patient/doctor-information"
+      },
+      {
+        "id": 4,
+        "icon": "handsOrange",
+        "title": "Support and Community",
+        "color": "#FBC046",
+        "link": "/patient/support"
+      },
+      {
+        "id": 5,
+        "icon": "clipboardSkyblue",
+        "title": "Medical History",
+        "color": "#00ADDE",
+        "link": "/patient/medical-history"
+      },
+      {
+        "id": 6,
+        "icon": "phoneViolet",
+        "title": "Emergency Contact",
+        "color": "#D22B8B",
+        "link": "/patient/emergency-contacts"
+      }
+    ]
+  },
+  "PopupMessage": {
+    "title": "Attention!",
+    "content": "You must choose a doctor to proceed with your appointment.",
+    "textButton": "Got it"
+  },
+  "NotFound": {
+    "title": "404 - Page Not Found",
+    "message": "Sorry, the page you are looking for does not exist.",
+    "button": "Go Back to Home",
+    "logoAltText": "Logo"
+  },
+  "PageConstruction": {
+    "title": "This Section is Under Construction!",
+    "message": "Notify me when it's available",
+    "emailPlaceholder": "Enter your email address",
+    "submitButton": "Send",
+    "logoAltText": "Logo",
+    "toastSuccessMessage": "You will be notified."
+  },
+  "Treatment": {
+    "Profile": {
+      "icon_name": "medicine",
+      "greeting": "Good day,"
+    },
+    "CardTitle": [
+      {
+        "titles": ["Treatments"],
+        "backgroundColor": "#4fd2c2",
+        "textColor": "#FFF"
+      },
+      {
+        "titles": ["Pending Medications:"],
+        "backgroundColor": "#D22B8B",
+        "textColor": "#FFF"
+      }
+    ],
+    "cardEvent": [
+      {
+        "color": "#D22B8B",
+        "action": "New dose of",
+        "name": "Cyclosporine 10mg",
+        "time": "8:30",
+        "unit": "AM"
+      },
+      {
+        "color": "#4fd2c2",
+        "action": "Medical appointment with",
+        "name": "Dr. Chang",
+        "time": "8:30",
+        "unit": "PM"
+      },
+      {
+        "color": "#D22B8B",
+        "action": "New dose of",
+        "name": "Cyclosporine 10mg",
+        "time": "8:30",
+        "unit": "AM"
+      },
+      {
+        "color": "#4fd2c2",
+        "action": "Medical appointment with",
+        "name": "Dr. Smith",
+        "time": "10:00",
+        "unit": "AM"
+      },
+      {
+        "color": "#D22B8B",
+        "action": "New dose of",
+        "name": "Ibuprofen 200mg",
+        "time": "12:30",
+        "unit": "PM"
+      },
+      {
+        "color": "#4fd2c2",
+        "action": "Medical appointment with",
+        "name": "Nutritionist",
+        "time": "2:00",
+        "unit": "PM"
+      },
+      {
+        "color": "#D22B8B",
+        "action": "New dose of",
+        "name": "Paracetamol 500mg",
+        "time": "4:00",
+        "unit": "PM"
+      }
+    ]
+  },
+  "Schedule": {
+    "Profile": {
+      "icon_name": "calendarOrange",
+      "greeting": "These are your appointments,"
+    },
+    "warning": {
+      "message": "You have no pending appointments for this date"
+    },
+    "AddItemButton": {
+      "text": "New appointment"
+    }
+  },
+  "Navbar": {
+    "title": "Log out"
+  },
+  "register": {
+    "title": "Register",
+    "alreadyHaveAccount": "Already have an account?",
+    "login": "Log In",
+    "firstNameLabel": "First Name",
+    "firstNamePlaceholder": "Enter your first name",
+    "lastNameLabel": "Last Name",
+    "lastNamePlaceholder": "Enter your last name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Enter your email address",
+    "roleLabel": "Select your role to register:",
+    "patientRole": "Patient: To manage your appointments and medical consultations.",
+    "doctorRole": "Doctor: To manage your consultations and patients.",
+    "registerButton": "Register",
+    "registrationSuccessTitle": "Registration Successful",
+    "registrationSuccessMessage": "An email with the access password to the application has been sent."
+  },
+  "SearchBar": {
+    "placeholderInput": "Start searching..."
+  }
 }

@@ -22,7 +22,10 @@ const UpdatePassword = () => {
     setPasswordError("");
     setConfirmPasswordError("");
 
-    const validationMessage = validatePassword(newPassword, languageData.updatePassword);
+    const validationMessage = validatePassword(
+      newPassword,
+      languageData.updatePassword,
+    );
     if (validationMessage) {
       setPasswordError(validationMessage);
       return;
@@ -39,7 +42,7 @@ const UpdatePassword = () => {
     } catch (error) {
       console.error("Error updating password:", error);
       setPasswordError(
-        error.message || languageData.updatePassword.errorUpdatingPassword
+        error.message || languageData.updatePassword.errorUpdatingPassword,
       );
     }
   };
@@ -128,7 +131,9 @@ const UpdatePassword = () => {
               </button>
             </div>
             {confirmPasswordError && (
-              <p className="mt-2 text-sm text-red-600">{confirmPasswordError}</p>
+              <p className="mt-2 text-sm text-red-600">
+                {confirmPasswordError}
+              </p>
             )}
           </div>
           <button

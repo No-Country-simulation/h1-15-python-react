@@ -28,8 +28,14 @@ const routes = [
   { path: "/patient/emergency-contacts", element: <Emergency /> },
   { path: "/patient/doctor-information", element: <DoctorList /> },
   { path: "/patient/doctor-information/:id", element: <DoctorDetail /> },
-  { path: "patient/schedule/appointment/:id", element: <ScheduleAppointment /> },
-  { path: "/patient/appointment/confirmation", element: <ConfirmAppointment /> },
+  {
+    path: "patient/schedule/appointment/:id",
+    element: <ScheduleAppointment />,
+  },
+  {
+    path: "/patient/appointment/confirmation",
+    element: <ConfirmAppointment />,
+  },
   { path: "/patient/appointment/success", element: <ConfirmationSuccess /> },
   { path: "/patient/schedule/details/:id", element: <DetailSchedule /> },
 ];
@@ -40,7 +46,9 @@ export const patientRoutes = (
       <Route
         key={path}
         path={path}
-        element={<ProtectedRoute element={element} allowedRoles={["patient"]} />}
+        element={
+          <ProtectedRoute element={element} allowedRoles={["patient"]} />
+        }
       />
     ))}
   </>

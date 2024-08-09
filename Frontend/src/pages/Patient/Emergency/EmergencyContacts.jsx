@@ -1,0 +1,227 @@
+import { useState } from "react";
+import relationships from "../../../data/relationships.json";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { showToast } from "../../../utils/toast";
+import { ToastContainer } from "react-toastify";
+import Icon from "../../../components/Icon/Icon";
+import ContactCard from "./ContactCard";
+
+const EmergencyContacts = () => {
+  const [contacts, setContacts] = useState([]);
+  const [newContact, setNewContact] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    relationship: "",
+  });
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isPersonalListOpen, setIsPersonalListOpen] = useState(true);
+
+  const handleAddContact = () => {
+    const { firstName, lastName, phone, relationship } = newContact;
+    if (firstName && lastName && phone && relationship) {
+      setContacts((prevContacts) => [
+        ...prevContacts,
+        { ...newContact, id: Date.now() },
+      ]);
+      setNewContact({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        relationship: "",
+      });
+      showToast("Contacto agregado exitosamente", "success");
+    }
+  };
+
+  const handleRemoveContact = (id) => {
+    setContacts((prevContacts) =>
+      prevContacts.filter((contact) => contact.id !== id),
+    );
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value.toLowerCase());
+  };
+
+  const filteredContacts = contacts.filter(
+    (contact) =>
+      (contact.firstName + " " + contact.lastName)
+        .toLowerCase()
+        .includes(searchTerm) ||
+      contact.phone.toLowerCase().includes(searchTerm) ||
+      contact.relationship.toLowerCase().includes(searchTerm),
+  );
+
+  const handleToggleList = () => {
+    setIsPersonalListOpen(!isPersonalListOpen);
+  };
+
+  const handleAddFromExcel = () => {
+    // Implement the logic to handle the import from Excel file
+    showToast("Funcionalidad para agregar desde Excel no implementada", "info");
+  };
+
+  return (
+    <div className="p-6">
+      <ToastContainer />
+      <h2 className="text-2xl font-bold mb-4">Contactos de Emergencia</h2>
+
+      <div className="relative mb-4 flex items-center">
+        <input
+          type="text"
+          placeholder="Buscar contacto personal"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="border border-gray-300 rounded mr-2 w-full h-[40px] text-sm px-3"
+        />
+        <div className="absolute cursor-pointer text-2xl top-2 right-3">
+          <Icon name="filter" />
+        </div>
+      </div>
+
+      <div className="mb-4">
+        <h3 className="text-lg font-semibold mb-2">Agregar Nuevo Contacto</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <section className="flex flex-col gap-2 md:col-span-2 items-center justify-center">
+            <div className="w-full">
+              <label
+                htmlFor="firstName"
+                className="block text-sm font-medium mb-1"
+              >
+                Nombre
+              </label>
+              <input
+                id="firstName"
+                type="text"
+                placeholder="Ingrese el nombre"
+                value={newContact.firstName}
+                onChange={(e) =>
+                  setNewContact({ ...newContact, firstName: e.target.value })
+                }
+                className="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
+                required
+              />
+            </div>
+            <div className="w-full">
+              <label
+                htmlFor="lastName"
+                className="block text-sm font-medium mb-1"
+              >
+                Apellido
+              </label>
+              <input
+                id="lastName"
+                type="text"
+                placeholder="Ingrese el apellido"
+                value={newContact.lastName}
+                onChange={(e) =>
+                  setNewContact({ ...newContact, lastName: e.target.value })
+                }
+                className="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
+                required
+              />
+            </div>
+            <div className="w-full">
+              <label htmlFor="phone" className="block text-sm font-medium mb-1">
+                Teléfono
+              </label>
+              <PhoneInput
+                country={"ar"}
+                value={newContact.phone}
+                onChange={(phone) => setNewContact({ ...newContact, phone })}
+                inputClass="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
+                specialLabel=""
+                inputStyle={{
+                  width: "100%",
+                  padding: "10px 10px 10px 26px",
+                  border: "1px solid #D1D5DB",
+                  borderRadius: "0.375rem",
+                  boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
+                  textIndent: "24px",
+                  height: "40px",
+                }}
+              />
+            </div>
+            <div className="w-full">
+              <label
+                htmlFor="relationship"
+                className="block text-sm font-medium mb-1"
+              >
+                Parentesco
+              </label>
+              <select
+                id="relationship"
+                value={newContact.relationship}
+                onChange={(e) =>
+                  setNewContact({ ...newContact, relationship: e.target.value })
+                }
+                className="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
+                required
+              >
+                <option value="">Seleccionar Parentesco</option>
+                {relationships.map((relation) => (
+                  <option key={relation} value={relation}>
+                    {relation}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </section>
+          <section className="flex flex-col gap-2 items-center md:col-span-1 md:pt-6">
+            <button
+              onClick={handleAddContact}
+              className="bg-blue-500 text-white rounded h-[40px] w-full text-sm mb-2"
+            >
+              Agregar
+            </button>
+            <button
+              onClick={handleAddFromExcel}
+              className="bg-green-500 text-white rounded h-[40px] w-full text-sm"
+            >
+              Agregar desde Excel
+            </button>
+          </section>
+        </div>
+      </div>
+
+      <section className="py-4">
+        {/* Contactos Personales */}
+        <div className="w-full">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-xl font-semibold">Contactos Personales</h3>
+            <button
+              onClick={handleToggleList}
+              className="text-gray-600 hover:text-gray-800"
+            >
+              {isPersonalListOpen ? (
+                <Icon name="FaChevronUpIcon" />
+              ) : (
+                <Icon name="FaChevronDownIcon" />
+              )}
+            </button>
+          </div>
+          <hr className="my-4 border-gray-300" />
+          {isPersonalListOpen && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filteredContacts.length > 0 ? (
+                filteredContacts.map((contact) => (
+                  <ContactCard
+                    key={contact.id}
+                    contact={contact}
+                    onRemove={() => handleRemoveContact(contact.id)}
+                  />
+                ))
+              ) : (
+                <p>No hay contactos personales.</p>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default EmergencyContacts;
