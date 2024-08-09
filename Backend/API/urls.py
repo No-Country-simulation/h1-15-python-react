@@ -20,7 +20,7 @@ from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
 from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
 
 from entidad.views import EntidadDetail, EntidadList
-from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListCreate, TurnoDetail, TurnoListView, MisTurnoListView, ReservarTurnoView
+from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail,  TurnoDetail, TurnoListView, MisTurnoListView, ReservarTurnoView
 from patologias.views import PatologiaList, PatologiaDetail
 from farmacia.views import FarmaciaList, FarmaciaDetail
 from usuarios.views import CustomTokenObtainPairView, CustomTokenVerifyView, CustomTokenRefreshView
@@ -49,14 +49,17 @@ urlpatterns = [
     path('address/<int:pk>/', DireccionDetail.as_view(),),
     path('financers/', FinanciadoresList.as_view(),),
 
-
-
-
     #path('appointment/', TurnoCreate.as_view(),),
-    path('appointment/<int:pk>/', TurnoListCreate.as_view(),),
-    path('appointment/detail/<int:pk>/',TurnoDetail.as_view(),),
-    path('appointment/', MisTurnoListView.as_view()), #es para buscar turnos
-    path('appointment/<int:pk>', ReservarTurnoView.as_view()), #es para reservar un turno
+    #path('appointment/detail/<int:pk>/',TurnoDetail.as_view(),),
+    #path('appointment/', TurnoListView.as_view()),
+    #path('appointment/<int:pk>/', TurnoDetail.as_view(),),
+
+    #path('my_appointment/', MisTurnoListView.as_view()), #es para buscar turnos
+    #path('my_appointment/<int:pk>', ReservarTurnoView.as_view()), #es para reservar un turno
+
+    path('availabilit/', DisponibilidadList.as_view(),),
+    path('availabilit/create/', DisponibilidadCreate.as_view(),),
+    #path('availabilit/<int:pk>/',DisponibilidadDetail.as_view(),),
 ]
 
 """
@@ -92,9 +95,6 @@ path('antecedente_medico/<int:pk>/',AntecedenteMedicoDetail.as_view(),),
 path('entidad/', EntidadList.as_view(),),
 path('entidad/<int:pk>/',EntidadDetail.as_view(),),
 
-path('disponibilidad/', DisponibilidadList.as_view(),),
-path('disponibilidad/create/', DisponibilidadCreate.as_view(),),
-path('disponibilidad/<int:pk>/',DisponibilidadDetail.as_view(),),
 
 
 path('patologias/', PatologiaList.as_view(),),
@@ -102,8 +102,7 @@ path('patologias/<int:pk>/',PatologiaDetail.as_view(),),
 
 path('farmacia/', FarmaciaList.as_view(),),
 path('farmacia/<int:pk>/',FarmaciaDetail.as_view(),),
-path('turnos/', TurnoListView.as_view()),
-path('turnos/<int:pk>/', TurnoDetail.as_view(),),
+
 
 """
 
