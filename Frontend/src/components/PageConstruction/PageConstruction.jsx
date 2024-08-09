@@ -1,5 +1,4 @@
 import { useState } from "react";
-import BackButton from "../BackButton/BackButton";
 import { showToast } from "../../utils/toast";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +7,8 @@ import useLanguage from "../../hooks/useLanguage";
 const PageConstruction = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+
+  const userType = localStorage.getItem("userType");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -18,7 +19,7 @@ const PageConstruction = () => {
     showToast(languageData.PageConstruction.toastSuccessMessage, "success");
 
     setTimeout(() => {
-      navigate("/patient");
+      navigate(`/${userType}`);
     }, 2000);
   };
 
@@ -30,7 +31,6 @@ const PageConstruction = () => {
 
   return (
     <main>
-      <BackButton />
       <div className="flex flex-col items-center justify-center min-h-screen p-4 font-sans">
         <div className="text-center mb-4">
           <h1 className="text-2xl font-bold mb-2">
