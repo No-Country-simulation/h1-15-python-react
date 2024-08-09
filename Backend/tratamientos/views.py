@@ -1,4 +1,4 @@
-from tratamientos.serializers import TratamientoSerializer
+from tratamientos.serializers import TreatmentSerializer
 from rest_framework import generics
 from drf_spectacular.utils import extend_schema
 from core.models import Treatment
@@ -6,9 +6,9 @@ from core.models import Treatment
 # Create your views here.
 
 
-class TratamientoList(generics.ListCreateAPIView):
+class TreatmentList(generics.ListCreateAPIView):
     queryset = Treatment.objects.all()
-    serializer_class = TratamientoSerializer
+    serializer_class = TreatmentSerializer
 
     @extend_schema(
         tags=['Tratamientos'],
@@ -27,9 +27,9 @@ class TratamientoList(generics.ListCreateAPIView):
         return self.create(request, *args, **kwargs)
 
 
-class TratamientoDetail(generics.RetrieveUpdateDestroyAPIView):
+class TreatmentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Treatment.objects.all()
-    serializer_class = TratamientoSerializer
+    serializer_class = TreatmentSerializer
 
     @extend_schema(
         tags=['Tratamientos'],

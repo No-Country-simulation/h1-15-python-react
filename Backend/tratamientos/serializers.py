@@ -5,7 +5,7 @@ from core.models import Treatment
 # Serializers for Tratamiento model
 
 
-class TratamientoSerializer(serializers.ModelSerializer):
+class TreatmentSerializer(serializers.ModelSerializer):
     pathology_reference = PatologiaSerializer(read_only=True, many=True)
 
     class Meta:
