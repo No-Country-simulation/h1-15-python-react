@@ -2,6 +2,7 @@ from rest_framework import serializers
 from core.models import MedicalStaff, Availability, MedicalStaffReviews
 from django.db.models import Avg
 
+from drf_spectacular.utils import extend_schema_field
 
 class ReviewSerializer(serializers.ModelSerializer):
     id_personal_medico = serializers.PrimaryKeyRelatedField(
@@ -31,13 +32,14 @@ class MedicalStaffSerializer(serializers.ModelSerializer):
         fields = ['id', 'user', 'specialty', 'medical_license', 'consultation_phone',
                   'schedule', 'whatsapp', 'reviews', 'rating', 'is_active']
 
-    def get_schedule(self, obj):
+    @extend_schema_field(serializers.DictField())
+    def get_schedule(self, obj)-> dict:
         availability = Availability.objects.filter(doctor=obj)
         schedule = {}
 
         for slot in availability:
-            entity = slot.entity.description
-            day = slot.dia.capitalize()
+            entity = slot.entity.name
+            day = slot.day.capitalize()
 
             # Asegurarse de que la institución esté en el diccionario
             if entity not in schedule:
@@ -49,21 +51,23 @@ class MedicalStaffSerializer(serializers.ModelSerializer):
 
             # Agregar los horarios a la lista del día
             schedule[entity][day].append([
-                slot.hora_inicio_turnos.strftime("%I:%M %p"),
-                slot.hora_fin_turnos.strftime("%I:%M %p")
+                slot.start_time.strftime("%I:%M %p"),
+                slot.end_time.strftime("%I:%M %p")
             ])
 
         return schedule
-
-    def get_whatsapp(self, obj):
+    @extend_schema_field(serializers.CharField())
+    def get_whatsapp(self, obj) -> str:
         # Asegúrate de que este campo exista en tu perfil de usuario
         return obj.consultation_phone
 
-    def get_reviews(self, obj):
-        return MedicalStaffReviews.objects.filter(id_personal_medico=obj).count()
+    @extend_schema_field(serializers.IntegerField())
+    def get_reviews(self, obj) -> int:
+        return MedicalStaffReviews.objects.filter(medical_staff=obj).count()
 
-    def get_rating(self, obj):
-        reviews = MedicalStaffReviews.objects.filter(id_personal_medico=obj)
+    @extend_schema_field(serializers.FloatField())
+    def get_rating(self, obj) -> float:
+        reviews = MedicalStaffReviews.objects.filter(medical_staff=obj)
         if reviews.exists():
             return round(reviews.aggregate(Avg('rating'))['rating__avg'], 2)
         return None  # Devuelve `None` si no hay calificaciones

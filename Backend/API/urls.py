@@ -61,7 +61,8 @@ urlpatterns = [
     path('availabilit/create/', DisponibilidadCreate.as_view(),),
     #path('availabilit/<int:pk>/',DisponibilidadDetail.as_view(),),
 
-    
+
+    path('doctor/',  PersonalMedicoList.as_view(),),
     path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
     path('doctor/<int:pk>/reviews/',CalificaPersonalMedicoList.as_view(),),
 ]
@@ -78,7 +79,6 @@ path('nomenclador/upload/', FileUploadView.as_view(),),
 
 path('crosstransplant/', TrasplanteCruzadoList.as_view(),),
 path('crosstransplant/<int:pk>/', TrasplanteCruzadoDetail.as_view(),),
-path('doctor/',  PersonalMedicoList.as_view(),),
 
 
 path('especialidad/', EspecialidadList.as_view(),),
