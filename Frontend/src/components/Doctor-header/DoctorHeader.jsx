@@ -1,8 +1,7 @@
-import { IoNotifications } from "react-icons/io5";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import Logout from "../Logout/Logout";
 import { useState } from "react";
 import UserInitials from "../UserInitials";
+import Icon from "../Icon/Icon";
 
 export default function DoctorHeader() {
   const [showLogout, setShowLogout] = useState(false);
@@ -14,19 +13,20 @@ export default function DoctorHeader() {
   return (
     <div className="flex gap-10 justify-end w-full items-center">
       <div className="bg-complementary-50 rounded-full p-2 cursor-pointer">
-        <IoNotifications className="text-complementary-500 text-2xl" />
+        <Icon name="IoNotifications" />
       </div>
       <div className="flex items-center gap-4 relative">
-        <UserInitials onClick={toggleShowLogout} /> {/* Añadir la función onClick si es necesario */}
+        <UserInitials onClick={toggleShowLogout} />{" "}
+        {/* Añadir la función onClick si es necesario */}
         <div className="relative">
           <div
             className="cursor-pointer flex items-center"
             onClick={toggleShowLogout}
           >
             {showLogout ? (
-              <FaAngleUp className="text-complementary-500 text-xl" />
+              <Icon name="FaChevronDownIcon" />
             ) : (
-              <FaAngleDown className="text-complementary-500 text-xl" />
+              <Icon name="FaChevronUpIcon" />
             )}
           </div>
           {showLogout && (

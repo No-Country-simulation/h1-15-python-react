@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { BiSearch } from "react-icons/bi";
-import { IoMdCloseCircleOutline } from "react-icons/io";
 import CardPatientList from "../../../components/Cards/CardPatientList";
 import LateralView from "../../../components/LateralView";
+import Icon from "../../../components/Icon/Icon";
 
 const DoctorPatients = () => {
   const [hasContent, setHasContent] = useState(false);
@@ -39,11 +38,15 @@ const DoctorPatients = () => {
       <div className="flex items-center">
         {/**CUADRO DE BUSQUEDA */}
         <div className="relative px-2 w-[705px] h-[56px]">
-          <BiSearch className="relative top-[38px] left-3 text-xl" />
-          <IoMdCloseCircleOutline
+          <div className="relative top-[38px] left-3 text-xl">
+            <Icon name="search" />
+          </div>
+          <div
             className="absolute top-[38px] right-3 text-xl cursor-pointer"
             onClick={() => setValue("")}
-          />
+          >
+            <Icon name="IoMdCloseCircleOutlineIcon" />
+          </div>
           <input
             id="busqueda"
             className={`block w-full h-[56px] px-10 text-sm bg-transparent rounded border border-[#79747E] appearance-none focus:outline-none peer ${

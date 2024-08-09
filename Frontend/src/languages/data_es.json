@@ -279,22 +279,16 @@
   "Treatment": {
     "Profile": {
       "icon_name": "medicine",
-      "greeting": "Buen día,",
-      "patientName": "Laura!",
-      "photo": "/Bung1.webp"
+      "greeting": "Buen día,"
     },
     "CardTitle": [
       {
-        "titles": [
-          "Tratamientos"
-        ],
+        "titles": ["Tratamientos"],
         "backgroundColor": "#4fd2c2",
         "textColor": "#FFF"
       },
       {
-        "titles": [
-          "Medicamentos Pendientes:"
-        ],
+        "titles": ["Medicamentos Pendientes:"],
         "backgroundColor": "#D22B8B",
         "textColor": "#FFF"
       }
@@ -354,9 +348,7 @@
   "Schedule": {
     "Profile": {
       "icon_name": "calendarOrange",
-      "greeting": "Estos son tus turnos,",
-      "patientName": "Laura!",
-      "photo": "/Bung1.webp"
+      "greeting": "Estos son tus turnos,"
     },
     "warning": {
       "message": "No tienes citas pendientes para esta fecha"
@@ -384,5 +376,8 @@
     "registerButton": "Registrarse",
     "registrationSuccessTitle": "Registro Exitoso",
     "registrationSuccessMessage": "Se ha enviado un correo con la contraseña de acceso a la aplicación."
+  },
+  "SearchBar": {
+    "placeholderInput": "Comenzar a buscar..."
   }
 }
