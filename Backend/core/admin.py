@@ -14,6 +14,8 @@ admin.site.register(PersonalInfo)
 admin.site.register(Patient)
 admin.site.register(MedicalStaff)
 admin.site.register(Specialty)
+admin.site.register(Availability)
+admin.site.register(Appointment)
 
 """
 admin.site.register(AntecedenteClinico)

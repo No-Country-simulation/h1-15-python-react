@@ -17,62 +17,7 @@ class CustomBadRequest(APIException):
     default_code = 'bad_request'
 
 
-class TurnoListView(generics.ListAPIView):
-    serializer_class = TurnoSerializer
 
-    def get_queryset(self):
-        status = self.request.query_params.get('status', None)
-        queryset = Appointment.objects.all()
-        if status:
-            queryset = queryset.filter(status=status)
-        medico = self.request.query_params.get('doctor_id',None)
-        if medico:
-            queryset = queryset.filter(medico=medico)
-        fecha = self.request.query_params.get('fecha',None)
-        if fecha:
-            queryset = queryset.filter(fecha_turno=fecha)
-        return queryset
-    
-    @extend_schema(
-        tags=['Turno'],
-        summary='Lista los turnos disponibles ',
-        description=(
-    "Este endpoint permite obtener una lista de turnos disponibles, con la posibilidad de aplicar filtros por "
-    "estado del turno, médico asignado y fecha específica. Utiliza este endpoint para consultar la disponibilidad "
-    "de turnos según los parámetros que se detallan a continuación.\n\n"
-    "Ejemplos de uso:\n\n"
-    "`/api/turnos/?status=disponible&doctor_id=2&fecha=2024-08-06 `\n\n"
-    "`/api/turnos/?status=disponible&doctor_id=2`\n\n"
-    "`/api/turnos/?fecha=2024-08-06`\n"
-    ),
-        parameters=[
-            OpenApiParameter(
-                name='status',
-                description='Filtra los turnos por estado. Ejemplos: disponible, ocupado, cancelado.',
-                required=False,
-                type=OpenApiTypes.STR,
-            ),
-            OpenApiParameter(
-                name='doctor_id',
-                description='Filtra los turnos por el ID del médico. Debe ser un número entero.',
-                required=False,
-                type=OpenApiTypes.INT,
-            ),
-            OpenApiParameter(
-                name='fecha',
-                description='Filtra los turnos por fecha. Formato: AAAA-MM-DD.',
-                required=False,
-                type=OpenApiTypes.DATE,
-            ),
-        ],
-        responses={
-            200: TurnoSerializer(many=True),
-            400: OpenApiResponse(description='Solicitud incorrecta', response=CustomBadRequest),
-        },
-    )
-    def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
-    
 class MisTurnoListView(generics.ListAPIView): #LO TENGO QUE PROBAR
     serializer_class = TurnoSerializer
 
@@ -154,13 +99,13 @@ class ReservarTurnoView(generics.UpdateAPIView):
         # Asigna el usuario autenticado al turno o utiliza el usuario enviado en la solicitud
         id_user = request.data.get('id_user', None)
         if id_user is None:
-            id_user = request.user
+            user_obj = request.user  # Esto asegura que `user_obj` sea siempre una instancia de User.
         else:
             try:
-                user_obj = User.objects.get(id=id_user)  # Obtener instancia de User
-            except:
+                user_obj = User.objects.get(id=id_user)
+            except User.DoesNotExist:
                 return Response({"detail": "El usuario no existe."}, status=status.HTTP_400_BAD_REQUEST)
-
+            
         appointment.user = user_obj
         appointment.status = request.data.get('status', 'reservado')
         appointment.save()
@@ -172,19 +117,53 @@ class ReservarTurnoView(generics.UpdateAPIView):
         serializer.save()
 
 
-
+#esta ok esto probado y ok
 class DisponibilidadList(generics.ListAPIView):
-    queryset = Availability.objects.all()
     serializer_class = DisponibilidadSerializer
+
+    def get_queryset(self):
+        doctor = self.request.query_params.get('doctor', None)
+        queryset = Availability.objects.all()
+        if doctor:
+            queryset = queryset.filter(doctor=doctor)
+        entity = self.request.query_params.get('entity',None)
+        if entity:
+            queryset = queryset.filter(entity=entity)
+        return queryset
     
     @extend_schema(
         tags=['Disponibilidad'],
         summary='Lista la disponibilidad de todos los médicos',
-        description="Entrega una lista con la disponibilidad de todos los médicos"
+        description=(
+                "Este endpoint permite obtener una lista de medicos con su disponibilidad, con la posibilidad de aplicar filtros por "
+        "medico y entidad"
+        "Ejemplos de uso:\n\n"
+        "`/api/availabilit/?doctor_id=1&entity=mater dei`\n\n"
+        ),
+        parameters=[
+            OpenApiParameter(
+                name='doctor_id',
+                description='Filtra los turnos doctor.',
+                required=False,
+                type=OpenApiTypes.INT,
+            ),
+            OpenApiParameter(
+                name='entity',
+                description='Filtra los turnos por id de la institucion.',
+                required=False,
+                type=OpenApiTypes.INT,
+            ),
+            ],
+        responses={
+            200: TurnoSerializer(many=True),
+            400: OpenApiResponse(description='Solicitud incorrecta', response=CustomBadRequest),
+        },
+
     )
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
+#esta ok esto probado y ok
 class DisponibilidadCreate(views.APIView):
     @extend_schema(
         tags=['Disponibilidad'],
@@ -252,7 +231,8 @@ class DisponibilidadCreate(views.APIView):
             return Response({"errors": errors}, status=status.HTTP_400_BAD_REQUEST)
         
         return Response({"message": "Availability created successfully."}, status=status.HTTP_201_CREATED)
-    
+
+#esto esta ok
 class DisponibilidadDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Availability.objects.all()
     serializer_class = DisponibilidadSerializer
@@ -288,36 +268,57 @@ class DisponibilidadDetail(generics.RetrieveUpdateDestroyAPIView):
             return("Trasplante Cruzado no encontrado")
     
 
+    @extend_schema(
+        tags=['Disponibilidad'],
+        summary='Modifica parcialmente la disponibilidad',
+        description="Modifica una disponibilidad especificada con su numero de ID"
+    )
+    def patch(self, request, *args, **kwargs):
+        return self.patch(request, *args, **kwargs)
+
+#esta ok y funciondo
 class TurnoCreate(generics.CreateAPIView):
     @extend_schema(
         tags=['Turno'],
         summary='Genera turnos de un medico entre dos fechas',
         description="""Genera los turnos entre la fecha inicial, la fecha final, y la duración de los turnos\n
         creacion de turnos en disponibilidad por el medico
-
-        Args:
-            {
-                "doctor_id": "2",
-                "entity": "Mater Dei",
-                "date_init": "2024-08-01",
-                "date_end": "2024-08-10",
-                "appointment_duration": "15"
+        """,
+        request=inline_serializer(
+            name="TurnosRequest",
+            fields={
+                'doctor:id': serializers.IntegerField(),
+                'entity': serializers.CharField(),
+                "date_init": serializers.DateField(),
+                "date_end": serializers.DateField(),
+                "appointment_duration": serializers.IntegerField(),
             }
-
-        Returns:
-            str: info
-        """
+        ),
+        examples=[
+            OpenApiExample(
+                'Ejemplo de generacion de turnos',
+                value={
+                    "doctor_id": "2",
+                    "entity": "Mater Dei",
+                    "date_init": "2024-08-01",
+                    "date_end": "2024-08-10",
+                    "appointment_duration": "15"
+                },
+                request_only=True,  # Muestra esto solo en la solicitud
+                response_only=False  # No muestra esto en la respuesta
+            )
+            
+        ]
     )
     def post(self, request):
-        
         data_request = request.data
         doctor_id = data_request['doctor_id']
         entity = data_request['entity']
 
         doctor = get_object_or_404(MedicalStaff, id=doctor_id)
-        entity = get_object_or_404(Entity, descripcion=entity)
-
+        entity = get_object_or_404(Entity, name=entity)
         availability = Availability.objects.filter(doctor=doctor, entity=entity)
+        print("LLEGO ACA")
 
         if not availability.exists():
             return Response({"message": "No hay disponibilidad registrada para el médico en esta institución."}, status=status.HTTP_400_BAD_REQUEST)
@@ -341,8 +342,8 @@ class TurnoCreate(generics.CreateAPIView):
         while date_init <= date_end:
             for avail in availability:
                 if days_to_numbers[avail.day.lower()] == date_init.weekday():
-                    start_time = avail.start_time_appointments  # Already a time object
-                    end_time = avail.end_time_appointments  # Already a time object
+                    start_time = avail.start_time  # Already a time object
+                    end_time = avail.end_time  # Already a time object
 
                     current_time = datetime.combine(date_init, start_time)
                     while current_time.time() < end_time:
@@ -364,21 +365,77 @@ class TurnoCreate(generics.CreateAPIView):
         else:
             return Response({"message": "No se crearon turnos."}, status=status.HTTP_400_BAD_REQUEST)
         
+
+class TurnoListView(generics.ListAPIView):
+    serializer_class = TurnoSerializer
+
+    def get_queryset(self):
+        status = self.request.query_params.get('status', None)
+        queryset = Appointment.objects.all()
+        if status:
+            queryset = queryset.filter(status=status)
+
+        medico = self.request.query_params.get('doctor_id',None)
+        if medico:
+            queryset = queryset.filter(doctor_id=medico)
+
+        entidad = self.request.query_params.get('entidad_id', None)
+        if entidad:
+            queryset = queryset.filter(entity=entidad)
         
+        fecha = self.request.query_params.get('fecha',None)
+        if fecha:
+            queryset = queryset.filter(fecha_turno=fecha)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return queryset
+    
+    @extend_schema(
+        tags=['Turno'],
+        summary='Lista los turnos disponibles ',
+        description=(
+    "Este endpoint permite obtener una lista de turnos disponibles, con la posibilidad de aplicar filtros por "
+    "estado del turno, médico asignado y fecha específica. Utiliza este endpoint para consultar la disponibilidad "
+    "de turnos según los parámetros que se detallan a continuación.\n\n"
+    "Ejemplos de uso:\n\n"
+    "/api/appointment/?status=disponible&doctor_id=2&fecha=2024-08-06 \n\n"
+    "/api/appointment/?status=disponible&doctor_id=2\n\n"
+    "/api/appointment/?fecha=2024-08-06\n"
+    ),
+        parameters=[
+            OpenApiParameter(
+                name='status',
+                description='Filtra los turnos por estado. Ejemplos: disponible, ocupado, cancelado.',
+                required=False,
+                type=OpenApiTypes.STR,
+            ),
+            OpenApiParameter(
+                name='entidad_id',
+                description='Filtra los turnos por entidad',
+                required=False,
+                type=OpenApiTypes.INT,
+            ),
+            OpenApiParameter(
+                name='doctor_id',
+                description='Filtra los turnos por el ID del médico. Debe ser un número entero.',
+                required=False,
+                type=OpenApiTypes.INT,
+            ),
+            OpenApiParameter(
+                name='fecha',
+                description='Filtra los turnos por fecha. Formato: AAAA-MM-DD.',
+                required=False,
+                type=OpenApiTypes.DATE,
+            ),
+        ],
+        responses={
+            200: TurnoSerializer(many=True),
+            400: OpenApiResponse(description='Solicitud incorrecta', response=CustomBadRequest),
+        },
+    )
+    def get(self, request, *args, **kwargs):
+        print("LLEGO ACA")
+        return super().get(request, *args, **kwargs)
+    
 
 """class TurnoListCreate(generics.ListCreateAPIView):
     queryset = Appointment.objects.all()
@@ -407,36 +464,3 @@ class TurnoCreate(generics.CreateAPIView):
         else:
             return("Turno no encontrado")"""
 
-class TurnoDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Appointment.objects.all()
-    serializer_class = TurnoSerializer
-
-    @extend_schema(
-        tags=['Turno'],
-        summary='Lista un turno especificado por id',
-        description="Entrega un turno especificado con su numero de ID"
-    )
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-
-    @extend_schema(
-        tags=['Turno'],
-        summary='Modifica un turno especificado',
-        description="Permite actualizar todos los datos de un turno especificado con su numero de ID"
-    )
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    @extend_schema(
-        tags=['Turno'],
-        summary='Elimina un turno especificado',
-        description="Elimina de la base de datos un turno especificado con su numero de ID"
-    )
-    def delete(self, request, *args, **kwargs):
-        instance = self.get_object()
-        if instance.is_active:
-            instance.is_active = False
-            instance.save()
-            return instance
-        else:
-            return("Turno eliminado")

@@ -103,6 +103,9 @@ class DocumentType(models.Model):
     description = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return f'{self.id} - {self.description}'
+
 
 # Direccion model
 class Address(models.Model):
@@ -280,6 +283,10 @@ class Availability(models.Model):
     start_time = models.TimeField()
     end_time = models.TimeField()
     is_active = models.BooleanField(default=True)
+
+    def __str__(self) -> str:
+        return f'{self.entity}, {self.doctor}, {self.day}'
+
 
 
 # Cross Transplant model

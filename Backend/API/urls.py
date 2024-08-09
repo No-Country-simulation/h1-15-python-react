@@ -20,7 +20,7 @@ from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
 from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
 
 from entidad.views import EntidadDetail, EntidadList
-from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail,  TurnoDetail, TurnoListView, MisTurnoListView, ReservarTurnoView
+from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListView,   MisTurnoListView, ReservarTurnoView
 from patologias.views import PatologiaList, PatologiaDetail
 from farmacia.views import FarmaciaList, FarmaciaDetail
 from usuarios.views import CustomTokenObtainPairView, CustomTokenVerifyView, CustomTokenRefreshView
@@ -49,22 +49,22 @@ urlpatterns = [
     path('address/<int:pk>/', DireccionDetail.as_view(),),
     path('financers/', FinanciadoresList.as_view(),),
 
-    #path('appointment/', TurnoCreate.as_view(),),
+    path('doctor/',  PersonalMedicoList.as_view(),),
+    path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
+    path('doctor/<int:pk>/reviews/',CalificaPersonalMedicoList.as_view(),),
+
+    path('availabilit/', DisponibilidadList.as_view(),),
+    path('availabilit/create/', DisponibilidadCreate.as_view(),),
+    path('availabilit/<int:pk>/',DisponibilidadDetail.as_view(),),
+
+    path('appointment/create/', TurnoCreate.as_view(),), #crear el
+    path('appointment/list/', TurnoListView.as_view()),
     #path('appointment/detail/<int:pk>/',TurnoDetail.as_view(),),
-    #path('appointment/', TurnoListView.as_view()),
     #path('appointment/<int:pk>/', TurnoDetail.as_view(),),
 
     #path('my_appointment/', MisTurnoListView.as_view()), #es para buscar turnos
     #path('my_appointment/<int:pk>', ReservarTurnoView.as_view()), #es para reservar un turno
 
-    path('availabilit/', DisponibilidadList.as_view(),),
-    path('availabilit/create/', DisponibilidadCreate.as_view(),),
-    #path('availabilit/<int:pk>/',DisponibilidadDetail.as_view(),),
-
-
-    path('doctor/',  PersonalMedicoList.as_view(),),
-    path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
-    path('doctor/<int:pk>/reviews/',CalificaPersonalMedicoList.as_view(),),
 ]
 
 """
