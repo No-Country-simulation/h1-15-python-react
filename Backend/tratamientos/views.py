@@ -1,9 +1,7 @@
-from tratamientos.serializers import TreatmentSerializer
+from tratamientos.serializers import TreatmentSerializer, TreatAdherenceSerializer
 from rest_framework import generics
 from drf_spectacular.utils import extend_schema
-from core.models import Treatment
-
-# Create your views here.
+from core.models import Treatment, TreatAdherence
 
 
 class TreatmentList(generics.ListCreateAPIView):
