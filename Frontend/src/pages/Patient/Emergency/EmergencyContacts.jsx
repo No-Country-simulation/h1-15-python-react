@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import relationships from "../../../data/relationships.json";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -6,6 +6,8 @@ import { showToast } from "../../../utils/toast";
 import { ToastContainer } from "react-toastify";
 import Icon from "../../../components/Icon/Icon";
 import ContactCard from "./ContactCard";
+import { importFromExcel } from "../../../utils/importFromExcel";
+import DownloadExcelButton from "./DownloadExcelButton";
 
 const EmergencyContacts = () => {
   const [contacts, setContacts] = useState([]);
@@ -17,6 +19,11 @@ const EmergencyContacts = () => {
   });
   const [searchTerm, setSearchTerm] = useState("");
   const [isPersonalListOpen, setIsPersonalListOpen] = useState(true);
+  const [isAddContactOpen, setIsAddContactOpen] = useState(true);
+
+  
+  // Referencia al input de archivo
+  const fileInputRef = useRef(null);
 
   const handleAddContact = () => {
     const { firstName, lastName, phone, relationship } = newContact;
@@ -58,9 +65,32 @@ const EmergencyContacts = () => {
     setIsPersonalListOpen(!isPersonalListOpen);
   };
 
-  const handleAddFromExcel = () => {
-    // Implement the logic to handle the import from Excel file
-    showToast("Funcionalidad para agregar desde Excel no implementada", "info");
+  const handleToggleContact = () => {
+    setIsAddContactOpen(!isAddContactOpen);
+  };
+
+
+  const handleAddFromExcel = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      importFromExcel(file, (data) => {
+        const formattedData = data.map((contact, index) => ({
+          firstName: contact.FirstName,
+          lastName: contact.LastName,
+          phone: contact.Phone,
+          relationship: contact.Relationship,
+          id: Date.now() + index,
+        }));
+        setContacts((prevContacts) => [...prevContacts, ...formattedData]);
+        showToast("Contactos importados exitosamente", "success");
+      });
+    }
+  };
+  
+
+  // Función para abrir el input de archivo
+  const handleOpenFileDialog = () => {
+    fileInputRef.current.click();
   };
 
   return (
@@ -82,7 +112,21 @@ const EmergencyContacts = () => {
       </div>
 
       <div className="mb-4">
+        <section className="flex w-full justify-between">
         <h3 className="text-lg font-semibold mb-2">Agregar Nuevo Contacto</h3>
+        <button
+              onClick={handleToggleContact}
+              className="text-gray-600 hover:text-gray-800"
+            >
+              {isAddContactOpen ? (
+                <Icon name="FaChevronUpIcon" />
+              ) : (
+                <Icon name="FaChevronDownIcon" />
+              )}
+            </button>
+            </section>
+            <hr className="my-4 border-gray-300" />
+            {isAddContactOpen && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <section className="flex flex-col gap-2 md:col-span-2 items-center justify-center">
             <div className="w-full">
@@ -176,21 +220,30 @@ const EmergencyContacts = () => {
             >
               Agregar
             </button>
+            {/* Input de archivo oculto */}
+            <input
+              type="file"
+              accept=".xlsx,.xls"
+              onChange={handleAddFromExcel}
+              ref={fileInputRef}
+              className="hidden"
+            />
             <button
-              onClick={handleAddFromExcel}
+              onClick={handleOpenFileDialog}
               className="bg-green-500 text-white rounded h-[40px] w-full text-sm"
             >
               Agregar desde Excel
             </button>
+            <DownloadExcelButton/>
           </section>
-        </div>
+        </div>)}
       </div>
 
       <section className="py-4">
         {/* Contactos Personales */}
         <div className="w-full">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xl font-semibold">Contactos Personales</h3>
+            <h3 className="text-lg font-semibold">Contactos Personales</h3>
             <button
               onClick={handleToggleList}
               className="text-gray-600 hover:text-gray-800"
