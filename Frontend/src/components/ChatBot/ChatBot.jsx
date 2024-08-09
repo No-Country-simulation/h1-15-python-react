@@ -1,48 +1,57 @@
-import { useState } from "react";
-import { IoMdClose } from "react-icons/io";
+import { useEffect, useState } from "react";
 
-const ChatBot = () => {
-  const [isPressed, setIsPressed] = useState(false);
+const Chatbot = () => {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  useEffect(() => {
+    if (!window.botpressWebChat) {
+      const script1 = document.createElement("script");
+      script1.src = import.meta.env.VITE_BOTPRESS_SCRIPT1;
+      script1.async = true;
+      document.body.appendChild(script1);
+
+      const script2 = document.createElement("script");
+      script2.src = import.meta.env.VITE_BOTPRESS_SCRIPT2;
+      script2.defer = true;
+      document.body.appendChild(script2);
+
+      script1.onload = () => {
+        window.addEventListener("message", handleWebChatMessage);
+      };
+    } else {
+      window.addEventListener("message", handleWebChatMessage);
+    }
+
+    return () => {
+      window.removeEventListener("message", handleWebChatMessage);
+    };
+  }, []);
+
+  const handleWebChatMessage = (event) => {
+    if (event.data.type === "UI.CLOSED") {
+      setIsChatOpen(false);
+    } else if (event.data.type === "UI.OPENED") {
+      setIsChatOpen(true);
+    } else if (
+      event.data.type === "UI.SET-CLASS" &&
+      event.data.value.includes("bp-widget-hidden")
+    ) {
+      setIsChatOpen(false);
+    }
+  };
 
   const showChat = () => {
-    setIsPressed(true);
+    if (window.botpressWebChat) {
+      window.botpressWebChat.sendEvent({ type: "show" });
+      setIsChatOpen(true);
+    }
   };
-
-  const hideChat = () => {
-    setIsPressed(false);
-  };
-
-  const chatBotUrl = import.meta.env.VITE_CHATBOT_URL;
 
   return (
-    <div>
-      {isPressed ? (
-        <div className="fixed right-5 bottom-16 z-40 font-josefin">
-          <div className="bg-[#ffffff] flex items-center h-[48px] rounded-tl-md rounded-tr-md">
-            <div className="pl-4 flex items-center gap-6">
-              <span className="text-base font-medium text-[#333333]">
-                BIENVENIDO A JUSTINA.IO
-              </span>
-            </div>
-            <div className="pr-4 ml-auto">
-              <IoMdClose
-                className="text-lg text-[#0007] cursor-pointer"
-                onClick={hideChat}
-              />
-            </div>
-          </div>
-
-          <div className="relative w-[482px] h-[400px] overflow-hidden">
-            <iframe
-              src={chatBotUrl}
-              title="ChatBot"
-              className="w-full h-full border-0"
-              allow="microphone; geolocation; camera"
-            ></iframe>
-          </div>
-        </div>
-      ) : (
-        <section className="fixed right-5 bottom-5 z-40 flex flex-col items-end space-y-2">
+    <div className="relative">
+      <div id="webchat" className="absolute inset-0" />
+      {!isChatOpen && (
+        <section className="fixed right-8 bottom-5 z-40 flex flex-col items-end space-y-2">
           <div className="relative flex items-center justify-end w-12 h-12 bg-blue-500 text-white rounded-full shadow-lg">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="flex space-x-1">
@@ -55,7 +64,7 @@ const ChatBot = () => {
           <img
             src="/chatbot.png"
             alt="Robot amarillo"
-            className="cursor-pointer w-[120px] rounded-full"
+            className="cursor-pointer w-[80px] md:w-[120px] rounded-full"
             onClick={showChat}
           />
         </section>
@@ -64,4 +73,4 @@ const ChatBot = () => {
   );
 };
 
-export default ChatBot;
+export default Chatbot;
