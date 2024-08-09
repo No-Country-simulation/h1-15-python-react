@@ -189,7 +189,7 @@ class Treatment(models.Model):
     pathology = models.ForeignKey('Pathology', on_delete=models.CASCADE)
     treat_type = models.CharField(max_length=100)
     treat_duration = models.CharField(max_length=5)
-    medication = models.ForeignKey('Medication', on_delete=models.CASCADE, blank=True, null=True)
+    treat_medication = models.ForeignKey('Medication', on_delete=models.CASCADE, related_name='treat_medication', blank=True, null=True)
     treat_indications = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
 
