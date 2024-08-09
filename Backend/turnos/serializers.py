@@ -8,23 +8,20 @@ from usuarios.serializers import UserSerializer
 # Serializers for Disponibilidad model
 class DisponibilidadSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Appointment
+        model = Availability
         fields = '__all__'
 
 # Serializers for Turno model
-
-
 class TurnoSerializer(serializers.ModelSerializer):
     entity = EntidadSerializer(read_only=True)
-    doctor = MedicalStaffSerializer(read_only=True)
-    user = UserSerializer(read_only=True)
+    #doctor = PersonalMedicoSerializer(read_only=True)
+    user = UserSerializer(read_only=True) 
 
     class Meta:
-        model = Availability
+        model = Appointment  
         fields = '__all__'
-
 
 class TurnoUpdateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Availability
+        model = Appointment
         fields = ['user', 'status']

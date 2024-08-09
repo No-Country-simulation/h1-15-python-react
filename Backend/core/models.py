@@ -129,11 +129,11 @@ class MedicalStaff(models.Model):
     specialty = models.ForeignKey('Specialty', on_delete=models.CASCADE)
     medical_license = models.CharField(max_length=255)
     consultation_phone = models.CharField(max_length=20)
-    documents = models.FilePathField(null=True, blank=True)
+    documents = models.FileField(upload_to='uploads/', blank=True, null=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return str(self.user)
+        return str(f'Dr. {self.user.first_name} {self.user.last_name}')
 
 
 # MedicalStaffReviews model
@@ -266,13 +266,13 @@ class Appointment(models.Model):
 # Availability model
 class Availability(models.Model):
     DAY_CHOICES = [
-        ("monday", "Monday"),
-        ("tuesday", "Tuesday"),
-        ("wednesday", "Wednesday"),
-        ("thursday", "Thursday"),
-        ("friday", "Friday"),
-        ("saturday", "Saturday"),
-        ("sunday", "Sunday"),
+        ("lunes", "Lunes"),
+        ("martes", "Martes"),
+        ("miercoles", "Miercoles"),
+        ("jueves", "Jueves"),
+        ("viernes", "Viernes"),
+        ("sabado", "Sabado"),
+        ("domingo", "Domingo"),
     ]
     doctor = models.ForeignKey(MedicalStaff, on_delete=models.CASCADE)
     entity = models.ForeignKey(Entity, on_delete=models.CASCADE)
