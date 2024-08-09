@@ -185,9 +185,10 @@ class Pathology(models.Model):
 
 # Treatment model
 class Treatment(models.Model):
-    treat_name = models.CharField(max_length=100)
+    treat_name = models.CharField(max_length=100, unique=True)
     pathology = models.ForeignKey('Pathology', on_delete=models.CASCADE)
     treat_type = models.CharField(max_length=100)
+    treat_duration = models.CharField(max_length=5)
     medication = models.ForeignKey('Medication', on_delete=models.CASCADE, blank=True, null=True)
     treat_indications = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
@@ -200,7 +201,7 @@ class Treatment(models.Model):
 class TreatAdherence(models.Model):
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
     treatment = models.ForeignKey('Treatment', on_delete=models.CASCADE)
-    start_date = models.CharField(max_length=10)
+    start_datetime = models.CharField(max_length=10)
     treat_duration = models.CharField(max_length=5)
     treat_frecuency = models.CharField(max_length=5)
     treat_adherence = models.TextField()
