@@ -187,22 +187,38 @@ class FileUpload(models.Model):
 
 # Pathology model
 class Pathology(models.Model):
+    name = models.CharField(max_length=100)
     specialty = models.ForeignKey('Specialty', on_delete=models.CASCADE)
+    nomenclature = models.ForeignKey('Nomenclature', on_delete=models.CASCADE, blank=True, null=True)
     description = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.description
+        return f"{self.name} - {self.specialty}"
 
 
 # Treatment model
 class Treatment(models.Model):
+    treat_name = models.CharField(max_length=100, unique=True)
     pathology = models.ForeignKey('Pathology', on_delete=models.CASCADE)
-    description = models.CharField(max_length=255)
+    treat_type = models.CharField(max_length=100)
+    treat_duration = models.CharField(max_length=5)
+    treat_medication = models.ForeignKey('Medication', on_delete=models.CASCADE, related_name='treat_medication', blank=True, null=True)
+    treat_indications = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.description
+        return f"{self.treat_name} - {self.treat_indications}"
+
+
+# Treat_adherence model
+class TreatAdherence(models.Model):
+    patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+    treatment = models.ForeignKey('Treatment', on_delete=models.CASCADE)
+    start_datetime = models.CharField(max_length=10)
+    treat_duration = models.CharField(max_length=5)
+    treat_frecuency = models.CharField(max_length=5)
+    treat_adherence = models.TextField()
 
 
 # Pharmacy model
@@ -291,9 +307,10 @@ class Availability(models.Model):
 
 # Cross Transplant model
 class CrossTransplant(models.Model):
-    cross_patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    cross_donor = models.ForeignKey(
-        Patient, related_name='CrossDonor', on_delete=models.CASCADE)
+    cross_patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+    HLA_patient = models.CharField(max_length=255, blank=True, null=True)
+    cross_donor = models.ForeignKey('Patient', related_name='CrossDonor', on_delete=models.CASCADE)
+    HLA_donor = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(max_length=500)
     is_active = models.BooleanField(default=True)
 
