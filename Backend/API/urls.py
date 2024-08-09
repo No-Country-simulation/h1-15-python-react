@@ -108,3 +108,4 @@ path('farmacia/<int:pk>/',FarmaciaDetail.as_view(),),
 
 """
 
+
