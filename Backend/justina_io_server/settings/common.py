@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework_simplejwt',
     'drf_spectacular',
-    #local apps
+    # local apps
     'api.apps.ApiConfig',
     'core.apps.CoreConfig',
     'usuarios.apps.UsuariosConfig',
@@ -50,13 +50,13 @@ INSTALLED_APPS = [
     'financiadores.apps.FinanciadoresConfig',
     'tipo_documento.apps.TipoDocumentoConfig',
     'direcciones.apps.DireccionesConfig',
-
+    'personal_medico.apps.PersonalMedicoConfig',
+    'mail.apps.MailConfig',
 ]
 
 
-apifaltan = [    
+apifaltan = [
     # Local apps
-    'mail.apps.MailConfig',
     'tratamientos.apps.TratamientosConfig',
     'informacion_personal.apps.InformacionPersonalConfig',
     'patologias.apps.PatologiasConfig',
@@ -68,7 +68,6 @@ apifaltan = [
     'especialidad.apps.EspecialidadConfig',
     'medicamentos.apps.MedicamentosConfig',
     'nomencladores.apps.NomencladoresConfig',
-    'personal_medico.apps.PersonalMedicoConfig',
 
 ]
 

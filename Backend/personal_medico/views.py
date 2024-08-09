@@ -1,20 +1,17 @@
-from rest_framework import generics , status
+from rest_framework import generics, status
 from core.models import MedicalStaff, MedicalStaffReviews
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from personal_medico.serializers import PersonalMedicoSerializer, PersonalMedicoNewSerializer, ReviewSerializer
-from rest_framework.parsers import MultiPartParser, FormParser
+from personal_medico.serializers import MedicalStaffSerializer, ReviewSerializer
 from drf_spectacular.utils import extend_schema
-
 
 
 class PersonalMedicoList(generics.ListCreateAPIView):
     queryset = MedicalStaff.objects.all()
+    serializer_class = MedicalStaffSerializer
 
-    def get_serializer_class(self):
-        if self.request.method == 'POST':
-            return PersonalMedicoNewSerializer
-        return PersonalMedicoSerializer
+    # def get_serializer_class(self):
+    #     if self.request.method == 'POST':
+    #         return PersonalMedicoNewSerializer
+    #     return MedicalStaffSerializer
 
     @extend_schema(
         tags=['Personal Medico'],
@@ -35,7 +32,7 @@ class PersonalMedicoList(generics.ListCreateAPIView):
 
 class PersonalMedicoDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = MedicalStaff.objects.all()
-    serializer_class = PersonalMedicoSerializer
+    serializer_class = MedicalStaffSerializer
 
     @extend_schema(
         tags=['Personal Medico'],
@@ -61,7 +58,6 @@ class PersonalMedicoDetail(generics.RetrieveUpdateDestroyAPIView):
     def patch(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
-
     @extend_schema(
         tags=['Personal Medico'],
         summary='Elimina un medico',
@@ -80,9 +76,9 @@ class CalificaPersonalMedicoList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         # Obtener el id_personal_medico de la URL
         id_personal_medico = self.kwargs['pk']
-        personal_medico_instance = MedicalStaff.objects.get(id=id_personal_medico)
+        personal_medico_instance = MedicalStaff.objects.get(
+            id=id_personal_medico)
         serializer.save(id_personal_medico=personal_medico_instance)
-
 
     @extend_schema(
         tags=['Calificaciones a personal Medico'],
@@ -94,8 +90,8 @@ class CalificaPersonalMedicoList(generics.ListCreateAPIView):
 
     @extend_schema(
         tags=['Calificaciones a personal Medico'],
-        summary='Graba una nueva calificacion medica',
-        description="Crea una nueva calificacion Medica"
+        summary='Califica a un medico',
+        description="Agregas una calificación a un medico"
     )
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)

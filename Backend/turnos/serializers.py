@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from core.models import Availability,Appointment
+from core.models import Availability, Appointment
 from entidad.serializers import EntidadSerializer
-from personal_medico.serializers import PersonalMedicoSerializer
+from personal_medico.serializers import MedicalStaffSerializer
 from usuarios.serializers import UserSerializer
 
 

@@ -60,11 +60,13 @@ urlpatterns = [
     path('availabilit/', DisponibilidadList.as_view(),),
     path('availabilit/create/', DisponibilidadCreate.as_view(),),
     #path('availabilit/<int:pk>/',DisponibilidadDetail.as_view(),),
+
+    
+    path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
+    path('doctor/<int:pk>/reviews/',CalificaPersonalMedicoList.as_view(),),
 ]
 
 """
-path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
-path('doctor/<int:pk>/reviews/',CalificaPersonalMedicoList.as_view(),),
 path('treatment/', TratamientoList.as_view(),),
 path('treatment/<int:pk>/', TratamientoDetail.as_view(),),
 path('type/', TipoUsuarioList.as_view(),),
@@ -105,4 +107,5 @@ path('farmacia/<int:pk>/',FarmaciaDetail.as_view(),),
 
 
 """
+
 
