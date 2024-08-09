@@ -20,7 +20,7 @@ from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
 from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
 
 from entidad.views import EntidadDetail, EntidadList
-from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListCreate, TurnoDetail, TurnoListView, MisTurnoListView, ReservarTurnoView
+from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate, DisponibilidadDetail, TurnoListCreate, TurnoDetail, TurnoListView, MisTurnoListView, ReservarTurnoView
 from patologias.views import PatologiaList, PatologiaDetail
 from farmacia.views import FarmaciaList, FarmaciaDetail
 from usuarios.views import CustomTokenObtainPairView, CustomTokenVerifyView, CustomTokenRefreshView
@@ -48,20 +48,18 @@ urlpatterns = [
     path('address/', DireccionList.as_view(),),
     path('address/<int:pk>/', DireccionDetail.as_view(),),
     path('financers/', FinanciadoresList.as_view(),),
-
-
-
-
-    #path('appointment/', TurnoCreate.as_view(),),
+    # path('appointment/', TurnoCreate.as_view(),),
     path('appointment/<int:pk>/', TurnoListCreate.as_view(),),
-    path('appointment/detail/<int:pk>/',TurnoDetail.as_view(),),
-    path('appointment/', MisTurnoListView.as_view()), #es para buscar turnos
-    path('appointment/<int:pk>', ReservarTurnoView.as_view()), #es para reservar un turno
+    path('appointment/detail/<int:pk>/', TurnoDetail.as_view(),),
+    path('appointment/', MisTurnoListView.as_view(),),  # es para buscar turnos
+    # es para reservar un turno
+    path('appointment/<int:pk>', ReservarTurnoView.as_view(),),
+    path('doctor/', PersonalMedicoList.as_view(),),
+    path('doctor/<int:pk>', PersonalMedicoDetail.as_view(),),
+    path('doctor/<int:pk>/reviews/', CalificaPersonalMedicoList.as_view(),),
 ]
 
 """
-path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
-path('doctor/<int:pk>/reviews/',CalificaPersonalMedicoList.as_view(),),
 path('treatment/', TratamientoList.as_view(),),
 path('treatment/<int:pk>/', TratamientoDetail.as_view(),),
 path('type/', TipoUsuarioList.as_view(),),
@@ -73,7 +71,6 @@ path('nomenclador/upload/', FileUploadView.as_view(),),
 
 path('crosstransplant/', TrasplanteCruzadoList.as_view(),),
 path('crosstransplant/<int:pk>/', TrasplanteCruzadoDetail.as_view(),),
-path('doctor/',  PersonalMedicoList.as_view(),),
 
 
 path('especialidad/', EspecialidadList.as_view(),),
@@ -106,4 +103,3 @@ path('turnos/', TurnoListView.as_view()),
 path('turnos/<int:pk>/', TurnoDetail.as_view(),),
 
 """
-
