@@ -15,6 +15,8 @@ import ConfirmationSuccess from "../pages/Patient/ScheduleAppointment/Confirmati
 import DetailSchedule from "../pages/Patient/Schedule/DetailSchedule";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import UpdatePassword from "../pages/UpdatePassword/UpdatePassword";
+import Settings from "../pages/Patient/Settings/Settings";
+import Insurance from "../pages/Patient/Insurance/Insurance";
 
 const routes = [
   { path: "/patient", element: <PatientMain /> },
@@ -28,6 +30,8 @@ const routes = [
   { path: "/patient/emergency-contacts", element: <Emergency /> },
   { path: "/patient/doctor-information", element: <DoctorList /> },
   { path: "/patient/doctor-information/:id", element: <DoctorDetail /> },
+  { path: "/patient/settings", element: <Settings/> },
+  { path: "/patient/insurance", element: <Insurance/> },
   {
     path: "patient/schedule/appointment/:id",
     element: <ScheduleAppointment />,
