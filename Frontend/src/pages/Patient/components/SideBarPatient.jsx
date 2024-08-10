@@ -1,6 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SideBarPatient = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/");
+  };
+
   return (
     <aside className="absolute w-64 h-screen bg-white text-gray-800 p-4">
       <nav className="flex flex-col space-y-4">
@@ -15,22 +22,16 @@ const SideBarPatient = () => {
           className="flex items-center space-x-2  p-2 rounded "
         >
           <span>Próximos Turnos</span>
-        </Link> 
+        </Link>
         <div className="flex flex-col space-y-2">
           <button className="flex items-center space-x-2  p-2 rounded w-full text-left">
             <span>Tratamiento</span>
           </button>
           <div className="pl-4 space-y-1">
-            <Link
-              to="/patient/treatment"
-              className=" p-2 rounded block"
-            >
+            <Link to="/patient/treatment" className=" p-2 rounded block">
               Medicación
             </Link>
-            <Link
-              to="/tratamiento/nutricion"
-              className=" p-2 rounded block"
-            >
+            <Link to="/tratamiento/nutricion" className=" p-2 rounded block">
               Nutrición
             </Link>
             <Link
@@ -42,7 +43,7 @@ const SideBarPatient = () => {
           </div>
         </div>
         <Link
-          to="/prepaga"
+          to="/patient/insurance"
           className="flex items-center space-x-2  p-2 rounded "
         >
           <span>Prepaga</span>
@@ -60,12 +61,15 @@ const SideBarPatient = () => {
           <span>Contactos de Emergencia</span>
         </Link>
         <Link
-          to="/configuracion"
+          to="/patient/settings"
           className="flex items-center space-x-2  p-2 rounded "
         >
           <span>Configuración</span>
         </Link>
-        <button className="w-full bg-magentaButton p-2 rounded text-white">
+        <button
+          className="w-full bg-magentaButton p-2 rounded text-white"
+          onClick={handleLogout}
+        >
           Cerrar Sesión
         </button>
       </nav>
