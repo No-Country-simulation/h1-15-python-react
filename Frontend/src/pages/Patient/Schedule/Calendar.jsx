@@ -20,11 +20,6 @@ const Calendar = ({ onDateClick }) => {
     );
   };
 
-  const formatDate = (date) => {
-    const options = { weekday: "short", day: "numeric", month: "long" };
-    return date.toLocaleDateString("es-ES", options);
-  };
-
   const handleDateClick = (date) => {
     if (date !== null) {
       const clickedDate = new Date(
@@ -37,10 +32,6 @@ const Calendar = ({ onDateClick }) => {
         clickedDate.toDateString() === today.toDateString()
       ) {
         setSelectedDate(clickedDate);
-        console.log(
-          "Fecha del calendario seleccionada:",
-          formatDate(clickedDate),
-        );
         onDateClick(clickedDate);
       }
     }
