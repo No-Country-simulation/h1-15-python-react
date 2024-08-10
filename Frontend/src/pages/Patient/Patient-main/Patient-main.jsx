@@ -4,10 +4,14 @@ import Icon from "../../../components/Icon/Icon";
 import Logout from "../../../components/Logout/Logout";
 import useLanguage from "../../../hooks/useLanguage";
 import UserInitials from "../../../components/UserInitials";
+import ActivePatient from "../../../components/ActivePatient/ActivePatient";
+import { verifyUserStatus } from "../../../services/patientService";
 
 const PatientMain = () => {
   const [showLogout, setShowLogout] = useState(false);
+  const [showActivationPopup, setShowActivationPopup] = useState(false);
   const profileRef = useRef(null);
+
   const toggleLogout = () => setShowLogout((prev) => !prev);
 
   const handleClickOutside = (event) => {
@@ -22,6 +26,34 @@ const PatientMain = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    // Verificar si el usuario ya es un paciente
+    const fetchUserStatus = async () => {
+      const authToken = localStorage.getItem("authToken");
+      if (authToken) {
+        try {
+          const result = await verifyUserStatus(authToken);
+          if (!result.is_patient) {
+            setShowActivationPopup(true);
+          }
+        } catch (error) {
+          console.error('Error al verificar el estado del paciente:', error);
+        }
+      }
+    };
+
+    fetchUserStatus();
+  }, []);
+
+  const handleCompleteLater = () => {
+    setShowActivationPopup(false);
+  };
+
+  const handleActivationComplete = () => {
+    localStorage.setItem("hasCompletedActivation", "true");
+    setShowActivationPopup(false);
+  };
 
   const languageData = useLanguage();
 
@@ -68,6 +100,22 @@ const PatientMain = () => {
           />
         ))}
       </section>
+
+      {showActivationPopup && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-lg">
+            <ActivePatient onComplete={handleActivationComplete} />
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={handleCompleteLater}
+                className="mr-4 bg-gray-200 text-gray-700 rounded px-4 py-2"
+              >
+                Completar más tarde
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 };
