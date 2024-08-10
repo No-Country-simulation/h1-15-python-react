@@ -283,12 +283,16 @@
     },
     "CardTitle": [
       {
-        "titles": ["Tratamientos"],
+        "titles": [
+          "Tratamientos"
+        ],
         "backgroundColor": "#4fd2c2",
         "textColor": "#FFF"
       },
       {
-        "titles": ["Medicamentos Pendientes:"],
+        "titles": [
+          "Medicamentos Pendientes:"
+        ],
         "backgroundColor": "#D22B8B",
         "textColor": "#FFF"
       }
@@ -379,5 +383,42 @@
   },
   "SearchBar": {
     "placeholderInput": "Comenzar a buscar..."
-  }
+  },
+  "sidebar": [
+    {
+      "to": "/doctor",
+      "name": "Inicio",
+      "icon": "MdOutlineHomeIcon"
+    },
+    {
+      "to": "/doctor/messages",
+      "name": "Mensajes",
+      "icon": "BichatIcon"
+    },
+    {
+      "to": "/doctor/treatments",
+      "name": "Tratamientos",
+      "icon": "RiMedicineBottleLine"
+    },
+    {
+      "to": "/doctor/patients",
+      "name": "Pacientes",
+      "icon": "SlPeople"
+    },
+    {
+      "to": "/doctor/transplants",
+      "name": "Trasplantes Cruzados",
+      "icon": "TbHearts"
+    },
+    {
+      "to": "/doctor/appointments",
+      "name": "Calendario",
+      "icon": "CiCalendar"
+    },
+    {
+      "to": "/doctor",
+      "name": "Configuraciones",
+      "icon": "IoSettingsOutline"
+    }
+  ]
 }
