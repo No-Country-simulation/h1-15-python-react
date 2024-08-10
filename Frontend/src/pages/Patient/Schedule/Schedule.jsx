@@ -6,6 +6,7 @@ import CardSchedule from "./CardSchedule";
 import AddItemButton from "../../../components/AddItemButton";
 import Calendar from "./Calendar";
 import useLanguage from "../../../hooks/useLanguage";
+import LateralMenu from "../components/LateralMenu";
 
 const Schedule = () => {
   const [schedules, setSchedules] = useState([]);
@@ -35,6 +36,9 @@ const Schedule = () => {
 
   return (
     <div className="relative max-w-screen-lg mx-auto flex flex-col min-h-screen">
+      <section className="px-2">
+        <LateralMenu />
+      </section>
       <Profile
         icon_name={languageData.Schedule.Profile.icon_name}
         greeting={languageData.Schedule.Profile.greeting}

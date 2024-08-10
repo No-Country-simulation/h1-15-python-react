@@ -4,6 +4,7 @@ import CardTitle from "../../../components/Cards/CardTitle";
 import FooterNav from "../../../components/FooterNav/FooterNav";
 import Profile from "../../../components/Profile/Profile";
 import useLanguage from "../../../hooks/useLanguage";
+import LateralMenu from "../components/LateralMenu";
 
 const Treatment = () => {
   const [selectedColor, setSelectedColor] = useState("");
@@ -30,6 +31,9 @@ const Treatment = () => {
 
   return (
     <div className="max-w-screen-lg mx-auto pb-14">
+      <section className="px-2">
+        <LateralMenu />
+      </section>
       <section className="p-4">
         <Profile
           icon_name={languageData.Treatment.Profile.icon_name}

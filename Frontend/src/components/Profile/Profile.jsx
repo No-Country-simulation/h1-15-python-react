@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Icon from "../Icon/Icon";
 import SearchBar from "../SearchBar/SearchBar";
-import UserInitials from "../UserInitials";
 
 // eslint-disable-next-line react/prop-types
 const Profile = ({ icon_name, greeting }) => {
@@ -21,7 +20,6 @@ const Profile = ({ icon_name, greeting }) => {
           <>
             <Icon name={icon_name} />
             <div className="flex-grow" />
-            <UserInitials />
           </>
         )}
       </div>

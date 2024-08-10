@@ -230,9 +230,9 @@
       {
         "id": 3,
         "icon": "stethoscopeBlue",
-        "title": "Personal Médico",
+        "title": "Seguimientos",
         "color": "#5563C4",
-        "link": "/patient/doctor-information"
+        "link": "/patient/postoperative"
       },
       {
         "id": 4,

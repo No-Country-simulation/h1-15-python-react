@@ -1,10 +1,12 @@
 import BackButton from "../../../components/BackButton/BackButton";
 import FooterNav from "../../../components/FooterNav/FooterNav";
 import patientData from "../../../data/PatientProfile.json";
+import LateralMenu from "../components/LateralMenu";
 
 const PatientProfile = () => {
   return (
-    <section className="grid max-w-screen-lg w-full mx-auto p-2">
+    <section className="grid max-w-screen-lg w-full mx-auto px-2">
+      <LateralMenu/>
       <section>
         <BackButton />
       </section>
