@@ -1,62 +1,42 @@
 import { Link, useLocation } from "react-router-dom";
-import { Tooltip } from "@mui/material";
 import Icon from "../../components/Icon/Icon";
+import useLanguage from "../../hooks/useLanguage";
 
 const Navigation = () => {
   const actual = useLocation();
+  const languageData = useLanguage();
+
+  if (!languageData) {
+    return <div>Cargando datos...</div>;
+  }
+
+  const lastLink = languageData.sidebar[languageData.sidebar.length - 1];
 
   return (
-    <aside className="flex flex-col w-[264px] text-white font-semibold h-full min-h-[90dvh] overflow-hidden pt-4">
-      <img className="self-center w-[75%]" src="/justinaLogo.webp" alt="Logo" />
-      <nav className="flex flex-col bg-secondary-600 w-full min-h-full gap-2 flex-grow py-4 rounded-lg mt-4">
+    <aside className="bg-red-500 flex flex-col w-[300px] text-white h-full min-h-[90dvh] overflow-hidden font-josefin rounded-lg font-bold">
+      <nav className="flex flex-col bg-magentaButton w-full min-h-full gap-6 flex-grow p-4 rounded-lg text-xl">
+        {languageData.sidebar.slice(0, -1).map((link) => (
+          <Link
+            key={link.to}
+            to={link.to}
+            className={`flex items-center gap-4 p-2 hover:#0008 w-full ${
+              actual.pathname === link.to
+                ? "border-2 border-white rounded-lg"
+                : ""
+            }`}
+          >
+            <Icon name={link.icon} />
+            {link.name}
+          </Link>
+        ))}
+
         <Link
-          to="/doctor"
-          className={`flex text-base items-center gap-2 hover:bg-secondary-400 w-full p-2 ${actual.pathname === "/doctor" ? "bg-secondary-500" : ""}`}
+          to={lastLink.to}
+          className="flex items-center gap-4 p-2 mt-auto hover:#0008 w-full"
         >
-          <Icon name="MdOutlineHomeIcon" />
-          Inicio
+          <Icon name={lastLink.icon} />
+          {lastLink.name}
         </Link>
-        <Link
-          to="patients"
-          className={`flex text-base items-center gap-2 hover:bg-secondary-400 w-full p-2 ${actual.pathname === "/doctor/patients" ? "bg-secondary-500" : ""}`}
-        >
-          <Icon name="SlPeople" />
-          Pacientes
-        </Link>
-        <Link
-          to="messages"
-          className={`flex text-base items-center gap-2 hover:bg-secondary-400 w-full p-2 ${actual.pathname === "/doctor/messages" ? "bg-secondary-500" : ""}`}
-        >
-          <Icon name="BichatIcon" />
-          Mensajes
-        </Link>
-        <Link
-          to="treatments"
-          className={`flex text-base items-center gap-2 hover:bg-secondary-400 w-full p-2 ${actual.pathname === "/doctor/treatments" ? "bg-secondary-500" : ""}`}
-        >
-          <Icon name="RiMedicineBottleLine" />
-          Tratamientos
-        </Link>
-        <Link
-          to="transplants"
-          className={`flex text-base items-center gap-2 hover:bg-secondary-400 w-full p-2 ${actual.pathname === "/doctor/transplants" ? "bg-secondary-500" : ""}`}
-        >
-          <Icon name="TbHearts" />
-          Trasplantes Cruzados
-        </Link>
-        <Link
-          to="appointments"
-          className={`flex text-base items-center gap-2 hover:bg-secondary-400 w-full p-2 ${actual.pathname === "/doctor/appointments" ? "bg-secondary-500" : ""}`}
-        >
-          <Icon name="CiCalendar" />
-          Calendario
-        </Link>
-        <Tooltip title="Proximamente...">
-          <p className="flex text-base items-center gap-2 hover:bg-secondary-400 w-full p-3 mt-auto select-none cursor-pointer">
-            <Icon name="IoSettingsOutline" />
-            Configuraciones
-          </p>
-        </Tooltip>
       </nav>
     </aside>
   );
