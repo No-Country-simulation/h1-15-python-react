@@ -230,9 +230,9 @@
       {
         "id": 3,
         "icon": "stethoscopeBlue",
-        "title": "Profissionais de Saúde",
+        "title": "Acompanhamento médico",
         "color": "#5563C4",
-        "link": "/patient/doctor-information"
+        "link": "/patient/postoperative"
       },
       {
         "id": 4,

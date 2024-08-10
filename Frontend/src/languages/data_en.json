@@ -230,9 +230,9 @@
       {
         "id": 3,
         "icon": "stethoscopeBlue",
-        "title": "Medical Staff",
+        "title": "Medical monitoring",
         "color": "#5563C4",
-        "link": "/patient/doctor-information"
+        "link": "/patient/patient/postoperative"
       },
       {
         "id": 4,

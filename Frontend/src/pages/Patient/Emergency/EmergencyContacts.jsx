@@ -94,7 +94,7 @@ const EmergencyContacts = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="py-4">
       <ToastContainer />
       <h2 className="text-2xl font-bold mb-4">Contactos de Emergencia</h2>
 
