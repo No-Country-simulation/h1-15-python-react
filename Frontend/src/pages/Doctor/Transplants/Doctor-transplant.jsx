@@ -1,128 +1,133 @@
-import { useState } from "react";
-
-import LateralView from "../../../components/LateralView";
-import { useEffect } from "react";
-import { Switch, Tooltip } from "@mui/material";
+import { useEffect, useState } from "react";
+import CardCrossTransplant from "../../../components/Cards/CardCrossTransplant";
+import donantesReceptores from "../../../data/crossTransplants.json";
 
 const DoctorTransplants = () => {
-  const [donantes, setDonantes] = useState();
-  const [intercambiar, setIntercambiar] = useState(false);
-  const [pacientes, setPacientes] = useState();
-  const [pacienteSeleccionado, setPacienteSeleccionado] = useState();
-  async function loadPacientes() {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/No-Country-simulation/h1-15-python-react/frontend-stable/Frontend/src/data/pacientes.json",
-    );
-    const names = await response.json();
-    setPacientes(names.result);
-  }
-  async function loadDonantes() {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/No-Country-simulation/h1-15-python-react/frontend-stable/Frontend/src/data/donantes.json",
-    );
-    const names = await response.json();
+  const [search, setSearch] = useState("");
+  const [selectedPersona, setSelectedPersona] = useState(null);
+  const [searchReceptor, setSearchReceptor] = useState("");
+  const [filterReceptors, setFilterReceptors] = useState(donantesReceptores);
+  const [receptores2, setReceptores2] = useState(donantesReceptores);
+  const type = { donante: "DONANTE", receptor: "RECEPTOR" };
 
-    setDonantes(names.donantes);
-  }
+  const handleChangeSearch = (e) => {
+    const searchValue = e.target.value.toLowerCase();
+    if (e.target.id == "donante") {
+      setSearch(searchValue);
+    } else {
+      setSearchReceptor(searchValue);
+    }
+  };
+  const handleClick = (persona) => {
+    const filtered = donantesReceptores.filter(
+      (receptor) => persona.Donante.HLA[0] === receptor.HLA[0],
+    );
+    setReceptores2(filtered);
+    setSelectedPersona(persona);
+  };
+  const handleCloseClick = (e) => {
+    e.stopPropagation();
+    console.log(selectedPersona);
+    setSelectedPersona(null);
+  };
   useEffect(() => {
-    loadPacientes();
-    loadDonantes();
-  }, []);
-
-  console.log(pacientes);
+    const filtered = donantesReceptores.filter((receptor) =>
+      receptor.Donante.Nombre.toLowerCase().includes(search.toLowerCase()),
+    );
+    setFilterReceptors(filtered);
+  }, [search]);
+  useEffect(() => {
+    if (!selectedPersona) {
+      const filtered2 = donantesReceptores.filter((receptor) =>
+        receptor.Nombre.toLowerCase().includes(searchReceptor.toLowerCase()),
+      );
+      setReceptores2(filtered2);
+    }
+  }, [searchReceptor, selectedPersona]);
 
   return (
-    <main className="flex w-full max-h-[1024px]  gap-5">
-      <section className="min-w-[689px] grid mx-auto h-fit relative font-josefin">
-        <h1 className="font-josefin text-3xl text-center">
-          TRANSPLANTES CRUZADOS
-        </h1>
-        <div className="grid grid-cols-[1fr_2px_1fr] gap-x-4 mt-6">
-          <div className="text-center">
-            <h2 className="text-xl my-4">Donantes</h2>
-
-            <div className="h-[70%] overflow-y-scroll">
-              {donantes &&
-                donantes.map((donante, index) => (
-                  <article
-                    key={index}
-                    className="flex gap-2 items-center justify-around my-4 cursor-pointer hover:bg-blue-100/55 px-4 py-1 rounded-lg shadow-[0px_4px_4px_0px_#00000040]"
-                  >
-                    <img
-                      src={donante.picture}
-                      alt={donante.nombre}
-                      className="w-10 h-10 m-0 rounded-full"
-                    />
-                    <div className="flex flex-col text-left flex-grow">
-                      <p className="overflow-hidden whitespace-nowrap text-ellipsis">
-                        {donante.nombre}
-                      </p>
-                      <div>
-                        <p>
-                          {donante.edad} años - <span>{donante.grupo}</span>
-                        </p>
-                      </div>
-                    </div>
-                    <Tooltip title="Proximamente">
-                      <button className="font-sans py-2 px-6 text-xs rounded-[100px] font-medium bg-[#FFF693] shadow-[0px_4px_4px_0px_#00000040] text-[#CA9600] hover:text-black hover:font-semibold">
-                        Ver Detalle...
-                      </button>
-                    </Tooltip>
-                  </article>
-                ))}
-            </div>
+    <section className="flex flex-col w-full h-screen mt-5 gap-5">
+      <h3 className="text-center font-josefin font-semibold">
+        Al seleccionar una pareja, se filtrará en la otra columna las parejas
+        posiblemente compatibles
+      </h3>
+      <section className="grid grid-cols-[1fr_1px_1fr] w-full justify-center gap-2 xl:gap-5 mt-4 ">
+        <div className="grow w-full ">
+          <div className="relative w-full border border-gray-300 bg-transparent rounded-md h-10 flex items-center">
+            <input
+              id="donante"
+              type="text"
+              value={search}
+              className="appearance-none outline-none bg-transparent peer px-4 w-full"
+              onChange={handleChangeSearch}
+            />
+            <label
+              htmlFor="donante"
+              className={`bg-white px-1 peer-focus:px-1 absolute left-2 -z-0 peer-focus:scale-100 ${search.length > 0 ? "-translate-y-5" : "peer-focus:-translate-y-5"} transition-transform duration-500`}
+            >
+              Busqueda por Donante
+            </label>
+            {search.length > 0 && (
+              <div
+                className="cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 w-5 h-5 text-center font-josefin text-sm border border-slate-400 text-slate-400 font-light hover:border-black hover:text-black hover:font-bold rounded-full transition-all duration-300"
+                onClick={() => setSearch("")}
+              >
+                X
+              </div>
+            )}
           </div>
-          <div className="w-1 border-l border-black "></div>
-          <div className="text-center">
-            <div className="flex justify-around gap-4 items-center">
-              <h2 className="text-xl my-4">
-                {intercambiar ? "Afines" : "Mis pacientes"}
-              </h2>
-              <Tooltip title={intercambiar ? "Mis pacientes" : "Afines"}>
-                <Switch
-                  checked={intercambiar}
-                  onClick={() => setIntercambiar(!intercambiar)}
-                />
-              </Tooltip>
-            </div>
-            <div className="h-[70%] overflow-y-scroll">
-              {pacientes &&
-                pacientes.map((paciente, index) => {
-                  return (
-                    <article
-                      key={index}
-                      className={`flex gap-2 items-center justify-around my-4 cursor-pointer hover:bg-blue-100/55 px-4 py-1 rounded-lg shadow-[0px_4px_4px_0px_#00000040] ${pacienteSeleccionado && pacienteSeleccionado._id === paciente._id ? "bg-yellow-100" : ""}`}
-                    >
-                      <img
-                        src={paciente.picture}
-                        alt={paciente.nombre}
-                        className="w-10 h-10 m-0 rounded-full"
-                      />
-                      <div className="flex flex-col text-left flex-grow">
-                        <p>{paciente.name}</p>
-                        <div>
-                          <p>
-                            {paciente.age} años - <span>A +</span>
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => {
-                          setPacienteSeleccionado(paciente);
-                        }}
-                        className="font-sans py-2 px-6 text-xs rounded-[100px] font-medium bg-[#FFF693] shadow-[0px_4px_4px_0px_#00000040] text-[#CA9600] hover:text-black hover:font-semibold"
-                      >
-                        Ver afin...
-                      </button>
-                    </article>
-                  );
-                })}
-            </div>
+          <div className="h-[350px] overflow-y-scroll pr-10">
+            {filterReceptors.map((personas, index) => (
+              <CardCrossTransplant
+                selectedPersona={selectedPersona}
+                onCloseClick={handleCloseClick}
+                onClick={handleClick}
+                key={index}
+                HLA_index="0"
+                personas={personas}
+                type={type.donante}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="border border-black w-[1px] items-center justify-items-center h-full"></div>
+        <div className="grow w-full">
+          <div className="relative w-full border border-gray-300 bg-transparent rounded-md h-10 flex items-center">
+            <input
+              id="receptor"
+              type="text"
+              value={searchReceptor}
+              className="appearance-none outline-none bg-transparent peer px-4 w-full"
+              onChange={handleChangeSearch}
+            />
+            <label
+              htmlFor="receptor"
+              className={`bg-white px-1 peer-focus:px-1 absolute left-2 -z-0 peer-focus:scale-100 ${searchReceptor.length > 0 ? "-translate-y-5" : "peer-focus:-translate-y-5"} transition-transform duration-500`}
+            >
+              Busqueda por Receptor
+            </label>
+            {searchReceptor.length > 0 && (
+              <div
+                className="cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 w-5 h-5 text-center font-josefin text-sm border border-slate-400 text-slate-400 font-light hover:border-black hover:text-black hover:font-bold rounded-full transition-all duration-300"
+                onClick={() => setSearchReceptor("")}
+              >
+                X
+              </div>
+            )}
+          </div>
+          <div className="h-[350px] overflow-y-scroll pr-10">
+            {receptores2.map((personas, index) => (
+              <CardCrossTransplant
+                key={index}
+                HLA_index="0"
+                personas={personas}
+                type={type.receptor}
+              />
+            ))}
           </div>
         </div>
       </section>
-      <LateralView paciente={pacienteSeleccionado} />
-    </main>
+    </section>
   );
 };
 

@@ -1,11 +1,11 @@
 import FooterNav from "../../../components/FooterNav/FooterNav";
-import PageConstruction from "../../../components/PageConstruction/PageConstruction";
+import EmergencyContacts from "./EmergencyContacts";
 
 const Emergency = () => {
   return (
     <div className="max-w-screen-lg mx-auto">
-      <section>
-        <PageConstruction />
+      <section className="mb-20">
+        <EmergencyContacts />
       </section>
       <section>
         <FooterNav />

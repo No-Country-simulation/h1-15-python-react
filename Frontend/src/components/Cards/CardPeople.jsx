@@ -6,9 +6,7 @@ const CardPeople = ({ imagen, nombre, posicion, bio }) => {
     <div className="bg-white w-full max-h-[620px] flex flex-col items-center rounded-lg px-4 py-6">
       <Avatar imagen={imagen} />
       <div className="flex flex-col justify-center items-center mt-[20px]">
-        <h2 className="text-[31.25px] font-bold text-[#232233]">
-          {nombre}
-        </h2>
+        <h2 className="text-[31.25px] font-bold text-[#232233]">{nombre}</h2>
         <h3 className="text-[20px] font-semibold text-[#6C6C72] pb-4">
           {posicion}
         </h3>
@@ -25,7 +23,7 @@ const CardPeople = ({ imagen, nombre, posicion, bio }) => {
             <g clipPath="url(#clip0_120_3526)">
               <path
                 d="M14 13.5H16.5L17.5 9.5H14V7.5C14 6.47 14 5.5 16 5.5H17.5V2.14C17.174 2.097 15.943 2 14.643 2C11.928 2 10 3.657 10 6.7V9.5H7V13.5H10V22H14V13.5Z"
-                fill="#d667cd"
+                fill="#D22B8B"
               />
             </g>
             <defs>

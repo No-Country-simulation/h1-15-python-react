@@ -4,13 +4,12 @@ import CardFunction from "../../components/Cards/CardFunction";
 import CardPeople from "../../components/Cards/CardPeople";
 import Footer from "../../components/Footer";
 import Carousel from "../../components/Slider/Slider";
-
 import LanguageSelector from "../../languages/selector/LanguageSelector";
 import useLanguage from "../../hooks/useLanguage";
+import ChatBot from "../../components/ChatBot/ChatBot";
 
 function Home() {
   const navigate = useNavigate();
-
   const languageData = useLanguage();
 
   if (!languageData) {
@@ -44,7 +43,6 @@ function Home() {
 
       <section className="w-full flex flex-col md:flex-row md:justify-around">
         {/* CTA */}
-
         <section className="flex flex-col justify-center items-center md:w-1/2 p-4 gap-12">
           <div className="relative flex flex-col justify-center items-center w-full p-6">
             {/* Borde amarillo */}
@@ -102,7 +100,7 @@ function Home() {
       </section>
 
       {/* Functions */}
-      <section className="bg-[url('/fondoLanding.png')] bg-no-repeat bg-cover bg-center w-full h-auto flex flex-col items-center py-16">
+      <section className="bg-[url('/fondoLanding.webp')] bg-no-repeat bg-cover bg-center w-full h-auto flex flex-col items-center py-16">
         <h2 className="text-2xl text-white font-semibold pt-16 md:text-4xl">
           {languageData.home.functions.title}
         </h2>
@@ -130,7 +128,7 @@ function Home() {
       </div>
 
       {/* How It Works */}
-      <section className="w-full h-auto flex flex-col items-center px-4 py-16 bg-[#d667cd]">
+      <section className="w-full h-auto flex flex-col items-center px-4 py-16 bg-magentaButton">
         <h2 className="font-semibold text-[25px] text-center text-white pt-[60px] md:text-4xl">
           {languageData.home.howItWorks.title}
         </h2>
@@ -182,6 +180,7 @@ function Home() {
 
       {/* Footer */}
       <Footer footerData={languageData.home.footer} />
+      <ChatBot />
     </main>
   );
 }

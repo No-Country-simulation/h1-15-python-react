@@ -3,9 +3,13 @@ import CardOptions from "../../../components/Cards/CardOptions";
 import Icon from "../../../components/Icon/Icon";
 import Logout from "../../../components/Logout/Logout";
 import useLanguage from "../../../hooks/useLanguage";
+import UserInitials from "../../../components/UserInitials";
+import ActivePatient from "../../../components/ActivePatient/ActivePatient";
+import { verifyUserStatus } from "../../../services/patientService";
 
 const PatientMain = () => {
   const [showLogout, setShowLogout] = useState(false);
+  const [showActivationPopup, setShowActivationPopup] = useState(false);
   const profileRef = useRef(null);
 
   const toggleLogout = () => setShowLogout((prev) => !prev);
@@ -23,6 +27,34 @@ const PatientMain = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Verificar si el usuario ya es un paciente
+    const fetchUserStatus = async () => {
+      const authToken = localStorage.getItem("authToken");
+      if (authToken) {
+        try {
+          const result = await verifyUserStatus(authToken);
+          if (!result.is_patient) {
+            setShowActivationPopup(true);
+          }
+        } catch (error) {
+          console.error('Error al verificar el estado del paciente:', error);
+        }
+      }
+    };
+
+    fetchUserStatus();
+  }, []);
+
+  const handleCompleteLater = () => {
+    setShowActivationPopup(false);
+  };
+
+  const handleActivationComplete = () => {
+    localStorage.setItem("hasCompletedActivation", "true");
+    setShowActivationPopup(false);
+  };
+
   const languageData = useLanguage();
 
   if (!languageData) {
@@ -34,12 +66,7 @@ const PatientMain = () => {
       <nav className="flex justify-between w-full items-center">
         <Icon name="bars" />
         <div ref={profileRef} className="relative">
-          <img
-            className="w-[36px] h-[36px] rounded-full cursor-pointer"
-            src="/Bung1.webp"
-            alt="Profile"
-            onClick={toggleLogout}
-          />
+          <UserInitials onClick={toggleLogout} />
           {showLogout && (
             <div className="absolute mt-2 right-0 z-10">
               <Logout />
@@ -73,6 +100,22 @@ const PatientMain = () => {
           />
         ))}
       </section>
+
+      {showActivationPopup && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-lg">
+            <ActivePatient onComplete={handleActivationComplete} />
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={handleCompleteLater}
+                className="mr-4 bg-gray-200 text-gray-700 rounded px-4 py-2"
+              >
+                Completar más tarde
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 };

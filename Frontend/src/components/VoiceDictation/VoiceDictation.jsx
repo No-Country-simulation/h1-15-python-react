@@ -56,23 +56,22 @@ const VoiceDictation = ({ onDictate }) => {
   };
 
   const handleConfirm = () => {
-    onDictate(transcript); 
-    setTranscript(""); 
-    setIsModalOpen(false); 
+    onDictate(transcript);
+    setTranscript("");
+    setIsModalOpen(false);
     stopListening();
   };
-  
 
   const handleClose = () => {
-    setTranscript(""); 
+    setTranscript("");
     setIsModalOpen(false);
-    stopListening(); 
+    stopListening();
   };
 
   return (
     <div className="absolute flex items-center bottom-2 right-1">
       <button
-      type="button"
+        type="button"
         onClick={() => {
           if (isListening) {
             stopListening();

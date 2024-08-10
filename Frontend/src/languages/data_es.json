@@ -74,7 +74,7 @@
       "cards": [
         {
           "imagen": "Profile.webp",
-          "nombre": "EZEQUIEL LOCANE",
+          "nombre": "EZEQUIEL  LO CANE",
           "bio": "Fundador y CEO. Con más de 15 años de experiencia en la industria de la salud, Ezequiel lidera nuestro equipo con pasión y dedicación.",
           "posicion": "FUNDADOR"
         },
@@ -191,6 +191,23 @@
     "eyeAltShow": "Mostrar contraseña",
     "eyeAltHide": "Ocultar contraseña"
   },
+  "updatePassword": {
+    "title": "Actualizar Contraseña",
+    "newPasswordLabel": "Nueva Contraseña",
+    "newPasswordPlaceholder": "Ingrese una nueva contraseña",
+    "confirmNewPasswordLabel": "Confirmar Nueva Contraseña",
+    "confirmNewPasswordPlaceholder": "Confirme su nueva contraseña",
+    "updateButton": "Actualizar Contraseña",
+    "backToLogin": "Volver al inicio de sesión",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "passwordUpdated": "Contraseña actualizada exitosamente",
+    "errorUpdatingPassword": "Error al actualizar la contraseña",
+    "minLength": "La contraseña debe tener al menos {minLength} caracteres.",
+    "hasUpperCase": "La contraseña debe contener al menos una letra mayúscula.",
+    "hasLowerCase": "La contraseña debe contener al menos una letra minúscula.",
+    "hasNumber": "La contraseña debe contener al menos un dígito.",
+    "hasSpecialChar": "La contraseña debe contener al menos un carácter especial."
+  },
   "patientMain": {
     "locateTitle": "Localiza",
     "locateSubtitle": "tu médico",
@@ -235,7 +252,7 @@
         "id": 6,
         "icon": "phoneViolet",
         "title": "Contacto De Emergencia",
-        "color": "#d667cd",
+        "color": "#D22B8B",
         "link": "/patient/emergency-contacts"
       }
     ]
@@ -262,29 +279,23 @@
   "Treatment": {
     "Profile": {
       "icon_name": "medicine",
-      "greeting": "Buen día,",
-      "patientName": "Laura!",
-      "photo": "/Bung1.webp"
+      "greeting": "Buen día,"
     },
     "CardTitle": [
       {
-        "titles": [
-          "Tratamientos"
-        ],
+        "titles": ["Tratamientos"],
         "backgroundColor": "#4fd2c2",
         "textColor": "#FFF"
       },
       {
-        "titles": [
-          "Medicamentos Pendientes:"
-        ],
-        "backgroundColor": "#d667cd",
+        "titles": ["Medicamentos Pendientes:"],
+        "backgroundColor": "#D22B8B",
         "textColor": "#FFF"
       }
     ],
     "cardEvent": [
       {
-        "color": "#d667cd",
+        "color": "#D22B8B",
         "action": "Nueva toma de",
         "name": "Ciclosporina 10mg",
         "time": "8:30",
@@ -298,7 +309,7 @@
         "unit": "PM"
       },
       {
-        "color": "#d667cd",
+        "color": "#D22B8B",
         "action": "Nueva toma de",
         "name": "Ciclosporina 10mg",
         "time": "8:30",
@@ -312,7 +323,7 @@
         "unit": "AM"
       },
       {
-        "color": "#d667cd",
+        "color": "#D22B8B",
         "action": "Nueva toma de",
         "name": "Ibuprofeno 200mg",
         "time": "12:30",
@@ -326,7 +337,7 @@
         "unit": "PM"
       },
       {
-        "color": "#d667cd",
+        "color": "#D22B8B",
         "action": "Nueva toma de",
         "name": "Paracetamol 500mg",
         "time": "4:00",
@@ -337,9 +348,7 @@
   "Schedule": {
     "Profile": {
       "icon_name": "calendarOrange",
-      "greeting": "Estos son tus turnos,",
-      "patientName": "Laura!",
-      "photo": "/Bung1.webp"
+      "greeting": "Estos son tus turnos,"
     },
     "warning": {
       "message": "No tienes citas pendientes para esta fecha"
@@ -359,19 +368,16 @@
     "firstNamePlaceholder": "Ingrese su nombre",
     "lastNameLabel": "Apellido",
     "lastNamePlaceholder": "Ingrese su apellido",
-    "dniLabel": "DNI",
-    "dniPlaceholder": "Ingrese su DNI",
-    "obraSocialLabel": "Obra Social",
-    "obraSocialPlaceholder": "Ingrese su obra social",
     "emailLabel": "Correo",
     "emailPlaceholder": "Ingrese su correo electrónico",
-    "birthdateLabel": "Fecha de Nacimiento",
-    "phoneLabel": "Número de Teléfono",
-    "secondaryPhoneLabel": "Contacto Secundario",
-    "passwordLabel": "Definir Contraseña",
-    "passwordPlaceholder": "Ingrese una contraseña",
-    "showPasswordAlt": "Mostrar contraseña",
-    "hidePasswordAlt": "Ocultar contraseña",
-    "registerButton": "Registrarse"
+    "roleLabel": "Selecciona tu rol para registrarte:",
+    "patientRole": "Paciente: Para gestionar tus citas y consultas médicas.",
+    "doctorRole": "Médico: Para administrar tus consultas y pacientes.",
+    "registerButton": "Registrarse",
+    "registrationSuccessTitle": "Registro Exitoso",
+    "registrationSuccessMessage": "Se ha enviado un correo con la contraseña de acceso a la aplicación."
+  },
+  "SearchBar": {
+    "placeholderInput": "Comenzar a buscar..."
   }
 }

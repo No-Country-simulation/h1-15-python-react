@@ -1,0 +1,15 @@
+# Bloquea todo el acceso a todos los bots
+User-agent: *
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+
+# Permite el acceso a todo el sitio para Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Bloquea el acceso a todo el sitio para Bingbot
+User-agent: Bingbot
+Disallow: /
+
+Sitemap: https://justina-latam.vercel.app/sitemap.xml
