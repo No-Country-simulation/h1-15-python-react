@@ -1,15 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import useLanguage from "../../hooks/useLanguage";
+import { logout } from "../../services/auth";
 
 const Logout = () => {
   const navigate = useNavigate();
+  const languageData = useLanguage();
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    navigate("/");
+    logout(navigate);
   };
-
-  const languageData = useLanguage();
 
   if (!languageData) {
     return <div>Cargando datos...</div>;

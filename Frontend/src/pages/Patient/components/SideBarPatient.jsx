@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../../../services/auth";
 
 const SideBarPatient = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    navigate("/");
+    logout(navigate);
   };
 
   return (

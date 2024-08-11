@@ -2,11 +2,12 @@ import { useState } from "react";
 import FooterNav from "../../../components/FooterNav/FooterNav";
 import LateralMenu from "../components/LateralMenu";
 import EditableProfileInfo from "../components/EditableProfileInfo";
-import AddressInput from "./AddressInput";
 import VoiceDictation from "../../../components/VoiceDictation/VoiceDictation";
 import Icon from "../../../components/Icon/Icon";
 import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css"; // Asegúrate de importar los estilos necesarios
+import "react-phone-input-2/lib/style.css"; 
+import AddressInput from "../components/AddressInput";
+import ImageUploader from "../components/ImageUploader";
 
 const PatientProfile = () => {
   const [formData, setFormData] = useState({
@@ -62,13 +63,12 @@ const PatientProfile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes enviar formData a tu API
-    console.log(formData);
   };
 
   return (
-    <section className="grid max-w-screen-lg w-full mx-auto px-2">
+    <section className="grid max-w-screen-lg w-full mx-auto px-4">
       <LateralMenu />
+      <ImageUploader/>
       <EditableProfileInfo />
       <section>
         <form
@@ -98,7 +98,7 @@ const PatientProfile = () => {
                 <textarea
                   name="address_id"
                   value={formData.address_id}
-                  placeholder="Haz clic aquí en el botón para buscar su dirección"
+                  placeholder="Usa el detector de Google Maps para ingresar tu ubicación"
                   onChange={handleChange}
                   className="border-gray-300 border rounded w-full h-15 px-3 outline-none resize-none"
                   readOnly
@@ -108,7 +108,7 @@ const PatientProfile = () => {
                   onClick={() => setAddressInputVisible(true)}
                   className="flex h-10 w-20 max-w-14 outline-none text-3xl items-center justify-center"
                 >
-                  <Icon name="search" />
+                  <Icon name="SiGooglemaps" />
                 </button>
               </div>
             </div>
