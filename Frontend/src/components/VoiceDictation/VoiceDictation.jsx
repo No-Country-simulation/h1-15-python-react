@@ -69,7 +69,7 @@ const VoiceDictation = ({ onDictate }) => {
   };
 
   return (
-    <div className="absolute flex items-center bottom-2 right-1">
+    <div className="flex items-center">
       <button
         type="button"
         onClick={() => {
