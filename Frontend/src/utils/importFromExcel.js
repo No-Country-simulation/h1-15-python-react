@@ -1,14 +1,26 @@
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
 
-export const importFromExcel = (file, callback) => {
+export const importFromExcel = async (file, callback) => {
+  const workbook = new ExcelJS.Workbook();
   const reader = new FileReader();
-  reader.onload = (event) => {
-    const data = new Uint8Array(event.target.result);
-    const workbook = XLSX.read(data, { type: "array" });
-    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-    const jsonData = XLSX.utils.sheet_to_json(worksheet);
 
-    callback(jsonData);
+  reader.onload = async (event) => {
+    try {
+      await workbook.xlsx.load(event.target.result);
+
+      const worksheet = workbook.getWorksheet(1);
+
+      const jsonData = [];
+      worksheet.eachRow({ includeEmpty: true }, (row) => {
+        const rowValues = row.values;
+        jsonData.push(rowValues);
+      });
+
+      callback(jsonData);
+    } catch (error) {
+      console.error("Error al cargar el archivo Excel:", error);
+    }
   };
+
   reader.readAsArrayBuffer(file);
 };

@@ -21,8 +21,6 @@ const EmergencyContacts = () => {
   const [isPersonalListOpen, setIsPersonalListOpen] = useState(true);
   const [isAddContactOpen, setIsAddContactOpen] = useState(true);
 
-  
-  // Referencia al input de archivo
   const fileInputRef = useRef(null);
 
   const handleAddContact = () => {
@@ -69,18 +67,20 @@ const EmergencyContacts = () => {
     setIsAddContactOpen(!isAddContactOpen);
   };
 
-
   const handleAddFromExcel = (e) => {
     const file = e.target.files[0];
     if (file) {
       importFromExcel(file, (data) => {
-        const formattedData = data.map((contact, index) => ({
-          firstName: contact.FirstName,
-          lastName: contact.LastName,
-          phone: contact.Phone,
-          relationship: contact.Relationship,
+        const [, ...rows] = data; 
+  
+        const formattedData = rows.map((row, index) => ({
+          firstName: row[1] || "", 
+          lastName: row[2] || "", 
+          phone: row[3] || "", 
+          relationship: row[4] || "", 
           id: Date.now() + index,
         }));
+  
         setContacts((prevContacts) => [...prevContacts, ...formattedData]);
         showToast("Contactos importados exitosamente", "success");
       });
@@ -88,7 +88,6 @@ const EmergencyContacts = () => {
   };
   
 
-  // Función para abrir el input de archivo
   const handleOpenFileDialog = () => {
     fileInputRef.current.click();
   };
@@ -113,166 +112,169 @@ const EmergencyContacts = () => {
 
       <div className="mb-4">
         <section className="flex w-full justify-between">
-        <h3 className="text-lg font-semibold mb-2">Agregar Nuevo Contacto</h3>
-        <button
-              onClick={handleToggleContact}
-              className="text-gray-600 hover:text-gray-800"
-            >
-              {isAddContactOpen ? (
-                <Icon name="FaChevronUpIcon" />
-              ) : (
-                <Icon name="FaChevronDownIcon" />
-              )}
-            </button>
+          <h3 className="text-lg font-semibold mb-2">Agregar Nuevo Contacto</h3>
+          <button
+            onClick={handleToggleContact}
+            className="text-gray-600 hover:text-gray-800"
+          >
+            {isAddContactOpen ? (
+              <Icon name="FaChevronUpIcon" />
+            ) : (
+              <Icon name="FaChevronDownIcon" />
+            )}
+          </button>
+        </section>
+        <hr className="my-4 border-gray-300" />
+        {isAddContactOpen && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <section className="flex flex-col gap-2 md:col-span-2 items-center justify-center">
+              <div className="w-full">
+                <label
+                  htmlFor="firstName"
+                  className="block text-sm font-medium mb-1"
+                >
+                  Nombre
+                </label>
+                <input
+                  id="firstName"
+                  type="text"
+                  placeholder="Ingrese el nombre"
+                  value={newContact.firstName}
+                  onChange={(e) =>
+                    setNewContact({ ...newContact, firstName: e.target.value })
+                  }
+                  className="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
+                  required
+                />
+              </div>
+              <div className="w-full">
+                <label
+                  htmlFor="lastName"
+                  className="block text-sm font-medium mb-1"
+                >
+                  Apellido
+                </label>
+                <input
+                  id="lastName"
+                  type="text"
+                  placeholder="Ingrese el apellido"
+                  value={newContact.lastName}
+                  onChange={(e) =>
+                    setNewContact({ ...newContact, lastName: e.target.value })
+                  }
+                  className="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
+                  required
+                />
+              </div>
+              <div className="w-full">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium mb-1"
+                >
+                  Teléfono
+                </label>
+                <PhoneInput
+                  country={"ar"}
+                  value={newContact.phone}
+                  onChange={(phone) => setNewContact({ ...newContact, phone })}
+                  inputClass="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
+                  specialLabel=""
+                  inputStyle={{
+                    width: "100%",
+                    padding: "10px 10px 10px 26px",
+                    border: "1px solid #D1D5DB",
+                    borderRadius: "0.375rem",
+                    boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
+                    textIndent: "24px",
+                    height: "40px",
+                  }}
+                />
+              </div>
+              <div className="w-full">
+                <label
+                  htmlFor="relationship"
+                  className="block text-sm font-medium mb-1"
+                >
+                  Parentesco
+                </label>
+                <select
+                  id="relationship"
+                  value={newContact.relationship}
+                  onChange={(e) =>
+                    setNewContact({
+                      ...newContact,
+                      relationship: e.target.value,
+                    })
+                  }
+                  className="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
+                  required
+                >
+                  <option value="">Seleccionar Parentesco</option>
+                  {relationships.map((relation) => (
+                    <option key={relation} value={relation}>
+                      {relation}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </section>
-            <hr className="my-4 border-gray-300" />
-            {isAddContactOpen && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <section className="flex flex-col gap-2 md:col-span-2 items-center justify-center">
-            <div className="w-full">
-              <label
-                htmlFor="firstName"
-                className="block text-sm font-medium mb-1"
+            <section className="flex flex-col gap-2 items-center md:col-span-1 md:pt-6">
+              <button
+                onClick={handleAddContact}
+                className="bg-blue-500 text-white rounded h-[40px] w-full text-sm mb-2"
               >
-                Nombre
-              </label>
+                Agregar
+              </button>
               <input
-                id="firstName"
-                type="text"
-                placeholder="Ingrese el nombre"
-                value={newContact.firstName}
-                onChange={(e) =>
-                  setNewContact({ ...newContact, firstName: e.target.value })
-                }
-                className="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
-                required
+                type="file"
+                accept=".xlsx, .xls"
+                ref={fileInputRef}
+                onChange={handleAddFromExcel}
+                style={{ display: "none" }}
               />
-            </div>
-            <div className="w-full">
-              <label
-                htmlFor="lastName"
-                className="block text-sm font-medium mb-1"
+              <button
+                onClick={handleOpenFileDialog}
+                className="bg-green-500 text-white rounded h-[40px] w-full text-sm"
               >
-                Apellido
-              </label>
-              <input
-                id="lastName"
-                type="text"
-                placeholder="Ingrese el apellido"
-                value={newContact.lastName}
-                onChange={(e) =>
-                  setNewContact({ ...newContact, lastName: e.target.value })
-                }
-                className="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
-                required
-              />
-            </div>
-            <div className="w-full">
-              <label htmlFor="phone" className="block text-sm font-medium mb-1">
-                Teléfono
-              </label>
-              <PhoneInput
-                country={"ar"}
-                value={newContact.phone}
-                onChange={(phone) => setNewContact({ ...newContact, phone })}
-                inputClass="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
-                specialLabel=""
-                inputStyle={{
-                  width: "100%",
-                  padding: "10px 10px 10px 26px",
-                  border: "1px solid #D1D5DB",
-                  borderRadius: "0.375rem",
-                  boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
-                  textIndent: "24px",
-                  height: "40px",
-                }}
-              />
-            </div>
-            <div className="w-full">
-              <label
-                htmlFor="relationship"
-                className="block text-sm font-medium mb-1"
-              >
-                Parentesco
-              </label>
-              <select
-                id="relationship"
-                value={newContact.relationship}
-                onChange={(e) =>
-                  setNewContact({ ...newContact, relationship: e.target.value })
-                }
-                className="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
-                required
-              >
-                <option value="">Seleccionar Parentesco</option>
-                {relationships.map((relation) => (
-                  <option key={relation} value={relation}>
-                    {relation}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </section>
-          <section className="flex flex-col gap-2 items-center md:col-span-1 md:pt-6">
-            <button
-              onClick={handleAddContact}
-              className="bg-blue-500 text-white rounded h-[40px] w-full text-sm mb-2"
-            >
-              Agregar
-            </button>
-            {/* Input de archivo oculto */}
-            <input
-              type="file"
-              accept=".xlsx,.xls"
-              onChange={handleAddFromExcel}
-              ref={fileInputRef}
-              className="hidden"
-            />
-            <button
-              onClick={handleOpenFileDialog}
-              className="bg-green-500 text-white rounded h-[40px] w-full text-sm"
-            >
-              Agregar desde Excel
-            </button>
-            <DownloadExcelButton/>
-          </section>
-        </div>)}
+                Importar desde Excel
+              </button>
+              <DownloadExcelButton />
+            </section>
+          </div>
+        )}
       </div>
 
-      <section className="py-4">
-        {/* Contactos Personales */}
-        <div className="w-full">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-lg font-semibold">Contactos Personales</h3>
-            <button
-              onClick={handleToggleList}
-              className="text-gray-600 hover:text-gray-800"
-            >
-              {isPersonalListOpen ? (
-                <Icon name="FaChevronUpIcon" />
-              ) : (
-                <Icon name="FaChevronDownIcon" />
-              )}
-            </button>
+      <div className="mb-4">
+        <section className="flex w-full justify-between">
+          <h3 className="text-lg font-semibold mb-2">Lista de Contactos</h3>
+          <button
+            onClick={handleToggleList}
+            className="text-gray-600 hover:text-gray-800"
+          >
+            {isPersonalListOpen ? (
+              <Icon name="FaChevronUpIcon" />
+            ) : (
+              <Icon name="FaChevronDownIcon" />
+            )}
+          </button>
+        </section>
+        <hr className="my-4 border-gray-300" />
+        {isPersonalListOpen && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filteredContacts.length > 0 ? (
+              filteredContacts.map((contact) => (
+                <ContactCard
+                  key={contact.id}
+                  contact={contact}
+                  onRemove={() => handleRemoveContact(contact.id)}
+                />
+              ))
+            ) : (
+              <p>No hay contactos disponibles.</p>
+            )}
           </div>
-          <hr className="my-4 border-gray-300" />
-          {isPersonalListOpen && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredContacts.length > 0 ? (
-                filteredContacts.map((contact) => (
-                  <ContactCard
-                    key={contact.id}
-                    contact={contact}
-                    onRemove={() => handleRemoveContact(contact.id)}
-                  />
-                ))
-              ) : (
-                <p>No hay contactos personales.</p>
-              )}
-            </div>
-          )}
-        </div>
-      </section>
+        )}
+      </div>
     </div>
   );
 };

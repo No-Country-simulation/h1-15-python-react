@@ -1,9 +1,13 @@
-import * as XLSX from "xlsx";
+import ExcelJS from 'exceljs';
 
 const DownloadExcelButton = () => {
-  const handleDownload = () => {
+  const handleDownload = async () => {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Contacts');
+
+    // Define los datos
     const data = [
-      ["FirstName", "LastName", "Phone", "Relationship"],
+      ["FirstName", "LastName", "Phone", "Relationship"], 
       ["Juan", "Pérez", "+54112345678", "Amigo"],
       ["María", "Gómez", "+54123456789", "Familiar"],
       ["Luis", "Fernández", "+54134567890", "Colega"],
@@ -25,11 +29,19 @@ const DownloadExcelButton = () => {
       ["Antonio", "Méndez", "+54290123456", "Colega"],
     ];
 
-    const ws = XLSX.utils.aoa_to_sheet(data);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Contacts");
+    worksheet.addRows(data);
 
-    XLSX.writeFile(wb, "contactos.xlsx");
+    const buffer = await workbook.xlsx.writeBuffer();
+
+    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'contactos.xlsx';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
