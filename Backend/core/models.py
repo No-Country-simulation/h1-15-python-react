@@ -85,8 +85,8 @@ class PersonalInfo(models.Model):
     document_number = models.CharField(max_length=20)
     birth_date = models.DateTimeField()
     gender = models.CharField(max_length=10)
-    address = models.ForeignKey(
-        'Address', related_name='addresses', on_delete=models.CASCADE, null=True, blank=True)
+    address = models.CharField(max_length=255)
+    #address = models.ForeignKey('Address', related_name='addresses',on_delete=models.CASCADE, null=True, blank=True)
     phone_number = models.CharField(max_length=20)
     phone_number_2 = models.CharField(max_length=20, null=True, blank=True)
     emergency_contact = models.CharField(max_length=20)

@@ -13,12 +13,12 @@ class InformacionPersonalSerializer(serializers.ModelSerializer):
         source='patient', 
         write_only=True
     )
-    address = DireccionSerializer(read_only=True)
-    address_id = serializers.PrimaryKeyRelatedField(
-        queryset=Address.objects.all(), 
-        source='address', 
-        write_only=True
-    )
+    #address = DireccionSerializer(read_only=True)
+    #address_id = serializers.PrimaryKeyRelatedField(
+    #    queryset=Address.objects.all(), 
+    #    source='address', 
+    #    write_only=True
+    #)
 
     class Meta:
         model = PersonalInfo

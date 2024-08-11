@@ -1,17 +1,17 @@
 from rest_framework import generics, status
 from core.models import MedicalStaff, MedicalStaffReviews
-from personal_medico.serializers import MedicalStaffSerializer, ReviewSerializer
+from personal_medico.serializers import MedicalStaffSerializer, ReviewSerializer, PersonalMedicoNewSerializer
 from drf_spectacular.utils import extend_schema
 
 
 class PersonalMedicoList(generics.ListCreateAPIView):
     queryset = MedicalStaff.objects.all()
-    serializer_class = MedicalStaffSerializer
+    serializer_class = PersonalMedicoNewSerializer
 
-    # def get_serializer_class(self):
-    #     if self.request.method == 'POST':
-    #         return PersonalMedicoNewSerializer
-    #     return MedicalStaffSerializer
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return PersonalMedicoNewSerializer
+        return MedicalStaffSerializer
 
     @extend_schema(
         tags=['Personal Medico'],
