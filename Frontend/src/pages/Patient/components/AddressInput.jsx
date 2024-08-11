@@ -147,7 +147,7 @@ const AddressInput = ({ onAccept, onClose }) => {
                 type="text"
                 value={address}
                 onChange={handleChange}
-                placeholder="Ingresa tu dirección o click en detectar..."
+                placeholder="Ingresa tu dirección o usa detectar.."
                 className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>

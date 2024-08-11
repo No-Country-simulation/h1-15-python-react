@@ -60,3 +60,12 @@ export const registerUser = async (formData) => {
     throw new Error(`Error registering user: ${errorMessage}`);
   }
 };
+
+export const logout = (navigate) => {
+  const keysToRemove = ["userType", "userId", "firstName", "lastName", "authToken","userEmail"];
+  
+  keysToRemove.forEach(key => localStorage.removeItem(key));
+  
+  navigate("/");
+};
+
