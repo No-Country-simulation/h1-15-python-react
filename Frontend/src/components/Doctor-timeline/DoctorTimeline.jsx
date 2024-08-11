@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
@@ -14,6 +15,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const timeline = [
   {
@@ -118,16 +120,20 @@ export default function DoctorTimeline({ setPatient, selectedPatient }) {
                 </div>
                 <div className="flex justify-evenly">
                   <Tooltip title="Proximamente...">
+                    <span className="text-red-600 cursor-pointer hover:underline">
+                      Cancelar Turno
+                    </span>
+                  </Tooltip>
+                  <Tooltip title="Proximamente...">
                     <span className="text-text_secondary cursor-pointer hover:underline">
                       Ver historial clínico
                     </span>
                   </Tooltip>
-                  <span
-                    className="text-text_secondary cursor-pointer hover:underline"
-                    onClick={() => handleAccordionChange(true, paciente)}
-                  >
-                    Ver tarjeta
-                  </span>
+                  <Link to={`/doctor/consultant/${index}`}>
+                    <span className="text-green-600 cursor-pointer hover:underline">
+                      Comenzar consulta
+                    </span>
+                  </Link>
                 </div>
               </AccordionDetails>
             </Accordion>

@@ -8,6 +8,7 @@ import DoctorTransplants from "../pages/Doctor/Transplants/Doctor-transplant";
 import PageConstruction from "../components/PageConstruction/PageConstruction";
 import DoctorTreatments from "../pages/Doctor/Treatments/Doctor-treatments";
 import UpdatePassword from "../pages/UpdatePassword/UpdatePassword";
+import DoctorConsultant from "../pages/Doctor/Consultant/Doctor-consultant";
 
 export const doctorRoutes = (
   <>
@@ -23,6 +24,7 @@ export const doctorRoutes = (
       <Route path="transplants" element={<DoctorTransplants />} />
       <Route path="messages" element={<PageConstruction />} />
       <Route path="treatments" element={<DoctorTreatments />} />
+      <Route path="consultant/:id" element={<DoctorConsultant />} />
     </Route>
     <Route
       path="doctor/update-password"
