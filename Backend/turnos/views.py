@@ -385,7 +385,7 @@ class TurnoListView(generics.ListAPIView):
         
         fecha = self.request.query_params.get('fecha',None)
         if fecha:
-            queryset = queryset.filter(fecha_turno=fecha)
+            queryset = queryset.filter(appointment_date=fecha)
 
         return queryset
     

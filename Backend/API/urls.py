@@ -53,6 +53,8 @@ urlpatterns = [
     path('doctor/',  PersonalMedicoList.as_view(),),
     path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
     path('doctor/<int:pk>/reviews/',CalificaPersonalMedicoList.as_view(),),
+    
+    path('specialty/', EspecialidadList.as_view(),),
 
     path('availabilit/', DisponibilidadList.as_view(),),
     path('availabilit/create/', DisponibilidadCreate.as_view(),),
