@@ -9,7 +9,7 @@ from usuarios.views import UserList, UserDetail
 from informacion_personal.views import InformacionPersonalList, InformacionPersonalDetail
 from financiadores.views import FinanciadoresList, FinanciadoresDetail
 from nomencladores.views import NomencladorList, NomencladorDetail, FileUploadView
-from pacientes.views import PacienteList, PacienteDetail
+from pacientes.views import PacienteList, PacienteDetail, Verify_user
 from tipo_usuario.views import TipoUsuarioList, TipoUsuarioDetail
 from direcciones.views import DireccionList, DireccionDetail
 from personal_medico.views import PersonalMedicoList, PersonalMedicoDetail, CalificaPersonalMedicoList
@@ -43,6 +43,7 @@ urlpatterns = [
     path('users/<int:pk>/', UserDetail.as_view()),
     path('patient/', PacienteList.as_view(),),
     path('patient/<int:pk>/', PacienteDetail.as_view(),),
+    path('patient/verify_user/', Verify_user.as_view(),),
     path('personal_info/', InformacionPersonalList.as_view(),),
     path('personal_info/<int:pk>/', InformacionPersonalDetail.as_view(),),
     path('address/', DireccionList.as_view(),),
