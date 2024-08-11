@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-const CardTreatment = ({ tratamiento, descripcion, color }) => {
+const CardTreatment = ({ tratamiento, descripcion, color, set }) => {
   const bannerColor = [
     "bg-[#ADD8E6]",
     "bg-[#800080]",
@@ -16,14 +16,19 @@ const CardTreatment = ({ tratamiento, descripcion, color }) => {
     "bg-[#FFEB3B]",
   ];
   return (
-    <div className="w-full border border-[#1D1B20] h-[200px] rounded-lg hover:shadow-xl cursor-pointer hover:opacity-70 transition-all duration-300">
+    <div
+      className="w-full border border-[#1D1B20] rounded-lg hover:shadow-xl cursor-pointer hover:opacity-70 transition-all duration-300 h-[250px]"
+      onClick={() => set(color)}
+    >
       <div
         id="banner"
-        className={`h-[30%] rounded-[8px_8px_0_0] ${bannerColor[color ? color : 0]}`}
+        className={`h-[10%] md:h-[30%] rounded-[8px_8px_0_0] ${bannerColor[color ? color : 0]}`}
       ></div>
-      <div id="contend" className="font-josefin">
-        <h3 className="font-bold text-2xl pt-4 pl-5">{tratamiento}</h3>
-        <p className="p-5">{descripcion}</p>
+      <div id="contend" className="font-josefin h-[70%]">
+        <h3 className="font-bold text-base md:text-2xl pt-4 pl-5">
+          {tratamiento}
+        </h3>
+        <p className="p-5 text-sm md:text-base">{descripcion}</p>
       </div>
     </div>
   );

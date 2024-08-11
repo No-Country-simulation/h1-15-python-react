@@ -1,6 +1,10 @@
 import CardTreatment from "../../../components/Cards/CardTreatment";
+import TreatmentModal from "../../../components/Modal/TreatmentModal";
+import { useState } from "react";
 
 const DoctorTreatments = () => {
+  const [show, setShow] = useState(false);
+  const [tratamiento, setTratamiento] = useState(null);
   const tarjetas = [
     {
       id: 0,
@@ -68,21 +72,34 @@ const DoctorTreatments = () => {
         "Atención enfocada en mejorar la calidad de vida en enfermedades graves.",
     },
   ];
+  const handleShow = (tratamiento) => {
+    setTratamiento(tratamiento);
+    setShow(true);
+  };
+
   return (
     <section>
-      <h1 className="font-semibold text-[64px] font-josefin">Tratamientos</h1>
-      <h3 className="font-medium text-2xl font-josefin mt-6">
+      <h1 className="font-semibold text-3xl font-josefin">Tratamientos</h1>
+      <h3 className="font-medium text-base md:text-2xl font-josefin md:mt-6">
         Seleccionar Tipo de tratamiento
       </h3>
-      <section className="grid grid-cols-2 w-[90%] pl-28 mt-6 gap-5">
+      <section className="grid grid-cols-1  xl:grid-cols-2 w-[90%] md:pl-28 mt-6 gap-5">
         {tarjetas.map((tarjeta, index) => (
           <CardTreatment
             key={index}
             tratamiento={tarjeta.tratamiento}
             descripcion={tarjeta.descripcion}
             color={tarjeta.id}
+            set={handleShow}
           />
         ))}
+        {show && (
+          <TreatmentModal
+            tratamiento={tratamiento}
+            show={show}
+            setShow={setShow}
+          />
+        )}
       </section>
     </section>
   );
