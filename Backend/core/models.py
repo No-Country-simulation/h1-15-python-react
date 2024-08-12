@@ -6,12 +6,15 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 import json
 
 # Custom UserManager
+
+
 class UserManager(BaseUserManager):
     def create_user(self, email, first_name, last_name, password=None, **extra_fields):
         if not email:
             raise ValueError('Email is required')
         email = self.normalize_email(email)
-        user = self.model(email=email, first_name=first_name, last_name=last_name, **extra_fields)
+        user = self.model(email=email, first_name=first_name,
+                          last_name=last_name, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -29,7 +32,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=255, null=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    user_types = models.ForeignKey('UserType', on_delete=models.CASCADE, related_name='users', null=True, blank=True)
+    user_types = models.ForeignKey(
+        'UserType', on_delete=models.CASCADE, related_name='users', null=True, blank=True)
     first_login = models.BooleanField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     url_photo = models.FilePathField(max_length=100, blank=True, null=True)
@@ -46,7 +50,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 # UserType model
 class UserType(models.Model):
     type_user = models.CharField(max_length=20, null=False)
-    id_group = models.ForeignKey(Group, related_name='groups', on_delete=models.CASCADE)
+    id_group = models.ForeignKey(
+        Group, related_name='groups', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.type_user
@@ -56,11 +61,14 @@ class UserType(models.Model):
 class Patient(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE)
     financer = models.ForeignKey('Financer', on_delete=models.CASCADE)
+    affiliate_code = models.CharField(max_length=100, null=True, blank=True)
+    plan = models.CharField(max_length=20, null=True, blank=True)
 
 
-#MedicalHistory model
+# MedicalHistory model
 class MedicalHistory(models.Model):
-    patient = models.ForeignKey('Patient', on_delete=models.CASCADE, related_name='medical_histories')
+    patient = models.ForeignKey(
+        'Patient', on_delete=models.CASCADE, related_name='medical_histories')
     conditions = models.TextField()
     interventions = models.TextField()
     family_conditions = models.TextField()
@@ -71,15 +79,17 @@ class MedicalHistory(models.Model):
 
 # PersonalInfo model
 class PersonalInfo(models.Model):
-    patient = models.ForeignKey('Patient', on_delete=models.CASCADE, related_name='personal_info')
+    patient = models.ForeignKey(
+        'Patient', on_delete=models.CASCADE, related_name='personal_info')
     document_type = models.ForeignKey('DocumentType', on_delete=models.CASCADE)
     document_number = models.CharField(max_length=20)
     birth_date = models.DateTimeField()
     gender = models.CharField(max_length=10)
-    address = models.ForeignKey('Address', related_name='addresses', on_delete=models.CASCADE, null=True, blank=True)
+    address = models.CharField(max_length=255)
+    #address = models.ForeignKey('Address', related_name='addresses',on_delete=models.CASCADE, null=True, blank=True)
     phone_number = models.CharField(max_length=20)
     phone_number_2 = models.CharField(max_length=20, null=True, blank=True)
-    emergency_contact = models.CharField(max_length=20)
+    emergency_contact = models.CharField(max_length=100)
     blood_type = models.CharField(max_length=3)
     about_me = models.TextField()
     is_active = models.BooleanField(default=True)
@@ -93,6 +103,9 @@ class DocumentType(models.Model):
     description = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return f'{self.id} - {self.description}' #CORRECT
+
 
 # Direccion model
 class Address(models.Model):
@@ -105,7 +118,7 @@ class Address(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.street}, {self.number}, {self.city}'
+        return f'{self.street}, {self.number}, {self.city}, {self.province}'
 
     class Meta:
         unique_together = ('street', 'number', 'city')
@@ -114,20 +127,22 @@ class Address(models.Model):
 
 # MedicalStaff model
 class MedicalStaff(models.Model):
-    user = models.ForeignKey('User', on_delete=models.CASCADE, related_name='medical_staff')
+    user = models.ForeignKey(
+        'User', on_delete=models.CASCADE, related_name='medical_staff')
     specialty = models.ForeignKey('Specialty', on_delete=models.CASCADE)
     medical_license = models.CharField(max_length=255)
     consultation_phone = models.CharField(max_length=20)
-    documents = models.FilePathField(null=True, blank=True)
+    documents = models.FileField(upload_to='uploads/', blank=True, null=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return str(self.user)
+        return str(f'Dr. {self.user.first_name} {self.user.last_name}')
 
 
 # MedicalStaffReviews model
 class MedicalStaffReviews(models.Model):
-    medical_staff = models.ForeignKey('MedicalStaff', on_delete=models.CASCADE, related_name='reviews')
+    medical_staff = models.ForeignKey(
+        'MedicalStaff', on_delete=models.CASCADE, related_name='reviews')
     description = models.CharField(max_length=255)
     rating = models.DecimalField(max_digits=3, decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -139,22 +154,21 @@ class MedicalStaffReviews(models.Model):
 # Specialty model
 class Specialty(models.Model):
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=255, default='Default Description')
+    description = models.CharField(
+        max_length=255, default='Default Description')
     is_active = models.BooleanField(default=True)
-    
+
     def __str__(self):
         return self.name
 
 
 # Financer model
 class Financer(models.Model):
-    #medical_staff = models.ForeignKey(
+    # medical_staff = models.ForeignKey(
     #    'MedicalStaff', on_delete=models.CASCADE)
     description = models.CharField(max_length=255)
-    affiliate_code = models.CharField(max_length=100, null=True, blank=True)
-    plan = models.CharField(max_length=20, null=True, blank=True)
     is_active = models.BooleanField(default=True)
-    
+
     def __str__(self):
         return f"{self.id} - {self.description}"
 
@@ -167,7 +181,7 @@ class Nomenclature(models.Model):
 
 
 class FileUpload(models.Model):
-    file= models.FileField(upload_to='uploads/')
+    file = models.FileField(upload_to='uploads/')
     uploaded_at = models.DateTimeField(auto_now=True)
 
 
@@ -239,7 +253,8 @@ class Medication(models.Model):
 # Entity model
 class Entity(models.Model):
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=255, default='Medical Institution')
+    description = models.CharField(
+        max_length=255, default='Medical Institution')
     address = models.ForeignKey('Address', on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
 
@@ -256,10 +271,12 @@ class Appointment(models.Model):
     ]
     appointment_date = models.CharField(max_length=10, default='01-01-2024')
     appointment_time = models.CharField(max_length=10, default='00:00')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True)
     doctor = models.ForeignKey(MedicalStaff, on_delete=models.CASCADE)
     entity = models.ForeignKey(Entity, on_delete=models.CASCADE)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="available")
+    status = models.CharField(
+        max_length=20, choices=STATUS_CHOICES, default="available")
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -269,20 +286,24 @@ class Appointment(models.Model):
 # Availability model
 class Availability(models.Model):
     DAY_CHOICES = [
-        ("monday", "Monday"),
-        ("tuesday", "Tuesday"),
-        ("wednesday", "Wednesday"),
-        ("thursday", "Thursday"),
-        ("friday", "Friday"),
-        ("saturday", "Saturday"),
-        ("sunday", "Sunday"),
+        ("lunes", "Lunes"),
+        ("martes", "Martes"),
+        ("miercoles", "Miercoles"),
+        ("jueves", "Jueves"),
+        ("viernes", "Viernes"),
+        ("sabado", "Sabado"),
+        ("domingo", "Domingo"),
     ]
     doctor = models.ForeignKey(MedicalStaff, on_delete=models.CASCADE)
-    institution = models.ForeignKey(Entity, on_delete=models.CASCADE)
+    entity = models.ForeignKey(Entity, on_delete=models.CASCADE)
     day = models.CharField(max_length=10, choices=DAY_CHOICES)
     start_time = models.TimeField()
     end_time = models.TimeField()
     is_active = models.BooleanField(default=True)
+
+    def __str__(self) -> str:
+        return f'{self.entity}, {self.doctor}, {self.day}'
+
 
 
 # Cross Transplant model
@@ -296,3 +317,17 @@ class CrossTransplant(models.Model):
 
     def __str__(self):
         return self.description
+
+
+class ClinicalHistory(models.Model):
+    patient = models.ForeignKey('Patient', on_delete=models.CASCADE, related_name='clinical_histories')
+    entity = models.ForeignKey('Entity', on_delete=models.CASCADE, related_name='clinical_histories')
+    doctor = models.ForeignKey('MedicalStaff', on_delete=models.CASCADE, related_name='medical_staff')
+    date_of_attention = models.DateField()
+    pathology =models.ForeignKey('Pathology',on_delete=models.CASCADE, related_name='pathology',blank=True, null=True)
+    medical_studies = models.TextField(blank=True, null=True)
+    attention_observations = models.TextField(blank=True, null=True)
+    treatment = models.ForeignKey('Treatment', on_delete=models.CASCADE, related_name="treatment",blank=True, null=True)
+
+    def __str__(self):
+        return f'Clinical History of {self.patient} - {self.date_of_attention}'

@@ -6,7 +6,7 @@ from drf_spectacular.utils import extend_schema
 REFERENCIA_TAGS = "Tipo de Documentos"
 
 
-class TipoDocumentoList(generics.ListCreateAPIView):
+class TipoDocumentoList(generics.ListAPIView):
     queryset = ModeloCore.objects.all()
     serializer_class = Serializador
 
@@ -17,14 +17,6 @@ class TipoDocumentoList(generics.ListCreateAPIView):
     )
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
-
-    @extend_schema(
-        tags=[REFERENCIA_TAGS],
-        summary='Crea un tipo de documento',
-        description="Crea un tipo de documento"
-    )
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
 
 
 class  TipoDocumentoDetail(generics.RetrieveUpdateDestroyAPIView):
