@@ -1,56 +1,56 @@
 from rest_framework import generics
-from core.models import MedicalHistory as ModeloCore
-from antecedente_medico.serializers import AntecedenteMedicoSerializer as Serializador
+from core.models import ClinicalHistory as ModeloCore
+from historia_clinica.serializers import HistorialMedicoSerializer as Serializador
 from drf_spectacular.utils import extend_schema
 
-REFERENCIA_TAGS = "Antecedente Medico"
+REFERENCIA_TAGS = "Historia Clinica"
 
 
-class AntecedenteMedicoList(generics.ListCreateAPIView):
+class ClinicalHistoryList(generics.ListCreateAPIView):
     queryset = ModeloCore.objects.all()
     serializer_class = Serializador
 
     @extend_schema(
         tags=[REFERENCIA_TAGS],
-        summary=f'Lista todos los antecedentes medicos',
-        description="Trae a todos los antecedentes medicos"
+        summary=f'Lista todas las historias clinicas',
+        description="Trae a todas las historias clinicas"
     )
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
     @extend_schema(
         tags=[REFERENCIA_TAGS],
-        summary='Crea un antecedente medico',
-        description="Crea un antecedente medico"
+        summary='Crea una hisotoria clinica',
+        description="Crea una historia clinica"
     )
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
 
-class  AntecedenteMedicoDetail(generics.RetrieveUpdateDestroyAPIView):
+class  ClinicalHistoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = ModeloCore.objects.all()
     serializer_class = Serializador
 
     @extend_schema(
         tags=[REFERENCIA_TAGS],
-        summary='Lista un antecedente medico especifica por id',
-        description="Entrega un antecedente medico especificada con su numero de ID"
+        summary='Lista una historia clinica especifica por id',
+        description="Lista una historia clinica especifica por id"
     )
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
     @extend_schema(
         tags=[REFERENCIA_TAGS],
-        summary='Modifica un antecedente medico por su id',
-        description="Permite actualizar todos los datos de un antecedente medico por su numero de ID"
+        summary='Modifica una historia clinica especifica por id',
+        description="Modifica una historia clinica especifica por id"
     )
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
     
     @extend_schema(
         tags=[REFERENCIA_TAGS],
-        summary='Modifica un antecedente medico por su id',
-        description="Permite actualizar todos los datos de un antecedente medico por su numero de ID"
+        summary='Modifica una historia clinica especifica por idd',
+        description="Modifica una historia clinica especifica por id"
     )
     def patch(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
@@ -58,8 +58,8 @@ class  AntecedenteMedicoDetail(generics.RetrieveUpdateDestroyAPIView):
 
     @extend_schema(
         tags=[REFERENCIA_TAGS],
-        summary='Elimina un antecedentes medicos',
-        description="Elimina de la base de datos un antecedentes medicos con su numero de ID"
+        summary='Elimina una historia clinica',
+        description="Elimina una historia clinica"
     )
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)

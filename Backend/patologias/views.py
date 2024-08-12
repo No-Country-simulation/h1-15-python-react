@@ -1,11 +1,11 @@
 from rest_framework import generics
-from core.models import Patologia
+from core.models import Pathology
 from patologias.serializers import PatologiaSerializer
 from drf_spectacular.utils import extend_schema
 
 
 class PatologiaList(generics.ListCreateAPIView):
-    queryset = Patologia.objects.all()
+    queryset = Pathology.objects.all()
     serializer_class = PatologiaSerializer
 
     @extend_schema(
@@ -26,7 +26,7 @@ class PatologiaList(generics.ListCreateAPIView):
 
 
 class PatologiaDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Patologia.objects.all()
+    queryset = Pathology.objects.all()
     serializer_class = PatologiaSerializer
 
     @extend_schema(

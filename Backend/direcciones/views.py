@@ -1,4 +1,4 @@
-from core.models import Direccion
+from core.models import Address
 from direcciones.serializers import DireccionSerializer
 from rest_framework import generics
 from drf_spectacular.utils import extend_schema
@@ -7,7 +7,7 @@ from drf_spectacular.utils import extend_schema
 
 
 class DireccionList(generics.ListCreateAPIView):
-    queryset = Direccion.objects.all()
+    queryset = Address.objects.all()
     serializer_class = DireccionSerializer
 
     @extend_schema(
@@ -28,7 +28,7 @@ class DireccionList(generics.ListCreateAPIView):
 
 
 class DireccionDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Direccion.objects.all()
+    queryset = Address.objects.all()
     serializer_class = DireccionSerializer
 
     @extend_schema(

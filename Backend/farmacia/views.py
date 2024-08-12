@@ -1,5 +1,5 @@
 from rest_framework import generics
-from core.models import Farmacia as ModeloCore
+from core.models import Pharmacy as ModeloCore
 from farmacia.serializers import FarmaciasSerializer as Serializador
 from drf_spectacular.utils import extend_schema
 

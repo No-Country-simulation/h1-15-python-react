@@ -35,33 +35,40 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Local apps
+
+    # 3rd party apps
+    'rest_framework',
+    'corsheaders',
+    'rest_framework_simplejwt',
+    'drf_spectacular',
+    # local apps
     'api.apps.ApiConfig',
-    'usuarios.apps.UsuariosConfig',
-    'mail.apps.MailConfig',
     'core.apps.CoreConfig',
+    'usuarios.apps.UsuariosConfig',
+    'tipo_usuario.apps.TipoUsuarioConfig',
+    'pacientes.apps.PacientesConfig',
+    'financiadores.apps.FinanciadoresConfig',
+    'tipo_documento.apps.TipoDocumentoConfig',
+    'direcciones.apps.DireccionesConfig',
+    'personal_medico.apps.PersonalMedicoConfig',
+    'mail.apps.MailConfig',
+]
+
+
+apifaltan = [
+    # Local apps
     'tratamientos.apps.TratamientosConfig',
     'informacion_personal.apps.InformacionPersonalConfig',
-    'pacientes.apps.PacientesConfig',
     'patologias.apps.PatologiasConfig',
-    'tipo_usuario.apps.TipoUsuarioConfig',
-    'direcciones.apps.DireccionesConfig',
     'turnos.apps.TurnosConfig',
     'trasplantes_cruzados.apps.TrasplantesCruzadosConfig',
     'farmacia.apps.FarmaciaConfig',
     'antecedente_medico.apps.AntecedenteMedicoConfig',
     'entidad.apps.EntidadConfig',
     'especialidad.apps.EspecialidadConfig',
-    'financiadores.apps.FinanciadoresConfig',
     'medicamentos.apps.MedicamentosConfig',
     'nomencladores.apps.NomencladoresConfig',
-    'personal_medico.apps.PersonalMedicoConfig',
-    'tipo_documento.apps.TipoDocumentoConfig',
-    # 3rd party apps
-    'rest_framework',
-    'corsheaders',
-    'rest_framework_simplejwt',
-    'drf_spectacular',
+
 ]
 
 MIDDLEWARE = [

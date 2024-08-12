@@ -1,5 +1,5 @@
 from rest_framework import generics , status
-from core.models import Nomenclador, FileUpload
+from core.models import Nomenclature, FileUpload
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from nomencladores.serializers import NomencladorSerializer, FileUploadSerializer
@@ -10,7 +10,7 @@ import pandas as pd
 # Create your views here.
 
 class NomencladorList(generics.ListCreateAPIView):
-    queryset = Nomenclador.objects.all()
+    queryset = Nomenclature.objects.all()
     serializer_class = NomencladorSerializer
 
     @extend_schema(
@@ -31,7 +31,7 @@ class NomencladorList(generics.ListCreateAPIView):
 
 
 class NomencladorDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Nomenclador.objects.all()
+    queryset = Nomenclature.objects.all()
     serializer_class = NomencladorSerializer
 
     @extend_schema(
@@ -96,7 +96,7 @@ class FileUploadView(APIView):
                 return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
             # Eliminar todos los registros existentes en la tabla Nomenclador
-            Nomenclador.objects.all().delete()
+            Nomenclature.objects.all().delete()
             
             # Iterar sobre las filas del DataFrame y guardar cada fila en la base de datos
             for _, row in df.iterrows():
@@ -107,7 +107,7 @@ class FileUploadView(APIView):
                     else:
                         arancel = int(arancel)
 
-                    nomenclador = Nomenclador(
+                    nomenclador = Nomenclature(
                         codigos= row.get('CODIGOS', ''),
                         descripcion= row.get('DESCRIPCION', ''),
                         arancel= arancel

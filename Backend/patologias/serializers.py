@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from core.models import Patologia
+from core.models import Pathology
 
 
 # Serializers for Patologia model
@@ -8,5 +8,5 @@ from core.models import Patologia
 class PatologiaSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Patologia
+        model = Pathology
         fields = '__all__'

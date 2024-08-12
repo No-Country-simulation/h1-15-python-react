@@ -1,14 +1,25 @@
 from rest_framework import serializers
-from usuarios.serializers import UserSerializer
-from core.models import InformacionPersonal
+from pacientes.serializers import PacienteSerializer
+from direcciones.serializers import DireccionSerializer
+from core.models import Patient, PersonalInfo, Address
 
 # Serializers for InformacionPersonal model
 
 
 class InformacionPersonalSerializer(serializers.ModelSerializer):
-    usuario = UserSerializer(read_only=True)
-    direcciones = serializers.StringRelatedField(read_only=True, many=True)
+    patient = PacienteSerializer(read_only=True)
+    patient_id = serializers.PrimaryKeyRelatedField(
+        queryset=Patient.objects.all(), 
+        source='patient', 
+        write_only=True
+    )
+    #address = DireccionSerializer(read_only=True)
+    #address_id = serializers.PrimaryKeyRelatedField(
+    #    queryset=Address.objects.all(), 
+    #    source='address', 
+    #    write_only=True
+    #)
 
     class Meta:
-        model = InformacionPersonal
+        model = PersonalInfo
         fields = '__all__'
