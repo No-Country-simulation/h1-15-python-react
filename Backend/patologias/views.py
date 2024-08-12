@@ -38,13 +38,14 @@ class PathologyList(generics.ListCreateAPIView):
     def post(self, request):
         request_data = request.data
         specialty_name = request_data.pop('specialty')
-        nomenclature_code = request_data.pop('nomenclature')
-        
         specialty = get_object_or_404(Specialty, name=specialty_name)
-        nomenclature = get_object_or_404(Nomenclature, name=nomenclature_code)
+        
+        if request_data['nomenclature']:
+            nomenclature_code = request_data.pop('nomenclature')
+            nomenclature = get_object_or_404(Nomenclature, name=nomenclature_code)
+            request_data['nomenclature'] = nomenclature.id
         
         request_data['specialty'] = specialty.id
-        request_data['nomenclature'] = nomenclature.id
         pathology_serializer = PathologySerializer(data=request_data)
         
         if pathology_serializer.is_valid():

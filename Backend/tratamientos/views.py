@@ -1,9 +1,10 @@
 from tratamientos.serializers import TreatmentSerializer, TreatAdherenceSerializer
+from historia_clinica.serializers import ClinicalHistorySerializer
 from rest_framework import generics, views, status, response
 from drf_spectacular.utils import extend_schema
-from core.models import Treatment, TreatAdherence, Patient, Pathology, Medication
+from core.models import Treatment, TreatAdherence, Patient, Pathology, Medication, ClinicalHistory, Entity, MedicalStaff
 from django.shortcuts import get_object_or_404
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 
 import json
@@ -32,7 +33,6 @@ class TreatmentList(generics.ListCreateAPIView):
                     "treat_name": "Tionamidas MMI 10mg",
                     "pathology": "Hipertiroidismo",
                     "treat_type": "Medicación",
-                    "treat_duration": "60", (días)
                     "treat_medication": "Metimazol 10mg",
                     "treat_indications": "Una dosis cada 24hs con el almuerzo"
                 }
@@ -44,13 +44,15 @@ class TreatmentList(generics.ListCreateAPIView):
     def post(self, request):
         request_data = request.data
         pathology_name = request_data.pop('pathology')
-        treat_medication_name = request_data.pop('treat_medication')
+        
+        if request_data['treat_medication']:
+            treat_medication_name = request_data.pop('treat_medication')
+            treat_medication = get_object_or_404(Medication, name=treat_medication_name)
+            request_data['treat_medication'] = treat_medication.id
         
         pathology = get_object_or_404(Pathology, name=pathology_name)
-        treat_medication = get_object_or_404(Medication, name=treat_medication_name)
-        
         request_data['pathology'] = pathology.id
-        request_data['treat_medication'] = treat_medication.id
+        
         treatment_serializer = TreatmentSerializer(data=request_data)
         
         if treatment_serializer.is_valid():
@@ -107,20 +109,40 @@ class TreatAdherenceCreate(views.APIView):
     @extend_schema(
         tags=['Adherencia a Tratamientos'],
         summary='Carga el nuevo tratamiento del paciente',
-        description="""Carga el nuevo tratamiento del paciente a partir del cual se valida la adherencia.\n
+        description="""Carga los datos de la consulta en la historia clínica y el nuevo tratamiento del paciente a partir del cual se valida la adherencia.
+                    Toma al médico que atendió de los datos de autenticación.
+        
                     {
                         "patient": "2",
-                        "treatment": "Medicación: Prednizona 10mg c/6hs",
+                        "entity": "Mater Dei",
+                        "date_of_attention": "2024-08-09",
+                        "pathology": "Hipertiroidismo",
+                        "medical_studies": "",
+                        "attention_observations": "Se observa debilidad muscular, perdida de peso, temblor en manos. Se refuerza diagnóstico con Prueba de TSH, T3 y T4.",
+                        "treatment": "Danantizol 20mg c/24hs",
                         "start_datetime": "2024-08-10 18:00:00", 
-                        "treat_duration": "90",   # Días
-                        "treat_frecuency": 6,   # Horas
+                        "treat_duration": "60",   # Días
+                        "treat_frecuency": 24,   # Horas
                     }
                     """
     )
     def post(self, request):
         request_data = request.data
+        
+        user = request.user
+        
+        if not user.is_authenticated:
+            #return response.Response("Usuario no autenticado", status=status.HTTP_401_UNAUTHORIZED)
+            doctor = get_object_or_404(MedicalStaff, id=1)
+        else:        
+            doctor = MedicalStaff.objects.filter(user=user).first()
 
         patient = get_object_or_404(Patient, id=request_data['patient'])
+        entity = get_object_or_404(Entity, name=request_data['entity'])
+        date_of_attention = date(request_data['date_of_attention'])
+        pathology = get_object_or_404(Pathology, name=request_data['pathology'])
+        medical_studies = request_data['medical_studies']
+        attention_observations = request_data['attention_observations']
         treatment = get_object_or_404(Treatment, treat_name=request_data['treatment'])
         start_datetime = datetime.strptime(request_data['start_datetime'], '%Y-%m-%d %H:%m:%s')
         treat_duration = int(request_data['treat_duration'])
@@ -154,11 +176,29 @@ class TreatAdherenceCreate(views.APIView):
         else:
             errors.append("Error al crear la lista de adherencia al tratamiento.")
         
+        clinical_history_data = {
+            "patient": patient,
+            "entity": entity,
+            "doctor": doctor,
+            "date_of_attention": date_of_attention,
+            "pathology": pathology,
+            "medical_studies": medical_studies,
+            "attention_observations": attention_observations,
+            "treatment": treatment
+        }
+        clinical_history_serializer = ClinicalHistorySerializer(date=clinical_history_data)
+        
+        if clinical_history_serializer.is_valid():
+            clinical_history_serializer.save()
+        else:
+            errors.append(clinical_history_serializer.errors)
+        
         if errors:
             return response.Response({"errors": errors}, status=status.HTTP_400_BAD_REQUEST)
         
 
-        return response.Response({"message": "Disponibilidad creada con éxito."}, status=status.HTTP_201_CREATED)
+        return response.Response({"message": "Tratamiento cargado con éxito, historial médico actualizado."}, status=status.HTTP_201_CREATED)
+
 
 class TreatAdherenceDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = TreatAdherence.objects.all()

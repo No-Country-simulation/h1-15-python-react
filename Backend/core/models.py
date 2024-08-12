@@ -202,9 +202,9 @@ class Treatment(models.Model):
     treat_name = models.CharField(max_length=100, unique=True)
     pathology = models.ForeignKey('Pathology', on_delete=models.CASCADE)
     treat_type = models.CharField(max_length=100)
-    treat_duration = models.CharField(max_length=5)
     treat_medication = models.ForeignKey('Medication', on_delete=models.CASCADE, related_name='treat_medication', blank=True, null=True)
     treat_indications = models.TextField(blank=True, null=True)
+    create_by = models.ForeignKey('MedicalStaff', on_delete=models.CASCADE, blank=True, null=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -233,21 +233,16 @@ class Pharmacy(models.Model):
 
 # Medication model
 class Medication(models.Model):
+    medication_name = models.CharField(max_length=100)
     pathology = models.ForeignKey('Pathology', on_delete=models.CASCADE)
-    treatment = models.ForeignKey('Treatment', on_delete=models.CASCADE)
+    treatment = models.TextField(blank=True, null=True)
     pharmacy = models.ForeignKey('Pharmacy', on_delete=models.CASCADE)
     description = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
-    dosage_form = models.CharField(max_length=255)
-
-    def set_dosage_form(self, lst):
-        self.dosage_form = json.dumps(lst)
-
-    def get_dosage_form(self):
-        return json.loads(self.dosage_form)
+    dosage = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.description
+        return self.medication_name
 
 
 # Entity model
@@ -322,7 +317,7 @@ class CrossTransplant(models.Model):
 class ClinicalHistory(models.Model):
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE, related_name='clinical_histories')
     entity = models.ForeignKey('Entity', on_delete=models.CASCADE, related_name='clinical_histories')
-    doctor = models.ForeignKey('MedicalStaff', on_delete=models.CASCADE, related_name='medical_staff')
+    doctor = models.ForeignKey('MedicalStaff', on_delete=models.CASCADE, related_name='medical_staff',blank=True, null=True)
     date_of_attention = models.DateField()
     pathology =models.ForeignKey('Pathology',on_delete=models.CASCADE, related_name='pathology',blank=True, null=True)
     medical_studies = models.TextField(blank=True, null=True)

@@ -1,9 +1,8 @@
-
 from rest_framework import serializers
-from core.models import Pharmacy as Modelo
-import os
+from core.models import Pharmacy
 
-class FarmaciasSerializer(serializers.ModelSerializer):
+
+class PharmacySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Modelo
+        model = Pharmacy
         fields = '__all__'

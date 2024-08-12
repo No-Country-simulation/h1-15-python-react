@@ -1,14 +1,14 @@
 from rest_framework import generics
-from core.models import Pharmacy as ModeloCore
-from farmacia.serializers import FarmaciasSerializer as Serializador
+from core.models import Pharmacy
+from farmacia.serializers import PharmacySerializer
 from drf_spectacular.utils import extend_schema
 
 REFERENCIA_TAGS = "Farmacias"
 
 
-class FarmaciaList(generics.ListCreateAPIView):
-    queryset = ModeloCore.objects.all()
-    serializer_class = Serializador
+class PharmacyList(generics.ListCreateAPIView):
+    queryset = Pharmacy.objects.all()
+    serializer_class = PharmacySerializer
 
     @extend_schema(
         tags=[REFERENCIA_TAGS],
@@ -27,9 +27,9 @@ class FarmaciaList(generics.ListCreateAPIView):
         return self.create(request, *args, **kwargs)
 
 
-class FarmaciaDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = ModeloCore.objects.all()
-    serializer_class = Serializador
+class PharmacyDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Pharmacy.objects.all()
+    serializer_class = PharmacySerializer
 
     @extend_schema(
         tags=[REFERENCIA_TAGS],

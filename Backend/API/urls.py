@@ -22,7 +22,7 @@ from historia_clinica.views import ClinicalHistoryDetail, ClinicalHistoryList
 from entidad.views import EntidadDetail, EntidadList
 from patologias.views import PathologyList, PathologyDetail
 from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListView,   MisTurnoListView, ReservarTurnoView
-from farmacia.views import FarmaciaList, FarmaciaDetail
+from farmacia.views import PharmacyList, PharmacyDetail
 from usuarios.views import CustomTokenObtainPairView, CustomTokenVerifyView, CustomTokenRefreshView
 
 
@@ -51,16 +51,21 @@ urlpatterns = [
 
     path('address/', DireccionList.as_view(),),
     path('address/<int:pk>/', DireccionDetail.as_view(),),
+    
     path('financers/', FinanciadoresList.as_view(),),
+    
     path('treatment/', TreatmentList.as_view(),),
     path('treatment/<int:pk>/', TreatmentDetail.as_view(),),
+    
     path('treat_adherence/', TreatAdherenceCreate.as_view(),),
     path('treat_adherence/<int:pk>/', TreatAdherenceDetail.as_view(),),
     path('treat_adherence/my/', MyTreatAdherenceDetail.as_view(),),
+    
     path('pathologies/', PathologyList.as_view(),),
     path('pathologies/<int:pk>/',PathologyDetail.as_view(),),
-    path('medicamentos/', MedicationListCreate.as_view(),),
-    path('medicamentos/<int:pk>/',MedicationDetail.as_view(),),
+    
+    path('medications/', MedicationListCreate.as_view(),),
+    path('medications/<int:pk>/',MedicationDetail.as_view(),),
 
     path('doctor/',  PersonalMedicoList.as_view(),),
     path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
@@ -86,9 +91,11 @@ urlpatterns = [
 
     path('clinical_history/', ClinicalHistoryList.as_view(),),
     path('clinical_history/<int:pk>/',ClinicalHistoryDetail.as_view(),),
-    
 
     path('document_type/', TipoDocumentoList.as_view(),),
+    
+    path('pharmacy/', PharmacyList.as_view(),),
+    path('pharmacy/<int:pk>/',PharmacyDetail.as_view(),),
 ]
 
 """
@@ -122,8 +129,7 @@ path('entidad/<int:pk>/',EntidadDetail.as_view(),),
 
 
 
-path('farmacia/', FarmaciaList.as_view(),),
-path('farmacia/<int:pk>/',FarmaciaDetail.as_view(),),
+
 
 
 """

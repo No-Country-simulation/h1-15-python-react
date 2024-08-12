@@ -1,9 +1,9 @@
 
 from rest_framework import serializers
-from core.models import ClinicalHistory as Modelo
+from core.models import ClinicalHistory
 import os
 
-class HistorialMedicoSerializer(serializers.ModelSerializer):
+class ClinicalHistorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Modelo
+        model = ClinicalHistory
         fields = '__all__'
