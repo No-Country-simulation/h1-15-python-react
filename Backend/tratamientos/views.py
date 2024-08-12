@@ -201,3 +201,25 @@ class TreatAdherenceDetail(generics.RetrieveUpdateDestroyAPIView):
             return response.Response(instance, status=status.HTTP_200_OK)
         else:
             return response.Response("Tratamiento no encontrado", status=status.HTTP_400_BAD_REQUEST)
+
+        
+class MyTreatAdherenceDetail(views.APIView):
+    
+    @extend_schema(
+        tags=['Adherencia a Tratamientos'],
+        summary='Lista los tratamientos del usuario logueado',
+        description="Entrega una lista con los tratamientos del usuario logueado"
+    )
+    def get(self, request):
+        
+        user = request.user
+        
+        if not user.is_authenticated:
+            return response.Response("Usuario no autenticado", status=status.HTTP_401_UNAUTHORIZED)
+        
+        patient = Patient.objects.filter(user=user).first()
+        
+        queryset = TreatAdherence.objects.filter(patient=patient)
+        serializer = TreatAdherenceSerializer(queryset, many=True)
+
+        return response.Response(serializer.data, status=status.HTTP_200_OK)

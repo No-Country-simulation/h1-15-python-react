@@ -5,7 +5,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 
 # Urls for the API endpoints
 from usuarios.views import UserList, UserDetail
-from tratamientos.views import TreatmentList, TreatmentDetail, TreatAdherenceCreate, TreatAdherenceDetail
+from tratamientos.views import TreatmentList, TreatmentDetail, TreatAdherenceCreate, TreatAdherenceDetail, MyTreatAdherenceDetail
 from informacion_personal.views import InformacionPersonalList, InformacionPersonalDetail
 from financiadores.views import FinanciadoresList, FinanciadoresDetail
 from nomencladores.views import NomencladorList, NomencladorDetail, FileUploadView
@@ -52,6 +52,7 @@ urlpatterns = [
     path('treatment/<int:pk>/', TreatmentDetail.as_view(),),
     path('treat_adherence/', TreatAdherenceCreate.as_view(),),
     path('treat_adherence/<int:pk>/', TreatAdherenceDetail.as_view(),),
+    path('treat_adherence/my/', MyTreatAdherenceDetail.as_view(),),
     path('pathologies/', PathologyList.as_view(),),
     path('pathologies/<int:pk>/',PathologyDetail.as_view(),),
     path('medicamentos/', MedicationListCreate.as_view(),),
