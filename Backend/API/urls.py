@@ -69,6 +69,9 @@ urlpatterns = [
     #path('my_appointment/<int:pk>', ReservarTurnoView.as_view()), #es para reservar un turno
     path('entity/', EntidadList.as_view(),),
 
+    path('medical_history/', AntecedenteMedicoList.as_view(),),
+    path('medical_history/<int:pk>/',AntecedenteMedicoDetail.as_view(),),
+
 ]
 
 """
@@ -94,8 +97,7 @@ path('medicamentos/<int:pk>/',MedicamentoDetail.as_view(),),
 path('tipo_documento/', TipoDocumentoList.as_view(),),
 path('tipo_documento/<int:pk>/',TipoDocumentoDetail.as_view(),),
 
-path('antecedente_medico/', AntecedenteMedicoList.as_view(),),
-path('antecedente_medico/<int:pk>/',AntecedenteMedicoDetail.as_view(),),
+
 
 
 
