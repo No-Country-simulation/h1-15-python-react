@@ -205,6 +205,7 @@ class TreatAdherence(models.Model):
     treat_duration = models.CharField(max_length=5)
     treat_frecuency = models.CharField(max_length=5)
     treat_adherence = models.TextField()
+    is_active = models.BooleanField(default=True)
 
 
 # Pharmacy model

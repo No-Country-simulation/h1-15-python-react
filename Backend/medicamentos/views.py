@@ -1,13 +1,13 @@
 from rest_framework import generics, views, status, response
 from core.models import Medication, Pathology, Treatment, Pharmacy
-from medicamentos.serializers import MedicamentosSerializer as Serializador
+from medicamentos.serializers import medicationsSerializer
 from drf_spectacular.utils import extend_schema
 from django.shortcuts import get_object_or_404
 
 REFERENCIA_TAGS = "Medicamentos"
  
 
-class MedicamentoListCreate(views.APIView):
+class MedicationListCreate(views.APIView):
     
     @extend_schema(
         tags=[REFERENCIA_TAGS],
@@ -18,12 +18,12 @@ class MedicamentoListCreate(views.APIView):
         queryset = Medication.objects.all()
         
         try:
-            lista_medicamentos = []
-            for medicamento in queryset:
-                medicamento['dosis_presentacion'] = medicamento.get_dosis_presentacion()
-                lista_medicamentos.append(medicamento)
+            medications_list = []
+            for medication in queryset:
+                medication['dosis_presentacion'] = medication.get_dosage_form()
+                medications_list.append(medication)
                 
-            return response.Response(lista_medicamentos, status=status.HTTP_200_OK)
+            return response.Response(medications_list, status=status.HTTP_200_OK)
         except:
             return response.Response("Elementos no encontrados", status=status.HTTP_404_NOT_FOUND) 
 
@@ -32,35 +32,35 @@ class MedicamentoListCreate(views.APIView):
         summary='Crea un medicamento',
         description="""Crea un medicamento.\n
                     {
-                        "patologia": "Hipertiroidismo",
-                        "tratamiento": "Medicamentos antitiroideos",
-                        "farmacia": "Elea",
-                        "descripcion": "Medicamento para el tratamiento del hipertiroidismo.",
-                        "dosis_presentacion": ["400mg", "600mg", "1000mg"],
+                        "pathology": "Hipertiroidismo",
+                        "treatment": "Medicamentos antitiroideos",
+                        "pharmacy": "Elea",
+                        "description": "Medicamento para el tratamiento del hipertiroidismo.",
+                        "dosage_form": ["400mg", "600mg", "1000mg"],
                     }
                     """
     )
     def post(self, request):
-        datos_solicitud = request.data
+        request_data = request.data
         
         try:
-            patologia = get_object_or_404(Pathology, descripcion=datos_solicitud['patologia'])
-            tratamiento = get_object_or_404(Treatment, descripcion=datos_solicitud['tratamiento'])
-            farmacia = get_object_or_404(Pharmacy, nombre_laboratorio=datos_solicitud['farmacia'])
-            descripcion = datos_solicitud['descripcion']
+            pathology = get_object_or_404(Pathology, descripcion=request_data['pathology'])
+            treatment = get_object_or_404(Treatment, descripcion=request_data['treatment'])
+            pharmacy = get_object_or_404(Pharmacy, nombre_laboratorio=request_data['pharmacy'])
+            description = request_data['description']
             
         
-            medicamento = Medication.objects.create(patologia=patologia, tratamiento=tratamiento, farmacia=farmacia, descripcion=descripcion)
-            medicamento.set_dosis_presentacion(datos_solicitud['dosis_presentacion'])
-            medicamento.save()
+            medicine = Medication.objects.create(pathology=pathology, treatment=treatment, pharmacy=pharmacy, description=description)
+            medicine.set_dosage_form(request_data['dosage_form'])
+            medicine.save()
             return response.Response("Medicamento creado", status=status.HTTP_201_CREATED)
         except:
             return response.Response("Falló la creación", status=status.HTTP_400_BAD_REQUEST)
 
 
-class  MedicamentoDetail(generics.RetrieveUpdateDestroyAPIView):
+class  MedicationDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Medication.objects.all()
-    serializer_class = Serializador
+    serializer_class = medicationsSerializer
 
     @extend_schema(
         tags=[REFERENCIA_TAGS],
@@ -92,4 +92,10 @@ class  MedicamentoDetail(generics.RetrieveUpdateDestroyAPIView):
         description="Elimina de la base de datos un medicamento con su numero de ID"
     )
     def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
+        instance = self.get_object()
+        if instance.is_active:
+            instance.is_active = False
+            instance.save()
+            return response.Response(instance, status=status.HTTP_200_OK)
+        else:
+            return response.Response("Tratamiento no encontrado", status=status.HTTP_400_BAD_REQUEST)
