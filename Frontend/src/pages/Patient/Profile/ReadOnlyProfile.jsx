@@ -1,70 +1,42 @@
 /* eslint-disable react/prop-types */
-import VoiceDictation from "../../../components/VoiceDictation/VoiceDictation";
-import Icon from "../../../components/Icon/Icon";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import AddressInput from "./AddressInput";
 
-const EditableProfileInfo = ({
-  formData,
-  handleChange,
-  handlePhoneChange,
-  handleDictate,
-  isAddressInputVisible,
-  setAddressInputVisible,
-  handleSubmit,
-}) => {
-  const handleAddressAccept = (address) => {
-    handleChange({ target: { name: "address", value: address } });
-    setAddressInputVisible(false);
-  };
-
-  const handleAddressClose = () => {
-    setAddressInputVisible(false);
+const ReadOnlyProfile = ({ formData }) => {
+  // Función para formatear la fecha en el formato requerido
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date.toISOString().split("T")[0];
   };
 
   return (
     <section>
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white overflow-hidden pb-20 mt-4"
-      >
+      <form className="bg-white overflow-hidden pb-20 mt-4">
         <section className="flex flex-col gap-1">
           {/* Sección Sobre Mí */}
-          <label className="block text-black font-medium">Sobre mí <span className="text-red-500">*</span></label>
+          <label className="block text-black font-medium">Sobre mí</label>
           <div className="flex w-full">
             <textarea
               name="about_me"
               value={formData.about_me}
-              onChange={handleChange}
-              className="border-gray-300 border rounded w-full"
+              className="border-gray-300 border rounded w-full outline-none bg-[#ccc3]"
+              readOnly
             ></textarea>
-            <section className="flex items-center m-2">
-              <VoiceDictation onDictate={handleDictate} />
-            </section>
           </div>
 
           <div>
             <label className="block text-black font-medium">
-              Dirección de domicilio <span className="text-red-500">*</span>
+              Dirección de domicilio
             </label>
             <div className="flex pt-2">
               <textarea
                 name="address"
                 value={formData.address}
                 placeholder="Usa el detector de Google Maps para ingresar tu ubicación"
-                onChange={handleChange}
-                className="border-gray-300 border rounded w-full h-15 px-3 outline-none resize-none"
+                className="border-gray-300 border rounded w-full h-15 px-3 outline-none bg-[#ccc3] resize-none"
                 readOnly
-                required
               />
-              <button
-                type="button"
-                onClick={() => setAddressInputVisible(true)}
-                className="flex h-10 w-20 max-w-14 outline-none text-3xl items-center justify-center"
-              >
-                <Icon name="SiGooglemaps" />
-              </button>
             </div>
           </div>
 
@@ -72,14 +44,13 @@ const EditableProfileInfo = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-black font-medium">
-                Tipo de Documento <span className="text-red-500">*</span>
+                Tipo de Documento
               </label>
               <select
                 name="document_type"
                 value={formData.document_type}
-                onChange={handleChange}
-                className="border-gray-300 border rounded w-full h-10 px-3 mt-2"
-                required
+                className="border-gray-300 border rounded w-full h-10 px-3 mt-2 outline-none bg-[#ccc3]"
+                readOnly
               >
                 <option value="">Selecciona un tipo de documento</option>
                 <option value={1}>DNI</option>
@@ -89,15 +60,14 @@ const EditableProfileInfo = ({
             </div>
             <div>
               <label className="block text-black font-medium">
-                Número de Documento <span className="text-red-500">*</span>
+                Número de Documento
               </label>
               <input
                 type="text"
                 name="document_number"
                 value={formData.document_number}
-                onChange={handleChange}
-                className="border-gray-300 border rounded w-full h-10 px-3 mt-2"
-                required
+                className="border-gray-300 border rounded w-full h-10 px-3 mt-2 outline-none bg-[#ccc3]"
+                readOnly
               />
             </div>
           </div>
@@ -105,26 +75,24 @@ const EditableProfileInfo = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-black font-medium">
-                Fecha de Nacimiento <span className="text-red-500">*</span>
+                Fecha de Nacimiento
               </label>
               <input
                 type="date"
                 name="birth_date"
-                value={formData.birth_date}
-                onChange={handleChange}
-                className="border-gray-300 border rounded w-full h-10 px-3 mt-2"
-                required
+                value={formatDate(formData.birth_date)}
+                className="border-gray-300 border rounded w-full h-10 px-3 mt-2 outline-none bg-[#ccc3]"
+                readOnly
               />
             </div>
 
             <div>
-              <label className="block text-black font-medium">Género <span className="text-red-500">*</span></label>
+              <label className="block text-black font-medium">Género</label>
               <select
                 name="gender"
                 value={formData.gender}
-                onChange={handleChange}
-                className="border-gray-300 border rounded w-full h-10 px-3 mt-2"
-                required
+                className="border-gray-300 border rounded w-full h-10 px-3 mt-2 outline-none bg-[#ccc3]"
+                readOnly
               >
                 <option value="">Selecciona un género</option>
                 <option value="Masculino">Masculino</option>
@@ -136,21 +104,21 @@ const EditableProfileInfo = ({
             </div>
             <div>
               <label className="block text-black font-medium">
-                Número de Teléfono <span className="text-red-500">*</span>
+                Número de Teléfono
               </label>
               <PhoneInput
                 country={"ar"}
                 value={formData.phone_number}
-                onChange={(value) => handlePhoneChange(value, "phone_number")}
                 inputStyle={{
                   width: "100%",
                   border: "1px solid #D1D5DB",
                   borderRadius: "0.375rem",
                   boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
+                  backgroundColor:"#ccc3"
                 }}
                 inputProps={{
                   name: "phone_number",
-                  required: true,
+                  readOnly: true,
                 }}
               />
             </div>
@@ -162,43 +130,41 @@ const EditableProfileInfo = ({
               <PhoneInput
                 country={"ar"}
                 value={formData.phone_number_2}
-                onChange={(value) => handlePhoneChange(value, "phone_number_2")}
                 inputStyle={{
                   width: "100%",
                   border: "1px solid #D1D5DB",
                   borderRadius: "0.375rem",
                   boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
+                  backgroundColor:"#ccc3"
                 }}
                 inputProps={{
                   name: "phone_number_2",
-                  required: true,
+                  readOnly: true,
                 }}
               />
             </div>
             <div>
               <label className="block text-black font-medium">
-                Contacto de Emergencia <span className="text-red-500">*</span>
+                Contacto de Emergencia
               </label>
               <input
                 type="text"
                 name="emergency_contact"
                 value={formData.emergency_contact}
-                onChange={handleChange}
-                placeholder="Parentesco-Número de Teléfono"
-                className="border-gray-300 border rounded w-full h-10 px-3 mt-2"
-                required
+                placeholder="Parentesco-+54XXXXXXXXX"
+                className="border-gray-300 border rounded w-full h-10 px-3 mt-2 outline-none bg-[#ccc3]"
+                readOnly
               />
             </div>
             <div>
               <label className="block text-black font-medium">
-                Tipo de Sangre <span className="text-red-500">*</span>
+                Tipo de Sangre
               </label>
               <select
                 name="blood_type"
                 value={formData.blood_type}
-                onChange={handleChange}
-                className="border-gray-300 border rounded w-full h-10 px-3 mt-2"
-                required
+                className="border-gray-300 border rounded w-full h-10 px-3 mt-2 outline-none bg-[#ccc3]"
+                readOnly
               >
                 <option value="">Seleccionar Tipo de Sangre</option>
                 <option value="A+">A+</option>
@@ -213,26 +179,9 @@ const EditableProfileInfo = ({
             </div>
           </div>
         </section>
-
-        {/* Botón de Envío */}
-        <div className="flex justify-end mt-6">
-          <button
-            type="submit"
-            className="bg-magentaButton text-white py-2 px-6 rounded"
-          >
-            Guardar
-          </button>
-        </div>
       </form>
-
-      {isAddressInputVisible && (
-        <AddressInput
-          onAccept={handleAddressAccept}
-          onClose={handleAddressClose}
-        />
-      )}
     </section>
   );
 };
 
-export default EditableProfileInfo;
+export default ReadOnlyProfile;

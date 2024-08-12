@@ -62,7 +62,7 @@ export const registerUser = async (formData) => {
 };
 
 export const logout = (navigate) => {
-  const keysToRemove = ["userType", "userId", "firstName", "lastName", "authToken","userEmail"];
+  const keysToRemove = ["userType", "userId", "firstName", "lastName", "authToken","userEmail","patient_id"];
   
   keysToRemove.forEach(key => localStorage.removeItem(key));
   
