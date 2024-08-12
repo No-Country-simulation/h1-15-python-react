@@ -89,7 +89,7 @@ class PersonalInfo(models.Model):
     #address = models.ForeignKey('Address', related_name='addresses',on_delete=models.CASCADE, null=True, blank=True)
     phone_number = models.CharField(max_length=20)
     phone_number_2 = models.CharField(max_length=20, null=True, blank=True)
-    emergency_contact = models.CharField(max_length=20)
+    emergency_contact = models.CharField(max_length=100)
     blood_type = models.CharField(max_length=3)
     about_me = models.TextField()
     is_active = models.BooleanField(default=True)
@@ -104,7 +104,7 @@ class DocumentType(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.id} - {self.description}'
+        return f'{self.id} - {self.description}' #CORRECT
 
 
 # Direccion model
@@ -118,7 +118,7 @@ class Address(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.street}, {self.number}, {self.city}'
+        return f'{self.street}, {self.number}, {self.city}, {self.province}'
 
     class Meta:
         unique_together = ('street', 'number', 'city')
