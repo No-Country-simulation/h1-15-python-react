@@ -18,7 +18,7 @@ from especialidad.views import EspecialidadList, EspecialidadDetail
 from medicamentos.views import MedicamentoDetail, MedicamentoListCreate
 from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
 from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
-
+from historia_clinica.views import ClinicalHistoryDetail, ClinicalHistoryList
 from entidad.views import EntidadDetail, EntidadList
 from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListView,   MisTurnoListView, ReservarTurnoView
 from patologias.views import PatologiaList, PatologiaDetail
@@ -74,6 +74,10 @@ urlpatterns = [
 
     path('medical_history/', AntecedenteMedicoList.as_view(),),
     path('medical_history/<int:pk>/',AntecedenteMedicoDetail.as_view(),),
+
+    path('clinical_history/', ClinicalHistoryList.as_view(),),
+    path('clinical_history/<int:pk>/',ClinicalHistoryDetail.as_view(),),
+    
 
     path('document_type/', TipoDocumentoList.as_view(),),
 ]

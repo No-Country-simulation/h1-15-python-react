@@ -316,3 +316,17 @@ class CrossTransplant(models.Model):
 
     def __str__(self):
         return self.description
+
+
+class ClinicalHistory(models.Model):
+    patient = models.ForeignKey('Patient', on_delete=models.CASCADE, related_name='clinical_histories')
+    entity = models.ForeignKey('Entity', on_delete=models.CASCADE, related_name='clinical_histories')
+    doctor = models.ForeignKey('MedicalStaff', on_delete=models.CASCADE, related_name='medical_staff')
+    date_of_attention = models.DateField()
+    pathology =models.ForeignKey('Pathology',on_delete=models.CASCADE, related_name='pathology',blank=True, null=True)
+    medical_studies = models.TextField(blank=True, null=True)
+    attention_observations = models.TextField(blank=True, null=True)
+    treatment = models.ForeignKey('Treatment', on_delete=models.CASCADE, related_name="treatment",blank=True, null=True)
+
+    def __str__(self):
+        return f'Clinical History of {self.patient} - {self.date_of_attention}'
