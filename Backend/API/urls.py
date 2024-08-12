@@ -67,6 +67,7 @@ urlpatterns = [
 
     #path('my_appointment/', MisTurnoListView.as_view()), #es para buscar turnos
     #path('my_appointment/<int:pk>', ReservarTurnoView.as_view()), #es para reservar un turno
+    path('entity/', EntidadList.as_view(),),
 
 ]
 
@@ -97,7 +98,7 @@ path('antecedente_medico/', AntecedenteMedicoList.as_view(),),
 path('antecedente_medico/<int:pk>/',AntecedenteMedicoDetail.as_view(),),
 
 
-path('entidad/', EntidadList.as_view(),),
+
 path('entidad/<int:pk>/',EntidadDetail.as_view(),),
 
 
