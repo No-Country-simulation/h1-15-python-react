@@ -11,7 +11,6 @@ const LateralMenu = () => {
   const sidebarRef = useRef(null);
 
   const toggleSidebar = () => setSidebarOpen((prev) => !prev);
-  const toggleLogout = () => setShowLogout((prev) => !prev);
 
   const handleClickOutside = (event) => {
     if (
@@ -41,7 +40,7 @@ const LateralMenu = () => {
       <nav className="flex justify-between w-full pt-6">
         <MenuButton onToggleSidebar={toggleSidebar} />
         <div ref={profileRef} className="relative">
-          <UserInitials onClick={toggleLogout} />
+          <UserInitials/>
           {showLogout && (
             <div className="absolute mt-2 right-0 z-10">
               <Logout />
@@ -51,7 +50,7 @@ const LateralMenu = () => {
       </nav>
       {/* Sidebar */}
       {sidebarOpen && (
-        <div className="fixed inset-0 bg-gray-300 dark:bg-[#0007] bg-opacity-80 z-40 flex">
+        <div className="fixed inset-0 bg-gray-300 dark:bg-[#0007] bg-opacity-80 z-40 flex backdrop-blur-sm backdrop-brightness-75">
           <div ref={sidebarRef} className="relative">
             <SideBarPatient />
             <button

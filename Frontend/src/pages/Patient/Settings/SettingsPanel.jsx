@@ -95,14 +95,14 @@ const SettingsPanel = () => {
       </div>
 
       {/* Configuración de Cuenta */}
-      <div className="flex gap-3 justify-end items-center">
+      <div className="flex gap-3 justify-center md:justify-end items-center">
         <button
           onClick={changePassword}
-          className="bg-magentaButton text-white px-4 py-2 rounded-lg"
+          className="bg-magentaButton text-white p-2 md:px-4 rounded-lg text-sm md:text-base"
         >
           {languageData.settings.changePassword}
         </button>
-        <button className="bg-red-500 text-white px-4 py-2 rounded-lg">
+        <button className="bg-red-500 text-white p-2 md:px-4 rounded-lg text-sm md:text-base">
           {languageData.settings.deleteAccount}
         </button>
       </div>

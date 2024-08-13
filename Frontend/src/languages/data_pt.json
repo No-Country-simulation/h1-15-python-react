@@ -435,5 +435,18 @@
     "language": "Idioma",
     "changePassword": "Mudar Senha",
     "deleteAccount": "Excluir Conta"
+  },
+  "lateralMenu": {
+    "home": "Início",
+    "upcoming_appointments": "Próximos Compromissos",
+    "treatment": "Tratamento",
+    "medication": "Medicação",
+    "nutrition": "Nutrição",
+    "physical_activity": "Atividade Física",
+    "insurance": "Plano de Saúde",
+    "profile": "Perfil",
+    "emergency_contacts": "Contatos de Emergência",
+    "settings": "Configurações",
+    "logout": "Sair"
   }
 }
