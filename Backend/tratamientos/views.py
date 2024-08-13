@@ -26,15 +26,17 @@ class TreatmentList(generics.ListCreateAPIView):
         tags=['Tratamientos'],
         summary='Crea un tratamiento',
         description="""
-            Crea un nuevo tratamiento para una patología específica.
+            Crea un nuevo tratamiento para una patología específica. 
+            Si es un tratamiento estandar, create_by va en blanco. Si es creado por un médico va su id.
             
             Args:
                 {
-                    "treat_name": "Tionamidas MMI 10mg",
+                    "treat_name": "Danantizol 5mg cada 24hsipertiroidismo",
                     "pathology": "Hipertiroidismo",
-                    "treat_type": "Medicación",
-                    "treat_medication": "Metimazol 10mg",
-                    "treat_indications": "Una dosis cada 24hs con el almuerzo"
+                    "treat_type": "Custom",
+                    "treat_medication": "Danantizol",
+                    "treat_indications": "Una dosis cada 24hs con el almuerzo",
+                    "create_by": 1
                 }
             
             Returns:
@@ -52,6 +54,11 @@ class TreatmentList(generics.ListCreateAPIView):
         
         pathology = get_object_or_404(Pathology, name=pathology_name)
         request_data['pathology'] = pathology.id
+        
+        if request_data['create_by']:
+            create_by_id = request_data.pop('create_by')
+            create_by = get_object_or_404(MedicalStaff, id=create_by_id)
+            request_data['create_by'] = create_by.id
         
         treatment_serializer = TreatmentSerializer(data=request_data)
         
@@ -122,7 +129,7 @@ class TreatAdherenceCreate(views.APIView):
                         "treatment": "Danantizol 20mg c/24hs",
                         "start_datetime": "2024-08-10 18:00:00", 
                         "treat_duration": "60",   # Días
-                        "treat_frecuency": 24,   # Horas
+                        "treat_frecuency": "24",   # Horas
                     }
                     """
     )

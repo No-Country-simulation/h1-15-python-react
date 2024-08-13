@@ -7,36 +7,33 @@ from django.shortcuts import get_object_or_404
 REFERENCIA_TAGS = "Medicamentos"
  
 
-class MedicationListCreate(views.APIView):
+class MedicationList(generics.ListAPIView):
+    queryset = Medication.objects.all()
+    serializer_class = medicationsSerializer
     
     @extend_schema(
         tags=[REFERENCIA_TAGS],
         summary='Lista todas los medicamentos',
         description="Trae a todas los medicamentos"
     )
-    def get(self, request, format=None):
-        queryset = Medication.objects.all()
-        
-        try:
-            medications_list = []
-            for medication in queryset:
-                medication['dosis_presentacion'] = medication.get_dosage_form()
-                medications_list.append(medication)
-                
-            return response.Response(medications_list, status=status.HTTP_200_OK)
-        except:
-            return response.Response("Elementos no encontrados", status=status.HTTP_404_NOT_FOUND) 
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
+
+class MedicationCreate(views.APIView):
+    
     @extend_schema(
         tags=[REFERENCIA_TAGS],
         summary='Crea un medicamento',
-        description="""Crea un medicamento.\n
+        description="""Crea un medicamento.
+        
                     {
+                        "medication_name": "Danantizol",
                         "pathology": "Hipertiroidismo",
                         "treatment": "Medicamentos antitiroideos",
-                        "pharmacy": "Elea",
+                        "pharmacy": "Gador",
                         "description": "Medicamento para el tratamiento del hipertiroidismo.",
-                        "dosage_form": ["400mg", "600mg", "1000mg"],
+                        "dosage_form": "5mg"
                     }
                     """
     )
@@ -44,14 +41,22 @@ class MedicationListCreate(views.APIView):
         request_data = request.data
         
         try:
+            medication_name = request_data['medication_name']
             pathology = get_object_or_404(Pathology, descripcion=request_data['pathology'])
-            treatment = get_object_or_404(Treatment, descripcion=request_data['treatment'])
+            treatment = request_data['treatment']
             pharmacy = get_object_or_404(Pharmacy, nombre_laboratorio=request_data['pharmacy'])
             description = request_data['description']
-            
+            dosage_form = request_data['dosage_form']
+
         
-            medicine = Medication.objects.create(pathology=pathology, treatment=treatment, pharmacy=pharmacy, description=description)
-            medicine.set_dosage_form(request_data['dosage_form'])
+            medicine = Medication.objects.create(
+                medication_name=medication_name,
+                pathology=pathology,
+                treatment=treatment,
+                pharmacy=pharmacy,
+                description=description,
+                dosage_form=dosage_form
+                )
             medicine.save()
             return response.Response("Medicamento creado", status=status.HTTP_201_CREATED)
         except:
