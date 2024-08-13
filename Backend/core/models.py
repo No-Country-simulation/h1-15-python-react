@@ -215,7 +215,7 @@ class Treatment(models.Model):
 class TreatAdherence(models.Model):
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
     treatment = models.ForeignKey('Treatment', on_delete=models.CASCADE)
-    start_datetime = models.CharField(max_length=10)
+    start_datetime = models.CharField(max_length=20)
     treat_duration = models.CharField(max_length=5)
     treat_frecuency = models.CharField(max_length=5)
     treat_adherence = models.TextField()
