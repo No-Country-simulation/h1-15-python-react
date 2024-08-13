@@ -1,7 +1,5 @@
 import axios from "axios";
-
-// Obtén la URL de la API desde la variable de entorno
-const API_URL = import.meta.env.VITE_API_URL;
+import { API_URL } from "./apiConfig";
 
 export const activatePatient = async (data) => {
   try {
@@ -21,7 +19,7 @@ export const activatePatient = async (data) => {
 
 export const createPatientProfile = async (data) => {
   try {
-    const response = await axios.post(`${API_URL}personal_info/`, data);
+    const response = await axios.post(`${API_URL}/personal_info/`, data);
     return response.data;
   } catch (error) {
     console.error("Error al actualizar el perfil del paciente:", error.message);
@@ -39,7 +37,7 @@ export const getPatientProfile = async () => {
   const authToken = localStorage.getItem("authToken");
 
   try {
-    const response = await axios.get(`${API_URL}personal_info/my/`, {
+    const response = await axios.get(`${API_URL}/personal_info/my/`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
       },
@@ -65,7 +63,7 @@ export const getPatientProfile = async () => {
 
 export const verifyUserStatus = async (authToken) => {
   try {
-    const response = await axios.get(`${API_URL}patient/verify_user/`, {
+    const response = await axios.get(`${API_URL}/patient/verify_user/`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
       },
