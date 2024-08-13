@@ -218,14 +218,14 @@ class TreatAdherenceCreate(views.APIView):
             errors.append("Error al crear la lista de adherencia al tratamiento.")
         
         clinical_history_data = {
-            "patient": patient,
-            "entity": entity,
-            "doctor": doctor,
+            "patient": patient.id,
+            "entity": entity.id,
+            "doctor": doctor.id,
             "date_of_attention": date_of_attention,
-            "pathology": pathology,
+            "pathology": pathology.id,
             "medical_studies": medical_studies,
             "attention_observations": attention_observations,
-            "treatment": treatment
+            "treatment": treatment.id
         }
         clinical_history_serializer = ClinicalHistorySerializer(data=clinical_history_data)
         
