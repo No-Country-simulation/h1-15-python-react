@@ -2,6 +2,7 @@ import Logout from "../Logout/Logout";
 import { useState } from "react";
 import UserInitials from "../UserInitials";
 import Icon from "../Icon/Icon";
+import { Link } from "react-router-dom";
 
 export default function DoctorHeader() {
   const [showLogout, setShowLogout] = useState(false);
@@ -30,7 +31,13 @@ export default function DoctorHeader() {
             )}
           </div>
           {showLogout && (
-            <div className="absolute top-full right-0 shadow-md mt-6">
+            <div className="flex flex-col gap-3 absolute top-full right-0 shadow-md mt-6 bg-slate-50 border p-5 z-20">
+              <Link
+                to={"profile"}
+                className="hover:cursor-pointer bg-slate-200 p-2 text-sm rounded-md text-center"
+              >
+                Mi perfil
+              </Link>
               <Logout />
             </div>
           )}
