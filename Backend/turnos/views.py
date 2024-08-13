@@ -1,4 +1,4 @@
-from turnos.serializers import TurnoSerializer, DisponibilidadSerializer
+from turnos.serializers import TurnoSerializer, DisponibilidadSerializer, TurnoUpdateSerializer
 from rest_framework import generics, views
 from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiTypes,  OpenApiResponse
 from core.models import Appointment, Availability, MedicalStaff, Entity, User
@@ -57,29 +57,31 @@ class MisTurnoListView(generics.ListAPIView): #LO TENGO QUE PROBAR
     
 class ReservarTurnoView(generics.UpdateAPIView):
     queryset = Appointment.objects.all()
-    serializer_class = TurnoSerializer
+    serializer_class = TurnoUpdateSerializer
 
     @extend_schema(
-        tags=['MisTurnos'],
+        tags=['Turno'],
         summary='Reserva un turno específico',
         description=(
-            "Este endpoint permite a un usuario reservar un turno específico por ID.\n\n"
-            "Para reservar un turno, el usuario debe enviar una solicitud PATCH con el ID del turno.\n\n"
+            "Este endpoint permite a un usuario autenticado reservar o actualizar el estado de un turno específico por ID.\n\n"
             "Ejemplo de uso:\n\n"
-            "`PATCH /api/reservar_turno/{id_turno}/`\n\n"
+            "`PATCH /api/appointment/{id_turno}/`\n\n"
             "Cuerpo de la solicitud:\n"
             "{\n"
-            "  \"status\": \"reservado\"\n"
+            "  \"status\": \"available\"\n"
             "}\n\n"
-            "Además, permite que un doctor reserve un turno a nombre de otro usuario, especificando el ID del usuario en el cuerpo de la solicitud.\n\n"
-            "Ejemplo de uso:\n\n"
-            "Cuerpo de la solicitud:\n"
+            "Esto vuelve a habilitar el turno para la reserva.\n\n"
+            "Si en el cuerpo de la solicitud enviamos:\n"
             "{\n"
-            "  \"status\": \"reservado\",\n"
-            "  \"id_usuario\": 2\"\n"
-            "}\n"
+            "  \"status\": \"reserved\"\n"
+            "}\n\n"
+            "El turno se reserva para el usuario autenticado. Si se incluye el campo `id_user`, el turno se reserva para el usuario especificado.\n\n"
+            "{\n"
+            "  \"status\": \"canceled\"\n"
+            "}\n\n"
+            "Cambia el estado a cancelado, sin importar el usuario."
         ),
-        request=TurnoSerializer,
+        #request=TurnoSerializer,
         
         responses={
             200: TurnoSerializer,
@@ -92,26 +94,37 @@ class ReservarTurnoView(generics.UpdateAPIView):
         if not request.user.is_authenticated:
             return Response({"detail": "Autenticación requerida."}, status=status.HTTP_401_UNAUTHORIZED)
 
+        new_status = request.data.get('status')
+        if not new_status:
+            return Response({"detail": "debe ingresar un status"},status=status.HTTP_400_BAD_REQUEST)
+        
         appointment = self.get_object()
-        if appointment.user:
-            return Response({"detail": "El turno ya está reservado."}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Asigna el usuario autenticado al turno o utiliza el usuario enviado en la solicitud
-        id_user = request.data.get('id_user', None)
-        if id_user is None:
-            user_obj = request.user  # Esto asegura que `user_obj` sea siempre una instancia de User.
-        else:
-            try:
-                user_obj = User.objects.get(id=id_user)
-            except User.DoesNotExist:
-                return Response({"detail": "El usuario no existe."}, status=status.HTTP_400_BAD_REQUEST)
-            
-        appointment.user = user_obj
-        appointment.status = request.data.get('status', 'reservado')
+        if new_status == 'reserved':
+            if appointment.user:
+                return Response({"detail": "El turno ya está reservado."}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Asigna el usuario autenticado al turno o utiliza el usuario enviado en la solicitud
+            id_user = request.data.get('id_user', None)
+            if id_user is None:
+                user_obj = request.user  # Esto asegura que `user_obj` sea siempre una instancia de User.
+            else:
+                try:
+                    user_obj = User.objects.get(id=id_user)
+                except User.DoesNotExist:
+                    return Response({"detail": "El usuario no existe."}, status=status.HTTP_400_BAD_REQUEST)
+            appointment.user = user_obj
+
+        elif new_status == "available":
+            appointment.user = None
+
+        
+        appointment.status = new_status
         appointment.save()
 
         serializer = self.get_serializer(appointment)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
 
     def perform_update(self, serializer):
         serializer.save()
@@ -397,14 +410,14 @@ class TurnoListView(generics.ListAPIView):
     "estado del turno, médico asignado y fecha específica. Utiliza este endpoint para consultar la disponibilidad "
     "de turnos según los parámetros que se detallan a continuación.\n\n"
     "Ejemplos de uso:\n\n"
-    "/api/appointment/?status=disponible&doctor_id=2&fecha=2024-08-06 \n\n"
-    "/api/appointment/?status=disponible&doctor_id=2\n\n"
+    "/api/appointment/?status=available&doctor_id=2&fecha=2024-08-06 \n\n"
+    "/api/appointment/?status=available&doctor_id=2\n\n"
     "/api/appointment/?fecha=2024-08-06\n"
     ),
         parameters=[
             OpenApiParameter(
                 name='status',
-                description='Filtra los turnos por estado. Ejemplos: disponible, ocupado, cancelado.',
+                description='Filtra los turnos por estado. Ejemplos: available, reserved, canceled.',
                 required=False,
                 type=OpenApiTypes.STR,
             ),

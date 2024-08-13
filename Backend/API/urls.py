@@ -59,17 +59,17 @@ urlpatterns = [
     
     path('specialty/', EspecialidadList.as_view(),),
 
-    path('availabilit/', DisponibilidadList.as_view(),),
-    path('availabilit/create/', DisponibilidadCreate.as_view(),),
-    path('availabilit/<int:pk>/',DisponibilidadDetail.as_view(),),
+    path('availability/', DisponibilidadList.as_view(),),
+    path('availability/create/', DisponibilidadCreate.as_view(),),
+    path('availability/<int:pk>/',DisponibilidadDetail.as_view(),),
 
     path('appointment/create/', TurnoCreate.as_view(),), #crear el
     path('appointment/list/', TurnoListView.as_view()),
+    path('appointment/<int:pk>', ReservarTurnoView.as_view()), #es para reservar un turno
     #path('appointment/detail/<int:pk>/',TurnoDetail.as_view(),),
     #path('appointment/<int:pk>/', TurnoDetail.as_view(),),
 
     #path('my_appointment/', MisTurnoListView.as_view()), #es para buscar turnos
-    #path('my_appointment/<int:pk>', ReservarTurnoView.as_view()), #es para reservar un turno
     path('entity/', EntidadList.as_view(),),
 
     path('medical_history/', AntecedenteMedicoList.as_view(),),
