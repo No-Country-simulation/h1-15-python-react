@@ -1,6 +1,6 @@
 import axios from 'axios';
-// Obtén la URL de la API desde la variable de entorno
-const API_URL = import.meta.env.VITE_API_URL;
+import { API_URL } from './apiConfig';
+
 export const getUserData = async () => {
   const localUserId = localStorage.getItem("userId");
 
