@@ -10,7 +10,7 @@ const CardDoctorProfile = ({ doctor }) => {
       />
       <div className="md:ml-4 flex flex-col justify-center">
         <h2 className="text-normal md:text-xl font-semibold text-gray-800 mt-2 md:mt-0">
-          {doctor.name}
+          Dr. {doctor.name}
         </h2>
         <p className="text-gray-600">{doctor.specialty}</p>
         <div className="flex flex-wrap justify-center md:justify-start mt-2">

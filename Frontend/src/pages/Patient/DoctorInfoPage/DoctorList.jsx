@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CardDoctorProfile from "../../../components/Cards/CardDoctorProfile";
 import Icon from "../../../components/Icon/Icon";
-import doctorsData from "../../../data/patientDataDoctors.json";
 import FooterNav from "../../../components/FooterNav/FooterNav";
 import BackButton from "../../../components/BackButton/BackButton";
 import PopupMessage from "../../../components/PopupMessage";
+import { getDoctorDataAll } from "../../../services/doctorService";
+import defaultDoctorImage from "/doc1.webp"; 
 
 function DoctorList() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,13 +14,23 @@ function DoctorList() {
   const [isPopupOpen, setIsPopupOpen] = useState(true);
 
   useEffect(() => {
-    setDoctors(doctorsData);
+    const fetchDoctors = async () => {
+      try {
+        const data = await getDoctorDataAll();
+        setDoctors(data);
+      } catch (error) {
+        console.error("Error fetching doctor data:", error);
+      }
+    };
+
+    fetchDoctors();
   }, []);
 
   const filteredDoctors = doctors.filter(
     (doctor) =>
-      doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doctor.specialty.toLowerCase().includes(searchTerm.toLowerCase()),
+      doctor.user.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      doctor.user.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      doctor.specialty.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleClosePopup = () => {
@@ -48,7 +59,15 @@ function DoctorList() {
               to={`/patient/doctor-information/${doctor.id}`}
               key={doctor.id}
             >
-              <CardDoctorProfile doctor={doctor} />
+              <CardDoctorProfile
+                doctor={{
+                  name: `${doctor.user.first_name} ${doctor.user.last_name}`,
+                  specialty: doctor.specialty,
+                  photo: doctor.photo || defaultDoctorImage, 
+                  reviews: doctor.reviews,
+                  rating: doctor.rating,
+                }}
+              />
             </Link>
           ))
         ) : (
@@ -57,10 +76,7 @@ function DoctorList() {
           </div>
         )}
       </section>
-      <section>
-        <FooterNav />
-      </section>
-
+      <FooterNav />
       <PopupMessage isOpen={isPopupOpen} onClose={handleClosePopup} />
     </div>
   );
