@@ -36,11 +36,6 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-    def get_serializer_class(self):
-        if self.request.method in ['PUT', 'PATCH']:
-            return UserSerializerPatch
-        return UserSerializer
-
     @extend_schema(
         tags=['Users'],
         summary='Retrieve a specific user',
@@ -67,6 +62,19 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 
     @extend_schema(
         tags=['Users'],
+        summary='Change user',
+        description="Allows you to modify the user specified by their ID."
+    )
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+
+class UserDetailChPass(generics.RetrieveUpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializerPatch
+    
+    @extend_schema(
+        tags=['Users'],
         summary='Change Password and set first_login in False',
         description="Allows you to modify the password of the user specified by their ID."
     )
@@ -77,6 +85,8 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
         user.set_password(request.data['password'])
         user.save()
         return self.partial_update(request, *args, **kwargs)
+
+
 
 @extend_schema(
     tags=['Authentication'],

@@ -374,7 +374,7 @@ class TurnoCreate(generics.CreateAPIView):
             date_init += timedelta(days=1)
 
         if created_appointments > 0:
-            return Response({"message": "Turnos creados con éxito. {created_appointments}"}, status=status.HTTP_201_CREATED)
+            return Response({"message": f"Turnos creados con éxito. {created_appointments}"}, status=status.HTTP_201_CREATED)
         else:
             return Response({"message": "No se crearon turnos."}, status=status.HTTP_400_BAD_REQUEST)
         

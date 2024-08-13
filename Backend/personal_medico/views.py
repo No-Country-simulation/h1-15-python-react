@@ -2,7 +2,7 @@ from rest_framework import generics, status
 from core.models import MedicalStaff, MedicalStaffReviews
 from personal_medico.serializers import MedicalStaffSerializer, ReviewSerializer, PersonalMedicoNewSerializer
 from drf_spectacular.utils import extend_schema
-
+from django.http import JsonResponse
 
 class PersonalMedicoList(generics.ListCreateAPIView):
     queryset = MedicalStaff.objects.all()
@@ -95,3 +95,27 @@ class CalificaPersonalMedicoList(generics.ListCreateAPIView):
     )
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
+
+class VerifyDoctor(generics.ListAPIView):
+    @extend_schema(
+        tags=['Personal Medico'],
+        summary='Verifica si el usuario es doctor',
+        description="Verifica si el usuario es doctor"
+    )
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        
+        # Verificar si el usuario está autenticado
+        if not user.is_authenticated:
+            return JsonResponse({'error': 'User is not authenticated'}, status=401)
+        
+        # Verificar si el usuario está registrado como paciente
+        try:
+            doctor = MedicalStaff.objects.filter(user=user).first()
+            if doctor:
+                return JsonResponse({'is_doctor': True, 'Doctor_id': doctor.id}, status=200)
+            else:
+                return JsonResponse({'is_doctor': False}, status=200)
+        except MedicalStaff.DoesNotExist:
+            return JsonResponse({'is_doctor': False}, status=200)

@@ -36,7 +36,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         'UserType', on_delete=models.CASCADE, related_name='users', null=True, blank=True)
     first_login = models.BooleanField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True)
-    url_photo = models.FilePathField(max_length=100, blank=True, null=True)
+    #url_photo = models.FilePathField(max_length=100, blank=True, null=True)
+    url_photo = models.CharField(max_length=255, null=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']

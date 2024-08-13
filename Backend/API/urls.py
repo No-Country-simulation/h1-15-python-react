@@ -4,7 +4,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 # Urls for the API endpoints
-from usuarios.views import UserList, UserDetail
+from usuarios.views import UserList, UserDetail, UserDetailChPass
 #from tratamientos.views import TratamientoList, TratamientoDetail
 from informacion_personal.views import InformacionPersonalList, InformacionPersonalDetail, MyInformacionPersonalList
 from financiadores.views import FinanciadoresList, FinanciadoresDetail
@@ -12,7 +12,7 @@ from nomencladores.views import NomencladorList, NomencladorDetail, FileUploadVi
 from pacientes.views import PacienteList, PacienteDetail, Verify_user
 from tipo_usuario.views import TipoUsuarioList, TipoUsuarioDetail
 from direcciones.views import DireccionList, DireccionDetail
-from personal_medico.views import PersonalMedicoList, PersonalMedicoDetail, CalificaPersonalMedicoList
+from personal_medico.views import PersonalMedicoList, PersonalMedicoDetail, CalificaPersonalMedicoList, VerifyDoctor
 from trasplantes_cruzados.views import TrasplanteCruzadoList, TrasplanteCruzadoDetail
 from especialidad.views import EspecialidadList, EspecialidadDetail
 from medicamentos.views import MedicamentoDetail, MedicamentoListCreate
@@ -41,6 +41,8 @@ urlpatterns = [
     # API URLs
     path('users/', UserList.as_view()),
     path('users/<int:pk>/', UserDetail.as_view()),
+    path('users/<int:pk>/change_password/', UserDetailChPass.as_view()),
+
     path('patient/', PacienteList.as_view(),),
     path('patient/<int:pk>/', PacienteDetail.as_view(),),
     path('patient/verify_user/', Verify_user.as_view(),),
@@ -56,6 +58,7 @@ urlpatterns = [
     path('doctor/',  PersonalMedicoList.as_view(),),
     path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
     path('doctor/<int:pk>/reviews/',CalificaPersonalMedicoList.as_view(),),
+    path('doctor/verify_user/', VerifyDoctor.as_view(),),
     
     path('specialty/', EspecialidadList.as_view(),),
 
