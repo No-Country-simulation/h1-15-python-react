@@ -18,7 +18,7 @@ const UserInitials = ({ onClick }) => {
 
   return (
     <div
-      className="w-[40px] h-[40px] rounded-full bg-magentaButton text-white flex items-center justify-center font-semibold"
+      className="w-[40px] h-[40px] rounded-full bg-magentaButton text-white flex items-center justify-center font-semibold cursor-pointer"
       onClick={onClick}
     >
       {initials || "NN"}
