@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 
 const timeline = [
   {
-    id: 0,
+    id: 6,
     hora_turno: `${new Date().getHours()}:${new Date().getMinutes()}`,
     status: "disponible",
     is_active: true,
@@ -34,7 +34,7 @@ const timeline = [
     entidad: 0,
   },
   {
-    id: 1,
+    id: 7,
     hora_turno: `${new Date().getHours() + 1}:${new Date().getMinutes()}`,
     status: "disponible",
     is_active: true,

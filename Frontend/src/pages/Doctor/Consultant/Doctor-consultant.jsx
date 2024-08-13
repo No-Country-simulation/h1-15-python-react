@@ -4,12 +4,39 @@ import LateralView from "../../../components/LateralView";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import VoiceDictation from "../../../components/VoiceDictation/VoiceDictation";
+import {
+  fetchMedicalHistory,
+  fetchPatientData,
+} from "../../../services/patientService";
+import { useSelector } from "react-redux";
 
 const DoctorConsultant = () => {
   const url = useLocation();
   const id = url.pathname?.split("/")[3];
 
-  const [paciente, setPaciente] = useState({});
+  const doctorInfo = useSelector((state) => state.doctor.doctorInfo);
+
+  const [paciente, setPaciente] = useState({
+    name: "",
+    doctor: "",
+    edad: "",
+    financer: "",
+    diagnostico: "",
+    presionArterial: "",
+    allergies: "",
+    actualMedication: "",
+    conditions: "",
+  });
+  const calculateAge = (date) => {
+    const today = new Date();
+    const birthDate = new Date(date);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const month = today.getMonth() - birthDate.getMonth();
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  };
   const [dictado, setDictado] = useState("");
   const [formData, setFormData] = useState({});
 
@@ -31,6 +58,31 @@ const DoctorConsultant = () => {
     }
   };
 
+  useEffect(() => {
+    fetchMedicalHistory();
+    fetchPatientData(id);
+  }, [id]);
+  const patientData = useSelector((state) => state.patients.selectedPatient);
+
+  const medicalHistory = useSelector((state) => state.patients.medicalHistory);
+  useEffect(() => {
+    const historiaPaciente = medicalHistory.find(
+      (patient) => patient.patient === parseInt(id),
+    );
+    setPaciente({
+      name:
+        patientData?.patient?.user?.first_name +
+        " " +
+        patientData?.patient?.user?.last_name,
+      age: calculateAge(patientData?.birth_date),
+      financer: patientData?.patient.financer,
+      diagnostic: "Hepatitis C",
+      bloodType: patientData?.blood_type,
+      allergies: historiaPaciente?.allergies,
+      actualMedication: historiaPaciente?.active_medication,
+      conditions: historiaPaciente?.conditions,
+    });
+  }, [patientData]);
   {
     /**DEBE ENVIAR A LA API DE HISTORIA CLINICA */
   }
@@ -41,23 +93,6 @@ const DoctorConsultant = () => {
   {
     /**HAY QUE OBTENER PACIENTE, DATOS PERSONALES E HISTORIA CLINICA  */
   }
-  useEffect(() => {
-    const fetchPaciente = async () => {
-      try {
-        const response = await fetch(
-          `https://justinaback.pythonanywhere.com/api/patient/${id}/`,
-        );
-        const data = await response.json();
-        setPaciente(data);
-      } catch (error) {
-        console.error("Error fetching patient data:", error);
-      }
-    };
-
-    if (id) {
-      fetchPaciente();
-    }
-  }, [id]);
 
   return (
     <main className="flex font-josefin">
@@ -66,9 +101,6 @@ const DoctorConsultant = () => {
         onSubmit={handleSubmit}
       >
         <h3 className="text-4xl -translate-y-5">Nueva Consulta</h3>
-        <h4 className="text-2xl text-center">
-          {paciente?.user?.first_name} {paciente?.user?.last_name}
-        </h4>
         <div className="grid grid-cols-2 gap-x-12 gap-y-5">
           <div className="flex justify-between bg-slate-200 p-2 rounded-md">
             <label htmlFor="consultant_type">Tipo de consulta: </label>
@@ -115,6 +147,7 @@ const DoctorConsultant = () => {
               <textarea
                 name="Observations"
                 value={dictado}
+                onChange={handleInputChange}
                 className="bg-slate-200 p-2 rounded-md w-[90%]"
               ></textarea>
               <VoiceDictation onDictate={handleDictate} />
@@ -123,21 +156,25 @@ const DoctorConsultant = () => {
         </div>
         <div className="flex justify-between">
           <div className="flex flex-col gap-5">
-            <button className="px-2 py-1 bg-pink-500 text-white rounded-lg">
+            <button className="px-2 py-1 bg-pink-500 text-white rounded-lg hover:bg-pink-600 hover:shadow-lg active:shadow-inner">
               Agregar tratamiento
             </button>
-            <button className="px-2 py-1 bg-blue-400 text-white rounded-lg">
+            <button className="px-2 py-1 bg-blue-400 text-white rounded-lg hover:bg-blue-500 hover:shadow-lg active:shadow-inner">
               Agregar medicación
             </button>
           </div>
           <div className="self-center">
-            <button className="px-3 py-2 bg-green-600 text-white rounded-lg">
+            <button className="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 hover:shadow-lg active:shadow-inner">
               Guardar
             </button>
           </div>
         </div>
       </form>
-      <LateralView paciente={paciente} />
+      <LateralView
+        paciente={paciente}
+        doctorInfo={doctorInfo}
+        enConsulta={true}
+      />
     </main>
   );
 };

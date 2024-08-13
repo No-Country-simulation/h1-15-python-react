@@ -287,7 +287,6 @@ const DoctorAppointments = () => {
   if (showCalendar == 3) {
     setTurnos(4);
   }
-
   useEffect(() => {
     setSelectedPatient(undefined);
   }, [fecha]);
