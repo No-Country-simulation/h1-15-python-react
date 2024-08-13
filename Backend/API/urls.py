@@ -4,8 +4,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 # Urls for the API endpoints
+from usuarios.views import UserList, UserDetail
+from tratamientos.views import TreatmentList, TreatmentDetail, TreatAdherenceCreate, TreatAdherenceDetail, MyTreatAdherenceDetail
 from usuarios.views import UserList, UserDetail, UserDetailChPass
-#from tratamientos.views import TratamientoList, TratamientoDetail
 from informacion_personal.views import InformacionPersonalList, InformacionPersonalDetail, MyInformacionPersonalList
 from financiadores.views import FinanciadoresList, FinanciadoresDetail
 from nomencladores.views import NomencladorList, NomencladorDetail, FileUploadView
@@ -15,14 +16,14 @@ from direcciones.views import DireccionList, DireccionDetail
 from personal_medico.views import PersonalMedicoList, PersonalMedicoDetail, CalificaPersonalMedicoList, VerifyDoctor
 from trasplantes_cruzados.views import TrasplanteCruzadoList, TrasplanteCruzadoDetail
 from especialidad.views import EspecialidadList, EspecialidadDetail
-from medicamentos.views import MedicamentoDetail, MedicamentoListCreate
+from medicamentos.views import MedicationDetail, MedicationList, MedicationCreate
 from tipo_documento.views import TipoDocumentoDetail, TipoDocumentoList
 from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoList
 from historia_clinica.views import ClinicalHistoryDetail, ClinicalHistoryList
 from entidad.views import EntidadDetail, EntidadList
+from patologias.views import PathologyList, PathologyDetail
 from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListView,   MisTurnoListView, ReservarTurnoView
-from patologias.views import PatologiaList, PatologiaDetail
-from farmacia.views import FarmaciaList, FarmaciaDetail
+from farmacia.views import PharmacyList, PharmacyDetail
 from usuarios.views import CustomTokenObtainPairView, CustomTokenVerifyView, CustomTokenRefreshView
 
 
@@ -53,7 +54,22 @@ urlpatterns = [
 
     path('address/', DireccionList.as_view(),),
     path('address/<int:pk>/', DireccionDetail.as_view(),),
+    
     path('financers/', FinanciadoresList.as_view(),),
+    
+    path('treatment/', TreatmentList.as_view(),),
+    path('treatment/<int:pk>/', TreatmentDetail.as_view(),),
+    
+    path('treat_adherence/', TreatAdherenceCreate.as_view(),),
+    path('treat_adherence/<int:pk>/', TreatAdherenceDetail.as_view(),),
+    path('treat_adherence/my/', MyTreatAdherenceDetail.as_view(),),
+    
+    path('pathologies/', PathologyList.as_view(),),
+    path('pathologies/<int:pk>/',PathologyDetail.as_view(),),
+    
+    path('medications/', MedicationList.as_view(),),
+    path('medications/create/', MedicationCreate.as_view(),),
+    path('medications/<int:pk>/',MedicationDetail.as_view(),),
 
     path('doctor/',  PersonalMedicoList.as_view(),),
     path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
@@ -80,17 +96,19 @@ urlpatterns = [
 
     path('clinical_history/', ClinicalHistoryList.as_view(),),
     path('clinical_history/<int:pk>/',ClinicalHistoryDetail.as_view(),),
-    
 
     path('document_type/', TipoDocumentoList.as_view(),),
     
+    path('pharmacy/', PharmacyList.as_view(),),
+    path('pharmacy/<int:pk>/',PharmacyDetail.as_view(),),
+
     path('crosstransplant/', TrasplanteCruzadoList.as_view(),),
     path('crosstransplant/<int:pk>/', TrasplanteCruzadoDetail.as_view(),),
+
 ]
 
 """
-path('treatment/', TratamientoList.as_view(),),
-path('treatment/<int:pk>/', TratamientoDetail.as_view(),),
+
 path('type/', TipoUsuarioList.as_view(),),
 path('type/<int:pk>/', TipoUsuarioDetail.as_view(),),
 path('financiadores/<int:pk>/',FinanciadoresDetail.as_view(),),
@@ -103,8 +121,7 @@ path('nomenclador/upload/', FileUploadView.as_view(),),
 path('especialidad/', EspecialidadList.as_view(),),
 path('especialidad/<int:pk>/',EspecialidadDetail.as_view(),),
 
-path('medicamentos/', MedicamentoListCreate.as_view(),),
-path('medicamentos/<int:pk>/',MedicamentoDetail.as_view(),),
+
 
 path('tipo_documento/', TipoDocumentoList.as_view(),),
 path('tipo_documento/<int:pk>/',TipoDocumentoDetail.as_view(),),
@@ -117,11 +134,9 @@ path('entidad/<int:pk>/',EntidadDetail.as_view(),),
 
 
 
-path('patologias/', PatologiaList.as_view(),),
-path('patologias/<int:pk>/',PatologiaDetail.as_view(),),
 
-path('farmacia/', FarmaciaList.as_view(),),
-path('farmacia/<int:pk>/',FarmaciaDetail.as_view(),),
+
+
 
 
 """

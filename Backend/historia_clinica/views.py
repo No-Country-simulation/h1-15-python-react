@@ -1,6 +1,6 @@
 from rest_framework import generics
 from core.models import ClinicalHistory as ModeloCore
-from historia_clinica.serializers import HistorialMedicoSerializer as Serializador
+from historia_clinica.serializers import ClinicalHistorySerializer
 from drf_spectacular.utils import extend_schema
 
 REFERENCIA_TAGS = "Historia Clinica"
@@ -8,7 +8,7 @@ REFERENCIA_TAGS = "Historia Clinica"
 
 class ClinicalHistoryList(generics.ListCreateAPIView):
     queryset = ModeloCore.objects.all()
-    serializer_class = Serializador
+    serializer_class = ClinicalHistorySerializer
 
     @extend_schema(
         tags=[REFERENCIA_TAGS],
@@ -29,7 +29,7 @@ class ClinicalHistoryList(generics.ListCreateAPIView):
 
 class  ClinicalHistoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = ModeloCore.objects.all()
-    serializer_class = Serializador
+    serializer_class = ClinicalHistorySerializer
 
     @extend_schema(
         tags=[REFERENCIA_TAGS],
