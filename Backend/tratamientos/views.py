@@ -172,8 +172,8 @@ class TreatAdherenceCreate(views.APIView):
         user = request.user
         
         if not user.is_authenticated:
-            #return response.Response("Usuario no autenticado", status=status.HTTP_401_UNAUTHORIZED)
-            doctor = get_object_or_404(MedicalStaff, id=1)
+            return response.Response("Usuario no autenticado", status=status.HTTP_401_UNAUTHORIZED)
+            #doctor = get_object_or_404(MedicalStaff, id=1)
         else:        
             doctor = MedicalStaff.objects.filter(user=user).first()
 
