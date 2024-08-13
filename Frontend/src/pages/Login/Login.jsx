@@ -13,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+  const languageData = useLanguage();
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -50,23 +51,20 @@ const Login = () => {
         localStorage.removeItem("rememberMePassword");
       }
 
-      // Redirige a la página /update-password solo si es el primer inicio de sesión
       if (data.first_login) {
         navigate(`/${data.user_types.toLowerCase()}/update-password`);
       } else {
-        // Redirige al tipo de usuario después del primer inicio de sesión
         navigate(`/${data.user_types.toLowerCase()}`);
       }
     } catch (error) {
-      console.error("Login Error:", error); // Log error
+      console.error("Login Error:", error); 
       showToast("Credenciales inválidas.", "error");
     }
   };
 
-  const languageData = useLanguage();
 
   if (!languageData) {
-    return <div>Cargando datos...</div>;
+    return <div>Loading data...</div>;
   }
 
   return (
@@ -101,6 +99,7 @@ const Login = () => {
               required
               placeholder={languageData.login.emailPlaceholder}
               className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
+              autoComplete="email"
             />
           </div>
           <div>
@@ -116,6 +115,7 @@ const Login = () => {
                 required
                 placeholder={languageData.login.passwordPlaceholder}
                 className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
+                autoComplete="current-password"
               />
               <button
                 type="button"

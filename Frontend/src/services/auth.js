@@ -1,11 +1,11 @@
 import axios from "axios";
+import { API_URL } from "./apiConfig";
 
-// Obtén la URL de la API desde la variable de entorno
-const API_URL = import.meta.env.VITE_API_URL;
+// Obtén la URL de la API desde apiConfig 
 
 export const loginUser = async (email, password) => {
   try {
-    const response = await axios.post(`${API_URL}token/`, { email, password });
+    const response = await axios.post(`${API_URL}/token/`, { email, password });
 
     return response.data;
   } catch (error) {
@@ -25,7 +25,7 @@ export const updatePassword = async (newPassword) => {
     }
 
     const response = await axios.patch(
-      `${API_URL}users/${userId}/`,
+      `${API_URL}/users/${userId}/`,
       { email, password: newPassword },
       { headers: { Authorization: `Bearer ${token}` } },
     );
@@ -41,7 +41,7 @@ export const updatePassword = async (newPassword) => {
 
 export const registerUser = async (formData) => {
   try {
-    const response = await axios.post(`${API_URL}users/`, formData);
+    const response = await axios.post(`${API_URL}/users/`, formData);
     return response.data;
   } catch (error) {
     let errorMessage = "An error occurred while registering the user.";
@@ -62,7 +62,7 @@ export const registerUser = async (formData) => {
 };
 
 export const logout = (navigate) => {
-  const keysToRemove = ["userType", "userId", "firstName", "lastName", "authToken","userEmail"];
+  const keysToRemove = ["userType", "userId", "firstName", "lastName", "authToken","userEmail","patient_id"];
   
   keysToRemove.forEach(key => localStorage.removeItem(key));
   

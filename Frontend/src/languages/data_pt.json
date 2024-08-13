@@ -420,5 +420,33 @@
       "name": "Configurações",
       "icon": "IoSettingsOutline"
     }
-  ]
+  ],
+  "settings": {
+    "title": "Configurações",
+    "theme": "Tema",
+    "darkMode": "Modo Escuro",
+    "notifications": "Notificações",
+    "emailNotifications": "Notificações por E-mail",
+    "appNotifications": "Notificações no Aplicativo",
+    "privacy": "Privacidade",
+    "profileVisibility": "Visibilidade do Perfil",
+    "public": "Público",
+    "private": "Privado",
+    "language": "Idioma",
+    "changePassword": "Mudar Senha",
+    "deleteAccount": "Excluir Conta"
+  },
+  "lateralMenu": {
+    "home": "Início",
+    "upcoming_appointments": "Próximos Compromissos",
+    "treatment": "Tratamento",
+    "medication": "Medicação",
+    "nutrition": "Nutrição",
+    "physical_activity": "Atividade Física",
+    "insurance": "Plano de Saúde",
+    "profile": "Perfil",
+    "emergency_contacts": "Contatos de Emergência",
+    "settings": "Configurações",
+    "logout": "Sair"
+  }
 }
