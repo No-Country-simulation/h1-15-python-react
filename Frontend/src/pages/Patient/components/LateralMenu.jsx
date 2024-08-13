@@ -3,12 +3,14 @@ import MenuButton from "./MenuButton";
 import SideBarPatient from "./SideBarPatient";
 import Logout from "../../../components/Logout/Logout";
 import UserInitials from "../../../components/UserInitials";
+import { useNavigate } from "react-router-dom";
 
 const LateralMenu = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
   const profileRef = useRef(null);
   const sidebarRef = useRef(null);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => setSidebarOpen((prev) => !prev);
 
@@ -35,12 +37,16 @@ const LateralMenu = () => {
     };
   }, []);
 
+  const redirectToProfile = () => {
+    navigate('/patient/profile');
+  };
+
   return (
     <main>
       <nav className="flex justify-between w-full pt-6">
         <MenuButton onToggleSidebar={toggleSidebar} />
         <div ref={profileRef} className="relative">
-          <UserInitials/>
+          <UserInitials onClick={redirectToProfile}/>
           {showLogout && (
             <div className="absolute mt-2 right-0 z-10">
               <Logout />
