@@ -47,7 +47,7 @@ const PatientMain = () => {
       <section className="max-w-screen-lg w-full">
         <LateralMenu />
       </section>
-      <h2 className="font-medium text-3xl md:text-4xl text-[#25282B] mt-7 self-start">
+      <h2 className="font-medium text-3xl md:text-4xl mt-7 self-start">
         {languageData.patientMain.locateTitle}{" "}
         <span className="font-medium text-[#A0A4A8]">
           {languageData.patientMain.locateSubtitle}

@@ -111,7 +111,8 @@ function ScheduleAppointmentForm({ doctor }) {
       "Confirmar Acción",
       "¿Estás seguro de que deseas realizar esta acción?",
       "warning",
-      "#00ADDE",
+      "#D03E92",
+      true,
     );
 
     if (confirmed) {

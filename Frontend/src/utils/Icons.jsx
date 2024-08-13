@@ -210,39 +210,19 @@ export const Icons = {
     </svg>
   ),
   bars: (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <g clipPath="url(#clip0_238_932)">
-        <path
-          d="M5.26001 6H18.74"
-          stroke="#25282B"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M5 12H13"
-          stroke="#25282B"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M5.26001 18H18.74"
-          stroke="#25282B"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+      <g
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        clipPath="url(#a)"
+      >
+        <path d="M5.26 6h13.48M5 12h8M5.26 18h13.48" />
       </g>
       <defs>
-        <clipPath id="clip0_238_932">
-          <rect width="24" height="24" fill="white" />
+        <clipPath id="a">
+          <path fill="#fff" d="M0 0h24v24H0z" />
         </clipPath>
       </defs>
     </svg>

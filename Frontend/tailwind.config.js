@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -52,7 +53,7 @@ export default {
         Justina_3: "#EE6092",
         Justina_4: "#4E8661",
         Justina_5: "#958BBF",
-        Justina_6: "#DF8936",
+        Justina_6: "#6C7278",
         Justina_7: "#E9CD53",
         Justina_8: "#00ADDE",
         Justina_9: "#CAD6FF",
