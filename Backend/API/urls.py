@@ -6,13 +6,14 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 # Urls for the API endpoints
 from usuarios.views import UserList, UserDetail
 from tratamientos.views import TreatmentList, TreatmentDetail, TreatAdherenceCreate, TreatAdherenceDetail, MyTreatAdherenceDetail
+from usuarios.views import UserList, UserDetail, UserDetailChPass
 from informacion_personal.views import InformacionPersonalList, InformacionPersonalDetail, MyInformacionPersonalList
 from financiadores.views import FinanciadoresList, FinanciadoresDetail
 from nomencladores.views import NomencladorList, NomencladorDetail, FileUploadView
 from pacientes.views import PacienteList, PacienteDetail, Verify_user
 from tipo_usuario.views import TipoUsuarioList, TipoUsuarioDetail
 from direcciones.views import DireccionList, DireccionDetail
-from personal_medico.views import PersonalMedicoList, PersonalMedicoDetail, CalificaPersonalMedicoList
+from personal_medico.views import PersonalMedicoList, PersonalMedicoDetail, CalificaPersonalMedicoList, VerifyDoctor
 from trasplantes_cruzados.views import TrasplanteCruzadoList, TrasplanteCruzadoDetail
 from especialidad.views import EspecialidadList, EspecialidadDetail
 from medicamentos.views import MedicationDetail, MedicationList, MedicationCreate
@@ -41,6 +42,8 @@ urlpatterns = [
     # API URLs
     path('users/', UserList.as_view()),
     path('users/<int:pk>/', UserDetail.as_view()),
+    path('users/<int:pk>/change_password/', UserDetailChPass.as_view()),
+
     path('patient/', PacienteList.as_view(),),
     path('patient/<int:pk>/', PacienteDetail.as_view(),),
     path('patient/verify_user/', Verify_user.as_view(),),
@@ -71,20 +74,21 @@ urlpatterns = [
     path('doctor/',  PersonalMedicoList.as_view(),),
     path('doctor/<int:pk>',PersonalMedicoDetail.as_view(),),
     path('doctor/<int:pk>/reviews/',CalificaPersonalMedicoList.as_view(),),
+    path('doctor/verify_user/', VerifyDoctor.as_view(),),
     
     path('specialty/', EspecialidadList.as_view(),),
 
-    path('availabilit/', DisponibilidadList.as_view(),),
-    path('availabilit/create/', DisponibilidadCreate.as_view(),),
-    path('availabilit/<int:pk>/',DisponibilidadDetail.as_view(),),
+    path('availability/', DisponibilidadList.as_view(),),
+    path('availability/create/', DisponibilidadCreate.as_view(),),
+    path('availability/<int:pk>/',DisponibilidadDetail.as_view(),),
 
     path('appointment/create/', TurnoCreate.as_view(),), #crear el
     path('appointment/list/', TurnoListView.as_view()),
+    path('appointment/<int:pk>', ReservarTurnoView.as_view()), #es para reservar un turno
     #path('appointment/detail/<int:pk>/',TurnoDetail.as_view(),),
     #path('appointment/<int:pk>/', TurnoDetail.as_view(),),
 
     #path('my_appointment/', MisTurnoListView.as_view()), #es para buscar turnos
-    #path('my_appointment/<int:pk>', ReservarTurnoView.as_view()), #es para reservar un turno
     path('entity/', EntidadList.as_view(),),
 
     path('medical_history/', AntecedenteMedicoList.as_view(),),
@@ -97,6 +101,10 @@ urlpatterns = [
     
     path('pharmacy/', PharmacyList.as_view(),),
     path('pharmacy/<int:pk>/',PharmacyDetail.as_view(),),
+
+    path('crosstransplant/', TrasplanteCruzadoList.as_view(),),
+    path('crosstransplant/<int:pk>/', TrasplanteCruzadoDetail.as_view(),),
+
 ]
 
 """
@@ -108,8 +116,6 @@ path('nomenclador/', NomencladorList.as_view(),),
 path('nomenclador/<int:pk>/',NomencladorDetail.as_view(),),
 path('nomenclador/upload/', FileUploadView.as_view(),),
 
-path('crosstransplant/', TrasplanteCruzadoList.as_view(),),
-path('crosstransplant/<int:pk>/', TrasplanteCruzadoDetail.as_view(),),
 
 
 path('especialidad/', EspecialidadList.as_view(),),
