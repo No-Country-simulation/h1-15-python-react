@@ -172,8 +172,8 @@ class TreatAdherenceCreate(views.APIView):
         user = request.user
         
         if not user.is_authenticated:
-            return response.Response("Usuario no autenticado", status=status.HTTP_401_UNAUTHORIZED)
-            #doctor = get_object_or_404(MedicalStaff, id=1)
+            #return response.Response("Usuario no autenticado", status=status.HTTP_401_UNAUTHORIZED)
+            doctor = get_object_or_404(MedicalStaff, id=1)
         else:        
             doctor = MedicalStaff.objects.filter(user=user).first()
 
@@ -233,12 +233,13 @@ class TreatAdherenceCreate(views.APIView):
             clinical_history_serializer.save()
         else:
             errors.append(clinical_history_serializer.errors)
+
         
         if errors:
             return response.Response({"errors": errors}, status=status.HTTP_400_BAD_REQUEST)
         
 
-        return response.Response({"message": "Tratamiento cargado con éxito, historial médico actualizado."}, status=status.HTTP_201_CREATED)
+        return response.Response({"message": f"Tratamiento cargado con éxito, historial médico del paciente {patient.user} actualizado."}, status=status.HTTP_201_CREATED)
 
 
 class TreatAdherenceDetail(generics.RetrieveUpdateDestroyAPIView):
