@@ -43,7 +43,7 @@ const PatientMain = () => {
   }
 
   return (
-    <main className="relative max-w-screen-lg mx-auto flex flex-col items-center w-full px-4 gap-7">
+    <main className="relative max-w-screen-lg mx-auto flex flex-col items-center w-full px-4 pb-6 gap-7">
       <section className="max-w-screen-lg w-full">
         <LateralMenu />
       </section>
@@ -75,7 +75,7 @@ const PatientMain = () => {
       </section>
 
       {showActivationPopup && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm backdrop-brightness-75">
           <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-lg">
             <ActivePatient onComplete={handleActivationComplete} />
             <div className="flex justify-end mt-4">

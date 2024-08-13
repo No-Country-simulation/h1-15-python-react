@@ -210,12 +210,12 @@ export const Icons = {
     </svg>
   ),
   bars: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none">
       <g
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="2"
+        strokeWidth="3"
         clipPath="url(#a)"
       >
         <path d="M5.26 6h13.48M5 12h8M5.26 18h13.48" />

@@ -6,7 +6,7 @@ const Emergency = () => {
   return (
     <div className="max-w-screen-lg mx-auto px-4">
       <LateralMenu />
-      <section className="mb-20">
+      <section className="min-h-screen">
         <EmergencyContacts />
       </section>
       <section>

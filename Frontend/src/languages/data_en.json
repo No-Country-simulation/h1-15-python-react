@@ -232,7 +232,7 @@
         "icon": "stethoscopeBlue",
         "title": "Medical monitoring",
         "color": "#5563C4",
-        "link": "/patient/patient/postoperative"
+        "link": "/patient/postoperative"
       },
       {
         "id": 4,
@@ -435,5 +435,18 @@
     "language": "Language",
     "changePassword": "Change Password",
     "deleteAccount": "Delete Account"
+  },
+  "lateralMenu": {
+    "home": "Home",
+    "upcoming_appointments": "Upcoming Appointments",
+    "treatment": "Treatment",
+    "medication": "Medication",
+    "nutrition": "Nutrition",
+    "physical_activity": "Physical Activity",
+    "insurance": "Insurance",
+    "profile": "Profile",
+    "emergency_contacts": "Emergency Contacts",
+    "settings": "Settings",
+    "logout": "Logout"
   }
 }
