@@ -3,7 +3,7 @@ import Icon from "../../../components/Icon/Icon";
 
 const MenuButton = ({ onToggleSidebar }) => {
   return (
-    <button onClick={onToggleSidebar} className="text-white">
+    <button onClick={onToggleSidebar}>
       <Icon name="bars" />
     </button>
   );

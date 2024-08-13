@@ -9,7 +9,7 @@ const SideBarPatient = () => {
   };
 
   return (
-    <aside className="absolute w-64 h-screen bg-white text-gray-800 p-4">
+    <aside className="absolute w-64 h-screen bg-Justina_1 text-white p-4">
       <nav className="flex flex-col space-y-4">
         <Link
           to="/patient"

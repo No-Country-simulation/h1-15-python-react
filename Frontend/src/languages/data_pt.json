@@ -420,5 +420,20 @@
       "name": "Configurações",
       "icon": "IoSettingsOutline"
     }
-  ]
+  ],
+  "settings": {
+    "title": "Configurações",
+    "theme": "Tema",
+    "darkMode": "Modo Escuro",
+    "notifications": "Notificações",
+    "emailNotifications": "Notificações por E-mail",
+    "appNotifications": "Notificações no Aplicativo",
+    "privacy": "Privacidade",
+    "profileVisibility": "Visibilidade do Perfil",
+    "public": "Público",
+    "private": "Privado",
+    "language": "Idioma",
+    "changePassword": "Mudar Senha",
+    "deleteAccount": "Excluir Conta"
+  }
 }

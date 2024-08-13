@@ -40,11 +40,11 @@ const LanguageSelector = () => {
   };
 
   return (
-    <div className="relative flex items-center font-josefin text-sm">
+    <div className="relative flex items-center font-josefin text-sm bg-inherit">
       <Icon name="IoLanguageSharp" />
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-[#0005] text-white rounded-md px-4 py-1 focus:outline-none flex items-center space-x-2 h-[34px] ml-2"
+        className="bg-[#0006] dark:bg-[#fff3] text-white rounded-md px-4 py-1 focus:outline-none flex items-center space-x-2 h-[34px] ml-2"
       >
         <span>
           {languages.find((lang) => lang.value === selectedLanguage)?.label}
@@ -56,7 +56,7 @@ const LanguageSelector = () => {
             <li
               key={lang.value}
               onClick={() => handleSelect(lang.value)}
-              className="px-4 py-2 cursor-pointer hover:bg-Justina_3 hover:text-white"
+              className="px-4 py-2 cursor-pointer hover:bg-Justina_3 hover:text-inherit dark:text-gray-900"
             >
               {lang.label}
             </li>
