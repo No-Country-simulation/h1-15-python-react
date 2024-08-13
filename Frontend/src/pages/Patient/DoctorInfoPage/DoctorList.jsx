@@ -6,12 +6,13 @@ import FooterNav from "../../../components/FooterNav/FooterNav";
 import BackButton from "../../../components/BackButton/BackButton";
 import PopupMessage from "../../../components/PopupMessage";
 import { getDoctorDataAll } from "../../../services/doctorService";
-import defaultDoctorImage from "/doc1.webp"; 
+import useLanguage from "../../../hooks/useLanguage";
 
 function DoctorList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [doctors, setDoctors] = useState([]);
   const [isPopupOpen, setIsPopupOpen] = useState(true);
+  const languageData = useLanguage();
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -37,13 +38,17 @@ function DoctorList() {
     setIsPopupOpen(false);
   };
 
+  if (!languageData) {
+    return <div>Cargando datos...</div>;
+  }
+
   return (
     <div className="max-w-screen-lg mx-auto p-4 grid gap-4">
       <BackButton />
       <section className="flex mb-4">
         <input
           type="text"
-          placeholder="Buscar por nombre del médico o especialista"
+          placeholder={languageData.doctorList.placeholder}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="flex-grow p-2 border border-gray-300 rounded-lg outline-none h-10 text-sm md:text-lg"
@@ -63,9 +68,9 @@ function DoctorList() {
                 doctor={{
                   name: `${doctor.user.first_name} ${doctor.user.last_name}`,
                   specialty: doctor.specialty,
-                  photo: doctor.photo || defaultDoctorImage, 
                   reviews: doctor.reviews,
                   rating: doctor.rating,
+                  url_photo:doctor.user.url_photo
                 }}
               />
             </Link>

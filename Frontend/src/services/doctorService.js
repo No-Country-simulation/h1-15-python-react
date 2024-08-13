@@ -17,7 +17,6 @@ export const getDoctorDataAll = async () => {
   }
 };
 
-
 export const getDoctorData = async () => {
   const localDoctorId = localStorage.getItem("doctorId");
 
