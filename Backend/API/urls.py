@@ -80,6 +80,9 @@ urlpatterns = [
     
 
     path('document_type/', TipoDocumentoList.as_view(),),
+    
+    path('crosstransplant/', TrasplanteCruzadoList.as_view(),),
+    path('crosstransplant/<int:pk>/', TrasplanteCruzadoDetail.as_view(),),
 ]
 
 """
@@ -92,8 +95,6 @@ path('nomenclador/', NomencladorList.as_view(),),
 path('nomenclador/<int:pk>/',NomencladorDetail.as_view(),),
 path('nomenclador/upload/', FileUploadView.as_view(),),
 
-path('crosstransplant/', TrasplanteCruzadoList.as_view(),),
-path('crosstransplant/<int:pk>/', TrasplanteCruzadoDetail.as_view(),),
 
 
 path('especialidad/', EspecialidadList.as_view(),),

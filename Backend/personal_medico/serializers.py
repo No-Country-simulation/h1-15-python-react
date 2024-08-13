@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from core.models import MedicalStaff, Availability, MedicalStaffReviews
 from django.db.models import Avg
+from usuarios.serializers import UserSerializer
 
 from drf_spectacular.utils import extend_schema_field
 
@@ -20,6 +21,7 @@ class DisponibilidadSerializer(serializers.ModelSerializer):
 
 
 class MedicalStaffSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True) 
     specialty = serializers.StringRelatedField(read_only=True)
     schedule = serializers.SerializerMethodField()
     whatsapp = serializers.SerializerMethodField()
