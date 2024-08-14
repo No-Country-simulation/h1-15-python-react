@@ -47,3 +47,11 @@ class TurnoUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
         fields = ['user', 'status', 'reason_for_visit']
+
+
+class TurnoSerializerListaCombo(serializers.ModelSerializer):
+    entity_name = serializers.CharField(source='entity.name', read_only=True)
+
+    class Meta:
+        model = Appointment
+        fields = ['id', 'appointment_date', 'appointment_time', 'entity_name']

@@ -1,4 +1,4 @@
-from turnos.serializers import TurnoSerializer, DisponibilidadSerializer, TurnoUpdateSerializer
+from turnos.serializers import TurnoSerializer, DisponibilidadSerializer, TurnoUpdateSerializer, TurnoSerializerListaCombo
 from rest_framework import generics, views
 from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiTypes,  OpenApiResponse
 from core.models import Appointment, Availability, MedicalStaff, Entity, User
@@ -453,6 +453,70 @@ class TurnoListView(generics.ListAPIView):
     )
     def get(self, request, *args, **kwargs):
         print("LLEGO ACA")
+        return super().get(request, *args, **kwargs)
+    
+
+class TurnoListComboView(generics.ListAPIView):
+    serializer_class = TurnoSerializerListaCombo
+
+    def get_queryset(self):
+        status = 'available'
+        queryset = Appointment.objects.all()
+        if status:
+            queryset = queryset.filter(status=status)
+
+        medico = self.request.query_params.get('doctor_id',None)
+        if medico:
+            queryset = queryset.filter(doctor_id=medico)
+
+        entidad = self.request.query_params.get('entidad_id', None)
+        if entidad:
+            queryset = queryset.filter(entity=entidad)
+        
+        fecha = self.request.query_params.get('fecha',None)
+        if fecha:
+            queryset = queryset.filter(appointment_date=fecha)
+
+        return queryset
+    
+    @extend_schema(
+        tags=['Turno'],
+        summary='Lista los turnos disponibles ',
+        description=(
+    "Este endpoint permite obtener una lista de turnos disponibles, con la posibilidad de aplicar filtros por "
+    "estado del turno, médico asignado y fecha específica. Utiliza este endpoint para consultar la disponibilidad "
+    "de turnos según los parámetros que se detallan a continuación.\n\n"
+    "Ejemplos de uso:\n\n"
+    "/api/appointment/?status=available&doctor_id=2&fecha=2024-08-06 \n\n"
+    "/api/appointment/?status=available&doctor_id=2\n\n"
+    "/api/appointment/?fecha=2024-08-06\n"
+    ),
+        parameters=[
+            OpenApiParameter(
+                name='entidad_id',
+                description='Filtra los turnos por entidad',
+                required=False,
+                type=OpenApiTypes.INT,
+            ),
+            OpenApiParameter(
+                name='doctor_id',
+                description='Filtra los turnos por el ID del médico. Debe ser un número entero.',
+                required=False,
+                type=OpenApiTypes.INT,
+            ),
+            OpenApiParameter(
+                name='fecha',
+                description='Filtra los turnos por fecha. Formato: AAAA-MM-DD.',
+                required=False,
+                type=OpenApiTypes.DATE,
+            ),
+        ],
+        responses={
+            200: TurnoSerializer(many=True),
+            400: OpenApiResponse(description='Solicitud incorrecta', response=CustomBadRequest),
+        },
+    )
+    def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
     
 

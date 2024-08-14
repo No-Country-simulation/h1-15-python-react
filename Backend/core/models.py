@@ -75,6 +75,8 @@ class MedicalHistory(models.Model):
     family_conditions = models.TextField()
     allergies = models.TextField()
     active_medication = models.TextField()
+    weight = models.IntegerField(default=0)
+    height = models.DecimalField(max_digits=3, decimal_places=2, default=0)
     is_active = models.BooleanField(default=True)
 
 
