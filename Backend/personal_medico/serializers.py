@@ -53,8 +53,8 @@ class MedicalStaffSerializer(serializers.ModelSerializer):
 
             # Agregar los horarios a la lista del día
             schedule[entity][day].append([
-                slot.start_time.strftime("%I:%M %p"),
-                slot.end_time.strftime("%I:%M %p")
+                slot.start_time.strftime("%H:%M"),
+                slot.end_time.strftime("%H:%M")
             ])
 
         return schedule
