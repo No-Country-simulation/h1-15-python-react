@@ -60,7 +60,6 @@ export const getPatientProfile = async () => {
   }
 };
 
-
 export const verifyUserStatus = async (authToken) => {
   try {
     const response = await axios.get(`${API_URL}/patient/verify_user/`, {
@@ -75,6 +74,31 @@ export const verifyUserStatus = async (authToken) => {
     return response.data;
   } catch (error) {
     console.error("Error al verificar el estado del paciente:", error);
+    throw error;
+  }
+};
+
+export const getAllPatients = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/patient/`);
+    return response.data;
+  } catch (error) {
+    console.error("Error al obtener los pacientes:", error);
+    throw error;
+  }
+};
+
+export const getPersonalInfoById = async (patient_id) => {
+  try {
+    const response = await axios.get(`${API_URL}/personal_info/`);
+    console.log(response.data);
+
+    const filterResponse = response.data.filter(
+      (item) => item.id === patient_id,
+    );
+    return filterResponse;
+  } catch (error) {
+    console.error("Error al obtener el perfil del paciente:", error);
     throw error;
   }
 };

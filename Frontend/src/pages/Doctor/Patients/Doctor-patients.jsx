@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CardPatientList from "../../../components/Cards/CardPatientList";
 import LateralView from "../../../components/LateralView";
 import Icon from "../../../components/Icon/Icon";
+import { getAllPatients } from "../../../services/patientService";
 
 const DoctorPatients = () => {
   const [hasContent, setHasContent] = useState(false);
@@ -10,19 +11,16 @@ const DoctorPatients = () => {
   const [pacientes, setPacientes] = useState([]);
   const [pacienteSeleccionado, setPacienteSeleccionado] = useState();
 
-  async function loadPacientes() {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/No-Country-simulation/h1-15-python-react/frontend-stable/Frontend/src/data/pacientes.json",
-    );
-    const names = await response.json();
-    setPacientes(names.result);
-  }
   useEffect(() => {
+    const loadPacientes = async () => {
+      const data = await getAllPatients();
+      setPacientes(data);
+    };
     loadPacientes();
   }, []);
   useEffect(() => {
     const filtered = pacientes.filter((patient) =>
-      patient.name.toLowerCase().includes(value.toLowerCase()),
+      patient.user.first_name.toLowerCase().includes(value.toLowerCase()),
     );
     setFilteredPatients(filtered);
   }, [pacientes, value]);
@@ -69,7 +67,7 @@ const DoctorPatients = () => {
         </div>
       </div>
       <section className="flex gap-6">
-        <ul className="gap-4 flex flex-col w-2/3 mt-10">
+        <ul className="gap-4 flex flex-col items-center w-2/3 mt-10 overflow-x-visible overflow-y-scroll h-[400px]">
           {/*Lista de pacientes */}
           {filteredPatients &&
             filteredPatients.map((paciente, index) => (
