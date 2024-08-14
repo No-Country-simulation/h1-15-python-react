@@ -1,23 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import LateralView from "../../../components/LateralView";
 import DoctorTimeline from "../../../components/Doctor-timeline/DoctorTimeline";
 import "./styles.css";
-import ActiveDoctor from "../../../components/ActiveDoctor/ActiveDoctor";
 
 const DoctorMain = () => {
   const [patient, setPatient] = useState(null);
-  const [doctorId, setDoctorId] = useState(null);
-  const [showActiveDoctor, setShowActiveDoctor] = useState(false);
-
-  useEffect(() => {
-    setDoctorId(localStorage.getItem("doctorId"));
-  }, []);
-  useEffect(() => {
-    doctorId ? setShowActiveDoctor(false) : setShowActiveDoctor(true);
-  }, [doctorId]);
 
   return (
     <div className="flex font-josefin">
@@ -34,7 +24,6 @@ const DoctorMain = () => {
           {patient && <LateralView paciente={patient} />}
         </section>
       </section>
-      {showActiveDoctor && <ActiveDoctor openModal={setShowActiveDoctor} />}
     </div>
   );
 };
