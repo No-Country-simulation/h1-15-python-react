@@ -31,7 +31,10 @@ export default function DoctorHeader() {
             )}
           </div>
           {showLogout && (
-            <div className="flex flex-col gap-3 absolute top-full right-0 shadow-md mt-6 bg-slate-50 border p-5 z-20">
+            <div
+              className="flex flex-col gap-3 absolute top-full right-0 shadow-md mt-6 bg-slate-50 border p-5 z-20"
+              onMouseLeave={() => setShowLogout(false)}
+            >
               <Link
                 to={"profile"}
                 className="hover:cursor-pointer bg-slate-200 p-2 text-sm rounded-md text-center"

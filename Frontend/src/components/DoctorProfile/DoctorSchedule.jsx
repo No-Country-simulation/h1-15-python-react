@@ -1,9 +1,15 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddNewDaySchedule from "./AddNewDaySchedule";
 
 export default function DoctorSchedule({ schedule }) {
   const [openModal, setOpenModal] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, [openModal]);
   return (
     <section className="pt-4 flex flex-col gap-5">
       <div className="flex gap-5 items-center">
