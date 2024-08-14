@@ -12,7 +12,7 @@ export const getDoctorDataAll = async () => {
     console.log('Datos obtenidos:', data);
     return data;
   } catch (error) {
-    console.error('Error al obtener los datos de los doctores:', error);
+    console.error("Error al obtener los datos de los doctores:", error);
     throw error;
   }
 };
