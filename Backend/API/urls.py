@@ -113,32 +113,13 @@ urlpatterns = [
 
 path('type/', TipoUsuarioList.as_view(),),
 path('type/<int:pk>/', TipoUsuarioDetail.as_view(),),
-path('financiadores/<int:pk>/',FinanciadoresDetail.as_view(),),
+
 path('nomenclador/', NomencladorList.as_view(),),
 path('nomenclador/<int:pk>/',NomencladorDetail.as_view(),),
 path('nomenclador/upload/', FileUploadView.as_view(),),
 
-
-
-path('especialidad/', EspecialidadList.as_view(),),
-path('especialidad/<int:pk>/',EspecialidadDetail.as_view(),),
-
-
-
 path('tipo_documento/', TipoDocumentoList.as_view(),),
 path('tipo_documento/<int:pk>/',TipoDocumentoDetail.as_view(),),
-
-
-
-
-
-path('entidad/<int:pk>/',EntidadDetail.as_view(),),
-
-
-
-
-
-
 
 
 """
