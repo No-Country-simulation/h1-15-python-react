@@ -1,28 +1,9 @@
-import { useEffect, useState } from "react";
-import { getUserData } from "../../services/userServices";
-
-export default function DoctorPersonal() {
-  const [userData, setUserData] = useState({
-    email: "",
-    nombre: "",
-    apellido: "",
-  });
-
-  useEffect(() => {
-    getUserData().then((res) =>
-      setUserData({
-        email: res.email,
-        nombre: res.first_name,
-        apellido: res.last_name,
-      }),
-    );
-  }, []);
-
+export default function DoctorPersonal(props) {
   return (
     <section className="pt-4">
       <h2 className="text-xl text-slate-500">Datos personales</h2>
       <div className="grid grid-cols-3 p-4 gap-4">
-        {Object.entries(userData).map(([prop, value], index) => (
+        {Object.entries(props).map(([prop, value], index) => (
           <label
             className="relative rounded border border-[#79747E] flex justify-center items-center h-12"
             key={index}

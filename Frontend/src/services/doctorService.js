@@ -38,15 +38,13 @@ export const postDoctorUser = async (doctorData) => {
   }
 };
 
-export const postDoctorSchema = async (newData) => {
+export const postDoctorSchedule = async (newData) => {
   const localDoctorId = localStorage.getItem("doctorId");
 
   newData.doctor_id = localDoctorId;
   try {
-    const res = await axios.post(`${API_URL}/availabilit/create/`, newData);
+    const res = await axios.post(`${API_URL}/availability/create/`, newData);
     const data = await res.data;
-    console.log(data);
-
     return data;
   } catch (error) {
     console.log(error);
@@ -66,5 +64,24 @@ export const updateDoctorData = async (doctorData) => {
     return data;
   } catch (error) {
     console.log(error);
+  }
+};
+export const verifyUserDoctor = async () => {
+  const localToken = localStorage.getItem("authToken");
+
+  try {
+    const response = await axios.get(`${API_URL}/doctor/verify_user/`, {
+      headers: {
+        Authorization: `Bearer ${localToken}`,
+      },
+    });
+
+    const { Doctor_id } = response.data;
+    localStorage.setItem("doctorId", Doctor_id);
+
+    return response.data;
+  } catch (error) {
+    console.error("Error al verificar el estado del medico:", error);
+    throw error;
   }
 };
