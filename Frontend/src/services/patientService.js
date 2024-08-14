@@ -50,16 +50,17 @@ export const getPatientProfile = async () => {
     throw new Error("No se encontraron perfiles de paciente.");
   } catch (error) {
     console.error("Error al obtener el perfil del paciente:", error.message);
+
     if (error.response) {
       console.error("Respuesta del error:", error.response.data);
       console.error("Código de estado del error:", error.response.status);
     } else {
       console.error("Error sin respuesta:", error.message);
     }
+
     throw error;
   }
 };
-
 
 export const verifyUserStatus = async (authToken) => {
   try {

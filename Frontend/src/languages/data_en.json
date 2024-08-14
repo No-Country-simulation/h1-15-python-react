@@ -259,7 +259,7 @@
   },
   "PopupMessage": {
     "title": "Attention!",
-    "content": "You must choose a doctor to proceed with your appointment.",
+    "content": "Please select a doctor to continue with your appointment.",
     "textButton": "Got it"
   },
   "NotFound": {
@@ -448,5 +448,8 @@
     "emergency_contacts": "Emergency Contacts",
     "settings": "Settings",
     "logout": "Logout"
+  },
+  "doctorList": {
+    "placeholder": "Search by doctor's name or specialty"
   }
 }

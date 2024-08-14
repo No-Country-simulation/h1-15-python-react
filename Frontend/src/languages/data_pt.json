@@ -259,7 +259,7 @@
   },
   "PopupMessage": {
     "title": "Atenção!",
-    "content": "Alguns dados estão faltando.",
+    "content": "Por favor, selecione um médico para continuar com sua consulta.",
     "textButton": "OK"
   },
   "NotFound": {
@@ -448,5 +448,8 @@
     "emergency_contacts": "Contatos de Emergência",
     "settings": "Configurações",
     "logout": "Sair"
+  },
+  "doctorList": {
+    "placeholder": "Buscar por nome do médico ou especialidade"
   }
 }
