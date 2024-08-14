@@ -191,7 +191,7 @@ class DisponibilidadCreate(views.APIView):
         request=inline_serializer(
             name='DisponibilidadRequest',
             fields={
-                'doctor:id': serializers.IntegerField(),
+                'doctor_id': serializers.IntegerField(),
                 'entity': serializers.CharField(),
                 'schedules': serializers.ListField(
                     child=serializers.ListField(
@@ -219,19 +219,35 @@ class DisponibilidadCreate(views.APIView):
     )
     def post(self, request):
         request_data = request.data
-        doctor = request_data['doctor_id']
-
         doctor = get_object_or_404(MedicalStaff, id=request_data['doctor_id'])
         entity = get_object_or_404(Entity, name=request_data['entity'])
     
         schedule_list = request_data['schedules']
         
         errors = []
-        print(f'es es el id de la entidad{entity.id}')
+        conflicts = []
+        
         for schedule in schedule_list:
             day = schedule[0]
             start_time = schedule[1]
             end_time = schedule[2]
+            
+            # Verificar si ya existe disponibilidad para este médico en el mismo día y hora
+            existing_availability = Availability.objects.filter(
+                doctor=doctor,
+                #entity=entity, para ver mas adelante
+                day=day
+            ).exists()
+            
+            if existing_availability:
+                conflicts.append({
+                    'day': day,
+                    'start_time': start_time,
+                    'end_time': end_time,
+                    'error': 'Ya existe disponibilidad en este día y hora.'
+                })
+                continue
+            
             availability_data = {
                 'doctor': doctor.id,
                 'entity': entity.id,
@@ -245,12 +261,14 @@ class DisponibilidadCreate(views.APIView):
                 availability_serializer.save()
             else:
                 errors.append(availability_serializer.errors)
-            
+        
+        if conflicts:
+            return Response({"conflicts": conflicts}, status=status.HTTP_400_BAD_REQUEST)
+        
         if errors:
             return Response({"errors": errors}, status=status.HTTP_400_BAD_REQUEST)
         
         return Response({"message": "Availability created successfully."}, status=status.HTTP_201_CREATED)
-
 #esto esta ok
 class DisponibilidadDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Availability.objects.all()
