@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Icon from "../Icon/Icon";
+import useLanguage from "../../hooks/useLanguage";
 
 // eslint-disable-next-line react/prop-types
 const SearchBar = ({ onFocus, onBlur }) => {
@@ -33,6 +34,12 @@ const SearchBar = ({ onFocus, onBlur }) => {
     }
   }, [isInputVisible, onFocus, onBlur]);
 
+  const languageData = useLanguage();
+
+  if (!languageData) {
+    return <div>Cargando datos...</div>;
+  }
+
   return (
     <div
       className={`flex items-center space-x-2 ${
@@ -46,7 +53,7 @@ const SearchBar = ({ onFocus, onBlur }) => {
           onChange={handleInputChange}
           onKeyDown={(e) => e.key === "Enter" && handleSearchSubmit()}
           className="w-full px-4 py-2 border rounded-lg focus:outline-none"
-          placeholder="Empezar a buscar..."
+          placeholder={languageData.SearchBar.placeholderInput}
         />
       )}
       <button onClick={handleSearchClick} className="p-2">

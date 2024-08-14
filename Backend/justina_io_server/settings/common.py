@@ -10,7 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+from datetime import timedelta
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,13 +35,37 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     # Local apps
-
+    'api.apps.ApiConfig',
+    'usuarios.apps.UsuariosConfig',
+    'mail.apps.MailConfig',
+    'core.apps.CoreConfig',
+    'tratamientos.apps.TratamientosConfig',
+    'informacion_personal.apps.InformacionPersonalConfig',
+    'pacientes.apps.PacientesConfig',
+    'patologias.apps.PatologiasConfig',
+    'tipo_usuario.apps.TipoUsuarioConfig',
+    'direcciones.apps.DireccionesConfig',
+    'turnos.apps.TurnosConfig',
+    'trasplantes_cruzados.apps.TrasplantesCruzadosConfig',
+    'farmacia.apps.FarmaciaConfig',
+    'antecedente_medico.apps.AntecedenteMedicoConfig',
+    'entidad.apps.EntidadConfig',
+    'especialidad.apps.EspecialidadConfig',
+    'financiadores.apps.FinanciadoresConfig',
+    'medicamentos.apps.MedicamentosConfig',
+    'nomencladores.apps.NomencladoresConfig',
+    'personal_medico.apps.PersonalMedicoConfig',
+    'tipo_documento.apps.TipoDocumentoConfig',
     # 3rd party apps
+    'rest_framework',
+    'corsheaders',
+    'rest_framework_simplejwt',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -67,7 +96,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'justina_io_server.wsgi.application'
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -86,7 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -104,10 +131,58 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
+
+# ####### ESTO ES UNA PRUEBA ################
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# ####### FIN DE LA PRUEBA ################
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
+
+# Simple JWT settings
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+
+# Email settings
+
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Justina.io API',
+    'DESCRIPTION': 'Aplicación para la API del sistema de justina.io',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+
+
+#AUTH_USER_MODEL = 'core.CoreUser'
+

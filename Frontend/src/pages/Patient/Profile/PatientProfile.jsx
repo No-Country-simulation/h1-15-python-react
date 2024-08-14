@@ -1,93 +1,167 @@
-import BackButton from "../../../components/BackButton/BackButton";
+import { useState, useEffect } from "react";
 import FooterNav from "../../../components/FooterNav/FooterNav";
-import patientData from "../../../data/PatientProfile.json";
+import LateralMenu from "../components/LateralMenu";
+import EditableProfileInfo from "../components/EditableProfileInfo";
+import {
+  createPatientProfile,
+  verifyUserStatus,
+  getPatientProfile,
+} from "../../../services/patientService";
+import ImageUploader from "../components/ImageUploader";
+import { useNavigate } from "react-router-dom";
+import showDialog from "../../../utils/showDialog";
+import ReadOnlyProfile from "./ReadOnlyProfile";
+import { showToast } from "../../../utils/toast";
+import { ToastContainer } from "react-toastify";
+import NoEditableProfileInfo from "../components/NoEditableProfileInfo";
 
 const PatientProfile = () => {
+  const [formData, setFormData] = useState({
+    patient_id: "",
+    address: "",
+    document_number: "",
+    birth_date: "",
+    gender: "",
+    phone_number: "",
+    phone_number_2: "",
+    emergency_contact: "",
+    blood_type: "",
+    about_me: "",
+    is_active: true,
+    document_type: "",
+  });
+
+  const [isAddressInputVisible, setAddressInputVisible] = useState(false);
+  const [loadingProfile, setLoadingProfile] = useState(true);
+  const [isDataAvailable, setIsDataAvailable] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const verifyPatient = async () => {
+      try {
+        const authToken = localStorage.getItem("authToken");
+        if (authToken) {
+          const response = await verifyUserStatus(authToken);
+          if (response.is_patient) {
+            setFormData((prevData) => ({
+              ...prevData,
+              patient_id: response.patient_id,
+            }));
+
+            const patientProfile = await getPatientProfile();
+            setFormData((prevData) => ({
+              ...prevData,
+              ...patientProfile,
+            }));
+
+            setIsDataAvailable(
+              patientProfile && Object.keys(patientProfile).length > 0,
+            );
+          } else {
+            await showDialog(
+              "Información faltante",
+              "Primero debes completar los datos de tu seguro",
+              "info",
+              "#00ADDE",
+              false,
+              3000,
+            );
+            setTimeout(() => {
+              navigate("/patient");
+            }, 3000);
+          }
+        }
+      } catch (error) {
+        console.error("Error al verificar el estado del paciente:", error);
+      } finally {
+        setLoadingProfile(false); 
+      }
+    };
+
+    verifyPatient();
+  }, [navigate]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handlePhoneChange = (value, name) => {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleDictate = (text) => {
+    setFormData({
+      ...formData,
+      about_me: text,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!formData.address || !formData.phone_number) {
+      showToast("Por favor completa todos los campos obligatorios", "error");
+      return;
+    }
+
+    try {
+      await createPatientProfile(formData);
+      showToast("Perfil actualizado exitosamente", "success");
+
+      setFormData({
+        patient_id: "",
+        address: "",
+        document_number: "",
+        birth_date: "",
+        gender: "",
+        phone_number: "",
+        phone_number_2: "",
+        emergency_contact: "",
+        blood_type: "",
+        about_me: "",
+        is_active: true,
+        document_type: "",
+      });
+    } catch (error) {
+      console.error("Error al actualizar el perfil:", error);
+      showToast("Error al actualizar el perfil", "error");
+    }
+  };
+
   return (
-    <section className="grid max-w-screen-lg w-full mx-auto p-2">
-      <section>
-        <BackButton />
-      </section>
-      <div className="bg-white rounded-xl shadow-md overflow-hidden pb-20">
-        <div className="flex flex-col">
-          <div className="w-full flex justify-center">
-            <img
-              className="w-70% object-cover md:w-48"
-              src={patientData.photo}
-              alt={patientData.name}
+    <>
+      <ToastContainer />
+      <main className="h-screen flex flex-col max-w-screen-lg mx-auto px-4">
+        <LateralMenu />
+        <ImageUploader />
+        <NoEditableProfileInfo/>
+        <section>
+          {loadingProfile ? (
+            <p>Cargando perfil...</p> 
+          ) : isDataAvailable ? (
+            <ReadOnlyProfile formData={formData} />
+          ) : (
+            <EditableProfileInfo
+              formData={formData}
+              handleChange={handleChange}
+              handlePhoneChange={handlePhoneChange}
+              handleDictate={handleDictate}
+              isAddressInputVisible={isAddressInputVisible}
+              setAddressInputVisible={setAddressInputVisible}
+              handleSubmit={handleSubmit}
             />
-          </div>
-          <div className="p-4">
-            <h1 className="block mt-1 text-3xl leading-tight font-medium text-black text-center">
-              {patientData.name}
-            </h1>
-            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold text-center">
-              {patientData.profession}
-            </div>
-            <p className="mt-2 text-gray-500">{patientData.bio}</p>
-            <div className="mt-4">
-              <span className="text-gray-700 font-bold">Edad:</span>{" "}
-              {patientData.age}
-            </div>
-            <div className="mt-2">
-              <span className="text-gray-700 font-bold">Contacto:</span>{" "}
-              {patientData.contact}
-            </div>
-            <div className="mt-4">
-              <span className="text-gray-700 font-bold">Sexo:</span>{" "}
-              {patientData.gender}
-            </div>
-            <div className="mt-2">
-              <span className="text-gray-700 font-bold">
-                Fecha de Nacimiento:
-              </span>{" "}
-              {new Date(patientData.dateOfBirth).toLocaleDateString("es-ES")}
-            </div>
-            <div className="mt-2">
-              <span className="text-gray-700 font-bold">DNI:</span>{" "}
-              {patientData.dni}
-            </div>
-            <div className="mt-4">
-              <span className="text-gray-700 font-bold">Historial Médico:</span>{" "}
-              {patientData.medicalHistory}
-            </div>
-            <div className="mt-2">
-              <span className="text-gray-700 font-bold">Alergias:</span>{" "}
-              {patientData.allergies}
-            </div>
-            <div className="mt-2">
-              <span className="text-gray-700 font-bold">
-                Medicamentos Actuales:
-              </span>{" "}
-              {patientData.currentMedications}
-            </div>
-            <div className="mt-4">
-              <span className="text-gray-700 font-bold">
-                Contacto de Emergencia:
-              </span>{" "}
-              {patientData.emergencyContact.name} (
-              {patientData.emergencyContact.relation}) -{" "}
-              {patientData.emergencyContact.phone}
-            </div>
-            <div className="mt-4">
-              <span className="text-gray-700 font-bold">Seguro Médico:</span>{" "}
-              {patientData.insurance.provider}
-            </div>
-            <div className="mt-2">
-              <span className="text-gray-700 font-bold">Número de Póliza:</span>{" "}
-              {patientData.insurance.policyNumber}
-            </div>
-            <div className="mt-2">
-              <span className="text-gray-700 font-bold">Cobertura:</span>{" "}
-              {patientData.insurance.coverage}
-            </div>
-          </div>
-        </div>
-      </div>
-      <section>
-        <FooterNav />
-      </section>
-    </section>
+          )}
+          <FooterNav />
+        </section>
+      </main>
+    </>
   );
 };
 

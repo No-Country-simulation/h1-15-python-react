@@ -1,27 +1,40 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import CardOptions from "../../../components/Cards/CardOptions";
 import Icon from "../../../components/Icon/Icon";
-import Logout from "../../../components/Logout/Logout";
 import useLanguage from "../../../hooks/useLanguage";
+import ActivePatient from "../../../components/ActivePatient/ActivePatient";
+import { verifyUserStatus } from "../../../services/patientService";
+import LateralMenu from "../components/LateralMenu";
 
 const PatientMain = () => {
-  const [showLogout, setShowLogout] = useState(false);
-  const profileRef = useRef(null);
-
-  const toggleLogout = () => setShowLogout((prev) => !prev);
-
-  const handleClickOutside = (event) => {
-    if (profileRef.current && !profileRef.current.contains(event.target)) {
-      setShowLogout(false);
-    }
-  };
+  const [showActivationPopup, setShowActivationPopup] = useState(false);
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+    const fetchUserStatus = async () => {
+      const authToken = localStorage.getItem("authToken");
+      if (authToken) {
+        try {
+          const result = await verifyUserStatus(authToken);
+          if (!result.is_patient) {
+            setShowActivationPopup(true);
+          }
+        } catch (error) {
+          console.error("Error al verificar el estado del paciente:", error);
+        }
+      }
     };
+
+    fetchUserStatus();
   }, []);
+
+  const handleCompleteLater = () => {
+    setShowActivationPopup(false);
+  };
+
+  const handleActivationComplete = () => {
+    localStorage.setItem("hasCompletedActivation", "true");
+    setShowActivationPopup(false);
+  };
 
   const languageData = useLanguage();
 
@@ -30,24 +43,11 @@ const PatientMain = () => {
   }
 
   return (
-    <main className="relative max-w-screen-lg mx-auto flex flex-col items-center w-full p-6 gap-7">
-      <nav className="flex justify-between w-full items-center">
-        <Icon name="bars" />
-        <div ref={profileRef} className="relative">
-          <img
-            className="w-[36px] h-[36px] rounded-full cursor-pointer"
-            src="/Bung1.webp"
-            alt="Profile"
-            onClick={toggleLogout}
-          />
-          {showLogout && (
-            <div className="absolute mt-2 right-0 z-10">
-              <Logout />
-            </div>
-          )}
-        </div>
-      </nav>
-      <h2 className="font-medium text-3xl md:text-4xl text-[#25282B] mt-7 self-start">
+    <main className="relative max-w-screen-lg mx-auto flex flex-col items-center w-full px-4 pb-6 gap-7">
+      <section className="max-w-screen-lg w-full">
+        <LateralMenu />
+      </section>
+      <h2 className="font-medium text-3xl md:text-4xl mt-7 self-start">
         {languageData.patientMain.locateTitle}{" "}
         <span className="font-medium text-[#A0A4A8]">
           {languageData.patientMain.locateSubtitle}
@@ -73,6 +73,22 @@ const PatientMain = () => {
           />
         ))}
       </section>
+
+      {showActivationPopup && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm backdrop-brightness-75">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-lg">
+            <ActivePatient onComplete={handleActivationComplete} />
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={handleCompleteLater}
+                className="mr-4 bg-gray-200 text-gray-700 rounded px-4 py-2"
+              >
+                Completar más tarde
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 };

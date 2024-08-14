@@ -3,11 +3,13 @@ import Icon from "../Icon/Icon";
 import SearchBar from "../SearchBar/SearchBar";
 
 // eslint-disable-next-line react/prop-types
-const Profile = ({ icon_name, greeting, photo, patientName }) => {
+const Profile = ({ icon_name, greeting }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const handleSearchFocus = () => setIsSearchOpen(true);
   const handleSearchBlur = () => setIsSearchOpen(false);
+
+  const firstName = localStorage.getItem("firstName") || "Paciente";
 
   return (
     <div className="m-2">
@@ -18,14 +20,13 @@ const Profile = ({ icon_name, greeting, photo, patientName }) => {
           <>
             <Icon name={icon_name} />
             <div className="flex-grow" />
-            <img className="w-10 h-10 rounded-full" src={photo} alt="Profile" />
           </>
         )}
       </div>
       <h1 className="font-semibold text-lg md:text-3xl mt-2 text-center text-[#A0A4A8]">
         {greeting}
         <span className="ml-1 md:ml-2 font-medium text-lg md:text-3xl text-[#25282B] ">
-          {patientName}
+          {firstName}
         </span>
       </h1>
     </div>

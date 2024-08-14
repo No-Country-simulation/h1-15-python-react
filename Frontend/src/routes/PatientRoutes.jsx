@@ -14,64 +14,46 @@ import ConfirmAppointment from "../pages/Patient/ScheduleAppointment/ConfirmAppo
 import ConfirmationSuccess from "../pages/Patient/ScheduleAppointment/ConfirmationSuccess";
 import DetailSchedule from "../pages/Patient/Schedule/DetailSchedule";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
+import UpdatePassword from "../pages/UpdatePassword/UpdatePassword";
+import Settings from "../pages/Patient/Settings/Settings";
+import Insurance from "../pages/Patient/Insurance/Insurance";
+
+const routes = [
+  { path: "/patient", element: <PatientMain /> },
+  { path: "/patient/update-password", element: <UpdatePassword /> },
+  { path: "/patient/profile", element: <PatientProfile /> },
+  { path: "/patient/treatment", element: <Treatment /> },
+  { path: "/patient/schedule", element: <Schedule /> },
+  { path: "/patient/postoperative", element: <Postoperative /> },
+  { path: "/patient/support", element: <SupportComunity /> },
+  { path: "/patient/medical-history", element: <HistoryMedical /> },
+  { path: "/patient/emergency-contacts", element: <Emergency /> },
+  { path: "/patient/doctor-information", element: <DoctorList /> },
+  { path: "/patient/doctor-information/:id", element: <DoctorDetail /> },
+  { path: "/patient/settings", element: <Settings/> },
+  { path: "/patient/insurance", element: <Insurance/> },
+  {
+    path: "patient/schedule/appointment/:id",
+    element: <ScheduleAppointment />,
+  },
+  {
+    path: "/patient/appointment/confirmation",
+    element: <ConfirmAppointment />,
+  },
+  { path: "/patient/appointment/success", element: <ConfirmationSuccess /> },
+  { path: "/patient/schedule/details/:id", element: <DetailSchedule /> },
+];
 
 export const patientRoutes = (
   <>
-    <Route
-      path="/patient"
-      element={<ProtectedRoute element={<PatientMain />} allowedRoles={["patient"]} />}
-    />
-    <Route
-      path="/patient/profile"
-      element={<ProtectedRoute element={<PatientProfile />} allowedRoles={["patient"]} />}
-    />
-    <Route
-      path="/patient/treatment"
-      element={<ProtectedRoute element={<Treatment />} allowedRoles={["patient"]} />}
-    />
-    <Route
-      path="/patient/schedule"
-      element={<ProtectedRoute element={<Schedule />} allowedRoles={["patient"]} />}
-    />
-    <Route
-      path="/patient/postoperative"
-      element={<ProtectedRoute element={<Postoperative />} allowedRoles={["patient"]} />}
-    />
-    <Route
-      path="/patient/support"
-      element={<ProtectedRoute element={<SupportComunity />} allowedRoles={["patient"]} />}
-    />
-    <Route
-      path="/patient/medical-history"
-      element={<ProtectedRoute element={<HistoryMedical />} allowedRoles={["patient"]} />}
-    />
-    <Route
-      path="/patient/emergency-contacts"
-      element={<ProtectedRoute element={<Emergency />} allowedRoles={["patient"]} />}
-    />
-    <Route
-      path="/patient/doctor-information"
-      element={<ProtectedRoute element={<DoctorList />} allowedRoles={["patient"]} />}
-    />
-    <Route
-      path="/patient/doctor-information/:id"
-      element={<ProtectedRoute element={<DoctorDetail />} allowedRoles={["patient"]} />}
-    />
-    <Route
-      path="patient/schedule/appointment/:id"
-      element={<ProtectedRoute element={<ScheduleAppointment />} allowedRoles={["patient"]} />}
-    />
-    <Route
-      path="/patient/appointment/confirmation"
-      element={<ProtectedRoute element={<ConfirmAppointment />} allowedRoles={["patient"]} />}
-    />
-    <Route
-      path="/patient/appointment/success"
-      element={<ProtectedRoute element={<ConfirmationSuccess />} allowedRoles={["patient"]} />}
-    />
-    <Route
-      path="/patient/schedule/details/:id"
-      element={<ProtectedRoute element={<DetailSchedule />} allowedRoles={["patient"]} />}
-    />
+    {routes.map(({ path, element }) => (
+      <Route
+        key={path}
+        path={path}
+        element={
+          <ProtectedRoute element={element} allowedRoles={["patient"]} />
+        }
+      />
+    ))}
   </>
 );

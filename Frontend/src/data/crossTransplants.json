@@ -1,0 +1,142 @@
+[
+    {
+        "Nombre": "Paula",
+        "Apellido": "Muñoz",
+        "Edad": 22,
+        "Grupo_Sanguíneo": "B+",
+        "HLA": ["HLA-A29", "HLA-B14", "HLA-DR11"],
+        "Donante": {
+            "Nombre": "Sofía",
+            "Apellido": "Gómez",
+            "Edad": 25,
+            "Grupo_Sanguíneo": "O+",
+            "HLA": ["HLA-A1", "HLA-B8", "HLA-DR3"]
+        }
+    },
+    {
+        "Nombre": "Roberto",
+        "Apellido": "Jiménez",
+        "Edad": 39,
+        "Grupo_Sanguíneo": "AB+",
+        "HLA": ["HLA-A30", "HLA-B37", "HLA-DR13"],
+        "Donante": {
+            "Nombre": "Carlos",
+            "Apellido": "Martínez",
+            "Edad": 32,
+            "Grupo_Sanguíneo": "A-",
+            "HLA": ["HLA-A2", "HLA-B44", "HLA-DR7"]
+        }
+    },
+    {
+        "Nombre": "Isabel",
+        "Apellido": "Ruiz",
+        "Edad": 33,
+        "Grupo_Sanguíneo": "O-",
+        "HLA": ["HLA-A25", "HLA-B38", "HLA-DR14"],
+        "Donante": {
+            "Nombre": "Ana",
+            "Apellido": "López",
+            "Edad": 28,
+            "Grupo_Sanguíneo": "B+",
+            "HLA": ["HLA-A3", "HLA-B27", "HLA-DR4"]
+        }
+    },
+    {
+        "Nombre": "Andrés",
+        "Apellido": "Torres",
+        "Edad": 48,
+        "Grupo_Sanguíneo": "A+",
+        "HLA": ["HLA-A28", "HLA-B42", "HLA-DR12"],
+        "Donante": {
+            "Nombre": "Miguel",
+            "Apellido": "Hernández",
+            "Edad": 45,
+            "Grupo_Sanguíneo": "AB+",
+            "HLA": ["HLA-A24", "HLA-B51", "HLA-DR15"]
+        }
+    },
+    {
+        "Nombre": "Natalia",
+        "Apellido": "Gutiérrez",
+        "Edad": 31,
+        "Grupo_Sanguíneo": "B-",
+        "HLA": ["HLA-A23", "HLA-B53", "HLA-DR16"],
+        "Donante": {
+            "Nombre": "Lucía",
+            "Apellido": "Pérez",
+            "Edad": 37,
+            "Grupo_Sanguíneo": "O-",
+            "HLA": ["HLA-A11", "HLA-B35", "HLA-DR2"]
+        }
+    },
+    {
+        "Nombre": "Manuel",
+        "Apellido": "Ramírez",
+        "Edad": 40,
+        "Grupo_Sanguíneo": "AB-",
+        "HLA": ["HLA-A66", "HLA-B54", "HLA-DR5"],
+        "Donante": {
+            "Nombre": "Javier",
+            "Apellido": "Rodríguez",
+            "Edad": 29,
+            "Grupo_Sanguíneo": "A+",
+            "HLA": ["HLA-A26", "HLA-B18", "HLA-DR8"]
+        }
+    },
+    {
+        "Nombre": "Sara",
+        "Apellido": "Molina",
+        "Edad": 24,
+        "Grupo_Sanguíneo": "O+",
+        "HLA": ["HLA-A34", "HLA-B39", "HLA-DR6"],
+        "Donante": {
+            "Nombre": "María",
+            "Apellido": "García",
+            "Edad": 41,
+            "Grupo_Sanguíneo": "B-",
+            "HLA": ["HLA-A32", "HLA-B7", "HLA-DR17"]
+        }
+    },
+    {
+        "Nombre": "Luis",
+        "Apellido": "Navarro",
+        "Edad": 35,
+        "Grupo_Sanguíneo": "A-",
+        "HLA": ["HLA-A69", "HLA-B61", "HLA-DR18"],
+        "Donante": {
+            "Nombre": "David",
+            "Apellido": "Sánchez",
+            "Edad": 34,
+            "Grupo_Sanguíneo": "AB-",
+            "HLA": ["HLA-A68", "HLA-B60", "HLA-DR10"]
+        }
+    },
+    {
+        "Nombre": "Marta",
+        "Apellido": "Vega",
+        "Edad": 26,
+        "Grupo_Sanguíneo": "B+",
+        "HLA": ["HLA-A35", "HLA-B52", "HLA-DR19"],
+        "Donante": {
+            "Nombre": "Elena",
+            "Apellido": "Fernández",
+            "Edad": 30,
+            "Grupo_Sanguíneo": "O+",
+            "HLA": ["HLA-A31", "HLA-B57", "HLA-DR1"]
+        }
+    },
+    {
+        "Nombre": "Francisco",
+        "Apellido": "Moreno",
+        "Edad": 38,
+        "Grupo_Sanguíneo": "AB+",
+        "HLA": ["HLA-A36", "HLA-B55", "HLA-DR20"],
+        "Donante": {
+            "Nombre": "Alejandro",
+            "Apellido": "Díaz",
+            "Edad": 27,
+            "Grupo_Sanguíneo": "A-",
+            "HLA": ["HLA-A23", "HLA-B50", "HLA-DR9"]
+        }
+    }
+]

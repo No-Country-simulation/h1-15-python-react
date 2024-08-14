@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
+import Icon from "../Icon/Icon";
 
 const CardPatientList = ({
   paciente,
@@ -22,7 +22,7 @@ const CardPatientList = ({
         </div>
         <div>Hospital Alemán</div>
         <button
-          className="bg-white rounded-full px-2 py-2 hover:scale-110 transition-all duration-200"
+          className="bg-white rounded-full px-2 py-2 hover:scale-110 transition-all duration-200 text-[#0009]"
           onClick={() => {
             if (!pacienteSeleccionado) {
               setPacienteSeleccionado(paciente);
@@ -32,9 +32,9 @@ const CardPatientList = ({
           }}
         >
           {pacienteSeleccionado === paciente ? (
-            <FiArrowLeft className="text-black text-lg" />
+            <Icon name="FiArrowLeft" />
           ) : (
-            <FiArrowRight className="text-black text-lg" />
+            <Icon name="FiArrowRight" />
           )}
         </button>
       </div>

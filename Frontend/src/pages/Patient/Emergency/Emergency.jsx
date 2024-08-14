@@ -1,11 +1,13 @@
 import FooterNav from "../../../components/FooterNav/FooterNav";
-import PageConstruction from "../../../components/PageConstruction/PageConstruction";
+import LateralMenu from "../components/LateralMenu";
+import EmergencyContacts from "./EmergencyContacts";
 
 const Emergency = () => {
   return (
-    <div className="max-w-screen-lg mx-auto">
-      <section>
-        <PageConstruction />
+    <div className="max-w-screen-lg mx-auto px-4">
+      <LateralMenu />
+      <section className="min-h-screen">
+        <EmergencyContacts />
       </section>
       <section>
         <FooterNav />

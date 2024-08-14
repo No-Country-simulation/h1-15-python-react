@@ -1,6 +1,6 @@
 [
   {
-    "color": "#d667cd",
+    "color": "#D22B8B",
     "action": "Nueva toma de",
     "name": "Ciclosporina 10mg",
     "time": "8:30",
@@ -14,14 +14,14 @@
     "unit": "PM"
   },
   {
-    "color": "#d667cd",
+    "color": "#D22B8B",
     "action": "Nueva toma de",
     "name": "Ciclosporina 10mg",
     "time": "8:30",
     "unit": "AM"
   },
   {
-    "color": "#d667cd",
+    "color": "#D22B8B",
     "action": "Nueva toma de",
     "name": "Aspirina 100mg",
     "time": "9:00",
@@ -35,7 +35,7 @@
     "unit": "AM"
   },
   {
-    "color": "#d667cd",
+    "color": "#D22B8B",
     "action": "Nueva toma de",
     "name": "Ibuprofeno 200mg",
     "time": "12:30",
@@ -49,7 +49,7 @@
     "unit": "PM"
   },
   {
-    "color": "#d667cd",
+    "color": "#D22B8B",
     "action": "Nueva toma de",
     "name": "Paracetamol 500mg",
     "time": "4:00",
