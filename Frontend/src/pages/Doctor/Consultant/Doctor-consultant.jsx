@@ -9,6 +9,7 @@ import {
   fetchPatientData,
 } from "../../../services/patientService";
 import { useSelector } from "react-redux";
+import { calculateAge } from "../../../utils/date";
 
 const DoctorConsultant = () => {
   const url = useLocation();
@@ -27,16 +28,7 @@ const DoctorConsultant = () => {
     actualMedication: "",
     conditions: "",
   });
-  const calculateAge = (date) => {
-    const today = new Date();
-    const birthDate = new Date(date);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const month = today.getMonth() - birthDate.getMonth();
-    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    return age;
-  };
+
   const [dictado, setDictado] = useState("");
   const [formData, setFormData] = useState({});
 

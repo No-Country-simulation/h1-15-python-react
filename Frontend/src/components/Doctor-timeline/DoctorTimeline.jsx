@@ -38,11 +38,16 @@ export default function DoctorTimeline({ day, setPatient, selectedPatient }) {
     };
 
     fetchAppointments();
-    console.log(timeline);
   }, [day]);
-  const handleAccordionChange = (isExpanded, paciente) => {
+  const handleAccordionChange = (
+    isExpanded,
+    paciente,
+    medicalHistory,
+    appointment_time,
+    user,
+  ) => {
     if (isExpanded) {
-      setPatient(paciente);
+      setPatient({ patient: paciente, medicalHistory, appointment_time, user });
     } else {
       setPatient(null);
     }
@@ -59,7 +64,16 @@ export default function DoctorTimeline({ day, setPatient, selectedPatient }) {
     <Timeline>
       {timeline.length > 0 ? (
         timeline.map(
-          ({ patient, appointment_time, reason_for_visit }, index) => (
+          (
+            {
+              patient,
+              medicalHistory,
+              appointment_time,
+              reason_for_visit,
+              user,
+            },
+            index,
+          ) => (
             <TimelineItem key={index}>
               <TimelineOppositeContent
                 color="textSecondary"
@@ -77,7 +91,13 @@ export default function DoctorTimeline({ day, setPatient, selectedPatient }) {
                   style={{ borderRadius: 20 }}
                   expanded={expanded === patient}
                   onChange={(event, isExpanded) =>
-                    handleAccordionChange(isExpanded, patient)
+                    handleAccordionChange(
+                      isExpanded,
+                      patient,
+                      medicalHistory,
+                      appointment_time,
+                      user,
+                    )
                   }
                 >
                   <AccordionSummary
@@ -92,25 +112,29 @@ export default function DoctorTimeline({ day, setPatient, selectedPatient }) {
                   </AccordionSummary>
                   <AccordionDetails>
                     <div className="grid grid-cols-1 xl:grid-cols-2 pl-5 pb-5">
-                      <p>Diagnóstico: Intentar traer el Diagnóstico</p>
+                      <p>
+                        Diagnóstico:{" "}
+                        {medicalHistory ? medicalHistory : "Sin diagnóstico"}
+                      </p>
                       <p>Edad: {35}</p>
                       <p>Prepaga: {patient?.financer}</p>
                     </div>
                     <div className="flex justify-evenly">
                       <Tooltip title="Proximamente...">
-                        <span className="text-red-600 cursor-pointer hover:underline">
+                        <button className="bg-[#C03744] font-semibold text-sm px-4 py-2 rounded-[10px] text-white hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner">
                           Cancelar Turno
-                        </span>
+                        </button>
                       </Tooltip>
                       <Tooltip title="Proximamente...">
-                        <span className="text-text_secondary cursor-pointer hover:underline">
+                        <button className="bg-[#958BBF] font-semibold text-sm px-4 py-2 rounded-[10px] text-white hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner">
                           Ver historial clínico
-                        </span>
+                        </button>
                       </Tooltip>
-                      <Link to={`/doctor/consultant/${patient?.id}`}>
-                        <span className="text-green-600 cursor-pointer hover:underline">
-                          Comenzar consulta
-                        </span>
+                      <Link
+                        to={`/doctor/consultant/${patient?.id}`}
+                        className="bg-[#36A781] font-semibold text-sm px-4 py-2 rounded-[10px] text-white hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner"
+                      >
+                        <span>Comenzar consulta</span>
                       </Link>
                     </div>
                   </AccordionDetails>
