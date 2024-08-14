@@ -4,6 +4,7 @@ import { getDoctorDataAll } from "../../../services/doctorService";
 import FooterNav from "../../../components/FooterNav/FooterNav";
 import BackButton from "../../../components/BackButton/BackButton";
 import ContactItem from "./ContactItem";
+import Spinner from "../../../components/Spinner";
 
 function DoctorDetail() {
   const { id } = useParams();
@@ -27,7 +28,11 @@ function DoctorDetail() {
   }, [id]);
 
   if (!doctor) {
-    return <div>No se encontró al doctor.</div>;
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   }
 
   // Extraer los datos necesarios
@@ -81,15 +86,15 @@ function DoctorDetail() {
 
           {Object.keys(schedule).length > 0 && (
             <>
-              <p className="mt-2 font-semibold mb-4 text-base md:text-lg">
-                Horario de atención:
-              </p>
               {Object.entries(schedule).map(([place, days]) => (
-                <div key={place} className="mb-4">
+                <div key={place} className="mb-5">
                   <h3 className="font-semibold text-base md:text-lg pb-2">
                     Centro Médico:
                   </h3>
                   <p className="pb-4 md:text-lg">{place}</p>
+                  <p className="mt-2 font-semibold mb-4 text-base md:text-lg">
+                    Horario de atención:
+                  </p>
                   {Object.entries(days).map(([day, hours]) => (
                     <p key={day} className="text-base md:text-lg">
                       <span className="font-normal">{day}: </span>

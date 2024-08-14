@@ -2,11 +2,24 @@
 import dayjs from "dayjs";
 import Avatar from "./../Avatar";
 import { useEffect, useState } from "react";
-import { Tooltip } from "@mui/material";
-import { getPersonalInfoById } from "../../services/patientService";
-const CardPatientAttendance = ({ paciente }) => {
+
+const CardPatientAttendance = ({ paciente, doctorInfo, enConsulta }) => {
   const [estado, setStado] = useState(false);
-  const [pacienteSeleccionado, setPacienteSeleccionado] = useState();
+  const diagnostico = paciente.diagnostic ? paciente.diagnostic : "Arritmia";
+  const imagen = paciente.picture ? paciente.picture : undefined;
+  const obraSocial = paciente.financer ? paciente.financer : "Particular";
+  const riesgo = paciente.risk ? paciente.risk : "Alto";
+  const nombre = paciente.name ? paciente.name : "Jonah Makarov";
+  const sangre = paciente.bloodType ? paciente.bloodType : "A+";
+  const edad = paciente.age ? paciente.age : "15";
+  //const doctor = doctorInfo?.user ? doctorInfo.user : "";
+  const condiciones = paciente.conditions ? paciente.conditions : "";
+  const alergias = paciente.allergies ? paciente.allergies : "";
+  const especialidad = doctorInfo?.specialty ? doctorInfo.specialty : "Clinico";
+  const doctorName = JSON.stringify(
+    localStorage.getItem("firstName") + " " + localStorage.getItem("lastName"),
+  ).replace(/"/g, "");
+
   function controlState(paciente) {
     const cita = dayjs(paciente.appointmentDate);
     const actual = dayjs();
@@ -51,7 +64,9 @@ const CardPatientAttendance = ({ paciente }) => {
                   estado ? "bg-green-500" : "bg-green-500"
                 } rounded-full w-5 h-5`}
               ></div>
-              {estado ? "En consulta" : "Agendado"}
+              <p className="text-center py-2">
+                {estado || enConsulta ? "En consulta" : "Agendado"}
+              </p>
             </div>
             <p className="text-xl">
               {paciente.user.first_name + " " + paciente.user.last_name}
@@ -71,21 +86,23 @@ const CardPatientAttendance = ({ paciente }) => {
           </div>
         </div>
 
-        <div className="bg-red-500 rounded-3xl p-4 flex flex-col relative text-base min-h-36 mt-5 text-white">
+        <div className="bg-red-500 rounded-3xl p-4 flex flex-col relative text-base min-h-36 pb-20 mt-5 text-white">
           <p>
-            Ultimo diagnóstico: <i>Arritmia</i>
+            Obra Social: <strong>{obraSocial}</strong>
           </p>
           <p>
-            Visitas: <strong></strong>
+            Tipo de Sangre: <strong>{sangre}</strong>
           </p>
-          <p className="w-36">
-            Ultimo Reporte: <a href="">Aqui</a>
+          <p>
+            Alergias: <strong>{alergias}</strong>
           </p>
-          <Tooltip title="Proximamente...">
-            <button className="bg-black hover:bg-slate-500 hover:text-black text-yellow-400 text-xs absolute bottom-3 right-3 p-3 rounded-3xl ">
-              Detalles...
-            </button>
-          </Tooltip>
+          <p>
+            Condiciones: <strong>{condiciones}</strong>
+          </p>
+
+          <button className="bg-black hover:bg-slate-500 hover:text-black text-yellow-400 text-xs absolute bottom-3 right-3 p-3 rounded-3xl ">
+            Abrir Historial Clínico...
+          </button>
         </div>
       </div>
     </div>

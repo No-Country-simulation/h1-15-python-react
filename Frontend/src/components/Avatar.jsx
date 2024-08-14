@@ -12,7 +12,7 @@ const Avatar = ({ imagen, className }) => {
         className={`${
           className ? className : "w-[198px] h-[198px] rounded-full"
         }`}
-        src={imagen ? imagen : "/Profile1.png"}
+        src={imagen ? imagen : "/Bung2.webp"}
         alt="avatar"
       />
     </div>

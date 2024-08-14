@@ -35,33 +35,18 @@ export const Icons = {
   ),
   search: (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      width="2em"
+      height="2em"
+      fill="currentColor"
+      stroke="currentColor"
+      strokeWidth="0"
+      viewBox="0 0 512 512"
     >
-      <g clipPath="url(#clip0_298_2763)">
-        <path
-          d="M11.1 17.34C14.966 17.34 18.1 14.206 18.1 10.34C18.1 6.47403 14.966 3.34003 11.1 3.34003C7.23398 3.34003 4.09998 6.47403 4.09998 10.34C4.09998 14.206 7.23398 17.34 11.1 17.34Z"
-          stroke="#25282B"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M15.5699 16.21L19.5699 20.21"
-          stroke="#25282B"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </g>
-      <defs>
-        <clipPath id="clip0_298_2763">
-          <rect width="24" height="24" fill="white" />
-        </clipPath>
-      </defs>
+      <path
+        stroke="none"
+        d="M456.69 421.39 362.6 327.3a173.8 173.8 0 0 0 34.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.8 173.8 0 0 0 327.3 362.6l94.09 94.09a25 25 0 0 0 35.3-35.3M97.92 222.72a124.8 124.8 0 1 1 124.8 124.8 124.95 124.95 0 0 1-124.8-124.8"
+      />
     </svg>
   ),
   profile: (
@@ -676,7 +661,6 @@ export const Icons = {
       viewBox="0 0 448 512"
     >
       <path
-        fill="#172B4D"
         stroke="none"
         d="M207.029 381.476 12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0"
       />

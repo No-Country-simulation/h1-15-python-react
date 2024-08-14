@@ -103,7 +103,7 @@ const EmergencyContacts = () => {
           placeholder="Buscar contacto personal"
           value={searchTerm}
           onChange={handleSearchChange}
-          className="border border-gray-300 rounded mr-2 w-full h-[40px] text-sm px-3"
+          className="border border-gray-300 rounded mr-2 w-full h-[40px] text-sm px-3 bg-inherit"
         />
         <div className="absolute cursor-pointer text-2xl top-2 right-3">
           <Icon name="filter" />
@@ -115,7 +115,6 @@ const EmergencyContacts = () => {
           <h3 className="text-lg font-semibold mb-2">Agregar Nuevo Contacto</h3>
           <button
             onClick={handleToggleContact}
-            className="text-gray-600 hover:text-gray-800"
           >
             {isAddContactOpen ? (
               <Icon name="FaChevronUpIcon" />
@@ -143,7 +142,7 @@ const EmergencyContacts = () => {
                   onChange={(e) =>
                     setNewContact({ ...newContact, firstName: e.target.value })
                   }
-                  className="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
+                  className="border border-gray-300 rounded w-full h-[40px] text-sm px-3 bg-inherit"
                   required
                 />
               </div>
@@ -162,7 +161,7 @@ const EmergencyContacts = () => {
                   onChange={(e) =>
                     setNewContact({ ...newContact, lastName: e.target.value })
                   }
-                  className="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
+                  className="border border-gray-300 rounded w-full h-[40px] text-sm px-3 bg-inherit"
                   required
                 />
               </div>
@@ -177,7 +176,7 @@ const EmergencyContacts = () => {
                   country={"ar"}
                   value={newContact.phone}
                   onChange={(phone) => setNewContact({ ...newContact, phone })}
-                  inputClass="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
+                  inputClass="border border-gray-300 rounded w-full h-[40px] text-sm px-3 bg-inherit"
                   specialLabel=""
                   inputStyle={{
                     width: "100%",
@@ -187,6 +186,7 @@ const EmergencyContacts = () => {
                     boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
                     textIndent: "24px",
                     height: "40px",
+                    background:"inherit"
                   }}
                 />
               </div>
@@ -206,10 +206,10 @@ const EmergencyContacts = () => {
                       relationship: e.target.value,
                     })
                   }
-                  className="border border-gray-300 rounded w-full h-[40px] text-sm px-3"
+                  className="border border-gray-300 rounded w-full h-[40px] text-sm px-3 bg-inherit"
                   required
                 >
-                  <option value="">Seleccionar Parentesco</option>
+                  <option value="" className="bg-inherit">Seleccionar Parentesco</option>
                   {relationships.map((relation) => (
                     <option key={relation} value={relation}>
                       {relation}
@@ -249,7 +249,6 @@ const EmergencyContacts = () => {
           <h3 className="text-lg font-semibold mb-2">Lista de Contactos</h3>
           <button
             onClick={handleToggleList}
-            className="text-gray-600 hover:text-gray-800"
           >
             {isPersonalListOpen ? (
               <Icon name="FaChevronUpIcon" />
