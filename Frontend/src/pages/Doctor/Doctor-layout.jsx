@@ -3,6 +3,9 @@ import DoctorHeader from "../../components/Doctor-header/DoctorHeader";
 import Navigation from "./Navigation";
 
 export default function DoctorLayout() {
+  const doctor = JSON.parse(localStorage.getItem("userId"));
+
+  console.log(doctor);
   return (
     <main className="flex w-full min-h-[768px] p-5 gap-5 bg-slate-50">
       <Navigation />
