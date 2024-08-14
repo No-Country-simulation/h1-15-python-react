@@ -19,6 +19,10 @@ class MedicalStaffAdmin(admin.ModelAdmin):
     list_display = ('user', 'specialty', 'medical_license')
     search_fields = ('user', 'specialty')
 
+class AvailabilityAdmin(admin.ModelAdmin):
+    list_display = ('doctor', 'entity', 'day', 'start_time', 'end_time')
+    search_fields = ('doctor', 'entity', 'day')
+
 class AppointmentAdmin(admin.ModelAdmin):
     list_display = ('appointment_date', 'appointment_time', 'user', 'doctor', 'entity', 'status')
     search_fields = ('appointment_date', 'doctor', 'status')
