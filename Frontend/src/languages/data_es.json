@@ -259,7 +259,7 @@
   },
   "PopupMessage": {
     "title": "¡Atención!",
-    "content": " Debe elegir un médico para continuar con su cita.",
+    "content": "Por favor, seleccione un médico para continuar con su cita.",
     "textButton": "Entendido"
   },
   "NotFound": {
@@ -449,6 +449,9 @@
     "emergency_contacts": "Contactos de Emergencia",
     "settings": "Configuración",
     "logout": "Cerrar Sesión"
+  },
+  "doctorList":{
+    "placeholder":"Buscar por nombre del médico o especialista"
   }
   
 }

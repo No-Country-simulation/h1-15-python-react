@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_URL } from "./apiConfig";
 
-// Obtén la URL de la API desde apiConfig 
+// Obtén la URL de la API desde apiConfig
 
 export const loginUser = async (email, password) => {
   try {
@@ -25,7 +25,7 @@ export const updatePassword = async (newPassword) => {
     }
 
     const response = await axios.patch(
-      `${API_URL}/users/${userId}/`,
+      `${API_URL}/users/${userId}/change_password/`,
       { email, password: newPassword },
       { headers: { Authorization: `Bearer ${token}` } },
     );
@@ -42,6 +42,7 @@ export const updatePassword = async (newPassword) => {
 export const registerUser = async (formData) => {
   try {
     const response = await axios.post(`${API_URL}/users/`, formData);
+
     return response.data;
   } catch (error) {
     let errorMessage = "An error occurred while registering the user.";
@@ -62,10 +63,17 @@ export const registerUser = async (formData) => {
 };
 
 export const logout = (navigate) => {
-  const keysToRemove = ["userType", "userId", "firstName", "lastName", "authToken","userEmail","patient_id"];
-  
-  keysToRemove.forEach(key => localStorage.removeItem(key));
-  
+  const keysToRemove = [
+    "userType",
+    "userId",
+    "firstName",
+    "lastName",
+    "authToken",
+    "userEmail",
+    "patient_id",
+  ];
+
+  keysToRemove.forEach((key) => localStorage.removeItem(key));
+
   navigate("/");
 };
-

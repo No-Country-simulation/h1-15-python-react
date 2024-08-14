@@ -37,11 +37,11 @@ const SideBarPatient = () => {
             <Link to="/patient/treatment" className=" p-2 rounded block">
               {languageData.lateralMenu.medication}
             </Link>
-            <Link to="/tratamiento/nutricion" className=" p-2 rounded block">
+            <Link to="/patient/nutrition" className=" p-2 rounded block">
               {languageData.lateralMenu.nutrition}
             </Link>
             <Link
-              to="/tratamiento/actividad-fisica"
+              to="/patient/physical-activity"
               className=" p-2 rounded block"
             >
               {languageData.lateralMenu.physical_activity}
