@@ -1,13 +1,13 @@
 import FooterNav from "../../../components/FooterNav/FooterNav";
+import PageConstruction from "../../../components/PageConstruction/PageConstruction";
 import LateralMenu from "../components/LateralMenu";
-import SupportCommunityCard from "./SupportCommunityCard";
 
-const SupportComunity = () => {
+const PhysicalActivity = () => {
   return (
     <div className="max-w-screen-lg mx-auto px-2">
       <LateralMenu />
-      <section className="pb-20">
-        <SupportCommunityCard />
+      <section>
+        <PageConstruction />
       </section>
       <section>
         <FooterNav />
@@ -16,4 +16,4 @@ const SupportComunity = () => {
   );
 };
 
-export default SupportComunity;
+export default PhysicalActivity;

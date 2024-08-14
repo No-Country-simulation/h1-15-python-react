@@ -73,3 +73,27 @@ export const updateDoctorData = async (doctorData) => {
     console.log(error);
   }
 };
+
+export const getDoctorSchedule = async (doctorId, fecha) => {
+  try {
+    // Log para verificar los parámetros enviados
+    console.log("Fetching schedule for doctor:", doctorId, "on date:", fecha);
+
+    // Realiza la solicitud GET al endpoint actualizado
+    const response = await axios.get(`${API_URL}/appointment/list/combo/`, {
+      params: {
+        doctor_id: doctorId,
+        fecha: fecha,
+        status: 'available', 
+      }
+    });
+
+    // Log para verificar la respuesta del servidor
+    console.log("Doctor schedule fetched:", response.data);
+
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching doctor schedule:', error);
+    throw error; 
+  }
+};

@@ -53,12 +53,12 @@ const PatientMain = () => {
           {languageData.patientMain.locateSubtitle}
         </span>
       </h2>
-      <div className="w-full relative h-[56px] rounded-lg bg-[#F6F6F6] my-auto">
+      <div className="w-full relative h-[56px] rounded-lg bg-inherit my-auto border outline-none shadow-md">
         <input
           placeholder={languageData.patientMain.searchPlaceholder}
           className="w-full h-full bg-transparent pl-4 outline-none"
         />
-        <div className="absolute top-[30%] right-[1%]">
+        <div className="absolute top-3 right-2">
           <Icon name="search" />
         </div>
       </div>
@@ -81,7 +81,7 @@ const PatientMain = () => {
             <div className="flex justify-end mt-4">
               <button
                 onClick={handleCompleteLater}
-                className="mr-4 bg-gray-200 text-gray-700 rounded px-4 py-2"
+                className="mr-4 rounded px-4 py-2 bg-inherit"
               >
                 Completar más tarde
               </button>

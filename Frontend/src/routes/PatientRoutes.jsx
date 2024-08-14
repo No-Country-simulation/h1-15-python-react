@@ -17,6 +17,8 @@ import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import UpdatePassword from "../pages/UpdatePassword/UpdatePassword";
 import Settings from "../pages/Patient/Settings/Settings";
 import Insurance from "../pages/Patient/Insurance/Insurance";
+import Nutrition from "../pages/Patient/Treatment/Nutrition";
+import PhysicalActivity from "../pages/Patient/Treatment/PhysicalActivity";
 
 const routes = [
   { path: "/patient", element: <PatientMain /> },
@@ -30,8 +32,10 @@ const routes = [
   { path: "/patient/emergency-contacts", element: <Emergency /> },
   { path: "/patient/doctor-information", element: <DoctorList /> },
   { path: "/patient/doctor-information/:id", element: <DoctorDetail /> },
-  { path: "/patient/settings", element: <Settings/> },
-  { path: "/patient/insurance", element: <Insurance/> },
+  { path: "/patient/settings", element: <Settings /> },
+  { path: "/patient/insurance", element: <Insurance /> },
+  { path: "/patient/nutrition", element: <Nutrition /> },
+  { path: "/patient/physical-activity", element: <PhysicalActivity /> },
   {
     path: "patient/schedule/appointment/:id",
     element: <ScheduleAppointment />,
