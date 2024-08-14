@@ -10,7 +10,6 @@ export const getTodayAppointmentData = async (day) => {
       `${API_URL}/appointment/list/?fecha=${dateFormated}`,
     );
     const data = await res.data;
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Error al obtener los datos de las citas:", error);
