@@ -74,6 +74,7 @@ class ReservarTurnoView(generics.UpdateAPIView):
             "Si en el cuerpo de la solicitud enviamos:\n"
             "{\n"
             "  \"status\": \"reserved\"\n"
+            "  \"reason_for_visit\": \"control general\"\n"
             "}\n\n"
             "El turno se reserva para el usuario autenticado. Si se incluye el campo `id_user`, el turno se reserva para el usuario especificado.\n\n"
             "{\n"
@@ -103,6 +104,9 @@ class ReservarTurnoView(generics.UpdateAPIView):
         if new_status == 'reserved':
             if appointment.user:
                 return Response({"detail": "El turno ya está reservado."}, status=status.HTTP_400_BAD_REQUEST)
+            reason = request.data.get('reason_for_visit')
+            if not reason:
+                return Response({"detail": "debe ingresar un motivo de consulta reason_for_visit"},status=status.HTTP_400_BAD_REQUEST)
 
             # Asigna el usuario autenticado al turno o utiliza el usuario enviado en la solicitud
             id_user = request.data.get('id_user', None)
@@ -114,9 +118,11 @@ class ReservarTurnoView(generics.UpdateAPIView):
                 except User.DoesNotExist:
                     return Response({"detail": "El usuario no existe."}, status=status.HTTP_400_BAD_REQUEST)
             appointment.user = user_obj
+            appointment.reason_for_visit = reason
 
         elif new_status == "available":
             appointment.user = None
+            appointment.reason_for_visit = None
 
         
         appointment.status = new_status

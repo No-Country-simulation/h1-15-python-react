@@ -274,7 +274,7 @@ class Appointment(models.Model):
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default="available")
     is_active = models.BooleanField(default=True)
-
+    reason_for_visit = models.CharField(max_length=100, blank=True, null=True)
     def __str__(self):
         return f'{self.entity}, {self.doctor}, {self.appointment_date}, {self.appointment_time}'
 
