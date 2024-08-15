@@ -2,7 +2,7 @@ from tratamientos.serializers import TreatmentSerializer, TreatAdherenceSerializ
 from historia_clinica.serializers import ClinicalHistorySerializer
 from rest_framework import serializers, generics, views, status, response
 from drf_spectacular.utils import extend_schema, inline_serializer, OpenApiExample
-from core.models import Treatment, TreatAdherence, Patient, Pathology, Medication, Entity, MedicalStaff, User
+from core.models import Treatment, TreatAdherence, Patient, Pathology, Medication, Entity, MedicalStaff, User, Appointment
 from django.shortcuts import get_object_or_404
 from datetime import datetime, timedelta
 
@@ -132,8 +132,9 @@ class TreatmentDetail(generics.RetrieveUpdateDestroyAPIView):
 class TreatAdherenceCreate(views.APIView):
     @extend_schema(
         tags=['Adherencia a Tratamientos'],
-        summary='Carga el nuevo tratamiento del paciente',
+        summary='Carga el nuevo tratamiento del paciente y actualiza la historia clínica',
         description="""Carga los datos de la consulta en la historia clínica y el nuevo tratamiento del paciente a partir del cual se valida la adherencia.
+        Establece el turno como completo.
         Toma al médico que atendió de los datos de autenticación.
         """,
         request=inline_serializer(
@@ -148,7 +149,8 @@ class TreatAdherenceCreate(views.APIView):
                 'treatment': serializers.CharField(),
                 'start_datetime': serializers.DateTimeField(),
                 'treat_duration': serializers.IntegerField(),
-                'treat_frecuency': serializers.IntegerField()
+                'treat_frecuency': serializers.IntegerField(),
+                'appointment_id': serializers.IntegerField()
             }
         ),
         examples=[
@@ -165,6 +167,7 @@ class TreatAdherenceCreate(views.APIView):
                     "start_datetime": "2024-08-10 18:00:00", 
                     "treat_duration": "60",
                     "treat_frecuency": "24", 
+                    "appointment_id": "59"
                 },
                 request_only=True,  # Muestra esto solo en la solicitud
                 response_only=False  # No muestra esto en la respuesta
@@ -194,6 +197,8 @@ class TreatAdherenceCreate(views.APIView):
         treat_duration = int(request_data['treat_duration'])
         treat_frecuency = int(request_data['treat_frecuency'])
         end_datetime = start_datetime + timedelta(days=treat_duration)
+        appointment = get_object_or_404(Appointment, id=request_data['appointment_id'])
+        new_status = "complete"
         
         frecuency_list = []
         errors = []
@@ -238,6 +243,12 @@ class TreatAdherenceCreate(views.APIView):
             clinical_history_serializer.save()
         else:
             errors.append(clinical_history_serializer.errors)
+            
+        if appointment:
+            appointment.status = new_status
+            appointment.save()
+        else:
+            errors.append("Error 404")
 
         
         if errors:
