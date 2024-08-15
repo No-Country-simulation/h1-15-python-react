@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import { getTodayAppointmentData } from "../../services/appointments";
 import { getAllPatologys } from "../../services/patologysService";
 import { getHistorys } from "../../services/clinicHistory";
+import { updateAppointment } from "../../services/appointmentService";
 
 // eslint-disable-next-line react/prop-types
 export default function DoctorTimeline({
@@ -58,6 +59,8 @@ export default function DoctorTimeline({
           (appointment) =>
             appointment.doctor === parseInt(localStorage.getItem("doctorId")),
         );
+        console.log(doctorAppointments);
+
         setTimeline(doctorAppointments);
       } catch (error) {
         console.error("Error fetching appointments:", error);
@@ -66,6 +69,14 @@ export default function DoctorTimeline({
 
     fetchAppointments();
   }, [day]);
+  const handleAusente = (id, datos) => {
+    const patchSend = async () => {
+      const result = await updateAppointment(id, datos);
+      console.log(result);
+    };
+    patchSend();
+    window.location.reload();
+  };
 
   const handleAccordionChange = (
     id,
@@ -162,11 +173,18 @@ export default function DoctorTimeline({
                     </div>
                     {!notShowCTA && (
                       <div className="flex justify-evenly">
-                        <Tooltip title="Proximamente...">
-                          <button className="bg-[#C03744] font-semibold text-sm px-4 py-2 rounded-[10px] text-white hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner">
-                            Cancelar Turno
-                          </button>
-                        </Tooltip>
+                        <button
+                          className="bg-white border border-[#C03744] font-semibold text-sm px-4 py-2 rounded-[10px] text-[#C03744] hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner"
+                          onClick={() =>
+                            handleAusente(id, {
+                              user: user.id,
+                              status: "absent",
+                            })
+                          }
+                        >
+                          Paciente ausente
+                        </button>
+
                         <Tooltip title="Proximamente...">
                           <button className="bg-[#958BBF] font-semibold text-sm px-4 py-2 rounded-[10px] text-white hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner">
                             Ver historial clínico
