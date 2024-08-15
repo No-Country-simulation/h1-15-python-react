@@ -110,7 +110,6 @@ urlpatterns = [
 ]
 
 """
-
 path('type/', TipoUsuarioList.as_view(),),
 path('type/<int:pk>/', TipoUsuarioDetail.as_view(),),
 
@@ -120,7 +119,6 @@ path('nomenclador/upload/', FileUploadView.as_view(),),
 
 path('tipo_documento/', TipoDocumentoList.as_view(),),
 path('tipo_documento/<int:pk>/',TipoDocumentoDetail.as_view(),),
-
 
 """
 

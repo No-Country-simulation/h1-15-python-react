@@ -1,4 +1,4 @@
-from tratamientos.serializers import TreatmentSerializer, TreatAdherenceSerializer
+from tratamientos.serializers import TreatmentSerializer, TreatAdherenceSerializer, ViewTreatmentSerializer
 from historia_clinica.serializers import ClinicalHistorySerializer
 from rest_framework import serializers, generics, views, status, response
 from drf_spectacular.utils import extend_schema, inline_serializer, OpenApiExample
@@ -14,6 +14,11 @@ class TreatmentList(generics.ListCreateAPIView):
     queryset = Treatment.objects.all()
     serializer_class = TreatmentSerializer
 
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return TreatmentSerializer 
+        return ViewTreatmentSerializer
+    
     @extend_schema(
         tags=['Tratamientos'],
         summary='Lista todos los tratamientos',
