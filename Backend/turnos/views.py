@@ -92,6 +92,9 @@ class ReservarTurnoView(generics.UpdateAPIView):
         },
     )
     def patch(self, request, *args, **kwargs):
+        turno_id = kwargs.get('pk')
+        appointment = Appointment.objects.get(id=turno_id)
+        print(turno_id)
         if not request.user.is_authenticated:
             return Response({"detail": "Autenticación requerida."}, status=status.HTTP_401_UNAUTHORIZED)
 
@@ -99,7 +102,7 @@ class ReservarTurnoView(generics.UpdateAPIView):
         if not new_status:
             return Response({"detail": "debe ingresar un status"},status=status.HTTP_400_BAD_REQUEST)
         
-        appointment = self.get_object()
+        
 
         if new_status == 'reserved':
             if appointment.user:
