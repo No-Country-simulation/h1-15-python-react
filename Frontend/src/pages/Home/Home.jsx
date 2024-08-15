@@ -7,7 +7,7 @@ import Carousel from "../../components/Slider/Slider";
 import LanguageSelector from "../../languages/selector/LanguageSelector";
 import useLanguage from "../../hooks/useLanguage";
 import AboutJustina from "../Patient/components/AboutJustina";
-// import ChatBot from "../../components/ChatBot/ChatBot";
+import ChatBot from "../../components/ChatBot/ChatBot";
 
 function Home() {
   const navigate = useNavigate();
@@ -200,7 +200,7 @@ function Home() {
 
       {/* Footer */}
       <Footer footerData={languageData.home.footer} />
-      {/* <ChatBot /> */}
+      <ChatBot />
     </main>
   );
 }

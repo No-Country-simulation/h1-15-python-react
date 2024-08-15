@@ -121,7 +121,6 @@ export const fetchPatientData = async (patientId) => {
 export const getPersonalInfoById = async (patient_id) => {
   try {
     const response = await axios.get(`${API_URL}/personal_info/`);
-    console.log(response.data);
 
     const filterResponse = response.data.filter(
       (item) => item.id === patient_id,

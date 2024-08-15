@@ -89,17 +89,15 @@ function ScheduleAppointmentForm({ doctor }) {
   }, []);
 
   const handleDateClick = useCallback((date) => {
-    console.log("Selected date:", date); // Log for debugging
     setSelectedDate(date);
     setFormData((prevState) => ({
       ...prevState,
-      date: format(date, "yyyy-MM-dd"), // Update the date in formData
+      date: format(date, "yyyy-MM-dd"), 
     }));
     setSelectedTime(null);
   }, []);
 
   const handleTimeClick = useCallback((time) => {
-    console.log("Selected time:", time); // Log for debugging
     setSelectedTime(time);
     setFormData((prevState) => ({
       ...prevState,
@@ -134,9 +132,6 @@ function ScheduleAppointmentForm({ doctor }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("Profile:", profile);
-      console.log("Appointment ID:", appointmentId);
-      console.log("Form Data:", formData);
 
       const confirmed = await showDialog(
         "Confirmar Acción",
@@ -153,7 +148,6 @@ function ScheduleAppointmentForm({ doctor }) {
           reason_for_visit: formData.reason,
         };
 
-        console.log("Sending data to update appointment:", appointmentData);
 
         const result = await updateAppointment(appointmentId, appointmentData);
 

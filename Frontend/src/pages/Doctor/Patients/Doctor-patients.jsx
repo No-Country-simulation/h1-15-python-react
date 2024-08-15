@@ -16,7 +16,6 @@ const DoctorPatients = () => {
       const data = await getAllPatients();
       const pacientesData = data.map((patient) => ({ patient }));
       setPacientes(pacientesData);
-      console.log(pacientesData);
     };
     loadPacientes();
   }, []);

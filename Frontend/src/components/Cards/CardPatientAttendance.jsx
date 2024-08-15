@@ -15,7 +15,6 @@ const CardPatientAttendance = ({ paciente, enConsulta }) => {
   const [age, setAge] = useState();
   const [patologias, setPatologias] = useState([]);
   const [patologia, setPatologia] = useState(null);
-  console.log(paciente);
 
   useEffect(() => {
     const pato = async () => {

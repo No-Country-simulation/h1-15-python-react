@@ -16,7 +16,7 @@ function ConfirmationSuccess() {
         <div className="mt-6">
           <Link
             to="/patient"
-            className="bg-Justina_8 text-white py-2 px-4 rounded-md inline-block"
+            className="bg-magentaButton text-white py-2 px-4 rounded-md inline-block"
           >
             Volver a la Página Principal
           </Link>

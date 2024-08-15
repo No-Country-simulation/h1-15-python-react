@@ -18,7 +18,6 @@ const Reviews = ({ doctorId, reviews }) => {
   };
 
   const handleAddReview = () => {
-    console.log("Nueva reseña agregada");
     showToast("¡Reseña agregada con éxito!", "success");
   };
 
