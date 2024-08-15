@@ -6,6 +6,7 @@ import Footer from "../../components/Footer";
 import Carousel from "../../components/Slider/Slider";
 import LanguageSelector from "../../languages/selector/LanguageSelector";
 import useLanguage from "../../hooks/useLanguage";
+import AboutJustina from "../Patient/components/AboutJustina";
 // import ChatBot from "../../components/ChatBot/ChatBot";
 
 function Home() {
@@ -163,6 +164,25 @@ function Home() {
             />
           ))}
         </div>
+      </section>
+
+      {/* About Justina */}
+      <section className="flex flex-col justify-center items-center px-8">
+        <h2 className="text-2xl md:text-4xl uppercase text-center mb-[18px]">
+          {languageData.home.aboutJustina.title}
+        </h2>
+        <section className="flex flex-col max-w-screen-lg md:flex-row md:justify-center items-center gap-10">
+          {languageData.home.aboutJustina.items.map((item, index) => (
+            <AboutJustina
+              key={index}
+              title={item.title}
+              subtitle={item.subtitle}
+              description={item.description}
+              image={item.image}
+              link={item.link}
+            />
+          ))}
+        </section>
       </section>
 
       {/* Testimonials */}

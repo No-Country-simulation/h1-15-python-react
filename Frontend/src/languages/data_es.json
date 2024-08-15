@@ -92,6 +92,25 @@
         }
       ]
     },
+    "aboutJustina": {
+      "title": "Un Legado de Amor y Solidaridad",
+      "items": [
+        {
+          "title": "Ley Justina",
+          "subtitle": "Como se impulsó la ley",
+          "description": "La Ley Justina establece que cada ciudadano es donante de órganos por defecto, aumentando las posibilidades de salvar vidas a través de la solidaridad.",
+          "image": "/aboutJustina1.webp",
+          "link": "https://www.argentina.gob.ar/noticias/ley-justina-una-esperanza-para-quienes-aguardan-un-trasplante"
+        },
+        {
+          "title": "MultiplicateX7",
+          "subtitle": "Un acto de amor puede salvar muchas vidas",
+          "description": "Una campaña inspirada en Justina, que busca concientizar sobre la importancia de la donación de órganos, destacando cómo una decisión puede impactar a siete personas en espera de un trasplante.",
+          "image": "/aboutJustina2.webp",
+          "link": "https://www.instagram.com/multiplicatex7/?hl=es"
+        }
+      ]
+    },
     "testimonials": {
       "title": "TESTIMONIOS",
       "description": "Nuestros usuarios comparten sus experiencias y cómo nuestra app ha mejorado su salud y bienestar.",
@@ -436,8 +455,7 @@
     "changePassword": "Cambiar Contraseña",
     "deleteAccount": "Eliminar Cuenta"
   },
-  "lateralMenu":
-  {
+  "lateralMenu": {
     "home": "Inicio",
     "upcoming_appointments": "Próximos Turnos",
     "treatment": "Tratamiento",
@@ -450,8 +468,7 @@
     "settings": "Configuración",
     "logout": "Cerrar Sesión"
   },
-  "doctorList":{
-    "placeholder":"Buscar por nombre del médico o especialista"
+  "doctorList": {
+    "placeholder": "Buscar por nombre del médico o especialista"
   }
-  
 }

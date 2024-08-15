@@ -92,6 +92,25 @@
         }
       ]
     },
+    "aboutJustina": {
+      "title": "A Legacy of Love and Solidarity",
+      "items": [
+        {
+          "title": "Justina's Law",
+          "subtitle": "How the law was promoted",
+          "description": "Justina's Law establishes that every citizen is an organ donor by default, increasing the chances of saving lives through solidarity.",
+          "image": "/aboutJustina1.webp",
+          "link": "https://www.argentina.gob.ar/noticias/ley-justina-una-esperanza-para-quienes-aguardan-un-trasplante"
+        },
+        {
+          "title": "MultiplyX7",
+          "subtitle": "An act of love can save many lives",
+          "description": "A campaign inspired by Justina that aims to raise awareness about the importance of organ donation, highlighting how one decision can impact seven people waiting for a transplant.",
+          "image": "/aboutJustina2.webp",
+          "link": "https://www.instagram.com/multiplicatex7/?hl=es"
+        }
+      ]
+    },
     "testimonials": {
       "title": "TESTIMONIALS",
       "description": "Our users share their experiences and how our app has improved their health and well-being.",

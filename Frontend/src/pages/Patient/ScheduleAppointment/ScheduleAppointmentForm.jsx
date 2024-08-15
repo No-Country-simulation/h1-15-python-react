@@ -25,10 +25,11 @@ function ScheduleAppointmentForm({ doctor }) {
     age: "",
     date: format(new Date(), "yyyy-MM-dd"),
     time: "",
-    doctorName: doctor?.name || "",
-    doctorPhoto: doctor?.photo || "",
+    doctorName: `${doctor?.user.first_name || ""} ${doctor?.user.last_name || ""}`,
+    doctorPhoto: doctor?.user.url_photo || "",
     doctorSpecialty: doctor?.specialty || "",
   });
+
   const [profile, setProfile] = useState(null);
   const [appointmentId, setAppointmentId] = useState(null);
 
@@ -38,13 +39,17 @@ function ScheduleAppointmentForm({ doctor }) {
     const fetchDoctorSchedule = async () => {
       try {
         if (doctor?.id) {
-          const schedule = await getDoctorSchedule(doctor.id, format(selectedDate, "yyyy-MM-dd"));
-          const filteredTimes = schedule.map((appointment) => appointment.appointment_time);
+          const schedule = await getDoctorSchedule(
+            doctor.id,
+            format(selectedDate, "yyyy-MM-dd"),
+          );
+          const filteredTimes = schedule.map(
+            (appointment) => appointment.appointment_time,
+          );
           setAvailableTimes(filteredTimes);
 
-          // Asignar appointmentId si es necesario
           if (schedule.length > 0) {
-            setAppointmentId(schedule[0].id); // Ejemplo de cómo podrías establecer appointmentId
+            setAppointmentId(schedule[0].id);
           }
         }
       } catch (error) {
@@ -63,11 +68,15 @@ function ScheduleAppointmentForm({ doctor }) {
           setProfile(profile);
           setFormData((prevState) => ({
             ...prevState,
-            name: `${profile.patient.user.first_name} ${profile.patient.user.last_name}` || "",
+            name:
+              `${profile.patient.user.first_name} ${profile.patient.user.last_name}` ||
+              "",
             email: profile.patient.user.email || "",
             phone: profile.phone_number || "",
             gender: profile.gender || "",
-            age: new Date().getFullYear() - new Date(profile.birth_date).getFullYear(),
+            age:
+              new Date().getFullYear() -
+              new Date(profile.birth_date).getFullYear(),
             reason: "",
           }));
         }
@@ -80,11 +89,17 @@ function ScheduleAppointmentForm({ doctor }) {
   }, []);
 
   const handleDateClick = useCallback((date) => {
+    console.log("Selected date:", date); // Log for debugging
     setSelectedDate(date);
+    setFormData((prevState) => ({
+      ...prevState,
+      date: format(date, "yyyy-MM-dd"), // Update the date in formData
+    }));
     setSelectedTime(null);
   }, []);
 
   const handleTimeClick = useCallback((time) => {
+    console.log("Selected time:", time); // Log for debugging
     setSelectedTime(time);
     setFormData((prevState) => ({
       ...prevState,
@@ -122,7 +137,7 @@ function ScheduleAppointmentForm({ doctor }) {
       console.log("Profile:", profile);
       console.log("Appointment ID:", appointmentId);
       console.log("Form Data:", formData);
-  
+
       const confirmed = await showDialog(
         "Confirmar Acción",
         "¿Estás seguro de que deseas realizar esta acción?",
@@ -130,25 +145,22 @@ function ScheduleAppointmentForm({ doctor }) {
         "#D03E92",
         true,
       );
-  
+
       if (confirmed && profile && appointmentId) {
         const appointmentData = {
           id_user,
-          status: 'reserved',
+          status: "reserved",
           reason_for_visit: formData.reason,
         };
 
-        console.log(profile);
-        
-  
         console.log("Sending data to update appointment:", appointmentData);
-  
-        // Llama al servicio updateAppointment
+
         const result = await updateAppointment(appointmentId, appointmentData);
-  
-        // Navegar a la página de confirmación solo si la actualización fue exitosa
+
         if (result) {
-          navigate("/patient/appointment/confirmation", { state: { formData } });
+          navigate("/patient/appointment/confirmation", {
+            state: { formData },
+          });
         }
       } else {
         console.error("Perfil del paciente o ID de la cita no disponible.");
@@ -157,8 +169,6 @@ function ScheduleAppointmentForm({ doctor }) {
       console.error("Error al enviar el formulario:", error);
     }
   };
-  
-  
 
   const nextDays = Array.from({ length: 7 }, (_, i) => {
     const nextDay = new Date();
@@ -170,7 +180,20 @@ function ScheduleAppointmentForm({ doctor }) {
     <main className="max-w-screen-lg mx-auto p-4">
       <BackButton />
       <section>
-        <h2 className="text-xl font-bold mb-4 text-center">Nueva Cita</h2>
+        <h2 className="text-xl md:text-4xl font-bold mb-4 text-center">
+          Nueva Cita
+        </h2>
+        {doctor && (
+          <div className="text-center mb-4">
+            <img
+              src={doctor.user.url_photo}
+              alt={`${doctor.user.first_name} ${doctor.user.last_name}`}
+              className="mx-auto rounded-full w-24 h-24 object-cover"
+            />
+            <h3 className="text-lg font-semibold">{`${doctor.user.first_name} ${doctor.user.last_name}`}</h3>
+            <p className="text-gray-600">{doctor.specialty}</p>
+          </div>
+        )}
         <DateSelector
           nextDays={nextDays}
           selectedDate={selectedDate}
