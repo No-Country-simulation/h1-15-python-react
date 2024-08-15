@@ -7,10 +7,9 @@ export const getTodayAppointmentData = async (day) => {
   const dateFormated = `${date.getUTCFullYear()}-${(date.getUTCMonth() + 1).toString().padStart(2, "0")}-${date.getDate()}&doctor_id=${doctor}`;
   try {
     const res = await axios.get(
-      `${API_URL}/appointment/list/?fecha=${dateFormated}`,
+      `${API_URL}appointment/list/?fecha=${dateFormated}&status=reserved`,
     );
     const data = await res.data;
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Error al obtener los datos de las citas:", error);
