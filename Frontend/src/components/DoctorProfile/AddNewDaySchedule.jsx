@@ -17,8 +17,8 @@ const daysOfWeek = [
 ];
 export default function AddNewDaySchedule({ setOpenModal }) {
   const [end, setEnd] = useState(null);
-  const [entity, setEntity] = useState(null);
   const [init, setInit] = useState(null);
+  const [entity, setEntity] = useState(null);
   const [day, setDay] = useState(null);
   const [entities, setEntities] = useState([]);
 
@@ -32,10 +32,14 @@ export default function AddNewDaySchedule({ setOpenModal }) {
       postDoctorSchedule({
         entity: entity,
         schedules: [[day, init, end]],
-      }).then(() => {
-        setOpenModal(false);
-        showToast("Se han guardado tus datos.");
-        location.reload();
+      }).then(({ request }) => {
+        if (request.status === 400) {
+          showToast(JSON.parse(request.response).conflicts[0].error, "error");
+        } else {
+          setOpenModal(false);
+          showToast("Se han guardado tus datos.");
+          location.reload();
+        }
       });
     } else {
       showToast("Quedan campos vacíos.", "error");

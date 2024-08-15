@@ -5,6 +5,7 @@ import { patientRoutes } from "./routes/PatientRoutes";
 import { publicRoutes } from "./routes/PublicRoutes";
 import { doctorRoutes } from "./routes/DoctorRoutes";
 import NotFound from "./components/PageNotFound/NotFound";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const darkMode = useSelector((state) => state.darkMode);
@@ -32,6 +33,7 @@ function App() {
         {/* 404 Route */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ToastContainer/>
     </div>
   );
 }
