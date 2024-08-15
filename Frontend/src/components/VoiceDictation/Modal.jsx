@@ -23,13 +23,13 @@ const Modal = ({ isOpen, onClose, onConfirm, transcript }) => {
         <div className="flex justify-end space-x-2">
           <button
             onClick={onClose}
-            className="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600"
+            className="bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-600"
           >
             Cancelar
           </button>
           <button
             onClick={onConfirm}
-            className="bg-Justina_8 text-white py-2 px-4 rounded-md"
+            className="bg-magentaButton text-white py-2 px-4 rounded-md"
           >
             Confirmar
           </button>

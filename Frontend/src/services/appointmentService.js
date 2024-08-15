@@ -3,7 +3,6 @@ import { API_URL } from "./apiConfig";
 
 export const updateAppointment = async (id, data) => {
   try {
-    // Obtén el token del localStorage o del estado global (como Redux)
     const token = localStorage.getItem("authToken");
 
     // Verifica si el token está disponible
@@ -14,7 +13,7 @@ export const updateAppointment = async (id, data) => {
     // Configura los headers para incluir el token de autenticación
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`, // Suponiendo que tu API usa Bearer tokens
+        Authorization: `Bearer ${token}`, 
       },
     };
 

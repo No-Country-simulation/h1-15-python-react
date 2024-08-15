@@ -71,6 +71,7 @@ export const updateDoctorData = async (doctorData) => {
     console.log(error);
   }
 };
+
 export const verifyUserDoctor = async () => {
   const localToken = localStorage.getItem("authToken");
 
@@ -90,6 +91,7 @@ export const verifyUserDoctor = async () => {
     throw error;
   }
 };
+
 export const getDoctorSchedule = async (doctorId, fecha) => {
   try {
     // Log para verificar los parámetros enviados

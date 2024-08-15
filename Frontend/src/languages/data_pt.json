@@ -92,6 +92,25 @@
         }
       ]
     },
+    "aboutJustina": {
+      "title": "Um Legado de Amor e Solidariedade",
+      "items": [
+        {
+          "title": "Lei Justina",
+          "subtitle": "Como a lei foi promovida",
+          "description": "A Lei Justina estabelece que todo cidadão é doador de órgãos por default, aumentando as chances de salvar vidas através da solidariedade.",
+          "image": "/aboutJustina1.webp",
+          "link": "https://www.argentina.gob.ar/noticias/ley-justina-una-esperanza-para-quienes-aguardan-un-trasplante"
+        },
+        {
+          "title": "MultipliqueX7",
+          "subtitle": "Um ato de amor pode salvar muitas vidas",
+          "description": "Uma campanha inspirada em Justina que busca conscientizar sobre a importância da doação de órgãos, destacando como uma decisão pode impactar sete pessoas na espera de um transplante.",
+          "image": "/aboutJustina2.webp",
+          "link": "https://www.instagram.com/multiplicatex7/?hl=es"
+        }
+      ]
+    },
     "testimonials": {
       "title": "TESTEMUNHOS",
       "description": "Nossos usuários compartilham suas experiências e como nosso app melhorou sua saúde e bem-estar.",

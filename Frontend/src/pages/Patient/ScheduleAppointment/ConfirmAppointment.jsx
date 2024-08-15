@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { format } from "date-fns";
 import BackButton from "../../../components/BackButton/BackButton";
 import FooterNav from "../../../components/FooterNav/FooterNav";
 
@@ -8,69 +7,97 @@ function ConfirmAppointment() {
   const navigate = useNavigate();
   const { formData } = location.state || {};
 
+  console.log(formData);
+  console.log("Fecha recibida:", formData.date);
+
   const handleConfirm = () => {
     navigate("/patient/appointment/success");
   };
 
-  if (!formData) return <p>No se encontraron datos del formulario.</p>;
+  if (!formData)
+    return (
+      <p className="text-center text-red-600 text-lg sm:text-xl">
+        No se encontraron datos del formulario.
+      </p>
+    );
+
+  // Función para formatear la fecha en formato español largo
+ const formatDate = (dateString) => {
+  const [year, month, day] = dateString.split('-');
+  const date = new Date(year, month - 1, day);
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString('es-ES', options);
+};
+ 
+
 
   return (
-    <main className="max-w-screen-lg mx-auto p-4">
+    <main className="max-w-screen-lg mx-auto p-6 min-h-screen flex flex-col pb-20">
       <BackButton />
-      <section className="pb-20">
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
-          Tu cita
-        </h2>
-        <div className="space-y-6 md:space-y-8">
-          <div className="flex flex-col items-center md:flex-row md:items-start md:justify-center">
-            <img
-              src={formData.doctorPhoto}
-              alt={formData.doctorName}
-              className="w-20 h-20 md:w-32 md:h-32 rounded-full mb-4 md:mb-0 md:mr-6"
-            />
-            <div className="text-center md:text-left">
-              <p className="text-xl font-semibold">{formData.doctorName}</p>
-              <p className="text-gray-600">{formData.doctorSpecialty}</p>
+      <section className="flex-grow">
+        <div className="text-center mb-8">
+          <h2 className="text-lg sm:text-3xl font-bold mb-4">Confirmación de Cita</h2>
+        </div>
+        <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg border border-gray-200 mb-8">
+          <h1 className="text-lg sm:text-2xl font-semibold text-center mb-6">Datos del Médico</h1>
+          <section className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div className="flex items-center justify-center mb-6">
+              <img
+                src={formData.doctorPhoto}
+                alt={formData.doctorName || "Foto del médico"}
+                className="w-32 h-32 sm:w-40 sm:h-40 rounded-full border-4 border-gray-300 shadow-lg"
+              />
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-lg sm:text-2xl font-semibold">Médico Responsable de la Atención:</h3>
+                <p className="text-base sm:text-lg">{formData.doctorName}</p>
+              </div>
+              <div>
+                <h3 className="text-xl sm:text-2xl font-semibold">Especialidad:</h3>
+                <p className="text-base sm:text-lg">{formData.doctorSpecialty}</p>
+              </div>
+            </div>
+          </section>
+          <div className="space-y-4 mt-6">
+            <h2 className="text-lg sm:text-2xl font-semibold mb-4">Datos de la Cita</h2>
+            <div className="flex justify-between border-b border-gray-300 pb-4">
+              <h3 className="text-lg sm:text-2xl font-semibold">Fecha:</h3>
+              <p className="text-lg sm:text-xl">{formatDate(formData.date)}</p>
+            </div>
+            <div className="flex justify-between border-b border-gray-300 pb-4">
+              <h3 className="text-lg sm:text-xl">Hora:</h3>
+              <p className="text-lg sm:text-xl">{formData.time} Hrs.</p>
+            </div>
+            <h2 className="text-lg sm:text-2xl font-semibold mb-4">Datos del Paciente</h2>
+            <div className="flex justify-between border-b border-gray-300 pb-4">
+              <h3 className="text-lg sm:text-2xl font-semibold">Nombre</h3>
+              <p className="text-lg sm:text-xl">{formData.name}</p>
+            </div>
+            <div className="flex justify-between border-b border-gray-300 pb-4">
+              <h3 className="text-lg sm:text-2xl font-semibold">Correo Electrónico</h3>
+              <p className="text-lg sm:text-xl">{formData.email}</p>
+            </div>
+            <div className="flex justify-between border-b border-gray-300 pb-4">
+              <h3 className="text-lg sm:text-2xl font-semibold">Teléfono</h3>
+              <p className="text-lg sm:text-xl">{formData.phone}</p>
+            </div>
+            <div className="flex flex-col">
+              <h3 className="text-lg sm:text-2xl font-semibold">Observaciones</h3>
+              <p className="text-lg sm:text-xl mt-2">{formData.reason}</p>
             </div>
           </div>
-          <div>
-            <h3 className="font-semibold text-lg md:text-xl">Fecha</h3>
-            <p>{format(new Date(formData.date), "dd MMMM yyyy")}</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg md:text-xl">Hora</h3>
-            <p>{formData.time}</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg md:text-xl">Nombre</h3>
-            <p>{formData.name}</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg md:text-xl">
-              Correo Electrónico
-            </h3>
-            <p>{formData.email}</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg md:text-xl">Teléfono</h3>
-            <p>{formData.phone}</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg md:text-xl">Observaciones</h3>
-            <p>{formData.reason}</p>
-          </div>
-
-          <div className="flex justify-center mt-8">
-            <button
-              onClick={handleConfirm}
-              className="bg-Justina_8 text-white py-2 px-6 rounded-md outline-none text-lg md:text-xl"
-            >
-              Confirmar Cita
-            </button>
-          </div>
+        </div>
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={handleConfirm}
+            className="bg-[#D22B8B] text-white py-3 px-6 rounded-lg shadow-lg hover:bg-[#b81d6b] transition-colors font-semibold text-lg"
+          >
+            Confirmar Cita
+          </button>
         </div>
       </section>
-      <FooterNav />
+      <FooterNav className="fixed bottom-0 w-full shadow-lg" />
     </main>
   );
 }
