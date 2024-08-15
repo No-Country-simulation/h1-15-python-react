@@ -53,12 +53,12 @@ const PatientMain = () => {
           {languageData.patientMain.locateSubtitle}
         </span>
       </h2>
-      <div className="w-full relative h-[56px] rounded-lg bg-inherit my-auto border outline-none shadow-md">
+      <div className="w-full relative h-[56px] rounded-lg bg-inherit my-auto border outline-none">
         <input
           placeholder={languageData.patientMain.searchPlaceholder}
           className="w-full h-full bg-transparent pl-4 outline-none"
         />
-        <div className="absolute top-3 right-2">
+        <div className="absolute top-3 right-2 text-3xl">
           <Icon name="search" />
         </div>
       </div>

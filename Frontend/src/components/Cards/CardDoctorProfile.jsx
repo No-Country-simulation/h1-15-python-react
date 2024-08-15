@@ -12,7 +12,7 @@ const CardDoctorProfile = ({ doctor }) => {
         <h2 className="text-normal md:text-xl font-semibold text-gray-800 mt-2 md:mt-0">
           Dr. {doctor.name}
         </h2>
-        <p className="text-gray-600 text-left">{doctor.specialty}</p>
+        <p className="text-gray-600 text-center md:text-left">{doctor.specialty}</p>
         <div className="flex flex-wrap justify-center md:justify-start mt-2">
           <span className="text-yellow-500 mr-1">★</span>
           <span className="mr-1">{doctor.rating}</span>

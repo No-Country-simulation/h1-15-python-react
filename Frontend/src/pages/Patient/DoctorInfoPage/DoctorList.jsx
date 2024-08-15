@@ -7,6 +7,7 @@ import BackButton from "../../../components/BackButton/BackButton";
 import PopupMessage from "../../../components/PopupMessage";
 import { getDoctorDataAll } from "../../../services/doctorService";
 import useLanguage from "../../../hooks/useLanguage";
+import Spinner from "../../../components/Spinner";
 
 function DoctorList() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -31,7 +32,7 @@ function DoctorList() {
     (doctor) =>
       doctor.user.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       doctor.user.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doctor.specialty.toLowerCase().includes(searchTerm.toLowerCase())
+      doctor.specialty.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const handleClosePopup = () => {
@@ -39,7 +40,11 @@ function DoctorList() {
   };
 
   if (!languageData) {
-    return <div>Cargando datos...</div>;
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   }
 
   return (
@@ -70,7 +75,7 @@ function DoctorList() {
                   specialty: doctor.specialty,
                   reviews: doctor.reviews,
                   rating: doctor.rating,
-                  url_photo:doctor.user.url_photo
+                  url_photo: doctor.user.url_photo,
                 }}
               />
             </Link>

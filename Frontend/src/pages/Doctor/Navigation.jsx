@@ -13,7 +13,7 @@ const Navigation = () => {
   const lastLink = languageData.sidebar[languageData.sidebar.length - 1];
 
   return (
-    <aside className="bg-red-500 flex flex-col w-[300px] text-white h-full min-h-[90dvh] overflow-hidden font-josefin rounded-lg font-bold">
+    <aside className="bg-red-500 flex flex-col w-[300px] text-white h-full min-h-[90dvh] overflow-hidden rounded-lg font-bold">
       <nav className="flex flex-col bg-magentaButton w-full min-h-full gap-6 flex-grow p-4 rounded-lg text-xl">
         {languageData.sidebar.slice(0, -1).map((link) => (
           <Link
