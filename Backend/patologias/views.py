@@ -1,6 +1,6 @@
 from rest_framework import generics, status, response
 from core.models import Pathology, Nomenclature, Specialty
-from patologias.serializers import PathologySerializer
+from patologias.serializers import PathologySerializer, ViewPathologySerializer
 from drf_spectacular.utils import extend_schema
 from django.shortcuts import get_object_or_404
 
@@ -9,6 +9,11 @@ class PathologyList(generics.ListCreateAPIView):
     queryset = Pathology.objects.all()
     serializer_class = PathologySerializer
 
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return PathologySerializer 
+        return ViewPathologySerializer
+    
     @extend_schema(
         tags=['Patologia'],
         summary=f'Lista todas las patologias',
