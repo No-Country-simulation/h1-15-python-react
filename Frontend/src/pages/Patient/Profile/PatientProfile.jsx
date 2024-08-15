@@ -14,6 +14,7 @@ import ReadOnlyProfile from "./ReadOnlyProfile";
 import { showToast } from "../../../utils/toast";
 import { ToastContainer } from "react-toastify";
 import NoEditableProfileInfo from "../components/NoEditableProfileInfo";
+import Spinner from "../../../components/Spinner";
 
 const PatientProfile = () => {
   const [formData, setFormData] = useState({
@@ -144,7 +145,7 @@ const PatientProfile = () => {
         <NoEditableProfileInfo/>
         <section>
           {loadingProfile ? (
-            <p>Cargando perfil...</p> 
+            <Spinner/> 
           ) : isDataAvailable ? (
             <ReadOnlyProfile formData={formData} />
           ) : (
