@@ -363,6 +363,9 @@ class TurnoCreate(generics.CreateAPIView):
         date_end = datetime.strptime(data_request['date_end'], '%Y-%m-%d')
         appointment_duration = int(data_request['appointment_duration'])  # asumiendo que es un entero en minutos
 
+        if appointment_duration < 10:
+            appointment_duration = 10
+        
         created_appointments = 0
         conflicts = []
 
