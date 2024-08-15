@@ -44,7 +44,7 @@ def analizar_dia_laboral(datos_dias, fecha, duracion):
             return turnos_del_dia
     return "vacio"
 
-def validar_fechas(datos_dias, fecha_inicio, fecha_fin, duracion):
+def validate_dates(datos_dias, fecha_inicio, fecha_fin, duracion):
     
     # Convertir las cadenas de entrada a objetos datetime
     fecha_inicio_obj = datetime.strptime(fecha_inicio, "%Y-%m-%d")
@@ -62,11 +62,11 @@ def validar_fechas(datos_dias, fecha_inicio, fecha_fin, duracion):
     print(lista_turnos)
     return lista_turnos
 
-def obtener_fecha_actual_str():
+def get_current_date_str():
     hoy = datetime.now().date()
     return str(hoy)
 
-def generar_fecha_fin_str(cantidad_dias):
+def generate_end_date_str(cantidad_dias):
     hoy = datetime.now()
     fin = hoy + timedelta(days=cantidad_dias)
     fecha_fin = fin.date()

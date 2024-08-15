@@ -1,13 +1,22 @@
 from rest_framework import serializers
-from patologias.serializers import PatologiaSerializer
-from core.models import Tratamiento
-
-# Serializers for Tratamiento model
+from core.models import Treatment, TreatAdherence
 
 
-class TratamientoSerializer(serializers.ModelSerializer):
-    pathology_reference = PatologiaSerializer(read_only=True, many=True)
+# Serializers for Treatment model
+class TreatmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Treatment
+        fields = '__all__'
+        
+class ViewTreatmentSerializer(serializers.ModelSerializer):
+    pathology = serializers.StringRelatedField(read_only=True)
 
     class Meta:
-        model = Tratamiento
+        model = Treatment
+        fields = ['id', 'treat_name', 'pathology', 'treat_type', 'treat_medication', 'treat_indications', 'create_by', 'is_active']    
+
+# Serializers for Treatment model
+class TreatAdherenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TreatAdherence
         fields = '__all__'

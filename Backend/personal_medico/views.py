@@ -1,20 +1,17 @@
-from rest_framework import generics , status
-from core.models import PersonalMedico, PersonalMedicoReviews
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from personal_medico.serializers import PersonalMedicoSerializer, PersonalMedicoNewSerializer, ReviewSerializer
-from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework import generics, status
+from core.models import MedicalStaff, MedicalStaffReviews
+from personal_medico.serializers import MedicalStaffSerializer, ReviewSerializer, ReviewSerializerCreate , PersonalMedicoNewSerializer
 from drf_spectacular.utils import extend_schema
-
-
+from django.http import JsonResponse
 
 class PersonalMedicoList(generics.ListCreateAPIView):
-    queryset = PersonalMedico.objects.all()
+    queryset = MedicalStaff.objects.all()
+    serializer_class = PersonalMedicoNewSerializer
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
             return PersonalMedicoNewSerializer
-        return PersonalMedicoSerializer
+        return MedicalStaffSerializer
 
     @extend_schema(
         tags=['Personal Medico'],
@@ -34,8 +31,8 @@ class PersonalMedicoList(generics.ListCreateAPIView):
 
 
 class PersonalMedicoDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PersonalMedico.objects.all()
-    serializer_class = PersonalMedicoSerializer
+    queryset = MedicalStaff.objects.all()
+    serializer_class = MedicalStaffSerializer
 
     @extend_schema(
         tags=['Personal Medico'],
@@ -61,7 +58,6 @@ class PersonalMedicoDetail(generics.RetrieveUpdateDestroyAPIView):
     def patch(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
-
     @extend_schema(
         tags=['Personal Medico'],
         summary='Elimina un medico',
@@ -72,17 +68,17 @@ class PersonalMedicoDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class CalificaPersonalMedicoList(generics.ListCreateAPIView):
-    serializer_class = ReviewSerializer
+    serializer_class = ReviewSerializerCreate
 
     def get_queryset(self):
-        return PersonalMedicoReviews.objects.filter(id_personal_medico=self.kwargs['pk'])
+        return MedicalStaffReviews.objects.filter(medical_staff=self.kwargs['pk'])
 
     def perform_create(self, serializer):
         # Obtener el id_personal_medico de la URL
-        id_personal_medico = self.kwargs['pk']
-        personal_medico_instance = PersonalMedico.objects.get(id=id_personal_medico)
-        serializer.save(id_personal_medico=personal_medico_instance)
-
+        id_doctor = self.kwargs['pk']
+        personal_medico_instance = MedicalStaff.objects.get(
+            id=id_doctor)
+        serializer.save(medical_staff=personal_medico_instance)
 
     @extend_schema(
         tags=['Calificaciones a personal Medico'],
@@ -94,8 +90,32 @@ class CalificaPersonalMedicoList(generics.ListCreateAPIView):
 
     @extend_schema(
         tags=['Calificaciones a personal Medico'],
-        summary='Graba una nueva calificacion medica',
-        description="Crea una nueva calificacion Medica"
+        summary='Califica a un medico',
+        description="Agregas una calificación a un medico"
     )
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
+
+class VerifyDoctor(generics.ListAPIView):
+    @extend_schema(
+        tags=['Personal Medico'],
+        summary='Verifica si el usuario es doctor',
+        description="Verifica si el usuario es doctor"
+    )
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        
+        # Verificar si el usuario está autenticado
+        if not user.is_authenticated:
+            return JsonResponse({'error': 'User is not authenticated'}, status=401)
+        
+        # Verificar si el usuario está registrado como paciente
+        try:
+            doctor = MedicalStaff.objects.filter(user=user).first()
+            if doctor:
+                return JsonResponse({'is_doctor': True, 'Doctor_id': doctor.id}, status=200)
+            else:
+                return JsonResponse({'is_doctor': False}, status=200)
+        except MedicalStaff.DoesNotExist:
+            return JsonResponse({'is_doctor': False}, status=200)

@@ -14,7 +14,7 @@ def registration_mail(destination_mail, password):
 def activation_mail(destination_mail, password):
   send_mail(
     subject="Activación de cuenta", 
-    message="Se ha activado su cuenta con éxito, por favor active su cuenta para poder iniciar sesión, su nueva contraseña es "+ password,
+    message="Se ha activado su cuenta con éxito, su nueva contraseña es "+ password,
     from_email="activacion@justina-io.com", 
     recipient_list=[destination_mail]
     )

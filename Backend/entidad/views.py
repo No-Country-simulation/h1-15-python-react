@@ -1,12 +1,12 @@
 from rest_framework import generics
-from core.models import Entidad as ModeloCore
+from core.models import Entity as ModeloCore
 from entidad.serializers import EntidadSerializer as Serializador
 from drf_spectacular.utils import extend_schema
 
 REFERENCIA_TAGS = "Entidad"
 
 
-class EntidadList(generics.ListCreateAPIView):
+class EntidadList(generics.ListAPIView):
     queryset = ModeloCore.objects.all()
     serializer_class = Serializador
 
@@ -17,14 +17,6 @@ class EntidadList(generics.ListCreateAPIView):
     )
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
-
-    @extend_schema(
-        tags=[REFERENCIA_TAGS],
-        summary='Crea una entidad',
-        description="Crea una entidad"
-    )
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
 
 
 class  EntidadDetail(generics.RetrieveUpdateDestroyAPIView):

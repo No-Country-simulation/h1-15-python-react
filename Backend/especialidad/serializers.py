@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from core.models import Especialidad as Modelo
+from core.models import Specialty	 as Modelo
 import os
 
 class EspecialidadSerializer(serializers.ModelSerializer):

@@ -1,5 +1,5 @@
 from rest_framework import generics
-from core.models import AntecedenteMedico as ModeloCore
+from core.models import MedicalHistory as ModeloCore
 from antecedente_medico.serializers import AntecedenteMedicoSerializer as Serializador
 from drf_spectacular.utils import extend_schema
 

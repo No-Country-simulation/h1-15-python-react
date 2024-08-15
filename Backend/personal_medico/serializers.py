@@ -1,75 +1,88 @@
-
 from rest_framework import serializers
-from core.models import PersonalMedico, Disponibilidad, PersonalMedicoReviews
+from core.models import MedicalStaff, Availability, MedicalStaffReviews
 from django.db.models import Avg
-import os
+from usuarios.serializers import UserSerializer
+
+from drf_spectacular.utils import extend_schema_field
 
 class ReviewSerializer(serializers.ModelSerializer):
-    id_personal_medico = serializers.PrimaryKeyRelatedField(queryset=PersonalMedico.objects.all(), write_only=True)
+    id_doctor = serializers.PrimaryKeyRelatedField(
+        queryset=MedicalStaff.objects.all(), write_only=True)
 
     class Meta:
-        model = PersonalMedicoReviews
-        fields = ['id', 'descripcion', 'calificacion', 'timestamp', 'id_personal_medico']
+        model = MedicalStaffReviews
+        fields = '__all__'
 
+class ReviewSerializerCreate(serializers.ModelSerializer):
+
+    class Meta:
+        model = MedicalStaffReviews
+        fields = ['description', 'rating']
 
 
 class DisponibilidadSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Disponibilidad
-        fields = ['dia', 'hora_inicio_turnos', 'hora_fin_turnos']
+        model = Availability
+        fields = '__all__'
 
-class PersonalMedicoSerializer(serializers.ModelSerializer):
-    specialty = serializers.CharField(source='id_especialidad.descripcion')
+
+class MedicalStaffSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True) 
+    specialty = serializers.StringRelatedField(read_only=True)
     schedule = serializers.SerializerMethodField()
     whatsapp = serializers.SerializerMethodField()
     reviews = serializers.SerializerMethodField()
     rating = serializers.SerializerMethodField()
 
     class Meta:
-        model = PersonalMedico
-        fields = ['id', 'nombre_completo', 'specialty', 'reviews', 'photo', 'rating', 'descripcion', 'schedule', 'whatsapp']
+        model = MedicalStaff
+        # Cuando se implemente el almacenamiento de archivos debemos agregar 'documents' a la lista de campos
+        fields = ['id', 'user', 'specialty', 'medical_license', 'consultation_phone',
+                  'schedule', 'whatsapp', 'reviews', 'rating', 'is_active']
 
-    def get_schedule(self, obj):
-        availability = Disponibilidad.objects.filter(medico=obj)
+    @extend_schema_field(serializers.DictField())
+    def get_schedule(self, obj)-> dict:
+        availability = Availability.objects.filter(doctor=obj)
         schedule = {}
 
         for slot in availability:
-            institucion = slot.institucion.descripcion
-            day = slot.dia.capitalize()
-            
+            entity = slot.entity.name
+            day = slot.day.capitalize()
+
             # Asegurarse de que la institución esté en el diccionario
-            if institucion not in schedule:
-                schedule[institucion] = {}
+            if entity not in schedule:
+                schedule[entity] = {}
 
             # Asegurarse de que el día esté en el diccionario de la institución
-            if day not in schedule[institucion]:
-                schedule[institucion][day] = []
+            if day not in schedule[entity]:
+                schedule[entity][day] = []
 
             # Agregar los horarios a la lista del día
-            schedule[institucion][day].append([
-                slot.hora_inicio_turnos.strftime("%I:%M %p"),
-                slot.hora_fin_turnos.strftime("%I:%M %p")
+            schedule[entity][day].append([
+                slot.start_time.strftime("%H:%M"),
+                slot.end_time.strftime("%H:%M")
             ])
 
         return schedule
+    @extend_schema_field(serializers.CharField())
+    def get_whatsapp(self, obj) -> str:
+        # Asegúrate de que este campo exista en tu perfil de usuario
+        return obj.consultation_phone
 
-   
-    def get_whatsapp(self, obj):
-        return obj.telefono_consulta  # Asegúrate de que este campo exista en tu perfil de usuario
-    
-    def get_reviews(self, obj):
-        return PersonalMedicoReviews.objects.filter(id_personal_medico=obj).count()
-    
-    def get_rating(self, obj):
-        reviews = PersonalMedicoReviews.objects.filter(id_personal_medico=obj)
+    @extend_schema_field(serializers.IntegerField())
+    def get_reviews(self, obj) -> int:
+        return MedicalStaffReviews.objects.filter(medical_staff=obj).count()
+
+    @extend_schema_field(serializers.FloatField())
+    def get_rating(self, obj) -> float:
+        reviews = MedicalStaffReviews.objects.filter(medical_staff=obj)
         if reviews.exists():
-            return round(reviews.aggregate(Avg('calificacion'))['calificacion__avg'], 2)
+            return round(reviews.aggregate(Avg('rating'))['rating__avg'], 2)
         return None  # Devuelve `None` si no hay calificaciones
 
 
 class PersonalMedicoNewSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = PersonalMedico
-        fields = ['id', 'nombre_completo','id_user', 'id_especialidad', 'photo', 'descripcion', 'telefono_consulta', 'is_active']
-
+        model = MedicalStaff
+        fields = '__all__'
