@@ -1,6 +1,6 @@
 from rest_framework import generics, status
 from core.models import MedicalStaff, MedicalStaffReviews
-from personal_medico.serializers import MedicalStaffSerializer, ReviewSerializer, PersonalMedicoNewSerializer
+from personal_medico.serializers import MedicalStaffSerializer, ReviewSerializer, ReviewSerializerCreate , PersonalMedicoNewSerializer
 from drf_spectacular.utils import extend_schema
 from django.http import JsonResponse
 
@@ -68,17 +68,17 @@ class PersonalMedicoDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class CalificaPersonalMedicoList(generics.ListCreateAPIView):
-    serializer_class = ReviewSerializer
+    serializer_class = ReviewSerializerCreate
 
     def get_queryset(self):
-        return MedicalStaffReviews.objects.filter(id_personal_medico=self.kwargs['pk'])
+        return MedicalStaffReviews.objects.filter(medical_staff=self.kwargs['pk'])
 
     def perform_create(self, serializer):
         # Obtener el id_personal_medico de la URL
-        id_personal_medico = self.kwargs['pk']
+        id_doctor = self.kwargs['pk']
         personal_medico_instance = MedicalStaff.objects.get(
-            id=id_personal_medico)
-        serializer.save(id_personal_medico=personal_medico_instance)
+            id=id_doctor)
+        serializer.save(medical_staff=personal_medico_instance)
 
     @extend_schema(
         tags=['Calificaciones a personal Medico'],

@@ -6,12 +6,18 @@ from usuarios.serializers import UserSerializer
 from drf_spectacular.utils import extend_schema_field
 
 class ReviewSerializer(serializers.ModelSerializer):
-    id_personal_medico = serializers.PrimaryKeyRelatedField(
+    id_doctor = serializers.PrimaryKeyRelatedField(
         queryset=MedicalStaff.objects.all(), write_only=True)
 
     class Meta:
         model = MedicalStaffReviews
         fields = '__all__'
+
+class ReviewSerializerCreate(serializers.ModelSerializer):
+
+    class Meta:
+        model = MedicalStaffReviews
+        fields = ['description', 'rating']
 
 
 class DisponibilidadSerializer(serializers.ModelSerializer):
