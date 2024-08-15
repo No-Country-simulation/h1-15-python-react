@@ -18,12 +18,10 @@ const DoctorConsultant = () => {
   const [consulta, setConsulta] = useState();
   const [patologias, setPatologias] = useState();
   const [dictado, setDictado] = useState("");
-
   const [formData, setFormData] = useState({
     attention_observations: "",
   });
   const [enableSend, setEnabledSend] = useState(false);
-
   const [doctorData, setDoctorData] = useState(null);
 
   const navigation = useNavigate();
@@ -39,6 +37,25 @@ const DoctorConsultant = () => {
     setDictado(text);
   };
 
+  useEffect(() => {
+    const consult = async () => {
+      const consultas = await getTodayAppointmentData();
+      const patientConsult = consultas.filter(
+        (consulta) => consulta?.id === parseInt(id),
+      );
+      setConsulta(patientConsult[0]);
+    };
+    consult();
+  }, []);
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      patient: consulta?.patient.id,
+      entity: consulta?.entity.name,
+      reason_for_visit: consulta?.reason_for_visit,
+      appointment_id: consulta?.id,
+    });
+  }, [consulta]);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -53,24 +70,6 @@ const DoctorConsultant = () => {
       setEnabledSend(value.trim() !== "" || dictado.trim() !== "");
     }
   };
-
-  useEffect(() => {
-    const consult = async () => {
-      const consultas = await getTodayAppointmentData();
-      const patientConsult = consultas.filter(
-        (consulta) => consulta?.id === parseInt(id),
-      );
-      setConsulta(patientConsult[0]);
-      setFormData({
-        ...formData,
-        patient: patientConsult[0]?.patient.id,
-        entity: patientConsult[0]?.entity.name,
-        reason_for_visit: patientConsult[0]?.reason_for_visit,
-      });
-    };
-
-    consult();
-  }, [id]);
   useEffect(() => {
     const pato = async () => {
       const patologies = await getAllPatologys();
@@ -102,6 +101,8 @@ const DoctorConsultant = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("datos previos al envío de la data", formData);
+
     sendTreatment(formData).then((data) => {
       if (data?.status == 201) {
         showToast(
