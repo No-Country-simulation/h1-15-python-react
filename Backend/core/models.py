@@ -266,6 +266,8 @@ class Appointment(models.Model):
         ("available", "Available"),
         ("reserved", "Reserved"),
         ("canceled", "Canceled"),
+        ("absent", "Absent"),
+        ("complete", "Complete"),
     ]
     appointment_date = models.CharField(max_length=10, default='01-01-2024')
     appointment_time = models.CharField(max_length=10, default='00:00')

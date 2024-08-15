@@ -46,6 +46,15 @@ class MedicalHistoryAdmin(admin.ModelAdmin):
 class CrossTrasplantAdmin(admin.ModelAdmin):
     list_display = ('cross_patient', 'HLA_patient', 'cross_donor', 'HLA_donor', 'description')
     search_fields = ('cross_patient', 'HLA_patient', 'HLA_donor')
+    
+class EntityAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'address')
+    
+class PathologyAdmin(admin.ModelAdmin):
+    list_display = ('name', 'specialty', 'description')
+
+class MedicationAdmin(admin.ModelAdmin):
+    list_display = ('medication_name', 'pathology', 'treatment', 'pharmacy', 'description', 'dosage')
 
 # Register your models here.
 admin.site.site_header = 'Administración'
@@ -55,18 +64,18 @@ admin.site.register(Address)
 admin.site.register(DocumentType)
 admin.site.register(User, UserAdmin)
 admin.site.register(Financer)
-admin.site.register(Entity)
+admin.site.register(Entity, EntityAdmin)
 admin.site.register(PersonalInfo, PersonalInfoAdmin)
 admin.site.register(Patient, PatientAdmin)
 admin.site.register(MedicalStaff, MedicalStaffAdmin)
 admin.site.register(Specialty)
 admin.site.register(Availability, AvailabilityAdmin)
 admin.site.register(Appointment, AppointmentAdmin)
-admin.site.register(Pathology)
+admin.site.register(Pathology, PathologyAdmin)
 admin.site.register(Treatment, TreatmentAdmin)
 admin.site.register(TreatAdherence, TreatAdherenceAdmin)
 admin.site.register(Pharmacy)
-admin.site.register(Medication)
+admin.site.register(Medication, MedicationAdmin)
 admin.site.register(ClinicalHistory, ClinicalHistoryAdmin)
 admin.site.register(MedicalHistory, MedicalHistoryAdmin)
 admin.site.register(CrossTransplant, CrossTrasplantAdmin)
