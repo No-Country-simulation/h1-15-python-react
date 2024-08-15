@@ -24,7 +24,7 @@ export const sendTreatment = async (datos) => {
     Authorization: "Bearer " + authToken,
   };
   try {
-    const response = await axios.post(`${API_URL}treat_adherence/`, body, {
+    const response = await axios.post(`${API_URL}/treat_adherence/`, body, {
       headers: config,
     });
     return response;

@@ -7,7 +7,7 @@ export const getTodayAppointmentData = async (day) => {
   const dateFormated = `${date.getUTCFullYear()}-${(date.getUTCMonth() + 1).toString().padStart(2, "0")}-${date.getDate()}&doctor_id=${doctor}`;
   try {
     const res = await axios.get(
-      `${API_URL}appointment/list/?fecha=${dateFormated}&status=reserved`,
+      `${API_URL}/appointment/list/?fecha=${dateFormated}&status=reserved`,
     );
     const data = await res.data;
     return data;
