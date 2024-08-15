@@ -15,6 +15,8 @@ const CardPatientAttendance = ({ paciente, enConsulta }) => {
   const [age, setAge] = useState();
   const [patologias, setPatologias] = useState([]);
   const [patologia, setPatologia] = useState(null);
+  console.log(paciente);
+
   useEffect(() => {
     const pato = async () => {
       const patologies = await getAllPatologys();
@@ -37,7 +39,7 @@ const CardPatientAttendance = ({ paciente, enConsulta }) => {
       setPatologia(findPatology?.name);
     };
     historial();
-  }, [paciente.patient.id, patologias]);
+  }, [paciente?.patient?.id, patologias]);
   useEffect(() => {
     const datosDoctor = async () => {
       const data = await getDoctorData();
@@ -80,7 +82,7 @@ const CardPatientAttendance = ({ paciente, enConsulta }) => {
         <div className="flex justify-around gap-4">
           <Avatar
             className={"w-[60px] h-auto rounded-full mt-0 self-center"}
-            imagen={paciente.patient.user?.url_photo}
+            imagen={paciente?.patient?.user?.url_photo}
           />
           <div className="flex flex-col">
             <div className={`flex gap-3 items-center font-bold `}>
@@ -94,9 +96,9 @@ const CardPatientAttendance = ({ paciente, enConsulta }) => {
               </p>
             </div>
             <p className="text-xl">
-              {paciente.patient.user.first_name +
+              {paciente?.patient?.user?.first_name +
                 " " +
-                paciente.patient.user.last_name}
+                paciente?.patient?.user?.last_name}
             </p>
             <p className="font-light">
               Edad: <span>{age}</span> años
@@ -115,7 +117,7 @@ const CardPatientAttendance = ({ paciente, enConsulta }) => {
 
         <div className="bg-red-500 rounded-3xl p-4 flex flex-col relative text-base min-h-36 pb-20 mt-5 text-white">
           <p>
-            Obra Social: <strong>{paciente.patient.financer}</strong>
+            Obra Social: <strong>{paciente?.patient?.financer}</strong>
           </p>
           <p>
             Tipo de Sangre: <strong>{patientInfo?.blood_type}</strong>
@@ -123,16 +125,16 @@ const CardPatientAttendance = ({ paciente, enConsulta }) => {
           <p>
             Alergias:{" "}
             <strong>
-              {paciente.medicalHistory
-                ? paciente.medicalHistory.allergies
+              {paciente?.medicalHistory
+                ? paciente?.medicalHistory.allergies
                 : "Sin HC"}
             </strong>
           </p>
           <p>
             Condiciones:{" "}
             <strong>
-              {paciente.medicalHistory
-                ? paciente.medicalHistory.conditions
+              {paciente?.medicalHistory
+                ? paciente?.medicalHistory.conditions
                 : "Sin HC"}
             </strong>
           </p>

@@ -20,22 +20,25 @@ const CardPatientList = ({
       <div className="ml-[37px] flex items-center justify-between w-full">
         <div className="flex gap-2 items-center">
           <img
-            src={paciente?.user.url_photo}
-            alt={paciente?.user.first_name}
+            src={paciente?.patient.user.url_photo}
+            alt={paciente?.patient.user.first_name}
             className="w-10 rounded-full"
           />
           <div>
             <p className="font-medium text-sm">
-              {paciente?.user.first_name + " " + paciente?.user.last_name}
+              {paciente?.patient.user.first_name +
+                " " +
+                paciente?.patient.user.last_name}
             </p>
             <p className="text-sm">
-              {paciente.age ? paciente.age : "20 años"}, Hipocardíaco
+              {paciente.patient.age ? paciente.patient.age : "20 años"},
+              Hipocardíaco
             </p>
           </div>
         </div>
         <div>Hospital Alemán</div>
         <button className="bg-white rounded-full px-2 py-2 hover:scale-110 transition-all duration-200 text-[#0009]">
-          {pacienteSeleccionado?.id === paciente?.id ? (
+          {pacienteSeleccionado?.patient.id === paciente?.patient.id ? (
             <Icon name="FiArrowLeft" />
           ) : (
             <Icon name="FiArrowRight" />

@@ -14,13 +14,17 @@ const DoctorPatients = () => {
   useEffect(() => {
     const loadPacientes = async () => {
       const data = await getAllPatients();
-      setPacientes(data);
+      const pacientesData = data.map((patient) => ({ patient }));
+      setPacientes(pacientesData);
+      console.log(pacientesData);
     };
     loadPacientes();
   }, []);
   useEffect(() => {
     const filtered = pacientes.filter((patient) =>
-      patient.user.first_name.toLowerCase().includes(value.toLowerCase()),
+      patient.patient.user.first_name
+        .toLowerCase()
+        .includes(value.toLowerCase()),
     );
     setFilteredPatients(filtered);
   }, [pacientes, value]);
@@ -29,10 +33,9 @@ const DoctorPatients = () => {
     setValue(e.target.value);
     setHasContent(e.target.value !== "");
   };
-
   return (
     <main>
-      <h1 className="font-semibold text-5xl font-josefin">Pacientes</h1>
+      <h1 className="font-semibold text-3xl font-josefin">Pacientes</h1>
       <div className="flex items-center">
         {/**CUADRO DE BUSQUEDA */}
         <div className="relative px-2 w-[705px] h-[56px]">
