@@ -5,7 +5,7 @@ import { formatDate } from "../utils/date";
 export const sendTreatment = async (datos) => {
   const authToken = localStorage.getItem("authToken");
   const body = {
-    patient: datos.patient.toString(),
+    patient: datos.patient?.toString(),
     entity: datos.entity,
     date_of_attention: formatDate(new Date()),
     pathology: datos.pathology,
@@ -24,8 +24,7 @@ export const sendTreatment = async (datos) => {
     const response = await axios.post(`${API_URL}treat_adherence/`, body, {
       headers: config,
     });
-    const data = await response.data;
-    return data;
+    return response;
   } catch (error) {
     console.log(error);
   }

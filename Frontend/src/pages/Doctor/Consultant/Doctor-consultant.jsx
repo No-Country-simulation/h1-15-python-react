@@ -1,5 +1,5 @@
 "use client";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import LateralView from "../../../components/LateralView";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
@@ -9,6 +9,8 @@ import { getAllPatologys } from "../../../services/patologysService";
 import { getDoctorData } from "../../../services/doctorService";
 import { sendTreatment } from "../../../services/treatmentsService";
 import { getHistorys } from "../../../services/clinicHistory";
+import { ToastContainer } from "react-toastify";
+import { showToast } from "../../../utils/toast";
 
 const DoctorConsultant = () => {
   const url = useLocation();
@@ -16,16 +18,18 @@ const DoctorConsultant = () => {
   const [consulta, setConsulta] = useState();
   const [patologias, setPatologias] = useState();
   const [dictado, setDictado] = useState("");
+
   const [formData, setFormData] = useState({
     attention_observations: "",
   });
   const [enableSend, setEnabledSend] = useState(false);
 
   const [doctorData, setDoctorData] = useState(null);
+
+  const navigation = useNavigate();
   useEffect(() => {
     const datosDoctor = async () => {
       const data = await getDoctorData();
-
       setDoctorData(data);
     };
     datosDoctor();
@@ -98,7 +102,19 @@ const DoctorConsultant = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendTreatment(formData);
+    sendTreatment(formData).then((data) => {
+      if (data?.status == 201) {
+        showToast(
+          "Consulta terminada. Datos enviados correctamente",
+          "success",
+        );
+        setTimeout(() => {
+          navigation("/doctor");
+        }, 3000);
+      } else {
+        showToast("Error de conexión. Datos no enviados", "error");
+      }
+    });
   };
 
   return (
@@ -195,6 +211,8 @@ const DoctorConsultant = () => {
         enConsulta={true}
         HC={formData?.pathology}
       />
+
+      <ToastContainer />
     </main>
   );
 };
