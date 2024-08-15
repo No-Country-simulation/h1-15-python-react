@@ -50,6 +50,7 @@ const DoctorAppointments = () => {
             day={fecha}
             setPatient={setSelectedPatient}
             selectedPatient={selectedPatient}
+            notShowCTA={true}
           />
         </article>
       </section>

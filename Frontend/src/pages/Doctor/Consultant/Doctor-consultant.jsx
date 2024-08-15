@@ -4,33 +4,32 @@ import LateralView from "../../../components/LateralView";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import VoiceDictation from "../../../components/VoiceDictation/VoiceDictation";
-import {
-  fetchMedicalHistory,
-  fetchPatientData,
-} from "../../../services/patientService";
-import { useSelector } from "react-redux";
-import { calculateAge } from "../../../utils/date";
+import { getTodayAppointmentData } from "../../../services/appointments";
+import { getAllPatologys } from "../../../services/patologysService";
+import { getDoctorData } from "../../../services/doctorService";
+import { sendTreatment } from "../../../services/treatmentsService";
+import { getHistorys } from "../../../services/clinicHistory";
 
 const DoctorConsultant = () => {
   const url = useLocation();
   const id = url.pathname?.split("/")[3];
-
-  const doctorInfo = useSelector((state) => state.doctor.doctorInfo);
-
-  const [paciente, setPaciente] = useState({
-    name: "",
-    doctor: "",
-    edad: "",
-    financer: "",
-    diagnostico: "",
-    presionArterial: "",
-    allergies: "",
-    actualMedication: "",
-    conditions: "",
-  });
-
+  const [consulta, setConsulta] = useState();
+  const [patologias, setPatologias] = useState();
   const [dictado, setDictado] = useState("");
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    attention_observations: "",
+  });
+  const [enableSend, setEnabledSend] = useState(false);
+
+  const [doctorData, setDoctorData] = useState(null);
+  useEffect(() => {
+    const datosDoctor = async () => {
+      const data = await getDoctorData();
+
+      setDoctorData(data);
+    };
+    datosDoctor();
+  }, []);
 
   const handleDictate = (text) => {
     setDictado(text);
@@ -42,81 +41,82 @@ const DoctorConsultant = () => {
       ...formData,
       [name]: value,
     });
-    if (name === "observation") {
+    if (name === "observations") {
       setFormData({
         ...formData,
-        [name]: dictado,
+        [name]: dictado || value,
       });
+      setEnabledSend(value.trim() !== "" || dictado.trim() !== "");
     }
   };
 
   useEffect(() => {
-    fetchMedicalHistory();
-    fetchPatientData(id);
-  }, [id]);
-  const patientData = useSelector((state) => state.patients.selectedPatient);
+    const consult = async () => {
+      const consultas = await getTodayAppointmentData();
+      const patientConsult = consultas.filter(
+        (consulta) => consulta?.id === parseInt(id),
+      );
+      setConsulta(patientConsult[0]);
+      setFormData({
+        ...formData,
+        patient: patientConsult[0]?.patient.id,
+        entity: patientConsult[0]?.entity.name,
+        reason_for_visit: patientConsult[0]?.reason_for_visit,
+      });
+    };
 
-  const medicalHistory = useSelector((state) => state.patients.medicalHistory);
+    consult();
+  }, [id]);
   useEffect(() => {
-    const historiaPaciente = medicalHistory.find(
-      (patient) => patient.patient === parseInt(id),
-    );
-    setPaciente({
-      name:
-        patientData?.patient?.user?.first_name +
-        " " +
-        patientData?.patient?.user?.last_name,
-      age: calculateAge(patientData?.birth_date),
-      financer: patientData?.patient.financer,
-      diagnostic: "Hepatitis C",
-      bloodType: patientData?.blood_type,
-      allergies: historiaPaciente?.allergies,
-      actualMedication: historiaPaciente?.active_medication,
-      conditions: historiaPaciente?.conditions,
-    });
-  }, [patientData]);
+    const pato = async () => {
+      const patologies = await getAllPatologys();
+      const patologiesFiltered = patologies?.filter(
+        (patologia) => patologia?.specialty === doctorData?.specialty,
+      );
+      setPatologias(patologiesFiltered);
+    };
+    pato();
+  }, [doctorData?.specialty]);
+  useEffect(() => {
+    const historial = async () => {
+      const result = await getHistorys();
+      const filterResults = result?.filter(
+        (history) => history?.patient === consulta?.patient.id,
+      );
+      const findPatology = patologias?.find(
+        (patologia) => patologia?.id === filterResults[0]?.pathology,
+      );
+      setFormData({
+        ...formData,
+        pathology: filterResults[0] ? findPatology?.name : "",
+      });
+    };
+    historial();
+  }, [patologias]);
   {
     /**DEBE ENVIAR A LA API DE HISTORIA CLINICA */
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    sendTreatment(formData);
   };
-  {
-    /**HAY QUE OBTENER PACIENTE, DATOS PERSONALES E HISTORIA CLINICA  */
-  }
 
   return (
-    <main className="flex font-josefin">
+    <main className="grid grid-cols-[3fr_1fr] font-josefin">
       <form
         className="w-full flex flex-col gap-5 pr-10"
         onSubmit={handleSubmit}
       >
         <h3 className="text-4xl -translate-y-5">Nueva Consulta</h3>
-        <div className="grid grid-cols-2 gap-x-12 gap-y-5">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-5">
           <div className="flex justify-between bg-slate-200 p-2 rounded-md">
-            <label htmlFor="consultant_type">Tipo de consulta: </label>
-            <select
-              className="bg-slate-200 outline-none"
-              id="consultant_type"
-              name="consultant_type"
-              value={0}
-              onChange={handleInputChange}
-            >
-              <option value={0}>Consulta Clinica</option>
-            </select>
-          </div>
-          <div className="flex justify-between bg-slate-200 p-2 rounded-md">
-            <label htmlFor="place">Lugar de consulta: </label>
-            <select
+            <div
               id="place"
               name="place"
-              value={0}
-              className="bg-slate-200 outline-none"
-              onChange={handleInputChange}
+              className="bg-slate-200 outline-none flex justify-between w-full"
             >
-              <option value={0}>Hospital Italiano</option>
-            </select>
+              <p>Lugar de consulta: </p> <p>{consulta?.entity.name}</p>
+            </div>
           </div>
           <div className="flex justify-between bg-slate-200 p-2 rounded-md">
             <p>Horario de inicio de la consulta:</p>
@@ -127,23 +127,48 @@ const DoctorConsultant = () => {
             <p> {format(new Date(), "dd/MM/yyyy")}</p>
           </div>
           <div className="flex flex-col col-span-2">
-            <label htmlFor="Consultant_motive">Razón de la consulta</label>
+            <p>Razón de la consulta</p>
             <p
               name="Consultant_motive"
               className="bg-slate-200 p-2 rounded-md h-16"
-            ></p>
+            >
+              {consulta?.reason_for_visit}
+            </p>
           </div>
           <div className="flex flex-col col-span-2">
-            <label htmlFor="Observations">Observaciones</label>
+            <label htmlFor="observations">Observaciones</label>
             <div className="flex justify-between">
               <textarea
-                name="Observations"
-                value={dictado}
+                name="observations"
+                value={formData?.observations}
                 onChange={handleInputChange}
                 className="bg-slate-200 p-2 rounded-md w-[90%]"
               ></textarea>
-              <VoiceDictation onDictate={handleDictate} />
+              <div className="self-center">
+                <VoiceDictation onDictate={handleDictate} />
+              </div>
             </div>
+          </div>
+          <div className="flex justify-between bg-slate-200 p-2 col-span-2 rounded-md">
+            <label htmlFor="diagnostic">Diagnóstico: </label>
+            <select
+              className="bg-slate-200 outline-none"
+              id="pathology"
+              name="pathology"
+              value={formData?.pathology || "0"}
+              onChange={handleInputChange}
+            >
+              <option value="0"></option>
+              {patologias?.map((patologia) => (
+                <option
+                  className="w-[90%] py-4"
+                  key={patologia.id}
+                  value={patologia.name}
+                >
+                  {patologia.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="flex justify-between">
@@ -156,16 +181,19 @@ const DoctorConsultant = () => {
             </button>
           </div>
           <div className="self-center">
-            <button className="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 hover:shadow-lg active:shadow-inner">
+            <button
+              className="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 hover:shadow-lg active:shadow-inner disabled:bg-gray-400 disabled:text-black"
+              disabled={!enableSend}
+            >
               Guardar
             </button>
           </div>
         </div>
       </form>
       <LateralView
-        paciente={paciente}
-        doctorInfo={doctorInfo}
+        paciente={consulta}
         enConsulta={true}
+        HC={formData?.pathology}
       />
     </main>
   );

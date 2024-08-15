@@ -17,12 +17,39 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { getTodayAppointmentData } from "../../services/appointments";
+import { getAllPatologys } from "../../services/patologysService";
+import { getHistorys } from "../../services/clinicHistory";
 
 // eslint-disable-next-line react/prop-types
-export default function DoctorTimeline({ day, setPatient, selectedPatient }) {
+export default function DoctorTimeline({
+  day,
+  setPatient,
+  selectedPatient,
+  notShowCTA,
+}) {
   const [expanded, setExpanded] = useState(null);
   const [timeline, setTimeline] = useState([]);
+  const [patologias, setPatologias] = useState([]);
+  const [HC, setHC] = useState(null);
 
+  useEffect(() => {
+    const pato = async () => {
+      const patologias = await getAllPatologys();
+      setPatologias(patologias);
+    };
+    pato();
+  }, []);
+  const getPatologiaName = (id) => {
+    const patologia = patologias.find((patologia) => patologia.id === id);
+    return patologia ? patologia.name : "Sin patología";
+  };
+  useEffect(() => {
+    const fetchHC = async () => {
+      const result = await getHistorys();
+      setHC(result);
+    };
+    fetchHC();
+  }, []);
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
@@ -39,7 +66,9 @@ export default function DoctorTimeline({ day, setPatient, selectedPatient }) {
 
     fetchAppointments();
   }, [day]);
+
   const handleAccordionChange = (
+    id,
     isExpanded,
     paciente,
     medicalHistory,
@@ -47,7 +76,13 @@ export default function DoctorTimeline({ day, setPatient, selectedPatient }) {
     user,
   ) => {
     if (isExpanded) {
-      setPatient({ patient: paciente, medicalHistory, appointment_time, user });
+      setPatient({
+        id,
+        patient: paciente,
+        medicalHistory,
+        appointment_time,
+        user,
+      });
     } else {
       setPatient(null);
     }
@@ -66,6 +101,7 @@ export default function DoctorTimeline({ day, setPatient, selectedPatient }) {
         timeline.map(
           (
             {
+              id,
               patient,
               medicalHistory,
               appointment_time,
@@ -92,6 +128,7 @@ export default function DoctorTimeline({ day, setPatient, selectedPatient }) {
                   expanded={expanded === patient}
                   onChange={(event, isExpanded) =>
                     handleAccordionChange(
+                      id,
                       isExpanded,
                       patient,
                       medicalHistory,
@@ -114,29 +151,35 @@ export default function DoctorTimeline({ day, setPatient, selectedPatient }) {
                     <div className="grid grid-cols-1 xl:grid-cols-2 pl-5 pb-5">
                       <p>
                         Diagnóstico:{" "}
-                        {medicalHistory ? medicalHistory : "Sin diagnóstico"}
+                        {getPatologiaName(
+                          HC?.find(
+                            (historia) => historia.patient === patient.id,
+                          ).pathology,
+                        )}
                       </p>
                       <p>Edad: {35}</p>
                       <p>Prepaga: {patient?.financer}</p>
                     </div>
-                    <div className="flex justify-evenly">
-                      <Tooltip title="Proximamente...">
-                        <button className="bg-[#C03744] font-semibold text-sm px-4 py-2 rounded-[10px] text-white hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner">
-                          Cancelar Turno
-                        </button>
-                      </Tooltip>
-                      <Tooltip title="Proximamente...">
-                        <button className="bg-[#958BBF] font-semibold text-sm px-4 py-2 rounded-[10px] text-white hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner">
-                          Ver historial clínico
-                        </button>
-                      </Tooltip>
-                      <Link
-                        to={`/doctor/consultant/${patient?.id}`}
-                        className="bg-[#36A781] font-semibold text-sm px-4 py-2 rounded-[10px] text-white hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner"
-                      >
-                        <span>Comenzar consulta</span>
-                      </Link>
-                    </div>
+                    {!notShowCTA && (
+                      <div className="flex justify-evenly">
+                        <Tooltip title="Proximamente...">
+                          <button className="bg-[#C03744] font-semibold text-sm px-4 py-2 rounded-[10px] text-white hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner">
+                            Cancelar Turno
+                          </button>
+                        </Tooltip>
+                        <Tooltip title="Proximamente...">
+                          <button className="bg-[#958BBF] font-semibold text-sm px-4 py-2 rounded-[10px] text-white hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner">
+                            Ver historial clínico
+                          </button>
+                        </Tooltip>
+                        <Link
+                          to={`/doctor/consultant/${id}`}
+                          className="bg-[#36A781] font-semibold text-sm px-4 py-2 rounded-[10px] text-white hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner"
+                        >
+                          <span>Comenzar consulta</span>
+                        </Link>
+                      </div>
+                    )}
                   </AccordionDetails>
                 </Accordion>
               </TimelineContent>
