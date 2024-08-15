@@ -15,7 +15,7 @@ export const getUserData = async () => {
 
 export const getPersonal_Info = async ({ patient }) => {
   try {
-    const res = await axios.get(`${API_URL}personal_info/`);
+    const res = await axios.get(`${API_URL}/personal_info/`);
     const data = await res.data;
     const idData = data.filter((item) => item.patient.id === patient.id);
     return idData;
