@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 const TimeSelector = ({ availableTimes, selectedTime, onTimeClick }) => {
   const handleClick = (time) => {
-    console.log("Hora seleccionada:", time);
     onTimeClick(time);
   };
 

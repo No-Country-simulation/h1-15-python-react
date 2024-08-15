@@ -7,6 +7,7 @@ import axios from "axios";
 import UserInitials from "../../../components/UserInitials";
 import Icon from "../../../components/Icon/Icon";
 import { showToast } from "../../../utils/toast";
+import Spinner from "../../../components/Spinner";
 
 const CLOUD_NAME = 'dzllpjhiv';
 const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
@@ -73,7 +74,7 @@ const ImageUploader = () => {
         ) : (
           <AdvancedImage cldImg={img} className="w-30 h-30 object-cover rounded-full" />
         )}
-        {uploading && <p>Subiendo imagen...</p>}
+        {uploading && <Spinner/>}
       </form>
     </div>
   );

@@ -7,9 +7,6 @@ function ConfirmAppointment() {
   const navigate = useNavigate();
   const { formData } = location.state || {};
 
-  console.log(formData);
-  console.log("Fecha recibida:", formData.date);
-
   const handleConfirm = () => {
     navigate("/patient/appointment/success");
   };

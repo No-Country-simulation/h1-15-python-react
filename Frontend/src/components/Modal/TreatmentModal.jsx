@@ -9,7 +9,6 @@ const TreatmentModal = ({ tratamiento, show, setShow }) => {
     frecuencia: tratamiento?.frecuencia || "",
     intensidad: tratamiento?.intensidad || "",
 
-    // Agrega más campos según sea necesario
   });
   const handleClose = () => {
     setShow(false);
@@ -26,7 +25,6 @@ const TreatmentModal = ({ tratamiento, show, setShow }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
   };
   return (
     <div className="fixed inset-0 overflow-y-auto" id="terapia_fisica">

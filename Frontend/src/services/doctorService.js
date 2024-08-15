@@ -3,13 +3,8 @@ import { API_URL } from "./apiConfig";
 
 export const getDoctorDataAll = async () => {
   try {
-    console.log('Iniciando la solicitud para obtener los datos de los doctores...');
     const res = await axios.get(`${API_URL}/doctor/`);
-
-    console.log('Solicitud exitosa. Procesando los datos...');
     const data = res.data;
-
-    console.log('Datos obtenidos:', data);
     return data;
   } catch (error) {
     console.error("Error al obtener los datos de los doctores:", error);
@@ -102,8 +97,8 @@ export const getDoctorSchedule = async (doctorId, fecha) => {
       params: {
         doctor_id: doctorId,
         fecha: fecha,
-        status: 'available',
-      }
+        status: "available",
+      },
     });
 
     // Log para verificar la respuesta del servidor
@@ -111,20 +106,19 @@ export const getDoctorSchedule = async (doctorId, fecha) => {
 
     return response.data;
   } catch (error) {
-    console.error('Error fetching doctor schedule:', error);
+    console.error("Error fetching doctor schedule:", error);
     throw error;
   }
 };
+
 export const postDoctorAppointment = async (newData) => {
   const localDoctorId = localStorage.getItem("doctorId");
 
   newData.doctor_id = localDoctorId;
-  console.log(newData);
 
   try {
     const res = await axios.post(`${API_URL}/appointment/create/`, newData);
     const data = await res.data;
-    console.log(data);
 
     return data;
   } catch (error) {
