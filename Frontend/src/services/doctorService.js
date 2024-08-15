@@ -113,3 +113,19 @@ export const getDoctorSchedule = async (doctorId, fecha) => {
     throw error;
   }
 };
+export const postDoctorAppointment = async (newData) => {
+  const localDoctorId = localStorage.getItem("doctorId");
+
+  newData.doctor_id = localDoctorId;
+  console.log(newData);
+
+  try {
+    const res = await axios.post(`${API_URL}/appointment/create/`, newData);
+    const data = await res.data;
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
