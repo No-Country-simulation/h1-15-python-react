@@ -27,7 +27,6 @@ const DoctorTransplants = () => {
   };
   const handleCloseClick = (e) => {
     e.stopPropagation();
-    console.log(selectedPersona);
     setSelectedPersona(null);
   };
   useEffect(() => {
