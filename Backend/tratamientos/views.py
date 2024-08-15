@@ -2,7 +2,7 @@ from tratamientos.serializers import TreatmentSerializer, TreatAdherenceSerializ
 from historia_clinica.serializers import ClinicalHistorySerializer
 from rest_framework import serializers, generics, views, status, response
 from drf_spectacular.utils import extend_schema, inline_serializer, OpenApiExample
-from core.models import Treatment, TreatAdherence, Patient, Pathology, Medication, ClinicalHistory, Entity, MedicalStaff
+from core.models import Treatment, TreatAdherence, Patient, Pathology, Medication, Entity, MedicalStaff, User
 from django.shortcuts import get_object_or_404
 from datetime import datetime, timedelta
 
@@ -303,6 +303,7 @@ class MyTreatAdherenceDetail(views.APIView):
         
         if not user.is_authenticated:
             return response.Response("Usuario no autenticado", status=status.HTTP_401_UNAUTHORIZED)
+            #user = get_object_or_404(User, id=2)
         
         patient = Patient.objects.filter(user=user).first()
         

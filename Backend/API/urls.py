@@ -22,7 +22,7 @@ from antecedente_medico.views import AntecedenteMedicoDetail, AntecedenteMedicoL
 from historia_clinica.views import ClinicalHistoryDetail, ClinicalHistoryList
 from entidad.views import EntidadDetail, EntidadList
 from patologias.views import PathologyList, PathologyDetail
-from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListView,   MisTurnoListView, ReservarTurnoView, TurnoListComboView
+from turnos.views import DisponibilidadList, DisponibilidadCreate, TurnoCreate,DisponibilidadDetail, TurnoListView, MisTurnosListView, ReservarTurnoView, TurnoListComboView
 from farmacia.views import PharmacyList, PharmacyDetail
 from usuarios.views import CustomTokenObtainPairView, CustomTokenVerifyView, CustomTokenRefreshView
 
@@ -87,10 +87,8 @@ urlpatterns = [
     path('appointment/list/', TurnoListView.as_view()),
     path('appointment/<int:pk>', ReservarTurnoView.as_view()), #es para reservar un turno
     path('appointment/list/combo/', TurnoListComboView.as_view()), #es para reservar un turno
-    #path('appointment/detail/<int:pk>/',TurnoDetail.as_view(),),
-    #path('appointment/<int:pk>/', TurnoDetail.as_view(),),
-
-    #path('my_appointment/', MisTurnoListView.as_view()), #es para buscar turnos
+    path('appointment/my/', MisTurnosListView.as_view()), #es para buscar turnos
+    
     path('entity/', EntidadList.as_view(),),
 
     path('medical_history/', AntecedenteMedicoList.as_view(),),

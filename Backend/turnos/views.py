@@ -1,11 +1,11 @@
 from turnos.serializers import TurnoSerializer, DisponibilidadSerializer, TurnoUpdateSerializer, TurnoSerializerListaCombo
 from rest_framework import generics, views
 from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiTypes,  OpenApiResponse
-from core.models import Appointment, Availability, MedicalStaff, Entity, User
+from core.models import Appointment, Availability, MedicalStaff, Entity, User, Patient
 from custom_functions.date_list import validate_dates, get_current_date_str, generate_end_date_str
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, response
 from datetime import datetime, timedelta
 from rest_framework.exceptions import APIException
 from drf_spectacular.utils import extend_schema, inline_serializer, OpenApiExample
@@ -561,30 +561,27 @@ class TurnoListComboView(generics.ListAPIView):
         return super().get(request, *args, **kwargs)
     
 
-"""class TurnoListCreate(generics.ListCreateAPIView):
-    queryset = Appointment.objects.all()
-    serializer_class = TurnoSerializer
-
+class MisTurnosListView(views.APIView):
+    
     @extend_schema(
         tags=['Turno'],
-        summary='Lista todos los turnos',
-        description="Entrega un lista con de todos los turnos"
+        summary='Lista los turnos del usuario logueado',
+        description="Entrega una lista con los turnos del usuario logueado"
     )
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
+    def get(self, request):
+        
+        user = request.user
+        
+        if not user.is_authenticated:
+            return response.Response("Usuario no autenticado", status=status.HTTP_401_UNAUTHORIZED)
+            #user = get_object_or_404(User, id=2)
+        
+        patient = Patient.objects.filter(user=user).first()
+        
+        queryset = Appointment.objects.filter(patient=patient)
+        serializer = TurnoSerializer(queryset, many=True)
 
-    @extend_schema(
-        tags=['Turno'],
-        summary='Asigna el turno seleccionado',
-        description="Reserva el turno seleccionado al paciente"
-    )
-    def post(self, request, *args, **kwargs):
-        instance = self.get_object()
-        patient = request.POST['patient']
-        if not instance.paciente:
-            instance.paciente = patient
-            instance.save()
-            return instance
-        else:
-            return("Turno no encontrado")"""
+        return response.Response(serializer.data, status=status.HTTP_200_OK)
+    
+    
 
