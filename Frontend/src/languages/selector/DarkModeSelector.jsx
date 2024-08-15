@@ -11,7 +11,7 @@ const DarkModeSelector = () => {
   };
 
   return (
-    <div className="relative flex items-center font-josefin text-sm">
+    <div className="relative flex items-center text-sm">
       <div className="flex items-center ml-2">
         <label className="flex items-center cursor-pointer">
           <input

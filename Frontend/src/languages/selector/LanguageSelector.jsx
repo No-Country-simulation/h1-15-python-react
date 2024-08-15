@@ -40,7 +40,7 @@ const LanguageSelector = () => {
   };
 
   return (
-    <div className="relative flex items-center font-josefin text-sm bg-inherit">
+    <div className="relative flex items-center text-sm bg-inherit">
       <Icon name="IoLanguageSharp" />
       <button
         onClick={() => setIsOpen(!isOpen)}
