@@ -355,7 +355,6 @@ class TurnoCreate(generics.CreateAPIView):
         doctor = get_object_or_404(MedicalStaff, id=doctor_id)
         entity = get_object_or_404(Entity, name=entity)
         availability = Availability.objects.filter(doctor=doctor, entity=entity)
-        print("LLEGO ACA")
 
         if not availability.exists():
             return Response({"message": "No hay disponibilidad registrada para el médico en esta institución."}, status=status.HTTP_400_BAD_REQUEST)
@@ -365,6 +364,7 @@ class TurnoCreate(generics.CreateAPIView):
         appointment_duration = int(data_request['appointment_duration'])  # asumiendo que es un entero en minutos
 
         created_appointments = 0
+        conflicts = []
 
         # Diccionario de mapeo de días de la semana a números
         days_to_numbers = {
@@ -376,31 +376,54 @@ class TurnoCreate(generics.CreateAPIView):
             'sábado': 5,
             'domingo': 6
         }
+        
         while date_init <= date_end:
             for avail in availability:
                 if days_to_numbers[avail.day.lower()] == date_init.weekday():
-                    start_time = avail.start_time  # Already a time object
-                    end_time = avail.end_time  # Already a time object
+                    start_time = avail.start_time  
+                    end_time = avail.end_time  
 
                     current_time = datetime.combine(date_init, start_time)
                     while current_time.time() < end_time:
                         end_time_datetime = datetime.combine(date_init, end_time)
+                        print(current_time)
                         if current_time + timedelta(minutes=appointment_duration) <= end_time_datetime:
-                            Appointment.objects.create(
-                                doctor=doctor,
-                                entity=entity,  # Changed to 'entity'
-                                appointment_date=date_init.strftime('%Y-%m-%d'),  # Changed to 'appointment_date'
-                                appointment_time=current_time.time().strftime('%H:%M'),  # Changed to 'appointment_time'
-                                status='available'  # Or the value you prefer
-                            )
-                            created_appointments += 1
+                            print(current_time)
+                            
+                            existing_appointment = Appointment.objects.filter(doctor=doctor, 
+                                                                                entity=entity,
+                                                                                appointment_date=date_init.strftime('%Y-%m-%d'),
+                                                                                appointment_time=current_time.time().strftime('%H:%M')).exists()
+                            if existing_appointment:
+                                print("conflicto")
+
+                                conflicts.append({
+                                    'doctor':doctor.id,
+                                    'entity':entity.name,
+                                    'appointment_date':date_init.strftime('%Y-%m-%d'),
+                                    'appointment_time':current_time.time().strftime('%H:%M'),
+                                    'error':'Ya existen turnos creados para esa fecha',
+
+                                })
+                            else:
+                                Appointment.objects.create(
+                                    doctor=doctor,
+                                    entity=entity,  # Changed to 'entity'
+                                    appointment_date=date_init.strftime('%Y-%m-%d'),  # Changed to 'appointment_date'
+                                    appointment_time=current_time.time().strftime('%H:%M'),  # Changed to 'appointment_time'
+                                    status='available'  # Or the value you prefer
+                                )
+                                created_appointments += 1
                         current_time += timedelta(minutes=appointment_duration)
             date_init += timedelta(days=1)
 
         if created_appointments > 0:
             return Response({"message": f"Turnos creados con éxito. {created_appointments}"}, status=status.HTTP_201_CREATED)
         else:
-            return Response({"message": "No se crearon turnos."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({
+                "message": "No se crearon turnos.",
+                "conflicts": conflicts
+            }, status=status.HTTP_400_BAD_REQUEST)
         
 
 class TurnoListView(generics.ListAPIView):
