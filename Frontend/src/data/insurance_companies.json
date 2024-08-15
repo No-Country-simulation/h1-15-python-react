@@ -1,0 +1,202 @@
+{
+    "insurance_companies": [
+        {
+            "id": 1,
+            "name": "OSDE",
+            "plans": [
+                {
+                    "id": "osde_plan_310",
+                    "name": "Plan 310",
+                    "coverage": "Complete medical coverage, consultations, and tests",
+                    "price": "35000 ARS"
+                },
+                {
+                    "id": "osde_plan_410",
+                    "name": "Plan 410",
+                    "coverage": "Integral coverage with additional services and high quality",
+                    "price": "50000 ARS"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Swiss Medical",
+            "plans": [
+                {
+                    "id": "swiss_medical_plan_smg",
+                    "name": "Plan SMG",
+                    "coverage": "Medical and hospital coverage, consultations, and tests",
+                    "price": "33000 ARS"
+                },
+                {
+                    "id": "swiss_medical_plan_premium",
+                    "name": "Plan Premium",
+                    "coverage": "Complete coverage with access to high-end clinics and special services",
+                    "price": "48000 ARS"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Medicus",
+            "plans": [
+                {
+                    "id": "medicus_plan_classic",
+                    "name": "Plan Medicus Classic",
+                    "coverage": "Basic coverage for consultations and medical tests",
+                    "price": "30000 ARS"
+                },
+                {
+                    "id": "medicus_plan_total",
+                    "name": "Plan Medicus Total",
+                    "coverage": "Integral coverage with access to specialists and additional services",
+                    "price": "45000 ARS"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Federación Patronal",
+            "plans": [
+                {
+                    "id": "federacion_patronal_plan_basico",
+                    "name": "Plan Básico",
+                    "coverage": "Standard coverage for consultations and emergencies",
+                    "price": "28000 ARS"
+                },
+                {
+                    "id": "federacion_patronal_plan_completo",
+                    "name": "Plan Completo",
+                    "coverage": "Complete coverage with hospitalization, consultations, and specialized tests",
+                    "price": "42000 ARS"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Hospital Italiano",
+            "plans": [
+                {
+                    "id": "hospital_italiano_plan_estandar",
+                    "name": "Plan Estándar",
+                    "coverage": "Coverage for basic consultations and tests",
+                    "price": "31000 ARS"
+                },
+                {
+                    "id": "hospital_italiano_plan_premium",
+                    "name": "Plan Premium",
+                    "coverage": "Integral coverage with access to all hospital services and affiliated clinics",
+                    "price": "47000 ARS"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "name": "Galeno",
+            "plans": [
+                {
+                    "id": "galeno_plan_basico",
+                    "name": "Plan Básico",
+                    "coverage": "General medical coverage and emergencies",
+                    "price": "32000 ARS"
+                },
+                {
+                    "id": "galeno_plan_premium",
+                    "name": "Plan Premium",
+                    "coverage": "Complete coverage with access to specialists and high-end hospitals",
+                    "price": "47000 ARS"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Unión Personal",
+            "plans": [
+                {
+                    "id": "union_personal_plan_simple",
+                    "name": "Plan Simple",
+                    "coverage": "Basic coverage with limited consultations and tests",
+                    "price": "29000 ARS"
+                },
+                {
+                    "id": "union_personal_plan_completo",
+                    "name": "Plan Completo",
+                    "coverage": "Integral coverage with all medical and hospital services",
+                    "price": "43000 ARS"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "name": "OSDEPYM",
+            "plans": [
+                {
+                    "id": "osdepym_plan_basico",
+                    "name": "Plan Básico",
+                    "coverage": "General medical coverage and emergencies",
+                    "price": "31000 ARS"
+                },
+                {
+                    "id": "osdepym_plan_avanzado",
+                    "name": "Plan Avanzado",
+                    "coverage": "Complete coverage with access to high-complexity services and specialists",
+                    "price": "45000 ARS"
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "name": "PrevenSer",
+            "plans": [
+                {
+                    "id": "prevenser_plan_basico",
+                    "name": "Plan Básico",
+                    "coverage": "Coverage for medical consultations and emergencies",
+                    "price": "30000 ARS"
+                },
+                {
+                    "id": "prevenser_plan_integral",
+                    "name": "Plan Integral",
+                    "coverage": "Total coverage with access to tests, hospitalization, and special services",
+                    "price": "42000 ARS"
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "name": "Astra",
+            "plans": [
+                {
+                    "id": "astra_plan_estandar",
+                    "name": "Plan Estándar",
+                    "coverage": "Basic medical coverage and emergencies",
+                    "price": "34000 ARS"
+                },
+                {
+                    "id": "astra_plan_premium",
+                    "name": "Plan Premium",
+                    "coverage": "Complete coverage with access to clinics and high-quality services",
+                    "price": "49000 ARS"
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "name": "Sancor Seguros",
+            "plans": [
+                {
+                    "id": "sancor_seguros_plan_basico",
+                    "name": "Plan Básico",
+                    "coverage": "Basic coverage for third-party damages",
+                    "price": "5000 ARS"
+                },
+                {
+                    "id": "sancor_seguros_plan_completo",
+                    "name": "Plan Completo",
+                    "coverage": "Complete coverage with travel assistance and protection against theft",
+                    "price": "10000 ARS"
+                }
+            ]
+        }
+    ]
+}

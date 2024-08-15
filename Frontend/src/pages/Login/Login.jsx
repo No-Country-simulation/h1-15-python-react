@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { showToast } from "../../utils/toast";
 import useLanguage from "../../hooks/useLanguage";
+import { loginUser } from "../../services/auth";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -12,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+  const languageData = useLanguage();
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -31,11 +33,16 @@ const Login = () => {
 
   const togglePasswordVisibility = () => setPasswordVisible((prev) => !prev);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email === "laura.garcia@example.com" && password === "Password$123") {
-      localStorage.setItem("authToken", "example123");
-      localStorage.setItem("userType", "patient");
+    try {
+      const data = await loginUser(email, password);
+
+      localStorage.setItem("authToken", data.access);
+      localStorage.setItem("userType", data.user_types.toLowerCase());
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userId", data.id_user);
+
       if (rememberMe) {
         localStorage.setItem("rememberMeEmail", email);
         localStorage.setItem("rememberMePassword", password);
@@ -43,27 +50,21 @@ const Login = () => {
         localStorage.removeItem("rememberMeEmail");
         localStorage.removeItem("rememberMePassword");
       }
-      navigate("/patient");
-    } else if (email === "doctor@example.com" && password === "Password$123") {
-      localStorage.setItem("authToken", "doctorToken123");
-      localStorage.setItem("userType", "doctor");
-      if (rememberMe) {
-        localStorage.setItem("rememberMeEmail", email);
-        localStorage.setItem("rememberMePassword", password);
+
+      if (data.first_login) {
+        navigate(`/${data.user_types.toLowerCase()}/update-password`);
       } else {
-        localStorage.removeItem("rememberMeEmail");
-        localStorage.removeItem("rememberMePassword");
+        navigate(`/${data.user_types.toLowerCase()}`);
       }
-      navigate("/doctor");
-    } else {
+    } catch (error) {
+      console.error("Login Error:", error); 
       showToast("Credenciales inválidas.", "error");
     }
   };
 
-  const languageData = useLanguage();
 
   if (!languageData) {
-    return <div>Cargando datos...</div>;
+    return <div>Loading data...</div>;
   }
 
   return (
@@ -98,6 +99,7 @@ const Login = () => {
               required
               placeholder={languageData.login.emailPlaceholder}
               className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
+              autoComplete="email"
             />
           </div>
           <div>
@@ -113,6 +115,7 @@ const Login = () => {
                 required
                 placeholder={languageData.login.passwordPlaceholder}
                 className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
+                autoComplete="current-password"
               />
               <button
                 type="button"

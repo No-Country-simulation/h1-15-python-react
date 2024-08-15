@@ -1,377 +1,474 @@
 {
-    "home": {
-        "navbar": {
-            "title": "Acesso"
+  "home": {
+    "navbar": {
+      "title": "Acesso"
+    },
+    "cta": {
+      "title": "UM APP QUE SALVA VIDAS",
+      "description": "Nosso aplicativo te conecta com serviços médicos de emergência em tempo real e fornece acompanhamento personalizado da sua saúde.",
+      "button": "Começar"
+    },
+    "landing": {
+      "image": "/mockup_1_pt.webp"
+    },
+    "about": {
+      "title": "SOBRE NOSSO APP",
+      "description": "Nosso app foi projetado para oferecer assistência médica de maneira rápida e acessível, melhorando a qualidade de vida dos nossos usuários.",
+      "cards": [
+        {
+          "title": "DESIGN ACESSÍVEL",
+          "message": "Criamos uma interface intuitiva para que qualquer pessoa possa usar o app sem dificuldades."
         },
-        "cta": {
-            "title": "UM APP QUE SALVA VIDAS",
-            "description": "Nosso aplicativo te conecta com serviços médicos de emergência em tempo real e fornece acompanhamento personalizado da sua saúde.",
-            "button": "Começar"
+        {
+          "title": "FÁCIL DE USAR",
+          "message": "Nosso app é simples e direto, permitindo que você acesse serviços médicos com poucos toques."
         },
-        "landing": {
-            "image": "/mockup_1_pt.webp"
-        },
-        "about": {
-            "title": "SOBRE NOSSO APP",
-            "description": "Nosso app foi projetado para oferecer assistência médica de maneira rápida e acessível, melhorando a qualidade de vida dos nossos usuários.",
-            "cards": [
-                {
-                    "title": "DESIGN ACESSÍVEL",
-                    "message": "Criamos uma interface intuitiva para que qualquer pessoa possa usar o app sem dificuldades."
-                },
-                {
-                    "title": "FÁCIL DE USAR",
-                    "message": "Nosso app é simples e direto, permitindo que você acesse serviços médicos com poucos toques."
-                },
-                {
-                    "title": "A MELHOR EXPERIÊNCIA",
-                    "message": "Garantimos uma excelente experiência do usuário, focada nas suas necessidades e bem-estar."
-                }
-            ]
-        },
-        "functions": {
-            "title": "FUNCIONALIDADES DO APP",
-            "description": "Descubra as funcionalidades chave que fazem do nosso app uma ferramenta indispensável para o cuidado da sua saúde.",
-            "cards": [
-                {
-                    "imgSrc": "comment.svg",
-                    "title": "ATENDIMENTO PERSONALIZADO",
-                    "message": "Acesse consultas médicas personalizadas com profissionais certificados."
-                },
-                {
-                    "imgSrc": "browser.svg",
-                    "title": "LEMBRETES DIÁRIOS",
-                    "message": "Receba notificações diárias para tomar seus medicamentos e comparecer às suas consultas médicas."
-                },
-                {
-                    "imgSrc": "vector.svg",
-                    "title": "REGISTRO MÉDICO ONLINE",
-                    "message": "Mantenha um registro atualizado do seu histórico médico e compartilhe com seu médico facilmente."
-                },
-                {
-                    "imgSrc": "cell-phone.svg",
-                    "title": "VERSÃO IOS & ANDROID",
-                    "message": "Disponível nas principais plataformas móveis para sua comodidade."
-                },
-                {
-                    "imgSrc": "telemarketer.svg",
-                    "title": "SUPORTE 24/7 POR PROFISSIONAIS REAIS",
-                    "message": "Obtenha suporte médico a qualquer momento do dia por profissionais qualificados."
-                }
-            ]
-        },
-        "mockup": {
-            "image": "/mockup_pt.webp"
-        },
-        "howItWorks": {
-            "title": "COMO FUNCIONA NOSSO APP",
-            "description": "Nosso app utiliza tecnologia avançada para conectar os usuários com serviços médicos de maneira eficiente e segura.",
-            "video": "/about_app_pt.webp"
-        },
-        "whoWeAre": {
-            "title": "QUEM SOMOS",
-            "description": "Somos uma equipe dedicada de profissionais de saúde e tecnologia comprometidos com o seu bem-estar.",
-            "cards": [
-                {
-                    "imagen": "Profile.webp",
-                    "nombre": "EZEQUIEL LOCANE",
-                    "bio": "Fundador e CEO. Com mais de 15 anos de experiência na indústria da saúde, Ezequiel lidera nossa equipe com paixão e dedicação.",
-                    "posicion": "FUNDADOR"
-                },
-                {
-                    "imagen": "Profile1.webp",
-                    "nombre": "CARLOS MARTÍN",
-                    "bio": "Cirurgião com mais de 20 anos de experiência. Carlos garante que nosso app atenda aos mais altos padrões médicos.",
-                    "posicion": "CIRURGIÃO"
-                },
-                {
-                    "imagen": "Profile2.webp",
-                    "nombre": "MARÍA PÉREZ",
-                    "bio": "Médica especialista em saúde digital. María trabalha para integrar a tecnologia de maneira eficaz no nosso app.",
-                    "posicion": "MÉDICA"
-                }
-            ]
-        },
-        "testimonials": {
-            "title": "TESTEMUNHOS",
-            "description": "Nossos usuários compartilham suas experiências e como nosso app melhorou sua saúde e bem-estar.",
-            "cards": [
-                {
-                    "name": "ANA GARCIA",
-                    "condition": "PACIENTE TRANSPLANTADO",
-                    "comment": "O app foi fundamental para receber um transplante de rim. A rapidez em encontrar um doador foi incrível.",
-                    "image": "https://randomuser.me/api/portraits/women/45.jpg"
-                },
-                {
-                    "name": "JUAN PÉREZ",
-                    "condition": "PACIENTE COM DIABETES",
-                    "comment": "Graças ao app, encontrei o apoio que precisava para controlar minha diabetes e melhorar minha qualidade de vida.",
-                    "image": "https://randomuser.me/api/portraits/men/76.jpg"
-                },
-                {
-                    "name": "MARÍA LOPEZ",
-                    "condition": "PACIENTE COM HIPERTENSÃO",
-                    "comment": "O app me ajudou a receber o tratamento adequado para minha hipertensão e a manter um acompanhamento constante.",
-                    "image": "https://randomuser.me/api/portraits/women/68.jpg"
-                },
-                {
-                    "name": "LUIS MARTÍNEZ",
-                    "condition": "PACIENTE EM RECUPERAÇÃO",
-                    "comment": "O app foi essencial para minha recuperação. Encontrei os recursos que precisava para minha reabilitação com facilidade.",
-                    "image": "https://randomuser.me/api/portraits/men/62.jpg"
-                }
-            ]
-        },
-        "footer": {
-            "slogan": "Unimos forças para construir um futuro brilhante, cheio de esperança e oportunidades.",
-            "links": [
-                {
-                    "title": "Links"
-                },
-                {
-                    "name": "Sobre Nós",
-                    "url": "/"
-                },
-                {
-                    "name": "Contate-Nos",
-                    "url": "/"
-                },
-                {
-                    "name": "Termos de Serviço",
-                    "url": "/"
-                },
-                {
-                    "name": "Política de Privacidade",
-                    "url": "/"
-                },
-                {
-                    "name": "Blog",
-                    "url": "/"
-                }
-            ],
-            "newsletter": {
-                "title": "BOLETIM",
-                "heading": "Inscreva-se no Nosso Boletim",
-                "placeholder": "Digite seu e-mail",
-                "buttonText": "Inscrever-se"
-            },
-            "socialMedia": {
-                "facebook": {
-                    "url": "/"
-                },
-                "instagram": {
-                    "url": "/"
-                },
-                "youtube": {
-                    "url": "/"
-                },
-                "twitter": {
-                    "url": "/"
-                }
-            },
-            "Copyright": {
-                "title": "Copyright 2024 .h1-15. Todos os direitos reservados."
-            }
+        {
+          "title": "A MELHOR EXPERIÊNCIA",
+          "message": "Garantimos uma excelente experiência do usuário, focada nas suas necessidades e bem-estar."
         }
+      ]
     },
-    "login": {
-        "title": "Entrar",
-        "noAccount": "Não tem uma conta?",
-        "register": "Cadastre-se",
-        "emailLabel": "E-mail",
-        "emailPlaceholder": "Digite seu e-mail",
-        "passwordLabel": "Senha",
-        "passwordPlaceholder": "Digite uma senha",
-        "rememberMe": "Lembre-se de mim",
-        "forgotPassword": "Esqueceu sua senha?",
-        "loginButton": "Entrar",
-        "or": "Ou",
-        "googleSignIn": "Continuar com Google",
-        "facebookSignIn": "Continuar com Facebook",
-        "eyeAltShow": "Mostrar senha",
-        "eyeAltHide": "Ocultar senha"
-    },
-    "patientMain": {
-        "locateTitle": "Localize",
-        "locateSubtitle": "seu médico",
-        "searchPlaceholder": "Buscar médicos, indicações, etc",
-        "cardData": [
-            {
-                "id": 1,
-                "icon": "medicineSkyblue",
-                "title": "Medicação",
-                "color": "#4fd2c2",
-                "link": "/patient/treatment"
-            },
-            {
-                "id": 2,
-                "icon": "calendarOrange",
-                "title": "Consultas Médicas",
-                "color": "#E58426",
-                "link": "/patient/schedule"
-            },
-            {
-                "id": 3,
-                "icon": "stethoscopeBlue",
-                "title": "Profissionais de Saúde",
-                "color": "#5563C4",
-                "link": "/patient/doctor-information"
-            },
-            {
-                "id": 4,
-                "icon": "handsOrange",
-                "title": "Suporte e Comunidade",
-                "color": "#FBC046",
-                "link": "/patient/support"
-            },
-            {
-                "id": 5,
-                "icon": "clipboardSkyblue",
-                "title": "Histórico Médico",
-                "color": "#00ADDE",
-                "link": "/patient/medical-history"
-            },
-            {
-                "id": 6,
-                "icon": "phoneViolet",
-                "title": "Contato de Emergência",
-                "color": "#D22B8B",
-                "link": "/patient/emergency-contacts"
-            }
-        ]
-    },
-    "PopupMessage": {
-        "title": "Atenção!",
-        "content": "Alguns dados estão faltando.",
-        "textButton": "OK"
-    },
-    "NotFound": {
-        "title": "404 - Página não encontrada",
-        "message": "Desculpe, a página que você está procurando não existe.",
-        "button": "Voltar ao Início",
-        "logoAltText": "Logo"
-    },
-    "PageConstruction": {
-        "title": "Esta seção está em construção!",
-        "message": "Notifique-me quando estiver disponível",
-        "emailPlaceholder": "Digite seu e-mail",
-        "submitButton": "Enviar",
-        "logoAltText": "Logo",
-        "toastSuccessMessage": "Você será notificado."
-    },
-    "Treatment": {
-        "Profile": {
-            "icon_name": "medicine",
-            "greeting": "Bom dia,",
-            "patientName": "Laura!",
-            "photo": "/Bung1.webp"
+    "functions": {
+      "title": "FUNCIONALIDADES DO APP",
+      "description": "Descubra as funcionalidades chave que fazem do nosso app uma ferramenta indispensável para o cuidado da sua saúde.",
+      "cards": [
+        {
+          "imgSrc": "comment.svg",
+          "title": "ATENDIMENTO PERSONALIZADO",
+          "message": "Acesse consultas médicas personalizadas com profissionais certificados."
         },
-        "CardTitle": [
-            {
-                "titles": [
-                    "Tratamentos"
-                ],
-                "backgroundColor": "#4fd2c2",
-                "textColor": "#FFF"
-            },
-            {
-                "titles": [
-                    "Medicamentos Pendentes:"
-                ],
-                "backgroundColor": "#D22B8B",
-                "textColor": "#FFF"
-            }
-        ],
-        "cardEvent": [
-            {
-                "color": "#D22B8B",
-                "action": "Nova dose de",
-                "name": "Ciclosporina 10mg",
-                "time": "8:30",
-                "unit": "AM"
-            },
-            {
-                "color": "#4fd2c2",
-                "action": "Consulta médica com",
-                "name": "Dr. Chang",
-                "time": "8:30",
-                "unit": "PM"
-            },
-            {
-                "color": "#D22B8B",
-                "action": "Nova dose de",
-                "name": "Ciclosporina 10mg",
-                "time": "8:30",
-                "unit": "AM"
-            },
-            {
-                "color": "#4fd2c2",
-                "action": "Consulta médica com",
-                "name": "Dra. Smith",
-                "time": "10:00",
-                "unit": "AM"
-            },
-            {
-                "color": "#D22B8B",
-                "action": "Nova dose de",
-                "name": "Ibuprofeno 200mg",
-                "time": "12:30",
-                "unit": "PM"
-            },
-            {
-                "color": "#4fd2c2",
-                "action": "Consulta médica com",
-                "name": "Nutricionista",
-                "time": "2:00",
-                "unit": "PM"
-            },
-            {
-                "color": "#D22B8B",
-                "action": "Nova dose de",
-                "name": "Paracetamol 500mg",
-                "time": "4:00",
-                "unit": "PM"
-            }
-        ]
-    },
-    "Schedule": {
-        "Profile": {
-            "icon_name": "calendarOrange",
-            "greeting": "Estes são seus turnos,",
-            "patientName": "Laura!",
-            "photo": "/Bung1.webp"
+        {
+          "imgSrc": "browser.svg",
+          "title": "LEMBRETES DIÁRIOS",
+          "message": "Receba notificações diárias para tomar seus medicamentos e comparecer às suas consultas médicas."
         },
-        "warning": {
-            "message": "Você não tem compromissos pendentes para esta data"
+        {
+          "imgSrc": "vector.svg",
+          "title": "REGISTRO MÉDICO ONLINE",
+          "message": "Mantenha um registro atualizado do seu histórico médico e compartilhe com seu médico facilmente."
         },
-        "AddItemButton": {
-            "text": "Novo compromisso"
+        {
+          "imgSrc": "cell-phone.svg",
+          "title": "VERSÃO IOS & ANDROID",
+          "message": "Disponível nas principais plataformas móveis para sua comodidade."
+        },
+        {
+          "imgSrc": "telemarketer.svg",
+          "title": "SUPORTE 24/7 POR PROFISSIONAIS REAIS",
+          "message": "Obtenha suporte médico a qualquer momento do dia por profissionais qualificados."
         }
+      ]
     },
-    "Navbar": {
-        "title": "Sair"
+    "mockup": {
+      "image": "/mockup_pt.webp"
     },
-    "register": {
-        "title": "Registrar-se",
-        "alreadyHaveAccount": "Já tem uma conta?",
-        "login": "Entrar",
-        "firstNameLabel": "Nome",
-        "firstNamePlaceholder": "Digite seu nome",
-        "lastNameLabel": "Sobrenome",
-        "lastNamePlaceholder": "Digite seu sobrenome",
-        "dniLabel": "DNI",
-        "dniPlaceholder": "Digite seu DNI",
-        "obraSocialLabel": "Plano de Saúde",
-        "obraSocialPlaceholder": "Digite seu plano de saúde",
-        "emailLabel": "E-mail",
-        "emailPlaceholder": "Digite seu e-mail",
-        "birthdateLabel": "Data de Nascimento",
-        "phoneLabel": "Número de Telefone",
-        "secondaryPhoneLabel": "Contato Secundário",
-        "passwordLabel": "Definir Senha",
-        "passwordPlaceholder": "Digite uma senha",
-        "showPasswordAlt": "Mostrar senha",
-        "hidePasswordAlt": "Ocultar senha",
-        "registerButton": "Registrar-se"
+    "howItWorks": {
+      "title": "COMO FUNCIONA NOSSO APP",
+      "description": "Nosso app utiliza tecnologia avançada para conectar os usuários com serviços médicos de maneira eficiente e segura.",
+      "video": "/about_app_pt.webp"
+    },
+    "whoWeAre": {
+      "title": "QUEM SOMOS",
+      "description": "Somos uma equipe dedicada de profissionais de saúde e tecnologia comprometidos com o seu bem-estar.",
+      "cards": [
+        {
+          "imagen": "Profile.webp",
+          "nombre": "EZEQUIEL  LO CANE",
+          "bio": "Fundador e CEO. Com mais de 15 anos de experiência na indústria da saúde, Ezequiel lidera nossa equipe com paixão e dedicação.",
+          "posicion": "FUNDADOR"
+        },
+        {
+          "imagen": "Profile1.webp",
+          "nombre": "CARLOS MARTÍN",
+          "bio": "Cirurgião com mais de 20 anos de experiência. Carlos garante que nosso app atenda aos mais altos padrões médicos.",
+          "posicion": "CIRURGIÃO"
+        },
+        {
+          "imagen": "Profile2.webp",
+          "nombre": "MARÍA PÉREZ",
+          "bio": "Médica especialista em saúde digital. María trabalha para integrar a tecnologia de maneira eficaz no nosso app.",
+          "posicion": "MÉDICA"
+        }
+      ]
+    },
+    "aboutJustina": {
+      "title": "Um Legado de Amor e Solidariedade",
+      "items": [
+        {
+          "title": "Lei Justina",
+          "subtitle": "Como a lei foi promovida",
+          "description": "A Lei Justina estabelece que todo cidadão é doador de órgãos por default, aumentando as chances de salvar vidas através da solidariedade.",
+          "image": "/aboutJustina1.webp",
+          "link": "https://www.argentina.gob.ar/noticias/ley-justina-una-esperanza-para-quienes-aguardan-un-trasplante"
+        },
+        {
+          "title": "MultipliqueX7",
+          "subtitle": "Um ato de amor pode salvar muitas vidas",
+          "description": "Uma campanha inspirada em Justina que busca conscientizar sobre a importância da doação de órgãos, destacando como uma decisão pode impactar sete pessoas na espera de um transplante.",
+          "image": "/aboutJustina2.webp",
+          "link": "https://www.instagram.com/multiplicatex7/?hl=es"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "TESTEMUNHOS",
+      "description": "Nossos usuários compartilham suas experiências e como nosso app melhorou sua saúde e bem-estar.",
+      "cards": [
+        {
+          "name": "ANA GARCIA",
+          "condition": "PACIENTE TRANSPLANTADO",
+          "comment": "O app foi fundamental para receber um transplante de rim. A rapidez em encontrar um doador foi incrível.",
+          "image": "https://randomuser.me/api/portraits/women/45.jpg"
+        },
+        {
+          "name": "JUAN PÉREZ",
+          "condition": "PACIENTE COM DIABETES",
+          "comment": "Graças ao app, encontrei o apoio que precisava para controlar minha diabetes e melhorar minha qualidade de vida.",
+          "image": "https://randomuser.me/api/portraits/men/76.jpg"
+        },
+        {
+          "name": "MARÍA LOPEZ",
+          "condition": "PACIENTE COM HIPERTENSÃO",
+          "comment": "O app me ajudou a receber o tratamento adequado para minha hipertensão e a manter um acompanhamento constante.",
+          "image": "https://randomuser.me/api/portraits/women/68.jpg"
+        },
+        {
+          "name": "LUIS MARTÍNEZ",
+          "condition": "PACIENTE EM RECUPERAÇÃO",
+          "comment": "O app foi essencial para minha recuperação. Encontrei os recursos que precisava para minha reabilitação com facilidade.",
+          "image": "https://randomuser.me/api/portraits/men/62.jpg"
+        }
+      ]
+    },
+    "footer": {
+      "slogan": "Unimos forças para construir um futuro brilhante, cheio de esperança e oportunidades.",
+      "links": [
+        {
+          "title": "Links"
+        },
+        {
+          "name": "Sobre Nós",
+          "url": "/"
+        },
+        {
+          "name": "Contate-Nos",
+          "url": "/"
+        },
+        {
+          "name": "Termos de Serviço",
+          "url": "/"
+        },
+        {
+          "name": "Política de Privacidade",
+          "url": "/"
+        },
+        {
+          "name": "Blog",
+          "url": "/"
+        }
+      ],
+      "newsletter": {
+        "title": "BOLETIM",
+        "heading": "Inscreva-se no Nosso Boletim",
+        "placeholder": "Digite seu e-mail",
+        "buttonText": "Inscrever-se"
+      },
+      "socialMedia": {
+        "facebook": {
+          "url": "/"
+        },
+        "instagram": {
+          "url": "/"
+        },
+        "youtube": {
+          "url": "/"
+        },
+        "twitter": {
+          "url": "/"
+        }
+      },
+      "Copyright": {
+        "title": "Copyright 2024 .h1-15. Todos os direitos reservados."
+      }
     }
+  },
+  "login": {
+    "title": "Entrar",
+    "noAccount": "Não tem uma conta?",
+    "register": "Cadastre-se",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Digite seu e-mail",
+    "passwordLabel": "Senha",
+    "passwordPlaceholder": "Digite uma senha",
+    "rememberMe": "Lembre-se de mim",
+    "forgotPassword": "Esqueceu sua senha?",
+    "loginButton": "Entrar",
+    "or": "Ou",
+    "googleSignIn": "Continuar com Google",
+    "facebookSignIn": "Continuar com Facebook",
+    "eyeAltShow": "Mostrar senha",
+    "eyeAltHide": "Ocultar senha"
+  },
+  "updatePassword": {
+    "title": "Atualizar Senha",
+    "newPasswordLabel": "Nova Senha",
+    "newPasswordPlaceholder": "Digite uma nova senha",
+    "confirmNewPasswordLabel": "Confirmar Nova Senha",
+    "confirmNewPasswordPlaceholder": "Confirme sua nova senha",
+    "updateButton": "Atualizar Senha",
+    "backToLogin": "Voltar ao Login",
+    "passwordMismatch": "As senhas não coincidem",
+    "passwordUpdated": "Senha atualizada com sucesso",
+    "errorUpdatingPassword": "Erro ao atualizar a senha",
+    "minLength": "A senha deve ter pelo menos {minLength} caracteres.",
+    "hasUpperCase": "A senha deve conter pelo menos uma letra maiúscula.",
+    "hasLowerCase": "A senha deve conter pelo menos uma letra minúscula.",
+    "hasNumber": "A senha deve conter pelo menos um dígito.",
+    "hasSpecialChar": "A senha deve conter pelo menos um caractere especial."
+  },
+  "patientMain": {
+    "locateTitle": "Localize",
+    "locateSubtitle": "seu médico",
+    "searchPlaceholder": "Buscar médicos, indicações, etc",
+    "cardData": [
+      {
+        "id": 1,
+        "icon": "medicineSkyblue",
+        "title": "Medicação",
+        "color": "#4fd2c2",
+        "link": "/patient/treatment"
+      },
+      {
+        "id": 2,
+        "icon": "calendarOrange",
+        "title": "Consultas Médicas",
+        "color": "#E58426",
+        "link": "/patient/schedule"
+      },
+      {
+        "id": 3,
+        "icon": "stethoscopeBlue",
+        "title": "Acompanhamento médico",
+        "color": "#5563C4",
+        "link": "/patient/postoperative"
+      },
+      {
+        "id": 4,
+        "icon": "handsOrange",
+        "title": "Suporte e Comunidade",
+        "color": "#FBC046",
+        "link": "/patient/support"
+      },
+      {
+        "id": 5,
+        "icon": "clipboardSkyblue",
+        "title": "Histórico Médico",
+        "color": "#00ADDE",
+        "link": "/patient/medical-history"
+      },
+      {
+        "id": 6,
+        "icon": "phoneViolet",
+        "title": "Contato de Emergência",
+        "color": "#D22B8B",
+        "link": "/patient/emergency-contacts"
+      }
+    ]
+  },
+  "PopupMessage": {
+    "title": "Atenção!",
+    "content": "Por favor, selecione um médico para continuar com sua consulta.",
+    "textButton": "OK"
+  },
+  "NotFound": {
+    "title": "404 - Página não encontrada",
+    "message": "Desculpe, a página que você está procurando não existe.",
+    "button": "Voltar ao Início",
+    "logoAltText": "Logo"
+  },
+  "PageConstruction": {
+    "title": "Esta seção está em construção!",
+    "message": "Notifique-me quando estiver disponível",
+    "emailPlaceholder": "Digite seu e-mail",
+    "submitButton": "Enviar",
+    "logoAltText": "Logo",
+    "toastSuccessMessage": "Você será notificado."
+  },
+  "Treatment": {
+    "Profile": {
+      "icon_name": "medicine",
+      "greeting": "Bom dia,"
+    },
+    "CardTitle": [
+      {
+        "titles": [
+          "Tratamentos"
+        ],
+        "backgroundColor": "#4fd2c2",
+        "textColor": "#FFF"
+      },
+      {
+        "titles": [
+          "Medicamentos Pendentes:"
+        ],
+        "backgroundColor": "#D22B8B",
+        "textColor": "#FFF"
+      }
+    ],
+    "cardEvent": [
+      {
+        "color": "#D22B8B",
+        "action": "Nova dose de",
+        "name": "Ciclosporina 10mg",
+        "time": "8:30",
+        "unit": "AM"
+      },
+      {
+        "color": "#4fd2c2",
+        "action": "Consulta médica com",
+        "name": "Dr. Chang",
+        "time": "8:30",
+        "unit": "PM"
+      },
+      {
+        "color": "#D22B8B",
+        "action": "Nova dose de",
+        "name": "Ciclosporina 10mg",
+        "time": "8:30",
+        "unit": "AM"
+      },
+      {
+        "color": "#4fd2c2",
+        "action": "Consulta médica com",
+        "name": "Dra. Smith",
+        "time": "10:00",
+        "unit": "AM"
+      },
+      {
+        "color": "#D22B8B",
+        "action": "Nova dose de",
+        "name": "Ibuprofeno 200mg",
+        "time": "12:30",
+        "unit": "PM"
+      },
+      {
+        "color": "#4fd2c2",
+        "action": "Consulta médica com",
+        "name": "Nutricionista",
+        "time": "2:00",
+        "unit": "PM"
+      },
+      {
+        "color": "#D22B8B",
+        "action": "Nova dose de",
+        "name": "Paracetamol 500mg",
+        "time": "4:00",
+        "unit": "PM"
+      }
+    ]
+  },
+  "Schedule": {
+    "Profile": {
+      "icon_name": "calendarOrange",
+      "greeting": "Estes são seus turnos,"
+    },
+    "warning": {
+      "message": "Você não tem compromissos pendentes para esta data"
+    },
+    "AddItemButton": {
+      "text": "Novo compromisso"
+    }
+  },
+  "Navbar": {
+    "title": "Sair"
+  },
+  "register": {
+    "title": "Cadastrar",
+    "alreadyHaveAccount": "Já tem uma conta?",
+    "login": "Entrar",
+    "firstNameLabel": "Nome",
+    "firstNamePlaceholder": "Digite seu nome",
+    "lastNameLabel": "Sobrenome",
+    "lastNamePlaceholder": "Digite seu sobrenome",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Digite seu e-mail",
+    "roleLabel": "Selecione seu papel para se registrar:",
+    "patientRole": "Paciente: Para gerenciar suas consultas e atendimentos médicos.",
+    "doctorRole": "Médico: Para gerenciar suas consultas e pacientes.",
+    "registerButton": "Cadastrar",
+    "registrationSuccessTitle": "Cadastro Bem-Sucedido",
+    "registrationSuccessMessage": "Um e-mail com a senha de acesso ao aplicativo foi enviado."
+  },
+  "SearchBar": {
+    "placeholderInput": "Comece a buscar..."
+  },
+  "sidebar": [
+    {
+      "to": "/doctor",
+      "name": "Início",
+      "icon": "MdOutlineHomeIcon"
+    },
+    {
+      "to": "/doctor/messages",
+      "name": "Mensagens",
+      "icon": "BichatIcon"
+    },
+    {
+      "to": "/doctor/treatments",
+      "name": "Tratamentos",
+      "icon": "RiMedicineBottleLine"
+    },
+    {
+      "to": "/doctor/patients",
+      "name": "Pacientes",
+      "icon": "SlPeople"
+    },
+    {
+      "to": "/doctor/transplants",
+      "name": "Transplantes Cruzados",
+      "icon": "TbHearts"
+    },
+    {
+      "to": "/doctor/appointments",
+      "name": "Calendário",
+      "icon": "CiCalendar"
+    },
+    {
+      "to": "/doctor",
+      "name": "Configurações",
+      "icon": "IoSettingsOutline"
+    }
+  ],
+  "settings": {
+    "title": "Configurações",
+    "theme": "Tema",
+    "darkMode": "Modo Escuro",
+    "notifications": "Notificações",
+    "emailNotifications": "Notificações por E-mail",
+    "appNotifications": "Notificações no Aplicativo",
+    "privacy": "Privacidade",
+    "profileVisibility": "Visibilidade do Perfil",
+    "public": "Público",
+    "private": "Privado",
+    "language": "Idioma",
+    "changePassword": "Mudar Senha",
+    "deleteAccount": "Excluir Conta"
+  },
+  "lateralMenu": {
+    "home": "Início",
+    "upcoming_appointments": "Próximos Compromissos",
+    "treatment": "Tratamento",
+    "medication": "Medicação",
+    "nutrition": "Nutrição",
+    "physical_activity": "Atividade Física",
+    "insurance": "Plano de Saúde",
+    "profile": "Perfil",
+    "emergency_contacts": "Contatos de Emergência",
+    "settings": "Configurações",
+    "logout": "Sair"
+  },
+  "doctorList": {
+    "placeholder": "Buscar por nome do médico ou especialidade"
+  }
 }

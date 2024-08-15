@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -52,7 +53,7 @@ export default {
         Justina_3: "#EE6092",
         Justina_4: "#4E8661",
         Justina_5: "#958BBF",
-        Justina_6: "#DF8936",
+        Justina_6: "#6C7278",
         Justina_7: "#E9CD53",
         Justina_8: "#00ADDE",
         Justina_9: "#CAD6FF",
@@ -76,16 +77,20 @@ export default {
           "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;",
       },
       animation: {
-        blink: 'blink 1s infinite',
+        blink: "blink 1s infinite",
+        pulse_delay_200: "pulse 1s infinite 0.2s",
+        pulse_delay_400: "pulse 1s infinite 0.4s",
       },
       keyframes: {
         blink: {
-          '0%': { opacity: '1' },
-          '50%': { opacity: '0.5' },
-          '100%': { opacity: '1' },
+          "0%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
+          "100%": { opacity: "1" },
         },
       },
-      
+      content: {
+        '*': '""',
+      },
     },
   },
   plugins: [],

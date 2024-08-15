@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
@@ -14,120 +15,202 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-
-const timeline = [
-  {
-    id: 0,
-    hora_turno: `${new Date().getHours()}:${new Date().getMinutes()}`,
-    status: "disponible",
-    is_active: true,
-    paciente: {
-      prepaga: "osde",
-      name: "Kyrie Stewart",
-      age: 32,
-      risk: "alto",
-      picture: "https://randomuser.me/api/portraits/men/20.jpg",
-    },
-    medico: 0,
-    entidad: 0,
-  },
-  {
-    id: 1,
-    hora_turno: `${new Date().getHours() + 1}:${new Date().getMinutes()}`,
-    status: "disponible",
-    is_active: true,
-    paciente: {
-      prepaga: "osde",
-      name: "Anna Davidson",
-      age: 19,
-      risk: "bajo",
-      picture: "https://randomuser.me/api/portraits/women/50.jpg",
-    },
-    medico: 0,
-    entidad: 0,
-  },
-  {
-    id: 2,
-    hora_turno: `${new Date().getHours() + 2}:${new Date().getMinutes()}`,
-    status: "disponible",
-    is_active: true,
-    paciente: {
-      prepaga: "osde",
-      name: "Mariana Ross",
-      age: 36,
-      risk: "bajo",
-      picture: "https://randomuser.me/api/portraits/women/36.jpg",
-    },
-    medico: 0,
-    entidad: 0,
-  },
-];
+import { Link } from "react-router-dom";
+import { getTodayAppointmentData } from "../../services/appointments";
+import { getAllPatologys } from "../../services/patologysService";
+import { getHistorys } from "../../services/clinicHistory";
+import { updateAppointment } from "../../services/appointmentService";
 
 // eslint-disable-next-line react/prop-types
-export default function DoctorTimeline({ setPatient }) {
+export default function DoctorTimeline({
+  day,
+  setPatient,
+  selectedPatient,
+  notShowCTA,
+}) {
   const [expanded, setExpanded] = useState(null);
+  const [timeline, setTimeline] = useState([]);
+  const [patologias, setPatologias] = useState([]);
+  const [HC, setHC] = useState(null);
 
-  const handleAccordionChange = (isExpanded, paciente) => {
+  useEffect(() => {
+    const pato = async () => {
+      const patologias = await getAllPatologys();
+      setPatologias(patologias);
+    };
+    pato();
+  }, []);
+  const getPatologiaName = (id) => {
+    const patologia = patologias.find((patologia) => patologia.id === id);
+    return patologia ? patologia.name : "Sin patología";
+  };
+  useEffect(() => {
+    const fetchHC = async () => {
+      const result = await getHistorys();
+      setHC(result);
+    };
+    fetchHC();
+  }, []);
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const appointments = await getTodayAppointmentData(day);
+        const doctorAppointments = appointments.filter(
+          (appointment) =>
+            appointment.doctor === parseInt(localStorage.getItem("doctorId")),
+        );
+        console.log(doctorAppointments);
+
+        setTimeline(doctorAppointments);
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+      }
+    };
+
+    fetchAppointments();
+  }, [day]);
+  const handleAusente = (id, datos) => {
+    const patchSend = async () => {
+      const result = await updateAppointment(id, datos);
+      console.log(result);
+    };
+    patchSend();
+    window.location.reload();
+  };
+
+  const handleAccordionChange = (
+    id,
+    isExpanded,
+    paciente,
+    medicalHistory,
+    appointment_time,
+    user,
+  ) => {
     if (isExpanded) {
-      setPatient(paciente);
+      setPatient({
+        id,
+        patient: paciente,
+        medicalHistory,
+        appointment_time,
+        user,
+      });
     } else {
       setPatient(null);
     }
     setExpanded(isExpanded ? paciente : null);
   };
 
+  useEffect(() => {
+    if ((selectedPatient === null) | undefined) {
+      setExpanded(null);
+    }
+  }, [selectedPatient]);
+
   return (
     <Timeline>
-      {timeline.map(({ paciente, hora_turno }, index) => (
-        <TimelineItem key={index}>
-          <TimelineOppositeContent color="textSecondary" className="max-w-min">
-            {hora_turno}
-          </TimelineOppositeContent>
-          <TimelineSeparator>
-            <TimelineDot />
-            <TimelineConnector />
-          </TimelineSeparator>
-          <TimelineContent>
-            <Accordion
-              className="divide-y"
-              style={{ borderRadius: 20 }}
-              expanded={expanded === paciente}
-              onChange={(event, isExpanded) =>
-                handleAccordionChange(isExpanded, paciente)
-              }
-            >
-              <AccordionSummary
-                expandIcon={<ArrowDropDownIcon />}
-                aria-controls="panel2-content"
-                id="panel2-header"
+      {timeline.length > 0 ? (
+        timeline.map(
+          (
+            {
+              id,
+              patient,
+              medicalHistory,
+              appointment_time,
+              reason_for_visit,
+              user,
+            },
+            index,
+          ) => (
+            <TimelineItem key={index}>
+              <TimelineOppositeContent
+                color="textSecondary"
+                className="max-w-min"
               >
-                <Typography>{paciente.name} | Arritmia</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <div className="grid grid-cols-2 pl-5 pb-5">
-                  <p>Paciente: {paciente.name}</p>
-                  <p>Edad: {paciente.age}</p>
-                  <p>Riesgo: {paciente.risk}</p>
-                  <p>Prepaga: {paciente.prepaga}</p>
-                </div>
-                <div className="flex justify-evenly">
-                  <Tooltip title="Proximamente...">
-                    <span className="text-text_secondary cursor-pointer hover:underline">
-                      Ver historial clínico
-                    </span>
-                  </Tooltip>
-                  <span
-                    className="text-text_secondary cursor-pointer hover:underline"
-                    onClick={() => handleAccordionChange(true, paciente)}
+                {appointment_time}
+              </TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>
+                <Accordion
+                  className="divide-y"
+                  style={{ borderRadius: 20 }}
+                  expanded={expanded === patient}
+                  onChange={(event, isExpanded) =>
+                    handleAccordionChange(
+                      id,
+                      isExpanded,
+                      patient,
+                      medicalHistory,
+                      appointment_time,
+                      user,
+                    )
+                  }
+                >
+                  <AccordionSummary
+                    expandIcon={<ArrowDropDownIcon />}
+                    aria-controls="panel2-content"
+                    id="panel2-header"
                   >
-                    Ver tarjeta
-                  </span>
-                </div>
-              </AccordionDetails>
-            </Accordion>
-          </TimelineContent>
-        </TimelineItem>
-      ))}
+                    <Typography>
+                      {patient?.user.first_name + " " + patient?.user.last_name}{" "}
+                      | {reason_for_visit ? reason_for_visit : "Sin motivo"}
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <div className="grid grid-cols-1 xl:grid-cols-2 pl-5 pb-5">
+                      <p>
+                        Diagnóstico:{" "}
+                        {getPatologiaName(
+                          HC?.find(
+                            (historia) => historia.patient === patient.id,
+                          ).pathology,
+                        )}
+                      </p>
+                      <p>Edad: {35}</p>
+                      <p>Prepaga: {patient?.financer}</p>
+                    </div>
+                    {!notShowCTA && (
+                      <div className="flex justify-evenly">
+                        <button
+                          className="bg-white border border-[#C03744] font-semibold text-sm px-4 py-2 rounded-[10px] text-[#C03744] hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner"
+                          onClick={() =>
+                            handleAusente(id, {
+                              user: user.id,
+                              status: "absent",
+                            })
+                          }
+                        >
+                          Paciente ausente
+                        </button>
+
+                        <Tooltip title="Proximamente...">
+                          <button className="bg-[#958BBF] font-semibold text-sm px-4 py-2 rounded-[10px] text-white hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner">
+                            Ver historial clínico
+                          </button>
+                        </Tooltip>
+                        <Link
+                          to={`/doctor/consultant/${id}`}
+                          className="bg-[#36A781] font-semibold text-sm px-4 py-2 rounded-[10px] text-white hover:scale-[103%] outline-none transition-all duration-300 hover:shadow-xl active:shadow-inner"
+                        >
+                          <span>Comenzar consulta</span>
+                        </Link>
+                      </div>
+                    )}
+                  </AccordionDetails>
+                </Accordion>
+              </TimelineContent>
+            </TimelineItem>
+          ),
+        )
+      ) : (
+        <div className="w-full py-20">
+          <p className="text-center text-3xl text-green-800 opacity-60">
+            No hay turnos para hoy!
+          </p>
+        </div>
+      )}
     </Timeline>
   );
 }

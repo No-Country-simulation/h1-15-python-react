@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { BiSearch } from "react-icons/bi";
-import { IoMdCloseCircleOutline } from "react-icons/io";
 import CardPatientList from "../../../components/Cards/CardPatientList";
 import LateralView from "../../../components/LateralView";
+import Icon from "../../../components/Icon/Icon";
+import { getAllPatients } from "../../../services/patientService";
 
 const DoctorPatients = () => {
   const [hasContent, setHasContent] = useState(false);
@@ -11,19 +11,19 @@ const DoctorPatients = () => {
   const [pacientes, setPacientes] = useState([]);
   const [pacienteSeleccionado, setPacienteSeleccionado] = useState();
 
-  async function loadPacientes() {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/No-Country-simulation/h1-15-python-react/frontend-stable/Frontend/src/data/pacientes.json",
-    );
-    const names = await response.json();
-    setPacientes(names.result);
-  }
   useEffect(() => {
+    const loadPacientes = async () => {
+      const data = await getAllPatients();
+      const pacientesData = data.map((patient) => ({ patient }));
+      setPacientes(pacientesData);
+    };
     loadPacientes();
   }, []);
   useEffect(() => {
     const filtered = pacientes.filter((patient) =>
-      patient.name.toLowerCase().includes(value.toLowerCase()),
+      patient.patient.user.first_name
+        .toLowerCase()
+        .includes(value.toLowerCase()),
     );
     setFilteredPatients(filtered);
   }, [pacientes, value]);
@@ -32,18 +32,21 @@ const DoctorPatients = () => {
     setValue(e.target.value);
     setHasContent(e.target.value !== "");
   };
-
   return (
     <main>
-      <h1 className="font-semibold text-5xl font-josefin">Pacientes</h1>
+      <h1 className="font-semibold text-3xl font-josefin">Pacientes</h1>
       <div className="flex items-center">
         {/**CUADRO DE BUSQUEDA */}
         <div className="relative px-2 w-[705px] h-[56px]">
-          <BiSearch className="relative top-[38px] left-3 text-xl" />
-          <IoMdCloseCircleOutline
+          <div className="relative top-[38px] left-3 text-xl">
+            <Icon name="search" />
+          </div>
+          <div
             className="absolute top-[38px] right-3 text-xl cursor-pointer"
             onClick={() => setValue("")}
-          />
+          >
+            <Icon name="IoMdCloseCircleOutlineIcon" />
+          </div>
           <input
             id="busqueda"
             className={`block w-full h-[56px] px-10 text-sm bg-transparent rounded border border-[#79747E] appearance-none focus:outline-none peer ${
@@ -66,7 +69,7 @@ const DoctorPatients = () => {
         </div>
       </div>
       <section className="flex gap-6">
-        <ul className="gap-4 flex flex-col w-2/3 mt-10">
+        <ul className="gap-4 flex flex-col items-center w-2/3 mt-10 overflow-x-visible overflow-y-scroll h-[400px]">
           {/*Lista de pacientes */}
           {filteredPatients &&
             filteredPatients.map((paciente, index) => (
