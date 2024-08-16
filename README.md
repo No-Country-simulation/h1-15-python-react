@@ -4,11 +4,19 @@
 
 Propuesta de aplicación de gestión de medicina para Justina.IO, dentro del marco del Hackathon de No Country.
 
-Web de pruebas: https://justina-latam.vercel.app/
+<p align="center">
+  <img src="https://res.cloudinary.com/dzllpjhiv/image/upload/v1723781331/landing-Photoroom_drmrrp.png" alt="landing" height="300px"/>
+  <img src="https://res.cloudinary.com/dzllpjhiv/image/upload/v1723781503/image-Photoroom_tbi4iq.png" alt="image" height="400px"/>
+</p>
+
+<p align="center">
+ Web de pruebas: https://justina-latam.vercel.app/
+</p>
+
+
+
 
 ## Badges
-
-Add badges from somewhere like: [shields.io](https://shields.io/)
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
