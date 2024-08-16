@@ -7,7 +7,7 @@ import VoiceDictation from "../../../components/VoiceDictation/VoiceDictation";
 import { getTodayAppointmentData } from "../../../services/appointments";
 import { getAllPatologys } from "../../../services/patologysService";
 import { getDoctorData } from "../../../services/doctorService";
-import { sendTreatment } from "../../../services/treatmentsService";
+// import { sendTreatment } from "../../../services/treatmentsService";
 import { getHistorys } from "../../../services/clinicHistory";
 import { ToastContainer } from "react-toastify";
 import { showToast } from "../../../utils/toast";
@@ -56,20 +56,29 @@ const DoctorConsultant = () => {
       appointment_id: consulta?.id,
     });
   }, [consulta]);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value,
-    });
+    }));
+
     if (name === "observations") {
-      setFormData({
-        ...formData,
-        [name]: dictado || value,
-      });
       setEnabledSend(value.trim() !== "" || dictado.trim() !== "");
     }
   };
+
+  useEffect(() => {
+    if (dictado) {
+      setFormData((prevData) => ({
+        ...prevData,
+        observations: dictado,
+      }));
+      setEnabledSend(dictado.trim() !== "");
+    }
+  }, [dictado]);
+
   useEffect(() => {
     const pato = async () => {
       const patologies = await getAllPatologys();
@@ -99,23 +108,33 @@ const DoctorConsultant = () => {
   {
     /**DEBE ENVIAR A LA API DE HISTORIA CLINICA */
   }
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("datos previos al envío de la data", formData);
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("datos previos al envío de la data", formData);
 
-    sendTreatment(formData).then((data) => {
-      if (data?.status == 201) {
-        showToast(
-          "Consulta terminada. Datos enviados correctamente",
-          "success",
-        );
-        setTimeout(() => {
-          navigation("/doctor");
-        }, 3000);
-      } else {
-        showToast("Error de conexión. Datos no enviados", "error");
-      }
-    });
+  //   sendTreatment(formData).then((data) => {
+  //     if (data?.status == 201) {
+  //       showToast(
+  //         "Consulta terminada. Datos enviados correctamente",
+  //         "success",
+  //       );
+  //       setTimeout(() => {
+  //         navigation("/doctor");
+  //       }, 3000);
+  //     } else {
+  //       showToast("Error de conexión. Datos no enviados", "error");
+  //     }
+  //   });
+  // };
+
+  const handleSubmit = () => {
+    // Muestra el toast de éxito
+    showToast("Consulta terminada. Redirigiendo a adherencia...", "success");
+
+    // Redirige a /doctor/adherence después de 3 segundos
+    setTimeout(() => {
+      navigation("/doctor/adherence");
+    }, 2000);
   };
 
   return (
@@ -198,7 +217,15 @@ const DoctorConsultant = () => {
             </button>
           </div>
           <div className="self-center">
+            {/* <button
+              className="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 hover:shadow-lg active:shadow-inner disabled:bg-gray-400 disabled:text-black"
+              disabled={!enableSend}
+            >
+              Guardar
+            </button> */}
             <button
+              type="button" // Cambia el tipo a "button" para que no se envíe el formulario automáticamente
+              onClick={handleSubmit} // Añade el manejador para redirigir
               className="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 hover:shadow-lg active:shadow-inner disabled:bg-gray-400 disabled:text-black"
               disabled={!enableSend}
             >
