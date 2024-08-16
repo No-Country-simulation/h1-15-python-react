@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import Icon from "../../../components/Icon/Icon";
 import { submitReview } from "../../../services/reviewService";
 import { showToast } from "../../../utils/toast";
+import { ToastContainer } from "react-toastify";
 
 const Reviews = ({ doctorId, reviews }) => {
   const [rating, setRating] = useState(0);
@@ -123,6 +124,7 @@ const Reviews = ({ doctorId, reviews }) => {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

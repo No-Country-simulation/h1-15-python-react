@@ -10,6 +10,7 @@ import DoctorTreatments from "../pages/Doctor/Treatments/Doctor-treatments";
 import UpdatePassword from "../pages/UpdatePassword/UpdatePassword";
 import DoctorConsultant from "../pages/Doctor/Consultant/Doctor-consultant";
 import DoctorProfile from "../pages/Doctor/Profile/DoctorProfile";
+import Adherence from "../pages/Doctor/Adherence/Adherence";
 
 export const doctorRoutes = (
   <>
@@ -24,6 +25,7 @@ export const doctorRoutes = (
       <Route path="patients" element={<DoctorPatients />} />
       <Route path="transplants" element={<DoctorTransplants />} />
       <Route path="messages" element={<PageConstruction />} />
+      <Route path="adherence" element={<Adherence/>} />
       <Route path="treatments" element={<DoctorTreatments />} />
       <Route path="consultant/:id" element={<DoctorConsultant />} />
       <Route path="profile" element={<DoctorProfile />} />

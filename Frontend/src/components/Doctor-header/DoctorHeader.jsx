@@ -18,16 +18,15 @@ export default function DoctorHeader() {
       </div>
       <div className="flex items-center gap-4 relative">
         <UserInitials onClick={toggleShowLogout} />{" "}
-        {/* Añadir la función onClick si es necesario */}
         <div className="relative">
           <div
             className="cursor-pointer flex items-center"
             onClick={toggleShowLogout}
           >
             {showLogout ? (
-              <Icon name="FaChevronDownIcon" />
-            ) : (
               <Icon name="FaChevronUpIcon" />
+            ) : (
+              <Icon name="FaChevronDownIcon" />
             )}
           </div>
           {showLogout && (
