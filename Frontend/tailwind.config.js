@@ -8,7 +8,7 @@ export default {
         sans: ["Inter", "sans-serif"],
         josefin: ["Josefin Sans", "sans-serif"],
         spartan: ["League Spartan", "sans-serif"],
-        noto: ["Noto Sans Arabic", "sans-serif"],
+        Montserrat:[ "Montserrat", "sans-serif"]
       },
       colors: {
         primary: {

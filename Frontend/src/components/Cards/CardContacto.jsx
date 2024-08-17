@@ -1,6 +1,6 @@
 const CardContacto = () => {
   return (
-    <div className="w-[343px] h-[310px] -mt-[140px] flex flex-col justify-around items-center bg-white rounded-[10px]">
+    <div className="w-[343px] h-[310px] -mt-[140px] flex flex-col justify-around items-center bg-white rounded-lg">
       <svg
         width="50"
         height="50"

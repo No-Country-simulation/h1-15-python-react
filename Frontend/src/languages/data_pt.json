@@ -93,7 +93,7 @@
       ]
     },
     "aboutJustina": {
-      "title": "Um Legado de Amor e Solidariedade",
+      "title": "SOBRE JUSTINA",
       "items": [
         {
           "title": "Lei Justina",
@@ -118,28 +118,65 @@
         {
           "name": "ANA GARCIA",
           "condition": "PACIENTE TRANSPLANTADO",
-          "comment": "O app foi fundamental para receber um transplante de rim. A rapidez em encontrar um doador foi incrível.",
+          "comment": "O aplicativo foi essencial para receber um transplante de rim. A rapidez em encontrar um doador foi incrível.",
           "image": "https://randomuser.me/api/portraits/women/45.jpg"
         },
         {
           "name": "JUAN PÉREZ",
           "condition": "PACIENTE COM DIABETES",
-          "comment": "Graças ao app, encontrei o apoio que precisava para controlar minha diabetes e melhorar minha qualidade de vida.",
+          "comment": "Graças ao aplicativo, encontrei o apoio que precisava para controlar meu diabetes e melhorar minha qualidade de vida.",
           "image": "https://randomuser.me/api/portraits/men/76.jpg"
         },
         {
           "name": "MARÍA LOPEZ",
           "condition": "PACIENTE COM HIPERTENSÃO",
-          "comment": "O app me ajudou a receber o tratamento adequado para minha hipertensão e a manter um acompanhamento constante.",
+          "comment": "O aplicativo me ajudou a receber o tratamento adequado para minha hipertensão e a manter um acompanhamento constante.",
           "image": "https://randomuser.me/api/portraits/women/68.jpg"
         },
         {
           "name": "LUIS MARTÍNEZ",
           "condition": "PACIENTE EM RECUPERAÇÃO",
-          "comment": "O app foi essencial para minha recuperação. Encontrei os recursos que precisava para minha reabilitação com facilidade.",
+          "comment": "O aplicativo foi fundamental para minha recuperação. Encontrei os recursos que precisava para minha reabilitação com facilidade.",
           "image": "https://randomuser.me/api/portraits/men/62.jpg"
+        },
+        {
+          "name": "CARLA GONZÁLEZ",
+          "condition": "PACIENTE COM ASMA",
+          "comment": "O aplicativo me permitiu controlar minha asma de maneira mais eficaz e prevenir crises graças aos seus lembretes e dicas.",
+          "image": "https://randomuser.me/api/portraits/women/25.jpg"
+        },
+        {
+          "name": "ROBERTO SÁNCHEZ",
+          "condition": "PACIENTE CARDÍACO",
+          "comment": "Graças ao aplicativo, recebi o tratamento adequado a tempo e consegui evitar complicações graves em minha condição.",
+          "image": "https://randomuser.me/api/portraits/men/54.jpg"
+        },
+        {
+          "name": "LAURA FERNÁNDEZ",
+          "condition": "PACIENTE COM CÂNCER",
+          "comment": "O aplicativo foi uma grande ajuda para coordenar minhas consultas e me manter informada durante meu tratamento de câncer.",
+          "image": "https://randomuser.me/api/portraits/women/32.jpg"
+        },
+        {
+          "name": "MIGUEL ÁLVAREZ",
+          "condition": "PACIENTE COM ARTRITE",
+          "comment": "O aplicativo me ajudou a encontrar o tratamento certo para minha artrite e melhorar minha mobilidade.",
+          "image": "https://randomuser.me/api/portraits/men/43.jpg"
+        },
+        {
+          "name": "VERÓNICA MORALES",
+          "condition": "PACIENTE COM DEPRESSÃO",
+          "comment": "O aplicativo me conectou com um terapeuta que me ajudou muito a gerenciar minha depressão. Sou muito grata.",
+          "image": "https://randomuser.me/api/portraits/women/75.jpg"
+        },
+        {
+          "name": "ALBERTO GÓMEZ",
+          "condition": "PACIENTE COM ESCLEROSE MÚLTIPLA",
+          "comment": "O aplicativo me deu acesso a recursos que melhoraram minha qualidade de vida e me ajudaram a gerenciar minha condição.",
+          "image": "https://randomuser.me/api/portraits/men/37.jpg"
         }
       ]
+
     },
     "footer": {
       "slogan": "Unimos forças para construir um futuro brilhante, cheio de esperança e oportunidades.",

@@ -4,14 +4,14 @@ import Icon from "./Icon/Icon";
 
 const Footer = ({ footerData }) => {
   return (
-    <div className="bg-[#232233] w-full py-8 px-4 flex flex-col items-center gap-6 mt-[140px]">
+    <div className="bg-[#232233] w-full py-8 px-4 flex flex-col items-center gap-6">
       <CardContacto />
       <img
         src="logo.svg"
         alt="Logo de la empresa"
         className="w-24 h-auto md:w-32 lg:w-40"
       />
-      <p className="text-center text-white text-base md:text-lg lg:text-xl">
+      <p className="text-center text-white text-sm md:text-lg">
         {footerData.slogan}
       </p>
 
@@ -37,7 +37,7 @@ const Footer = ({ footerData }) => {
 
       {/* Enlaces */}
       <div className="flex flex-col items-center text-white pt-8 gap-4">
-        <h3 className="text-lg md:text-xl lg:text-2xl font-semibold">
+        <h3 className="text-lg md:text-xl font-semibold">
           {footerData.links[0].title}
         </h3>
         <ul className="flex flex-col gap-3 items-center">
@@ -53,7 +53,7 @@ const Footer = ({ footerData }) => {
 
       {/* Newsletter */}
       <div className="text-white mt-8 w-full max-w-md mx-auto">
-        <h3 className="text-lg md:text-xl lg:text-2xl font-semibold">
+        <h3 className="text-lg md:text-xl font-semibold">
           {footerData.newsletter.title}
         </h3>
         <p className="text-white text-sm md:text-base pb-4">
@@ -61,7 +61,7 @@ const Footer = ({ footerData }) => {
         </p>
         <form className="relative" onSubmit={(e) => e.preventDefault()}>
           <input
-            className="w-full h-[50px] pl-4 pr-[70px] py-3 rounded text-black outline-none"
+            className="w-full h-[50px] pl-4 pr-[70px] py-3 rounded text-black outline-none text-sm"
             placeholder={footerData.newsletter.placeholder}
             type="email"
             required

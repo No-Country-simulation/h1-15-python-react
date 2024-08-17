@@ -7,7 +7,7 @@ const CardEvent = ({
   eventTimeUnit,
 }) => {
   return (
-    <div className="flex items-center p-4 bg-[#E4E4E4] shadow-inner-custom  font-sans text-xs md:text-base">
+    <div className="flex items-center p-4 bg-[#E4E4E4] shadow-inner-custom text-xs md:text-base">
       <div
         className="w-4 h-4 rounded-full"
         style={{ backgroundColor: color }}

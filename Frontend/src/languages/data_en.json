@@ -93,7 +93,7 @@
       ]
     },
     "aboutJustina": {
-      "title": "A Legacy of Love and Solidarity",
+      "title": "ABOUT JUSTINA",
       "items": [
         {
           "title": "Justina's Law",
@@ -118,7 +118,7 @@
         {
           "name": "ANA GARCIA",
           "condition": "TRANSPLANT PATIENT",
-          "comment": "The app was crucial for receiving a kidney transplant. The speed in finding a donor was incredible.",
+          "comment": "The app was essential for receiving a kidney transplant. The speed in finding a donor was incredible.",
           "image": "https://randomuser.me/api/portraits/women/45.jpg"
         },
         {
@@ -130,14 +130,50 @@
         {
           "name": "MARÍA LOPEZ",
           "condition": "HYPERTENSION PATIENT",
-          "comment": "The app helped me get the right treatment for my hypertension and maintain regular follow-ups.",
+          "comment": "The app helped me get the right treatment for my hypertension and maintain constant monitoring.",
           "image": "https://randomuser.me/api/portraits/women/68.jpg"
         },
         {
           "name": "LUIS MARTÍNEZ",
-          "condition": "RECOVERING PATIENT",
-          "comment": "The app was key to my recovery. I found the resources I needed for my rehabilitation with ease.",
+          "condition": "RECOVERY PATIENT",
+          "comment": "The app was key to my recovery. I easily found the resources I needed for my rehabilitation.",
           "image": "https://randomuser.me/api/portraits/men/62.jpg"
+        },
+        {
+          "name": "CARLA GONZÁLEZ",
+          "condition": "ASTHMA PATIENT",
+          "comment": "The app has allowed me to manage my asthma more effectively and prevent attacks thanks to its reminders and tips.",
+          "image": "https://randomuser.me/api/portraits/women/25.jpg"
+        },
+        {
+          "name": "ROBERTO SÁNCHEZ",
+          "condition": "HEART PATIENT",
+          "comment": "Thanks to the app, I received the right treatment in time and avoided serious complications in my condition.",
+          "image": "https://randomuser.me/api/portraits/men/54.jpg"
+        },
+        {
+          "name": "LAURA FERNÁNDEZ",
+          "condition": "CANCER PATIENT",
+          "comment": "The app was a great help in coordinating my appointments and keeping me informed during my cancer treatment.",
+          "image": "https://randomuser.me/api/portraits/women/32.jpg"
+        },
+        {
+          "name": "MIGUEL ÁLVAREZ",
+          "condition": "ARTHRITIS PATIENT",
+          "comment": "The app helped me find the right treatment for my arthritis and improve my mobility.",
+          "image": "https://randomuser.me/api/portraits/men/43.jpg"
+        },
+        {
+          "name": "VERÓNICA MORALES",
+          "condition": "DEPRESSION PATIENT",
+          "comment": "The app connected me with a therapist who has greatly helped me manage my depression. I am very grateful.",
+          "image": "https://randomuser.me/api/portraits/women/75.jpg"
+        },
+        {
+          "name": "ALBERTO GÓMEZ",
+          "condition": "MULTIPLE SCLEROSIS PATIENT",
+          "comment": "The app gave me access to resources that improved my quality of life and helped me manage my condition.",
+          "image": "https://randomuser.me/api/portraits/men/37.jpg"
         }
       ]
     },

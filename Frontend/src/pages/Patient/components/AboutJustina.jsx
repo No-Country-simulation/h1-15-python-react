@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 const AboutJustina = ({ title, subtitle, description, image, link }) => {
   return (
-    <div className="bg-white w-full max-h-[440px] flex flex-col items-center rounded-lg px-4 py-6">
+    <div className="w-full bg-white max-h-[440px] flex flex-col items-center rounded-lg px-4 py-6">
       <a href={link} target="_blank" rel="noopener noreferrer">
           <img
             src={image}
@@ -10,13 +10,13 @@ const AboutJustina = ({ title, subtitle, description, image, link }) => {
           />
       </a>
       <div className="p-4 sm:p-6 lg:p-8">
-        <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-center uppercase">
+        <h2 className="text-lg sm:text-lg lg:text-xl font-semibold text-center uppercase">
           {title}
         </h2>
-        <h3 className="text-sm sm:text-base lg:text-lg text-gray-600 text-center mb-2">
+        <h3 className="text-base sm:text-lg md:text-lg text-gray-600 text-center mb-2">
           {subtitle}
         </h3>
-        <p className="text-center text-xs sm:text-sm lg:text-base">
+        <p className="text-center text-sm md:text-base">
           {description}
         </p>
       </div>

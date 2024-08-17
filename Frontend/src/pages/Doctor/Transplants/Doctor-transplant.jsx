@@ -46,7 +46,7 @@ const DoctorTransplants = () => {
 
   return (
     <section className="flex flex-col w-full h-screen mt-5 gap-5">
-      <h3 className="text-center font-josefin font-semibold">
+      <h3 className="text-center font-semibold">
         Al seleccionar una pareja, se filtrará en la otra columna las parejas
         posiblemente compatibles
       </h3>
@@ -68,7 +68,7 @@ const DoctorTransplants = () => {
             </label>
             {search.length > 0 && (
               <div
-                className="cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 w-5 h-5 text-center font-josefin text-sm border border-slate-400 text-slate-400 font-light hover:border-black hover:text-black hover:font-bold rounded-full transition-all duration-300"
+                className="cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 w-5 h-5 text-center text-sm border border-slate-400 text-slate-400 font-light hover:border-black hover:text-black hover:font-bold rounded-full transition-all duration-300"
                 onClick={() => setSearch("")}
               >
                 X
@@ -107,7 +107,7 @@ const DoctorTransplants = () => {
             </label>
             {searchReceptor.length > 0 && (
               <div
-                className="cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 w-5 h-5 text-center font-josefin text-sm border border-slate-400 text-slate-400 font-light hover:border-black hover:text-black hover:font-bold rounded-full transition-all duration-300"
+                className="cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 w-5 h-5 text-center text-sm border border-slate-400 text-slate-400 font-light hover:border-black hover:text-black hover:font-bold rounded-full transition-all duration-300"
                 onClick={() => setSearchReceptor("")}
               >
                 X

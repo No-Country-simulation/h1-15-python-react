@@ -3,11 +3,11 @@ import Avatar from "../Avatar";
 
 const CardPeople = ({ imagen, nombre, posicion, bio }) => {
   return (
-    <div className="bg-white w-full max-h-[620px] flex flex-col items-center rounded-lg px-4 py-6">
+    <div className="bg-white w-[95%] md:h-[520px] md:max-w-[400px] flex flex-col items-center rounded-lg px-4 py-6">
       <Avatar imagen={imagen} />
       <div className="flex flex-col justify-center items-center mt-[20px]">
-        <h2 className="text-[31.25px] font-bold text-[#232233]">{nombre}</h2>
-        <h3 className="text-[20px] font-semibold text-[#6C6C72] pb-4">
+        <h2 className="text-3xl font-bold text-[#232233]">{nombre}</h2>
+        <h3 className="text-xl font-semibold text-[#6C6C72] pb-4">
           {posicion}
         </h3>
         <p className="w-[313px] text-center text-[#6C6C72]">{bio}</p>

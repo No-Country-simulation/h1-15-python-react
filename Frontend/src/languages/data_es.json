@@ -93,7 +93,7 @@
       ]
     },
     "aboutJustina": {
-      "title": "Un Legado de Amor y Solidaridad",
+      "title": "SOBRE JUSTINA",
       "items": [
         {
           "title": "Ley Justina",
@@ -138,8 +138,45 @@
           "condition": "PACIENTE EN RECUPERACIÓN",
           "comment": "La app fue clave para mi recuperación. Encontré los recursos que necesitaba para mi rehabilitación con facilidad.",
           "image": "https://randomuser.me/api/portraits/men/62.jpg"
+        },
+        {
+          "name": "CARLA GONZÁLEZ",
+          "condition": "PACIENTE CON ASMA",
+          "comment": "La app me ha permitido controlar mi asma de manera más efectiva y prevenir ataques gracias a sus recordatorios y consejos.",
+          "image": "https://randomuser.me/api/portraits/women/25.jpg"
+        },
+        {
+          "name": "ROBERTO SÁNCHEZ",
+          "condition": "PACIENTE CARDÍACO",
+          "comment": "Gracias a la app, recibí el tratamiento adecuado a tiempo y pude evitar complicaciones serias en mi condición.",
+          "image": "https://randomuser.me/api/portraits/men/54.jpg"
+        },
+        {
+          "name": "LAURA FERNÁNDEZ",
+          "condition": "PACIENTE CON CÁNCER",
+          "comment": "La app fue una gran ayuda para coordinar mis citas y mantenerme informada durante mi tratamiento de cáncer.",
+          "image": "https://randomuser.me/api/portraits/women/32.jpg"
+        },
+        {
+          "name": "MIGUEL ÁLVAREZ",
+          "condition": "PACIENTE CON ARTRITIS",
+          "comment": "La app me ayudó a encontrar el tratamiento adecuado para mi artritis y a mejorar mi movilidad.",
+          "image": "https://randomuser.me/api/portraits/men/43.jpg"
+        },
+        {
+          "name": "VERÓNICA MORALES",
+          "condition": "PACIENTE CON DEPRESIÓN",
+          "comment": "La app me conectó con un terapeuta que me ha ayudado enormemente a manejar mi depresión. Estoy muy agradecida.",
+          "image": "https://randomuser.me/api/portraits/women/75.jpg"
+        },
+        {
+          "name": "ALBERTO GÓMEZ",
+          "condition": "PACIENTE CON ESCLEROSIS MÚLTIPLE",
+          "comment": "La app me brindó acceso a recursos que mejoraron mi calidad de vida y me ayudaron a manejar mi condición.",
+          "image": "https://randomuser.me/api/portraits/men/37.jpg"
         }
       ]
+
     },
     "footer": {
       "slogan": "Unimos fuerzas para construir un futuro brillante, lleno de esperanza y oportunidades.",
