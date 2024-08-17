@@ -14,7 +14,7 @@ export default function DoctorProfile() {
     });
   }, []);
   return (
-    <main className="font-josefin">
+    <main>
       {!isLoading && (
         <>
           <h1 className="text-4xl font-bold">Mi perfil</h1>

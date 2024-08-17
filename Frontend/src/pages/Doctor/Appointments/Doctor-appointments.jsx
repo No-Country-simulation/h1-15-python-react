@@ -24,7 +24,7 @@ const DoctorAppointments = () => {
     <div className="flex justify-between gap-2">
       <section className="grid gap-2 h-fit relative w-2/3">
         <div className="flex gap-10 justify-between">
-          <h1 className="font-semibold text-5xl font-josefin">Turnos</h1>
+          <h1 className="font-semibold text-5xl">Turnos</h1>
           <h4
             className="w-fit cursor-pointer text-center text-lg font-bold underline my-4 mr-10"
             onClick={() => {

@@ -34,7 +34,7 @@ const DoctorPatients = () => {
   };
   return (
     <main>
-      <h1 className="font-semibold text-3xl font-josefin">Pacientes</h1>
+      <h1 className="font-semibold text-3xl">Pacientes</h1>
       <div className="flex items-center">
         {/**CUADRO DE BUSQUEDA */}
         <div className="relative px-2 w-[705px] h-[56px]">

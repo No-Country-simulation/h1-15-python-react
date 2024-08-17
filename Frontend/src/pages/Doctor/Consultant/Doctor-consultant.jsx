@@ -138,7 +138,7 @@ const DoctorConsultant = () => {
   };
 
   return (
-    <main className="grid grid-cols-[3fr_1fr] font-josefin">
+    <main className="grid grid-cols-[3fr_1fr]">
       <form
         className="w-full flex flex-col gap-5 pr-10"
         onSubmit={handleSubmit}

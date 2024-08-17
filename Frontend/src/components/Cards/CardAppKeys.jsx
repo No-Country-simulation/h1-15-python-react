@@ -9,7 +9,7 @@ const CardAppKey = ({ title, message }) => {
       </div>
       <div className="flex flex-col justify-center">
         <h4 className="text-xl font-semibold text-[#232233]">{title}</h4>
-        <p className="text-base text-[#6C6C72] mt-2">{message}</p>
+        <p className="text-sm md:text-base text-[#6C6C72] mt-2">{message}</p>
       </div>
     </div>
   );

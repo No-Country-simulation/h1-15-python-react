@@ -18,7 +18,7 @@ function App() {
   }, [darkMode]);
 
   return (
-    <div className="min-h-screen dark:bg-[#212121] text-black dark:text-white font-josefin">
+    <div className="min-h-screen dark:bg-[#212121] text-black dark:text-white font-Montserrat">
       <Routes>
         {/* Public Routes */}
         {publicRoutes}

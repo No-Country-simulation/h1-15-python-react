@@ -79,8 +79,8 @@ const DoctorTreatments = () => {
 
   return (
     <section>
-      <h1 className="font-semibold text-3xl font-josefin">Tratamientos</h1>
-      <h3 className="font-medium text-base md:text-2xl font-josefin md:mt-6">
+      <h1 className="font-semibold text-3xl">Tratamientos</h1>
+      <h3 className="font-medium text-base md:text-2xl md:mt-6">
         Seleccionar Tipo de tratamiento
       </h3>
       <section className="grid grid-cols-1  xl:grid-cols-2 w-[90%] md:pl-28 mt-6 gap-5">

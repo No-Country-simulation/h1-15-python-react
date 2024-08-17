@@ -15,7 +15,7 @@ const NotFound = () => {
   }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-4 font-sans">
+    <main className="flex flex-col items-center justify-center min-h-screen p-4">
       <div className="text-center mb-4">
         <h1 className="text-3xl font-bold mb-2">
           {languageData.NotFound.title}

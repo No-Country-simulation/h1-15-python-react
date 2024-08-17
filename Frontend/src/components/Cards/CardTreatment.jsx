@@ -24,7 +24,7 @@ const CardTreatment = ({ tratamiento, descripcion, color, set }) => {
         id="banner"
         className={`h-[10%] md:h-[30%] rounded-[8px_8px_0_0] ${bannerColor[color ? color : 0]}`}
       ></div>
-      <div id="contend" className="font-josefin h-[70%]">
+      <div id="contend" className="h-[70%]">
         <h3 className="font-bold text-base md:text-2xl pt-4 pl-5">
           {tratamiento}
         </h3>

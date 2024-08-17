@@ -21,7 +21,7 @@ const CardCrossTransplant = ({
           imagen={`https://api.multiavatar.com/${personas?.Donante.Nombre}.png`}
         />
         <div className="w-full justify-start">
-          <p className="font-josefin font-bold">
+          <p className="font-bold">
             {type === "DONANTE" ? "DONANTE" : "RECEPTOR"}
           </p>
           <div className="grid grid-cols-4 justify-items-stretch w-full justify-center">
@@ -81,7 +81,7 @@ const CardCrossTransplant = ({
                 : personas?.HLA[HLA_index]}
             </p>
           </div>
-          <p className="text-end font-josefin font-bold">
+          <p className="text-end font-bold">
             {type !== "DONANTE" ? "DONANTE" : "RECEPTOR"}
           </p>
         </div>

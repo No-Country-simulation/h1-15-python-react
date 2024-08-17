@@ -2,7 +2,7 @@
 const CardTitle = ({ titles, backgroundColor, textColor, onClick }) => {
   return (
     <div
-      className="flex flex-col items-center justify-center py-4 px-6 font-sans font-extralight text-base h-full p-4 cursor-pointer uppercase tracking-widest"
+      className="flex flex-col items-center justify-center py-4 px-6 font-extralight text-base h-full p-4 cursor-pointer uppercase tracking-widest"
       style={{ backgroundColor, color: textColor }}
       onClick={onClick}
     >
