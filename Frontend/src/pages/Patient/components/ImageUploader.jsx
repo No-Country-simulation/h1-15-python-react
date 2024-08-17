@@ -4,10 +4,11 @@ import { auto } from "@cloudinary/url-gen/actions/resize";
 import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
 import { AdvancedImage } from "@cloudinary/react";
 import axios from "axios";
-import UserInitials from "../../../components/UserInitials";
 import Icon from "../../../components/Icon/Icon";
 import { showToast } from "../../../utils/toast";
 import Spinner from "../../../components/Spinner";
+import { updateProfilePicture } from "../../../services/userServices";
+import UserProfilePhoto from "./UserProfilePhoto";
 
 const CLOUD_NAME = 'dzllpjhiv';
 const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
@@ -29,10 +30,16 @@ const ImageUploader = () => {
 
       setUploading(true);
       try {
+        // Subir imagen a Cloudinary
         const response = await axios.post(CLOUDINARY_URL, formData);
         setImageId(response.data.public_id);
-        console.log('Imagen subida con éxito. URL:', response.data.secure_url); 
+        const secureUrl = response.data.secure_url;
+
+        console.log('Imagen subida con éxito. URL:', secureUrl); 
         showToast('Imagen subida con éxito', 'success');
+
+        // Actualizar la foto de perfil en el servidor
+        await updateProfilePicture(secureUrl);
       } catch (error) {
         console.error("Error subiendo la imagen:", error);
         showToast('Error subiendo la imagen', 'error');
@@ -65,16 +72,16 @@ const ImageUploader = () => {
           className="hidden"
         />
         {!img ? (
-          <div className="relative flex w-[120px] h-[120px] bg-magentaButton text-4xl justify-center items-center rounded-full text-white">
-            <UserInitials onClick={handleClick} />
+          <div className="relative flex w-32 h-32 justify-center items-center rounded-full text-3xl text-white bg-gray-300">
+            <UserProfilePhoto onClick={handleClick} />
             <button onClick={handleClick} className="absolute bottom-0">
               <Icon name="IoCameraReverseOutline" />
             </button>
           </div>
         ) : (
-          <AdvancedImage cldImg={img} className="w-30 h-30 object-cover rounded-full" />
+          <AdvancedImage cldImg={img} className="w-32 h-32 object-cover rounded-full" />
         )}
-        {uploading && <Spinner/>}
+        {uploading && <Spinner />}
       </form>
     </div>
   );

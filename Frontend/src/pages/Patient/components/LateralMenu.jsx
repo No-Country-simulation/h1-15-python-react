@@ -2,8 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import MenuButton from "./MenuButton";
 import SideBarPatient from "./SideBarPatient";
 import Logout from "../../../components/Logout/Logout";
-import UserInitials from "../../../components/UserInitials";
 import { useNavigate } from "react-router-dom";
+import UserProfilePhoto from "./UserProfilePhoto";
 
 const LateralMenu = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -45,8 +45,8 @@ const LateralMenu = () => {
     <main>
       <nav className="flex justify-between w-full pt-6">
         <MenuButton onToggleSidebar={toggleSidebar} />
-        <div ref={profileRef} className="relative">
-          <UserInitials onClick={redirectToProfile}/>
+        <div ref={profileRef} className="relative w-12">
+          <UserProfilePhoto onClick={redirectToProfile}/>
           {showLogout && (
             <div className="absolute mt-2 right-0 z-10">
               <Logout />

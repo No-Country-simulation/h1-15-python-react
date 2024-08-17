@@ -20,9 +20,7 @@ const TestimonialSlider = ({ testimonials }) => {
           prevEl: ".swiper-button-prev",
         }}
         pagination={{ clickable: true, el: ".swiper-pagination" }}
-        slidesPerView={1} // Esto es importante para el efecto de cartas
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
+        slidesPerView={1}
         className="swiper-container"
       >
         {testimonials.cards.map((testimonial, index) => (
